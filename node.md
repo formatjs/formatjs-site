@@ -1,4 +1,4 @@
-## Internationationalization with Node.js
+### Internationationalization with Node.js
 
 Node.js lets developers write their server-side code in JavaScript, which makes it easier to share the same code on both the browser and the server. In our case, we don't have to write our internationalization code twice, in two different programming languages, if we're using JavaScript on both ends.
 
@@ -12,5 +12,23 @@ By doing this, we save developers from having to handle internationalization twi
 
 ### IntlMessageFormat
 
+The next thing we want to consider is how much data we send to our users to do internationalization. We want to minimize the size of the libraries that we send down, and we can take advantage of built-in `Intl` APIs in the latest browsers to do so.
+
 Our [intl-messageformat](https://github.com/yahoo/intl-messageformat) library builds on top of the [Intl.js](https://github.com/andyearnshaw/Intl.js/) polyfill by [Andy Earnshaw](https://github.com/andyearnshaw). The goal of it is to provide a implementation of a proposed standard by the JavaScript community on an API that provides localized message formatting for features such as gender, plurals, and other user-defined values.
+
+It provides configurations for a large number of languages and locales by default. Our goal is to be able to send only the language and locale files that are needed, not all of them.
+
+To do so:
+
+* We need to know what language and locale our user is in.
+
+* We need to detect whether the user's browser has the native `Intl` APIs.
+
+We can solve the first problem when our user makes their initial request (through the `Accept-Language` header), but we can't solve the second problem unless we're actually on our user's browser. 
+
+Our solution, then, is to dynamically load in the language and locale files as soon as the page loads, based on what we detect is available on the client. 
+
+Our users will still get to see their content initially rendered in the correct language because of server-rendering, so it'll still seem as if the page has loaded quickly.
+
+### Bringing it all together
 

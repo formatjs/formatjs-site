@@ -21,9 +21,3 @@ With modern websites, especially sites that were mainly composed of widgets or w
 The benefit of this was that users got a richer, more dynamic experience in their applications that was more than just clicking between pages in their web browser.
 
 Today, JavaScript standards committees are also working on developing a standardized way of handling formatting dates, numbers, and more in different locales, as part of the Internationalization API, so we would no longer need to use external libraries to do client-side localization work.
-
-### Problems to be solved
-
-With both server-side and client-side internationalization, though, we would often find ourselves having to localize data twice - once for the server, and once again for the client, in two different ways. 
-
-As well, although the Internationalization API started to standardize how we could localize our application, it hasn't been fully implemented in every browser yet. Polyfills for that API, which extended that functionality to older browsers, have since been developed, but for performance reasons, we wouldn't want to load in the polyfill and every single language bundle for every user. Instead, we would want an intelligent way of detecting what locale a user was in, if their browser supported the new API, and only loading the pieces we needed.

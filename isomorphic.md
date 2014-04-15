@@ -1,3 +1,9 @@
+### Problems to be solved
+
+With both server-side and client-side internationalization, though, we would often find ourselves having to localize data twice - once for the server, and once again for the client, in two different ways. 
+
+As well, although the Internationalization API started to standardize how we could localize our application, it hasn't been fully implemented in every browser yet. Polyfills for that API, which extended that functionality to older browsers, have since been developed, but for performance reasons, we wouldn't want to load in the polyfill and every single language bundle for every user. Instead, we would want an intelligent way of detecting what locale a user was in, if their browser supported the new API, and only loading the pieces we needed.
+
 ### Internationationalization with Node.js
 
 Node.js lets developers write their server-side code in JavaScript, which makes it easier to share the same code on both the browser and the server. In our case, we don't have to write our internationalization code twice, in two different programming languages, if we're using JavaScript on both ends.
@@ -29,6 +35,3 @@ We can solve the first problem when our user makes their initial request (throug
 Our solution, then, is to dynamically load in the language and locale files as soon as the page loads, based on what we detect is available on the client. 
 
 Our users will still get to see their content initially rendered in the correct language because of server-rendering, so it'll still seem as if the page has loaded quickly.
-
-### Bringing it all together
-

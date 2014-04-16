@@ -38,16 +38,16 @@ Then, load these components into your page:
 
 Now, inside of your Handlebars templates, you should be able to use the Internationalization helpers like this:
 
-```
+```html
 {{#intl locales="fr-FR"}}
   <p>
     {{intlMessage "The number is: {num, number, integer}" num=2000}}
     
-    3 + 1 = {{intlNumber 4}}
+    3 + 1 = <b>{{intlNumber 4}}</b>
     
     Budget: {{intlNumber 40000 style="currency" currency="EUR"}}
     
-    Good until {{intlDate "Thu Jan 23 2014 18:00:44 GMT-0500 (EST"}}
+    Good until {{intlDate "Thu Jan 23 2014 18:00:44 GMT-0500 (EST)"}}
     
     {{intlMessage MSG firstName=firstName lastName=lastName}}
     

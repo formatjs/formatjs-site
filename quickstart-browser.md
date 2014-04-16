@@ -43,11 +43,11 @@ Now, inside of your Handlebars templates, you should be able to use the Internat
   <p>
     {{intlMessage "The number is: {num, number, integer}" num=2000}}
     
-    3 + 1 = <b>{{intlNumber 4}}</b>
+    <b>{{intlNumber 4}}</b>
     
-    Budget: {{intlNumber 40000 style="currency" currency="EUR"}}
+    {{intlNumber 40000 style="currency" currency="EUR"}}
     
-    Good until {{intlDate "Thu Jan 23 2014 18:00:44 GMT-0500 (EST)"}}
+    {{intlDate "Thu Jan 23 2014 18:00:44 GMT-0500 (EST)"}}
     
     {{intlMessage MSG firstName=firstName lastName=lastName}}
     

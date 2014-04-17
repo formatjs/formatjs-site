@@ -4,11 +4,24 @@ For application developers, it's recommended to use the helpers for the template
 
 For this quickstart example, we'll be using the [helpers](https://www.npmjs.org/package/handlebars-helper-intl) for the [Handlebars](http://handlebarsjs.com) template engine, though we also have [helpers](https://www.npmjs.org/package/dust-helper-intl) available if you're using [Dust](http://akdubya.github.io/dustjs/) templates too.
 
+### Set Up
+Make sure you have [Bower](http://bower.io/) (and git) installed.
+
+```
+npm install -g bower
+```
+
+Create a directory containing your project. 
+
+The following steps assume you create a static page `index.html` with a subdirectory called `app`.
+
 ### Installation
 
 Install from Bower using:
 
 ```
+cd app/
+
 bower install handlebars-helper-intl
 ```
 
@@ -55,3 +68,5 @@ Now, inside of your Handlebars templates, you should be able to use the Internat
 {{/intl}}
 ```
 Note that you must wrap the helpers you use with a context like this `{{#intl}}{{/intl}}`.
+
+This [gist](https://gist.github.com/triptych/11015232) contains a sample `index.html` based on the assumptions above.

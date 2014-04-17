@@ -2,7 +2,7 @@
 
 For application developers, it's recommended to use the helpers for the template engine of your choice, rather than using `intl-messageformat` directly.
 
-For this quickstart example, we'll be using the helpers for the Handlebars template engine, though we also have helpers available if you're using Dust templates too.
+For this quickstart example, we'll be using the [helpers](https://www.npmjs.org/package/handlebars-helper-intl) for the [Handlebars](http://handlebarsjs.com) template engine, though we also have [helpers](https://www.npmjs.org/package/dust-helper-intl) available if you're using [Dust](http://akdubya.github.io/dustjs/) templates too.
 
 ### Installation
 

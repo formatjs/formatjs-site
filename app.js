@@ -5,7 +5,8 @@ var express     = require('express'),
     compress     = require('compression'),
     errorhandler = require('errorhandler');
 
-var app = module.exports = express();
+var app     = module.exports = express(),
+    router  = express.Router();
 
 app.set('name', 'JS Intl Docs');
 app.set('env', config.env);
@@ -29,7 +30,8 @@ app.use(compress());
 //              Routes                   //
 ///////////////////////////////////////////
 
-/////// ADD ALL YOUR ROUTES HERE  /////////
-app.get('/', function (req, res, next) {
+router.route('/').get(function (req, res) {
     res.render('home');
 });
+
+app.use('/', router);

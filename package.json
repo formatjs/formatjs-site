@@ -1,0 +1,25 @@
+{
+  "name": "js-intl-docs-site",
+  "description": "Documentation for Yahoo Intl Docs",
+  "homepage": "",
+  "version": "0.0.0",
+  "private": true,
+  "repository": "git://github.com/yahoo/js-intl-docs.git#website",
+  "contributors": [
+    "Tilo Mitra <tilomitra@gmail.com> (http://www.tilomitra.com/)",
+    "Juan Dopazo <jdopazo@yahoo-inc.com>"
+  ],
+  "main": "server.js",
+  "engines": {
+    "node": ">=0.8.x",
+    "npm": ">=1.1.2"
+  },
+  "dependencies": {
+    "express": "4.x",
+    "express3-handlebars": "0.5.0",
+    "express-slash": "1.0.0",
+    "handlebars": "~1.3.0",
+    "compression": "~1.0.3",
+    "errorhandler": "~1.0.1"
+  }
+}

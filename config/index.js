@@ -13,6 +13,7 @@ module.exports = {
 
     dirs: {
         pub     : path.resolve('public/'),
+        bower   : path.resolve('bower_components/'),
         views   : path.resolve('views/pages/'),
         layouts : path.resolve('views/layouts/'),
         partials: path.resolve('views/partials/')

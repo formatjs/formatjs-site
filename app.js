@@ -6,12 +6,10 @@ var Intl = global.Intl || require('intl');
 require('intl-messageformat');
 
 var express      = require('express'),
-    handlebars   = require('handlebars'),
     hbsIntl      = require('handlebars-helper-intl'),
     compress     = require('compression'),
     errorhandler = require('errorhandler'),
 
-    //Local Modules
     config       = require('./config'),
     hbs          = require('./lib/hbs'),
     routes       = require('./routes');
@@ -19,7 +17,7 @@ var express      = require('express'),
 var app     = module.exports = express(),
     router  = express.Router();
 
-hbsIntl.registerWith(handlebars);
+hbsIntl.registerWith(hbs.handlebars);
 
 app.set('name', 'JS Intl Docs');
 app.set('env', config.env);
@@ -37,8 +35,8 @@ app.engine(hbs.extname, hbs.engine);
 app.set('view engine', hbs.extname);
 app.set('views', config.dirs.views);
 
-app.use(express.static(__dirname + '/public'));
-app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+app.use(express.static(config.dirs.pub));
+app.use('/bower_components',  express.static(config.dirs.bower));
 app.use(compress());
 
 //When we get a favicon, we can uncomment this line

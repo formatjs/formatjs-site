@@ -5,8 +5,8 @@
   "version": "0.0.0",
   "private": true,
   "repository": "git://github.com/yahoo/js-intl-docs.git#website",
+  "author": "Tilo Mitra <tilomitra@gmail.com> (http://www.tilomitra.com/)",
   "contributors": [
-    "Tilo Mitra <tilomitra@gmail.com> (http://www.tilomitra.com/)",
     "Juan Dopazo <jdopazo@yahoo-inc.com>"
   ],
   "main": "server.js",
@@ -18,8 +18,14 @@
     "express": "4.x",
     "express3-handlebars": "0.5.0",
     "express-slash": "1.0.0",
-    "handlebars": "~1.3.0",
+    "handlebars": "^2.0.0-alpha.4",
     "compression": "~1.0.3",
-    "errorhandler": "~1.0.1"
+    "errorhandler": "~1.0.1",
+    "intl": "^0.1.4",
+    "intl-messageformat": "^0.1.0",
+    "handlebars-helper-intl": "^0.1.0"
+  },
+  "devDependencies": {
+    "bower": "~1.3.4"
   }
 }

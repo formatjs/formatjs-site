@@ -1,0 +1,7 @@
+{
+    "USERS_BOOKS": "{firstName} {lastName} possède {numBooks, number, integer} {numBooks, plural, one {livre} other {livres}}.",
+
+    "BOOKS_ON": "{numBooks} {numBooks, plural, one {livre} other {livres}} pour {price, number, EUR} au {dateBooks, date, short}",
+
+    "TITLE": "Full Intl French"
+}

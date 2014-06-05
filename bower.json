@@ -1,0 +1,8 @@
+{
+  "name": "js-intl-docs",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "rainbow": "~1.1.9"
+  }
+}

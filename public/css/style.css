@@ -19,6 +19,12 @@ h6 {
     padding: 1.5em;
 }
 
+.example {
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
 @media screen and (min-width: 48em) {
     .content {
         padding: 3em inherit;

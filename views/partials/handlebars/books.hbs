@@ -1,0 +1,18 @@
+{{#intl locales=intl.locale messages=intl.messages formats=intl.formats}}
+
+<p>
+    {{intlMessage (intlGet "messages.USERS_BOOKS")
+            firstName=user.firstName
+            lastName=user.lastName
+            numBooks=user.numBooks}}
+</p>
+
+<p>
+    {{intlMessage (intlGet "messages.BOOKS_ON")
+            books=(intlNumber 2000)
+            numBooks=10
+            price=1000
+            dateBooks=now}}
+</p>
+
+{{/intl}}

@@ -4,7 +4,6 @@ var path = require('path');
 
 module.exports = function (req, res, next) {
     var app     = req.app,
-        locales = app.get('locales'),
         locale  = app.get('default locale');
 
     res.render('handlebars', {
@@ -29,7 +28,7 @@ module.exports = function (req, res, next) {
         user: {
             firstName: 'Tilo',
             lastName : 'Mitra',
-            numBooks : '2000'
+            numBooks : 2000
         },
 
         now: new Date()

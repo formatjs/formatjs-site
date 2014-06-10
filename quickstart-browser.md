@@ -7,7 +7,7 @@ There are 3 progressively more helpful ways to use Internationalization in the b
 The first way is directly including Intl.js if your browser does not already support Intl natively.
 You should check to see if the `window.Intl` object exists, and if not, include the polyfill as below.
 
-```
+```js
 // check to see if window.Intl exists. If not, include the polyfill
 if (!window.Intl) {
     var elem =  document.createElement("script");
@@ -18,7 +18,7 @@ if (!window.Intl) {
 
 You might then use it in your javascript, following the standard. For example:
 
-```
+```js
 function init(){
     // use Intl NumberFormat
     var nf = new Intl.NumberFormat(undefined, {style:'currency', currency:'GBP'});
@@ -40,14 +40,14 @@ bower install intl-messageformat
 ```
 You would then need to include this in your `index.html`:
 
-```
+```html
 <script src="./app/bower_components/intl-messageformat/build/intl-messageformat.en.min.js"></script>
 
 ```
 
 Then in your javascript you might create a message like this;
 
-```
+```js
 // initialize the message template
 var msg = new IntlMessageFormat("My name is {NAME}.", "en-US");
 
@@ -83,15 +83,14 @@ The following steps assume you create a static page `index.html` with a subdirec
 Install from Bower using:
 
 ```
-cd app/
-
-bower install handlebars-helper-intl
+$ cd app/
+$ bower install handlebars-helper-intl
 ```
 
 Bower should download the `handlebars-helper-intl`, the `intl-messageformat`, and the `handlebars` libraries into your application's `./app/bower_components` folder. If you need to support older browsers, you can also install the Intl.js polyfill using:
 
 ```
-bower install intl
+$ bower install intl
 ```
 
 Then, load these components into your page:

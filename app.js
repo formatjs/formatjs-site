@@ -48,5 +48,5 @@ app.use(express.static(config.dirs.pub));
 
 // -- Routes -------------------------------------------------------------------
 
-router.route('/').get(routes.home);
+router.route('/').get(routes.render('home'));
 router.route('/handlebars/').get(routes.handlebars);

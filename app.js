@@ -12,9 +12,10 @@ var fs           = require('fs'),
     compress     = require('compression'),
     errorhandler = require('errorhandler');
 
-var config = require('./config'),
-    hbs    = require('./lib/hbs'),
-    routes = require('./routes');
+var config     = require('./config'),
+    hbs        = require('./lib/hbs'),
+    middleware = require('./middleware'),
+    routes     = require('./routes');
 
 var app = module.exports = express();
 
@@ -39,6 +40,7 @@ app.set('views', config.dirs.views);
 var router = express.Router();
 
 app.use(compress());
+app.use(middleware.intl);
 app.use(router);
 app.use('/bower_components/',  express.static(config.dirs.bower));
 app.use(express.static(config.dirs.pub));

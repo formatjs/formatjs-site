@@ -1,0 +1,31 @@
+<h1>Quickstart for Internationalization in Node</h1>
+
+<p>
+For application developers, it's recommended to use the helpers for the template engine of your choice, rather than using {{code "intl-messageformat"}} directly.
+</p>
+
+<p>
+For this quickstart example, we'll be using the <a href="https://www.npmjs.org/package/handlebars-helper-intl">helpers</a> for the <a href="http://handlebarsjs.com">Handlebars</a> template engine, though we also have <a href="https://www.npmjs.org/package/dust-helper-intl">helpers</a> available if you're using <a href="http://akdubya.github.io/dustjs/">Dust</a> templates too.
+</p>
+
+<h2>Installation</h2>
+
+<p>
+Install the helpers and the Intl polyfill from {{code "npm"}} using:
+</p>
+
+{{#code "bash"}}
+npm install handlebars-helper-intl intl
+{{/code}}
+
+<p>
+Then, inside your application, you can use the helpers like this:
+</p>
+
+{{#code "js"}}
+var Handlebars  = require('handlebars'),
+    global.Intl = require('intl'),
+    intlHelpers = require('handlebars-helper-intl');
+
+intlHelpers.register(Handlebars);
+{{/code}}

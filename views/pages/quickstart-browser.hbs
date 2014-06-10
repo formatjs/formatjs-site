@@ -56,7 +56,7 @@ You would then need to include this in your {{code "index.html"}}:
 </p>
 
 {{#code}}
-<script src="./app/bower_components/intl-messageformat/build/intl-messageformat.en.min.js"></script>
+<script src="/bower_components/intl-messageformat/build/intl-messageformat.en.min.js"></script>
 {{/code}}
 
 <p>
@@ -116,7 +116,7 @@ bower install handlebars-helper-intl
 {{/code}}
 
 <p>
-Bower should download the {{code "handlebars-helper-intl"}}, the {{code "intl-messageformat"}}, and the {{code "handlebars"}} libraries into your application's {{code "./app/bower_components"}} folder. If you need to support older browsers, you can also install the Intl.js polyfill using:
+Bower should download the {{code "handlebars-helper-intl"}}, the {{code "intl-messageformat"}}, and the {{code "handlebars"}} libraries into your application's {{code "bower_components"}} folder. If you need to support older browsers, you can also install the Intl.js polyfill using:
 </p>
 
 {{#code "bash"}}
@@ -129,18 +129,18 @@ Then, load these components into your page:
 
 {{#code "html"}}
 <!-- Optional libraries, if older browser support required for Intl -->
-<script src="./app/bower_components/intl/Intl.min.js"></script>
+<script src="/bower_components/intl/Intl.min.js"></script>
 
 <!-- Required libraries -->
 
 <!-- IntlMessageFormat library with the English language pack -->
-<script src="./app/bower_components/intl-messageformat/build/intl-messageformat.en.min.js"></script>
+<script src="/bower_components/intl-messageformat/build/intl-messageformat.en.min.js"></script>
 
 <!-- IntlMessageFormat language pack for the French locale -->
-<script src="./app/bower_components/intl-messageformat/locale-data/fr.js"></script>
+<script src="/bower_components/intl-messageformat/locale-data/fr.js"></script>
 
-<script src="./app/bower_components/handlebars/handlebars.js"></script>
-<script src="./app/bower_components/handlebars-helper-intl/build/helpers.min.js"></script>
+<script src="/bower_components/handlebars/handlebars.js"></script>
+<script src="/bower_components/handlebars-helper-intl/build/helpers.min.js"></script>
 {{/code}}
 
 <p>

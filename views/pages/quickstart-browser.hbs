@@ -14,9 +14,9 @@ You should check to see if the {{code "window.Intl"}} object exists, and if not,
 {{#code "js"}}
 // check to see if window.Intl exists. If not, include the polyfill
 if (!window.Intl) {
-    var elem =  document.createElement("script");
-    elem.setAttribute("src", "http://yui.yahooapis.com/ecmascript/intl/0.1.2/Intl.js");
-    document.getElementsByTagName("head")[0].appendChild(elem);
+    var elem =  document.createElement('script');
+    elem.setAttribute('src', 'http://yui.yahooapis.com/ecmascript/intl/0.1.2/Intl.js');
+    document.getElementsByTagName('head')[0].appendChild(elem);
 }
 {{/code}}
 
@@ -65,14 +65,14 @@ Then in your JavaScript you might create a message like this;
 
 {{#code "js"}}
 // initialize the message template
-var msg = new IntlMessageFormat("My name is {NAME}.", "en-US");
+var msg = new IntlMessageFormat('My name is {NAME}.', 'en-US');
 
 // fill in the template with data
-var myNameIs = msg.format({ name: "Ferris Wheeler"});
+var myNameIs = msg.format({ name: 'Ferris Wheeler'});
 
 // insert the message into the DOM
-document.getElementById("thename").innerText=myNameIs;
-// "My name is Ferris Wheeler."
+document.getElementById('thename').innerText=myNameIs;
+// 'My name is Ferris Wheeler.'
 {{/code}}
 
 <hr>

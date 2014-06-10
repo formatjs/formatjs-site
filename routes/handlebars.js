@@ -2,6 +2,8 @@
 
 var path = require('path');
 
+var config = require('../config');
+
 module.exports = function (req, res, next) {
     var app     = req.app,
         locale  = app.get('default locale');
@@ -9,7 +11,7 @@ module.exports = function (req, res, next) {
     res.render('handlebars', {
         intl: {
             locale  : locale,
-            messages: require('../' + path.join('i18n', 'handlebars', locale)),
+            messages: require(path.join(config.dirs.i18n, locale)),
 
             formats: {
                 number: {

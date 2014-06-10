@@ -5,27 +5,26 @@ var Intl = global.Intl || require('intl');
 // TODO: This should be required by `handlebars-helper-intl`.
 require('intl-messageformat');
 
-var express      = require('express'),
+var fs           = require('fs'),
+    path         = require('path'),
+    express      = require('express'),
     hbsIntl      = require('handlebars-helper-intl'),
     compress     = require('compression'),
-    errorhandler = require('errorhandler'),
+    errorhandler = require('errorhandler');
 
-    config       = require('./config'),
-    hbs          = require('./lib/hbs'),
-    routes       = require('./routes');
+var config = require('./config'),
+    hbs    = require('./lib/hbs'),
+    routes = require('./routes');
 
-var app     = module.exports = express(),
-    router  = express.Router();
+var app = module.exports = express();
+
+// -----------------------------------------------------------------------------
 
 hbsIntl.registerWith(hbs.handlebars);
 
 app.set('name', 'JS Intl Docs');
-app.set('env', config.env);
 app.set('port', config.port);
-
-app.set('locales', ['en-US']);
-
-//You can change this to change the language that the examples are rendered in by default.
+app.set('locales', config.locales);
 app.set('default locale', 'en-US');
 
 app.enable('strict routing');
@@ -35,20 +34,19 @@ app.engine(hbs.extname, hbs.engine);
 app.set('view engine', hbs.extname);
 app.set('views', config.dirs.views);
 
-app.use(express.static(config.dirs.pub));
-app.use('/bower_components',  express.static(config.dirs.bower));
+// -- Middleware ---------------------------------------------------------------
+
+var router = express.Router();
+
 app.use(compress());
+app.use(router);
+app.use('/bower_components/',  express.static(config.dirs.bower));
+app.use(express.static(config.dirs.pub));
 
-//When we get a favicon, we can uncomment this line
-//app.use(express.favicon(path.join(config.dirs.pub, 'favicon.ico')));
+// When we get a favicon, we can uncomment this line
+// app.use(express.favicon(path.join(config.dirs.pub, 'favicon.ico')));
 
-
-///////////////////////////////////////////
-//              Routes                   //
-///////////////////////////////////////////
+// -- Routes -------------------------------------------------------------------
 
 router.route('/').get(routes.home);
 router.route('/handlebars/').get(routes.handlebars);
-
-
-app.use('/', router);

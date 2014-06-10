@@ -1,17 +1,13 @@
 'use strict';
 
-var env  = process.env,
+var fs   = require('fs'),
     path = require('path');
 
-module.exports = {
-
-    env          : env.NODE_ENV,
-    isDevelopment: env.NODE_ENV !== 'production',
-    isProduction : env.NODE_ENV === 'production',
-
-    port: env.PORT || 5000,
+exports = module.exports = {
+    port: process.env.PORT || 5000,
 
     dirs: {
+        i18n    : path.resolve('i18n/'),
         pub     : path.resolve('public/'),
         bower   : path.resolve('bower_components/'),
         views   : path.resolve('views/pages/'),
@@ -19,3 +15,10 @@ module.exports = {
         partials: path.resolve('views/partials/')
     }
 };
+
+// Get list of the app's supported locales by looking for files in its i18n dir.
+exports.locales = fs.readdirSync(exports.dirs.i18n).filter(function (file) {
+    return path.extname(file) === '.json';
+}).map(function (file) {
+    return path.basename(file, '.json');
+});

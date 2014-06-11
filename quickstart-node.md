@@ -74,9 +74,9 @@ in a file called `en-US.json`:
 
 ```json
 {
-  TITLE: "Your Personal Bookstore"
-  USER_HAS_BOOKS: "{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}.",
-  USER_WILL_SELL: "{firstName} will sell them for {price, number, USD} on {dateBooks, date, long}."
+  "TITLE": "Your Personal Bookstore",
+  "USER_HAS_BOOKS": "{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}.",
+  "USER_WILL_SELL": "{firstName} will sell them on {dateBooks, date, long} for {price, number, USD}."
 }
 ```
 
@@ -84,9 +84,9 @@ And similarly, the exact same thing in French, in a file called `fr-CA.json`:
 
 ```json
 {
-  TITLE: "Votre Librarie Personnelle"
-  USER_HAS_BOOKS: "{firstName} {lastName} a {numBooks, number, integer} {numBooks, plural, one {livre} other {livres}}.",
-  USER_WILL_SELL: "{firstName} les vendra à {price, number, USD} le {dateBooks, date, long}."
+  "TITLE": "Votre Librarie Personnelle",
+  "USER_HAS_BOOKS": "{firstName} {lastName} a {numBooks, number, integer} {numBooks, plural, one {livre} other {livres}}.",
+  "USER_WILL_SELL": "{firstName} les vendra le {dateBooks, date, long} pour {price, number, USD}."
 }
 ```
 
@@ -104,7 +104,7 @@ $ mkdir layouts && cd layouts
 For our app, we can just create a simple layout to wrap around our main content.
 Create a file called `main.handlebars`:
 
-```
+```html
 <!DOCTYPE html>
 <html>
 <head>
@@ -134,4 +134,113 @@ Next, we'll set up our main content. Go back up one folder:
 $ cd ..
 ```
 
-And create a file called
+And create a file called `index.handlebars`:
+
+```html
+{{#intl locales=intl.locale messages=intl.messages formats=intl.formats}}
+<p>
+    {{intlMessage (intlGet "messages.USER_HAS_BOOKS")
+            firstName=user.firstName
+            lastName=user.lastName
+            numBooks=user.numBooks}}
+</p>
+
+<p>
+    {{intlMessage (intlGet "messages.USER_WILL_SELL")
+            firstName=user.firstName
+            price=1000
+            dateBooks=now}}
+</p>
+{{/intl}}
+```
+
+This template accesses our translated strings using the `intlGet` helper, and
+then formats it as a internationalized message using the `intlMessage` helper.
+
+The parameters passed into the `intlMessage` helper will be provided by Express
+during the rendering step, which we'll implement next.
+
+Finally, we'll open our `app.js` file once more. Add this to the bottom, after
+where we set up our Handlebars engine:
+
+```js
+app.set('locales', fs.readdirSync('./i18n/').filter(function (file) {
+    return path.extname(file) === '.json';
+}).map(function (file) {
+    return path.basename(file, '.json');
+}));
+
+app.set('default locale', 'en-US');
+```
+
+This will iterate through our `i18n` directory and examine all of translated
+files. Since we're naming all of our translation files after the locale,
+this gives us an array of all our supported locales, which we'll set as the
+`locales` configuration property in our Express application.
+
+We'll also set our default locale to `en-US`, which will be the fallback if
+the browser has no locale that we currently support in our application.
+
+Now that we have all of our different locales, we can begin to implement the
+route that determines what locale an incoming request will accept, and to
+render out the template properly. Underneath the code we just wrote, add our
+route:
+
+```js
+app.route('/')
+   .get(function (req, res) {
+       var app     = req.app,
+            locales = app.get('locales'),
+            locale  = req.acceptsLanguage(locales) || app.get('default locale');
+
+        res.render('index', {
+            intl: {
+                locale  : locale,
+                messages: require('./i18n/' + locale),
+
+                formats: {
+                    number: {
+                        USD: {
+                            style   : 'currency',
+                            currency: 'USD'
+                        }
+                    }
+                }
+            },
+
+            user: {
+                firstName: 'John',
+                lastName : 'Smith',
+                numBooks : 2000
+            },
+
+            now: new Date()
+        });
+
+    });
+
+app.listen(3000, function () {
+    console.log('App started on port 3000');
+});
+```
+
+Now, run your application:
+```
+$ node server.js
+```
+
+When you visit `http://localhost:3000`, if you have the US English locale,
+you should now see something like:
+```
+John Smith has 2000 books.
+
+John will sell them on June 11, 2014 for $1,000.00.
+```
+
+Otherwise, if you have the French Canadian locale, you should see
+something like this instead:
+```
+John Smith a 2 000 livres.
+
+John les vendra le 11 juin 2014 pour 1 000,00 $US.
+```

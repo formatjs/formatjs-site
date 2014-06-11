@@ -2,29 +2,23 @@
 
 var path = require('path');
 
+var config = require('../config');
+
 module.exports = function (req, res, next) {
-    var app     = req.app,
-        locale  = app.get('default locale');
+    res.locals.intl.formats = {
+        number: {
+            USD: {
+                style   : 'currency',
+                currency: 'USD'
+            },
+            EUR: {
+                style   : 'currency',
+                currency: 'EUR'
+            }
+        }
+    };
 
     res.render('handlebars', {
-        intl: {
-            locale  : locale,
-            messages: require('../' + path.join('i18n', 'handlebars', locale)),
-
-            formats: {
-                number: {
-                    USD: {
-                        style   : 'currency',
-                        currency: 'USD'
-                    },
-                    EUR: {
-                        style   : 'currency',
-                        currency: 'EUR'
-                    }
-                }
-            }
-        },
-
         user: {
             firstName: 'Tilo',
             lastName : 'Mitra',

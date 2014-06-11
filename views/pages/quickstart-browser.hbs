@@ -15,7 +15,7 @@ You should check to see if the {{code "window.Intl"}} object exists, and if not,
 // check to see if window.Intl exists. If not, include the polyfill
 if (!window.Intl) {
     var elem =  document.createElement('script');
-    elem.setAttribute('src', 'http://yui.yahooapis.com/ecmascript/intl/0.1.2/Intl.js');
+    elem.setAttribute('src', 'http://yui.yahooapis.com/platform/intl/0.1.2/Intl.js');
     document.getElementsByTagName('head')[0].appendChild(elem);
 }
 {{/code}}

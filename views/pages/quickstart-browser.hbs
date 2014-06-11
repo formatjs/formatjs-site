@@ -1,0 +1,173 @@
+<h1>Quickstart for Internationalization in the browser</h1>
+
+<p>
+There are 3 progressively more helpful ways to use Internationalization in the browser.
+</p>
+
+<hr>
+
+<p>
+The first way is directly including Intl.js if your browser does not already support Intl natively.
+You should check to see if the {{code "window.Intl"}} object exists, and if not, include the polyfill as below.
+</p>
+
+{{#code "js"}}
+// check to see if window.Intl exists. If not, include the polyfill
+if (!window.Intl) {
+    var elem =  document.createElement('script');
+    elem.setAttribute('src', 'http://yui.yahooapis.com/ecmascript/intl/0.1.2/Intl.js');
+    document.getElementsByTagName('head')[0].appendChild(elem);
+}
+{{/code}}
+
+<p>
+You might then use it in your JavaScript, following the standard. For example:
+</p>
+
+{{#code "js"}}
+function init(){
+    // use Intl NumberFormat
+    var nf = new Intl.NumberFormat(undefined, {style:'currency', currency:'GBP'});
+    document.getElementById('price').textContent = nf.format(100);
+
+}
+{{/code}}
+
+<p>
+For a full working example {{code "index.html"}} file, visit <a href="https://gist.github.com/triptych/11195256">this gist</a>.
+</p>
+
+<hr>
+
+<p>
+The second way to use Internationalization is via the {{code "intl-messageformat"}} component.
+</p>
+
+<p>
+You might install this component via bower:
+</p>
+
+{{#code "bash"}}
+bower install intl-messageformat
+{{/code}}
+
+<p>
+You would then need to include this in your {{code "index.html"}}:
+</p>
+
+{{#code}}
+<script src="/bower_components/intl-messageformat/build/intl-messageformat.en.min.js"></script>
+{{/code}}
+
+<p>
+Then in your JavaScript you might create a message like this;
+</p>
+
+{{#code "js"}}
+// initialize the message template
+var msg = new IntlMessageFormat('My name is {NAME}.', 'en-US');
+
+// fill in the template with data
+var myNameIs = msg.format({ name: 'Ferris Wheeler'});
+
+// insert the message into the DOM
+document.getElementById('thename').innerText=myNameIs;
+// 'My name is Ferris Wheeler.'
+{{/code}}
+
+<hr>
+
+<p>
+Thirdly, for application developers, it's recommended to use the helpers for the template engine of your choice, rather than using {{code "intl-messageformat"}} directly.
+</p>
+
+<p>
+For this quickstart example, we'll be using the <a href="https://www.npmjs.org/package/handlebars-helper-intl">helpers</a> for the <a href="http://handlebarsjs.com">Handlebars</a> template engine, though we also have <a href="https://www.npmjs.org/package/dust-helper-intl">helpers</a> available if you're using <a href="http://akdubya.github.io/dustjs/">Dust</a> templates too.
+</p>
+
+<h2>Set Up</h2>
+
+<p>
+Make sure you have <a href="http://bower.io/">Bower</a> (and git) installed.
+</p>
+
+{{#code "bash"}}
+npm install -g bower
+{{/code}}
+
+<p>
+Create a directory containing your project.
+</p>
+
+<p>
+The following steps assume you create a static page {{code "index.html"}} with a subdirectory called {{code "app"}}.
+</p>
+
+<h2>Installation</h2>
+
+<p>
+Install from Bower using:
+</p>
+
+{{#code "bash"}}
+cd app/
+
+bower install handlebars-helper-intl
+{{/code}}
+
+<p>
+Bower should download the {{code "handlebars-helper-intl"}}, the {{code "intl-messageformat"}}, and the {{code "handlebars"}} libraries into your application's {{code "bower_components"}} folder. If you need to support older browsers, you can also install the Intl.js polyfill using:
+</p>
+
+{{#code "bash"}}
+bower install intl
+{{/code}}
+
+<p>
+Then, load these components into your page:
+</p>
+
+{{#code "html"}}
+<!-- Optional libraries, if older browser support required for Intl -->
+<script src="/bower_components/intl/Intl.min.js"></script>
+
+<!-- Required libraries -->
+
+<!-- IntlMessageFormat library with the English language pack -->
+<script src="/bower_components/intl-messageformat/build/intl-messageformat.en.min.js"></script>
+
+<!-- IntlMessageFormat language pack for the French locale -->
+<script src="/bower_components/intl-messageformat/locale-data/fr.js"></script>
+
+<script src="/bower_components/handlebars/handlebars.js"></script>
+<script src="/bower_components/handlebars-helper-intl/build/helpers.min.js"></script>
+{{/code}}
+
+<p>
+Now, inside of your Handlebars templates, you should be able to use the Internationalization helpers like this:
+</p>
+
+{{#code "html"}}
+\{{#intl locales="fr-FR"}}
+  <p>
+    \{{intlMessage "The number is: {num, number, integer}" num=2000}}
+
+    <b>\{{intlNumber 4}}</b>
+
+    \{{intlNumber 40000 style="currency" currency="EUR"}}
+
+    \{{intlDate "Thu Jan 23 2014 18:00:44 GMT-0500 (EST)"}}
+
+    \{{intlMessage MSG firstName=firstName lastName=lastName}}
+
+  </p>
+\{{/intl}}
+{{/code}}
+
+<p>
+Note that you must wrap the helpers you use with a context like this {{code "{{#intl}}{{/intl}}"}}.
+</p>
+
+<p>
+<a href="https://gist.github.com/triptych/11015232">This gist</a> contains a sample {{code "index.html"}} based on the assumptions above.
+</p>

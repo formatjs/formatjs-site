@@ -51,6 +51,12 @@ app.use(express.static(config.dirs.pub));
 // -- Routes -------------------------------------------------------------------
 
 router.route('/').get(routes.render('home'));
-router.route('/browser/').get(routes.render('browser'));
-router.route('/node/').get(routes.render('node'));
+
+router.route('/quickstart/')
+    .get(routes.render('quickstart'));
+router.route('/quickstart/browser/')
+    .get(routes.render('quickstart/browser'));
+router.route('/quickstart/node/')
+    .get(routes.render('quickstart/node'));
+
 router.route('/handlebars/').get(routes.handlebars);

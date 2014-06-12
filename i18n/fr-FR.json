@@ -1,0 +1,5 @@
+{
+    "USERS_BOOKS": "{firstName} {lastName} possède {numBooks, number, integer} {numBooks, plural, one {livre} other {livres}}.",
+
+    "BOOKS_ON": "{numBooks, number, integer} {numBooks, plural, one {livre} other {livres}} pour {price, number, EUR} sur {dateBooks, date, short}"
+}

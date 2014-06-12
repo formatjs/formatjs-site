@@ -1,4 +1,6 @@
-<h1>Quickstart for Internationalization in Node</h1>
+{{setTitle "Internationalization in Node.js"}}
+
+<h1>Internationalization in Node.js</h1>
 
 <p>
 For application developers, it's recommended to use the helpers for the template engine of your choice, rather than using {{code "intl-messageformat"}} directly.
@@ -166,7 +168,7 @@ And create a file called {{code 'index.handlebars'}}:
             price=1000
             dateBooks=now}}
 </p>
-{{/intl}}
+\{{/intl}}
 {{/code}}
 
 <p>
@@ -264,7 +266,7 @@ When you visit {{code 'http://localhost:3000'}}, if you have the US English loca
 you should now see something like:
 </p>
 
-{{code}}
+{{#code}}
 John Smith has 2000 books.
 
 John will sell them on June 11, 2014 for $1,000.00.
@@ -275,7 +277,7 @@ Otherwise, if you have the French Canadian locale, you should see
 something like this instead:
 </p>
 
-{{code}}
+{{#code}}
 John Smith a 2 000 livres.
 
 John les vendra le 11 juin 2014 pour 1 000,00 $US.

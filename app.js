@@ -8,6 +8,7 @@ require('intl-messageformat');
 var fs           = require('fs'),
     path         = require('path'),
     express      = require('express'),
+    expstate     = require('express-state'),
     hbsIntl      = require('handlebars-helper-intl'),
     compress     = require('compression'),
     errorhandler = require('errorhandler');
@@ -22,11 +23,13 @@ var app = module.exports = express();
 // -----------------------------------------------------------------------------
 
 hbsIntl.registerWith(hbs.handlebars);
+expstate.extend(app);
 
 app.set('name', 'JS Intl Docs');
 app.set('port', config.port);
 app.set('locales', config.locales);
 app.set('default locale', 'en-US');
+app.set('state namespace', 'APP');
 
 app.enable('strict routing');
 app.enable('case sensitive routing');

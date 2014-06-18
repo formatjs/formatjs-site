@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "rainbow": "~1.1.9",
-    "yepnope": "~1.5.4"
+    "yepnope": "~1.5.4",
+    "intl-messageformat": "~0.1.0"
   }
 }

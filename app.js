@@ -46,7 +46,6 @@ app.use(compress());
 app.use(middleware.intl);
 app.use(router);
 app.use('/bower_components/',  express.static(config.dirs.bower));
-app.use('/intl/', express.static(config.dirs.intl));
 app.use(express.static(config.dirs.pub));
 
 // When we get a favicon, we can uncomment this line

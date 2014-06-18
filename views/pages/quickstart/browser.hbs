@@ -86,11 +86,11 @@ be brought dyanmically via an API.
    var intlContext = {
         // normally fetched via some api based on the user's locale
         messages: {
-            "enUS": {
+            "en_US": {
                 "USER_HAS_BOOKS": "{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}.",
                 "USER_WILL_SELL": "{firstName} will sell them on {dateBooks, date, long} for {price, number, USD}."
             },
-            "frCA": {
+            "fr_CA": {
                 "USER_HAS_BOOKS": "{firstName} {lastName} a {numBooks, number, integer} {numBooks, plural, one {livre} other {livres}}.",
                 "USER_WILL_SELL": "{firstName} les vendra le {dateBooks, date, long} pour {price, number, USD}."
             }
@@ -123,7 +123,7 @@ Next we add our handlebars templates as script elements.
        <script id="template1" type="text/x-handlebars-template">
             \{{#intl locales="en-US" }}
                 <p>
-                    \{{intlMessage messages.enUS.USER_HAS_BOOKS
+                    \{{intlMessage messages.en_US.USER_HAS_BOOKS
                         firstName=user.firstName
                         lastName=user.lastName
                         numBooks=user.numBooks}}
@@ -133,7 +133,7 @@ Next we add our handlebars templates as script elements.
                 </p>
 
                 <p>
-                    \{{intlMessage messages.enUS.USER_WILL_SELL
+                    \{{intlMessage messages.en_US.USER_WILL_SELL
                         firstName=user.firstName
                         price=1000
                         dateBooks=now}}
@@ -145,7 +145,7 @@ Next we add our handlebars templates as script elements.
        <script id="template2" type="text/x-handlebars-template">
             \{{#intl locales="fr-FR" }}
                 <p>
-                    \{{intlMessage messages.frCA.USER_HAS_BOOKS
+                    \{{intlMessage messages.fr_CA.USER_HAS_BOOKS
                         firstName=user.firstName
                         lastName=user.lastName
                         numBooks=user.numBooks}}
@@ -155,7 +155,7 @@ Next we add our handlebars templates as script elements.
                 </p>
 
                 <p>
-                    \{{intlMessage messages.frCA.USER_WILL_SELL
+                    \{{intlMessage messages.fr_CA.USER_WILL_SELL
                         firstName=user.firstName
                         price=1000
                         dateBooks=now}}

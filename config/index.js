@@ -10,7 +10,6 @@ exports = module.exports = {
         i18n    : path.resolve('i18n/'),
         pub     : path.resolve('public/'),
         bower   : path.resolve('bower_components/'),
-        intl    : path.resolve('node_modules/intl-messageformat/build/'),
         views   : path.resolve('views/pages/'),
         layouts : path.resolve('views/layouts/'),
         partials: path.resolve('views/partials/')

@@ -1,5 +1,5 @@
 {
-    "USERS_BOOKS": "{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}.",
-
-    "BOOKS_ON": "{numBooks, number, integer} {numBooks, plural, one {book} other {books}} for {price, number, USD} on {dateBooks, date, short}"
+  "TITLE": "Your Personal Bookstore",
+  "USER_HAS_BOOKS": "{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}.",
+  "USER_WILL_SELL": "{firstName} will sell them on {dateBooks, date, long} for {price, number, USD}."
 }

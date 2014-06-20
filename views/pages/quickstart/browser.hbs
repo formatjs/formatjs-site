@@ -177,6 +177,7 @@ and devices support it. Here's a breakdown of desktop and mobile browsers suppor
 
 {{#code "js"}}
 
+
 (function () {
     var locale    = "en-US", //you should obtain this information potentially from the server.
         baseUrl   = 'http://yui.yahooapis.com/combo?platform/intl/0.1.2/Intl.min.js&platform/intl/0.1.2/locale-data/jsonp/',
@@ -203,7 +204,9 @@ Note the test {{code "!!window.Intl"}} which {{code "yepnope"}} uses to to decid
 var msg = new IntlMessageFormat(pattern, locale, [optFieldFormatters]);
 {{/code}}
 
+<p>
     Where the {{code "pattern"}} and {{code "locale"}} are strings and {{code "[optFieldFormatters]"}} is an object. Let's look at some examples.
+</p>
 
 
 <h3>Simple String Example</h3>
@@ -311,3 +314,4 @@ $ bower install intl-messageformat
 <p>
     Working with {{code "intl-messageformat"}} is fairly easy, but if you are developing a website or single page application you may already be using a template engine like Dust or Handlebars, or a library like ReactJS. We provide helpers for each of these. For more information check out the documentation for <a href="#">{{code "dust-helper-intl"}}</a> , <a href="#">{{code "handlebars-helper-intl"}}</a>, and
 </p>
+

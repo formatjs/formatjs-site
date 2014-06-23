@@ -3,9 +3,9 @@
 <h1>Internationalization in the Browser</h1>
 
 <p>
-    In the early days of browser development, internationalization would happen most often on the server,
+    In the early days of browser development, Internationalization would happen most often on the server,
     since browsers did not have a standard way of formatting things like dates and numbers based on
-    the locale of the browser. With more modern browsers we have the benefit of the ECMAScript internationalization
+    the locale of the browser. With more modern browsers we have the benefit of the ECMAScript Internationalization
     API (<a href="http://www.ecma-international.org/ecma-402/1.0/#sec-8">ECMA-402</a>) which provides
     language sensitive string comparison, number formatting, and date and time formatting.
 </p>
@@ -29,20 +29,20 @@ Here are some examples:
 
 {{#code "js"}}
 var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
-alert(new Intl.DateTimeFormat().format(date));
+console.log(new Intl.DateTimeFormat().format(date));
 {{/code}}
 
 Returns "{{code "12/19/2012"}}" if run in the {{code "en-US"}} locale with time zone {{code "America/Los-Angeles"}}.
 Using {{code "Intl.DateTimeFormat()"}} with no arguments will use the system's locale and time zone.
 
 {{#code "js"}}
-alert(new Intl.DateTimeFormat("en-GB").format(date));
+console.log(new Intl.DateTimeFormat("en-GB").format(date));
 {{/code}}
 
 Returns "{{code "19/11/2012"}}" as British English uses day-month-year order.
 
 {{#code "js"}}
-alert(new Intl.DateTimeFormat("ko-KR").format(date));
+console.log(new Intl.DateTimeFormat("ko-KR").format(date));
 {{/code}}
 
 Returns "{{code "2012년 12월 19일"}}" as Korean uses year-month-day order.
@@ -53,7 +53,7 @@ You can also format dates and times via the {{code "options"}} argument:
 
 {{#code "js"}}
 var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
-alert(new Intl.DateTimeFormat("de-DE", options).format(date));
+console.log(new Intl.DateTimeFormat("de-DE", options).format(date));
 {{/code}}
 
 Returns "{{code "Mittwoch, 19. Dezember 2012"}}" as you requested a weekday along with a long date.
@@ -72,7 +72,7 @@ Returns "{{code "Mittwoch, 19. Dezember 2012"}}" as you requested a weekday alon
 
 {{#code "js"}}
 var number = 123456.789;
-alert(new Intl.NumberFormat().format(number));
+console.log(new Intl.NumberFormat().format(number));
 {{/code}}
 
 Returns "{{code "123,456.789"}}" when in the US English locale.
@@ -83,7 +83,7 @@ Returns "{{code "123,456.789"}}" when in the US English locale.
 
 
 {{#code "js"}}
-alert(new Intl.NumberFormat("ar-EG").format(number));
+console.log(new Intl.NumberFormat("ar-EG").format(number));
 {{/code}}
 
 Returns "{{code "١٢٣٬٤٥٦٫٧٨٩"}}" using real Arabic digits that are used in that language.
@@ -95,7 +95,7 @@ Returns "{{code "١٢٣٬٤٥٦٫٧٨٩"}}" using real Arabic digits that are us
 
 
 {{#code "js"}}
-alert(new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(number));
+console.log(new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(number));
 {{/code}}
 
 Returns "{{code "23.456,789 €"}}" using the Euro symbol for currency.
@@ -305,7 +305,7 @@ $ bower install intl-messageformat
 <h2>Where To Go From Here?</h2>
 
 <p>
-    If you've reached this point then you should have an understanding of how internationalization works in the
+    If you've reached this point then you should have an understanding of how Internationalization works in the
     browser. We touched upon the ECMAScript Internationalization API (<a href="http://www.ecma-international.org/ecma-402/1.0/">ECMA-402</a>), the need for a polyfill for unsupported browsers through <a href="https://github.com/andyearnshaw/Intl.js/">{{code "Intl.js"}}</a>, and how to format strings with placeholders to create localized
     messages through <a href="https://github.com/yahoo/intl-messageformat">{{code "intl-messageformat"}}</a>.
 </p>

@@ -107,7 +107,7 @@ and dates. However, the {{code "window.Intl"}} object is relatively new so not a
 and devices support it. Here's a breakdown of desktop and mobile browsers support.
 
 <h3>Desktop</h3>
-<table class="pure-table-horizontal">
+<table class="pure-table">
     <thead>
         <tr>
             <th>Feature</th>
@@ -270,7 +270,6 @@ var books = msg.format({
 </p>
 
 {{#code "js"}}
-//Client-side JS goes here.
 (function () {
     var locale    = APP.intl.locale,
         // TODO: expose these URLs through Express State instead
@@ -312,6 +311,6 @@ $ bower install intl-messageformat
     messages through <a href="https://github.com/yahoo/intl-messageformat">{{code "intl-messageformat"}}</a>.
 </p>
 <p>
-    Working with {{code "intl-messageformat"}} is fairly easy, but if you are developing a website or single page application you may already be using a template engine like Dust or Handlebars, or a library like ReactJS. We provide helpers for each of these. For more information check out the documentation for <a href="#">{{code "dust-helper-intl"}}</a> , <a href="#">{{code "handlebars-helper-intl"}}</a>, and
+    Working with {{code "intl-messageformat"}} is fairly easy, but if you are developing a website or single page application you may already be using a template engine like Dust or Handlebars, or a library like ReactJS. We provide helpers for each of these. For more information check out the documentation for <a href="#">{{code "dust-helper-intl"}}</a> , <a href="#">{{code "handlebars-helper-intl"}}</a>, and <a href="#">{{code "react-intl"}}</a>.
 </p>
 

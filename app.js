@@ -38,6 +38,13 @@ app.engine(hbs.extname, hbs.engine);
 app.set('view engine', hbs.extname);
 app.set('views', config.dirs.views);
 
+var allTranslations = config.locales.reduce(function (translations, locale) {
+    translations[locale] = require(path.join(config.dirs.i18n, locale));
+    return translations;
+}, {});
+
+app.expose(allTranslations, 'translations', { cache: true });
+
 // -- Middleware ---------------------------------------------------------------
 
 var router = express.Router();

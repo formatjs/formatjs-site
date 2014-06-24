@@ -13,7 +13,8 @@ exports = module.exports = {
         intl    : path.resolve('node_modules/intl-messageformat/build/'),
         views   : path.resolve('views/pages/'),
         layouts : path.resolve('views/layouts/'),
-        partials: path.resolve('views/partials/')
+        partials: path.resolve('views/partials/'),
+        examples: path.resolve('views/examples/')
     }
 };
 

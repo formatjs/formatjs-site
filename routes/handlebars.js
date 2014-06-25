@@ -1,13 +1,12 @@
 'use strict';
-global.Intl = require('intl');
 
 var getExamples = require('../lib/examples');
 
 module.exports = function (req, res, next) {
 
     getExamples('handlebars', {cache: true}).then(function (examples) {
-
-        Object.keys(examples).forEach(function(key) {
+        var hbsExamples = examples;
+        Object.keys(hbsExamples).forEach(function(key) {
             var example = examples[key];
             example.rendered = example.compiled({
                 intl: res.locals.intl,
@@ -24,7 +23,7 @@ module.exports = function (req, res, next) {
         });
 
         res.render('handlebars', {
-            examples: examples
+            examples: hbsExamples
         });
-    });
+    }).catch(next);
 };

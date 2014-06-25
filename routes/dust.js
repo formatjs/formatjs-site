@@ -1,5 +1,4 @@
 'use strict';
-global.Intl = require('intl');
 
 var Dust   = require('dustjs-linkedin');
 
@@ -10,9 +9,10 @@ require('dust-helper-intl').register(Dust);
 
 module.exports = function (req, res, next) {
     getExamples('dust', {cache: true}).then(function (examples) {
+        var dustExamples = examples;
 
-        Object.keys(examples).forEach(function(key) {
-            var example = examples[key];
+        Object.keys(dustExamples).forEach(function(key) {
+            var example = dustExamples[key];
             Dust.loadSource(example.compiled);
             Dust.render(example.identifier, {
                 intl: res.locals.intl,
@@ -33,7 +33,7 @@ module.exports = function (req, res, next) {
         });
 
         res.render('dust', {
-            examples: examples
+            examples: dustExamples
         });
-    });
+    }).catch(next);
 };

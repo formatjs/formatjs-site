@@ -1,5 +1,4 @@
 'use strict';
-global.Intl = require('intl');
 
 var React = require('react');
 
@@ -8,9 +7,9 @@ var getExamples = require('../lib/examples');
 module.exports = function (req, res, next) {
 
     getExamples('react', {cache: true}).then(function (examples) {
-
-        Object.keys(examples).forEach(function(key) {
-            var example = examples[key];
+        var reactExamples = examples;
+        Object.keys(reactExamples).forEach(function(key) {
+            var example = reactExamples[key];
 
             example.rendered = React.renderComponentToString(example.compiled({locales: ['en-US']}));
 
@@ -20,7 +19,7 @@ module.exports = function (req, res, next) {
         });
 
         res.render('react', {
-            examples: examples
+            examples: reactExamples
         });
-    });
+    }).catch(next);
 };

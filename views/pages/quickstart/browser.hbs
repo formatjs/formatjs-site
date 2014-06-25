@@ -196,7 +196,15 @@ var msg = new IntlMessageFormat(pattern, locale, [optFieldFormatters]);
     The most common way to do this is to load the base and all of the locales ({{code "intl-messageformat/build/intl-messageformat.complete.js"}}) in one file. This is a bit larger download but simplifies the need to have multiple locales.
 </p>
 <p>
-    For the example code below we've loaded the complete version which has been minified.
+    The path used in the example below assumes you have installed {{code "intl-messageformat"}} via bower using:
+</p>
+
+{{#code "js"}}
+$ bower install intl-messageformat
+{{/code}}
+
+<p>
+    For this example we've loaded the complete version which has been minified.
 </p>
 
 {{#code "js"}}
@@ -220,13 +228,6 @@ var msg = new IntlMessageFormat(pattern, locale, [optFieldFormatters]);
 })();
 {{/code}}
 
-<p>
-    The path used in this example assumes you have installed {{code "intl-messageformat"}} via bower using:
-</p>
-
-{{#code "js"}}
-$ bower install intl-messageformat
-{{/code}}
 
 <p>
     In fact, this site itself loads {{code "intl-messageformat"}} in this fashion. View source to check it out!

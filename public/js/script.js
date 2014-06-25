@@ -10,11 +10,12 @@
         test : !!window.Intl,
         nope : comboUrl
     }, {
-        load     : intlMessageFormatUrl, 
+        load     : intlMessageFormatUrl,
         complete : init
     }]);
 
     function init () {
         // Initialize application here
+        VanillaExample.init();
     }
 })();

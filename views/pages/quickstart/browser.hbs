@@ -29,23 +29,11 @@ Here are some examples:
 
 {{#code "js"}}
 var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
-new Intl.DateTimeFormat().format(date);
+new Intl.DateTimeFormat("en-US").format(date);
 {{/code}}
 
 Returns "{{code "12/19/2012"}}" if run in the {{code "en-US"}} locale with time zone {{code "America/Los-Angeles"}}.
 Using {{code "Intl.DateTimeFormat()"}} with no arguments will use the system's locale and time zone.
-
-{{#code "js"}}
-new Intl.DateTimeFormat("en-GB").format(date);
-{{/code}}
-
-Returns "{{code "19/11/2012"}}" as British English uses day-month-year order.
-
-{{#code "js"}}
-new Intl.DateTimeFormat("ko-KR").format(date);
-{{/code}}
-
-Returns "{{code "2012년 12월 19일"}}" as Korean uses year-month-day order.
 
 <p>
 You can also format dates and times via the {{code "options"}} argument:
@@ -136,7 +124,7 @@ and devices support it. Here's a breakdown of desktop and mobile browsers suppor
     <li><small>Source: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Browser_Compatibility">MDN</a></small></li>
 </ul>
 <p>
-    Mobile devices lag behind quite a bit, with only Chrome for Android (26) offering support. Which means Safari on mobile also does not support {{code "window.Intl"}}.
+    Mobile devices lag behind quite a bit, with only recent versions of Chrome for Android offering support. Which means Safari on mobile also does not support {{code "window.Intl"}}.
 </p>
 
 <p>

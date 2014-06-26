@@ -52,6 +52,7 @@ var VanillaExample = {
                 dateBooks: this.now
             });
 
+        // output both messages
         document.getElementsByClassName("message")[0].innerText = out + out2;
 
     },

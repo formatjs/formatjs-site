@@ -12,7 +12,8 @@ exports = module.exports = {
         bower   : path.resolve('bower_components/'),
         views   : path.resolve('views/pages/'),
         layouts : path.resolve('views/layouts/'),
-        partials: path.resolve('views/partials/')
+        partials: path.resolve('views/partials/'),
+        examples: path.resolve('views/examples/')
     }
 };
 

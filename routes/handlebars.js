@@ -1,30 +1,29 @@
 'use strict';
 
-var path = require('path');
-
-var config = require('../config');
+var getExamples = require('../lib/examples');
 
 module.exports = function (req, res, next) {
-    res.locals.intl.formats = {
-        number: {
-            USD: {
-                style   : 'currency',
-                currency: 'USD'
-            },
-            EUR: {
-                style   : 'currency',
-                currency: 'EUR'
-            }
-        }
-    };
 
-    res.render('handlebars', {
-        user: {
-            firstName: 'Tilo',
-            lastName : 'Mitra',
-            numBooks : 2000
-        },
+    getExamples('handlebars', {cache: true}).then(function (examples) {
+        var hbsExamples = examples;
+        Object.keys(hbsExamples).forEach(function(key) {
+            var example = examples[key];
+            example.rendered = example.compiled({
+                intl: res.locals.intl,
+                user: {
+                    firstName: 'Tilo',
+                    lastName: 'Mitra',
+                    numBooks: 20
+                },
+                now: new Date()
+            });
 
-        now: new Date()
-    });
+            //expose just the source file for each example here.
+            res.expose(example.source, 'examples.hbs.' + example.name);
+        });
+
+        res.render('handlebars', {
+            examples: hbsExamples
+        });
+    }).catch(next);
 };

@@ -1,0 +1,8 @@
+<h2>Food</h2>
+<p>
+    {@intlMessage
+        _msg=intl.messages.USERS_BOOKS
+        firstName=user.firstName
+        lastName=user.lastName
+        numBooks=user.numBooks /}
+</p>

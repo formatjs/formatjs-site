@@ -1,6 +1,7 @@
 'use strict';
 
-var React = require('react');
+var React = require('react'),
+    ReactIntlMixin = require('react-intl');
 
 var getExamples = require('../lib/examples');
 
@@ -13,9 +14,8 @@ module.exports = function (req, res, next) {
 
             example.rendered = React.renderComponentToString(example.compiled({locales: ['en-US']}));
 
-            //For React, we want to expose the Component here as a function,
-            //so we send down the `compiled` value.
-            res.expose(example.compiled, 'examples.react.' + example.name);
+            //For React, we want to expose the source code so we can eval() on the client
+            res.expose(example.source, 'examples.react.' + example.name);
         });
 
         res.render('react', {

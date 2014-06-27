@@ -1,10 +1,7 @@
-var React = require('react'),
-    ReactIntlMixin = require('react-intl');
-
-var MyComponent = React.createClass({
+React.createClass({
     mixins: [ReactIntlMixin],
     getMyMessage: function () {
-        return "{product} will cost {price, number} if ordered by {deadline, date}"
+        return '{product} will cost {price, number} if ordered by {deadline, date}';
     },
     render: function () {
         return React.DOM.div(null,
@@ -18,5 +15,3 @@ var MyComponent = React.createClass({
         );
     }
 });
-
-module.exports = MyComponent;

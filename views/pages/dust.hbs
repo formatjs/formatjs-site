@@ -1,10 +1,71 @@
 {{setTitle "Dust Helpers for Internationalization"}}
 
 <h1>Dust Helpers for Internationalization</h1>
-<p>Here's a little example with Dust Intl Helpers:</p>
 
-{{{examples.books.rendered}}}
+<p>
+    If you're using the <a href="http://linkedin.github.io/dustjs/">Dust templating engine</a>, the Dust Internationalization Helpers are an easy way to internationalize your templates.
+</p>
+
+{{sectionHeading "Installation"}}
+
+<p>
+    You can install the {{code "dust-helper-intl"}} module through <a href="http://bower.io">Bower</a> on the client side.
+</p>
 
 {{#code}}
-{{examples.books.source}}
+bower install dust-helper-intl
 {{/code}}
+
+<p>
+    Alternatively, you can install via <a href="http://npmjs.org">npm</a> on the server.
+</p>
+
+{{#code}}
+npm install dust-helper-intl
+{{/code}}
+
+<p>
+    When serving the content on your page, you need to ensure that {{code "intl-messageformat.js"}} and {{code "dustjs-linkedin.js"}} are loaded before the Dust helpers. These modules can also be installed via Bower and npm as well.
+</p>
+
+{{#code}}
+<script src="intl-messageformat.js"></script>
+<script src="dustjs-linkedin.js"></script>
+<script src="dust-helper-intl.js"></script>
+{{/code}}
+
+<p>
+    Once the scripts have loaded, you have to register the helpers so that they can be used in your project.
+</p>
+
+{{#code "js"}}
+DustHelperIntl.register(dust);
+{{/code}}
+
+<p>Now, you're ready to start internationalizing your Dust templates!</p>
+
+{{sectionHeading "Overview"}}
+
+<p>
+    The Dust internationalization helpers look similar to the <a href="/handlebars/">Handlebars</a> and <a href="/react/">React</a> helpers. There are three primary helpers:
+    <ul>
+        <li><a href="#intldate">{{code "@intlDate"}}</a> for date formatting</li>
+        <li><a href="#intlnumber">{{code "@intlNumber"}}</a> for number formatting</li>
+        <li><a href="#intlmessage">{{code "@intlMessage"}}</a> for string formatting</li>
+    </ul>
+</p>
+
+<section class="helper">
+    {{> dust/intlDate}}
+</section>
+
+<section class="helper">
+    {{> dust/intlNumber}}
+</section>
+
+<section class="helper">
+    {{> dust/intlMessage}}
+</section>
+
+
+

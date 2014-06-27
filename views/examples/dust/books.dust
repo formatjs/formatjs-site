@@ -1,5 +1,1 @@
-{@intlMessage
-    _msg=intl.messages.USERS_BOOKS
-    firstName=user.firstName
-    lastName=user.lastName
-    numBooks=user.numBooks /}
+{@intlMessage _msg=intl.messages.USER_HAS_BOOKS firstName=user.firstName lastName=user.lastName numBooks=user.numBooks /}

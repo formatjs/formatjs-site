@@ -53,7 +53,7 @@ var VanillaExample = {
             });
 
         // output both messages
-        document.getElementsByClassName("message")[0].innerText = out + out2;
+        document.getElementsByClassName("message")[0].innerHTML = "<span class='msg'>"+out+"</span> \n <span class='msg2'>" + out2 +"</span>";
 
     },
     bind: function(){

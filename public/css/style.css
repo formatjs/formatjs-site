@@ -1,7 +1,24 @@
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 body {
     font-family: "Open Sans", sans-serif;
     color: #666;
     line-height: 1.6;
+    font-size: 14px;
+}
+
+a {
+    color: #33b5e5;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: #1a9bcb;
+    text-decoration: underline;
 }
 
 h1,
@@ -12,6 +29,34 @@ h5,
 h6 {
     color: #333;
 }
+
+code {
+    padding: 2px 4px;
+    font-size: 90%;
+    white-space: nowrap;
+    border-radius: 3px;
+    padding: 2px 6px 3px;
+    line-height: 1.5;
+    white-space: nowrap;
+}
+
+pre {
+    color: #a2a8a8;
+    padding: 20px;
+    margin: 1em 0 3em;
+    font-family: monaco, monospace;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+pre code {
+    display: block;
+    padding: 0.5em;
+    color: #333;
+    white-space: pre-wrap;
+}
+
 .content {
     max-width: 37.5em;
     margin: 0 auto;
@@ -20,9 +65,35 @@ h6 {
 
 .example {
     padding: 1em;
-    border: 1px solid #ccc;
+    border: 1px solid #DBDAC8;
     border-radius: 3px;
+    background: rgb(255, 255, 233);
+    box-shadow: 0 0 3px rgba(203, 205, 188, 0.3);
 }
+
+.helper {
+    margin: 1em 0;
+    padding: 1em 0;
+    border-top: 1px solid #ddd;
+}
+
+.parameters-list dt code {
+    background: none;
+    border: none;
+    font-size: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.parameters-list dt {
+    font-weight: bold;
+}
+
+.parameters-list dd {
+    margin: 0;
+    padding-bottom: 1em;
+}
+
 
 @media screen and (min-width: 48em) {
     .content {

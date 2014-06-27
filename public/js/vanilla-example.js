@@ -1,4 +1,4 @@
-var VanillaExample = {
+var vanillaExample = {
     intlFormat:{
         number: {
             USD: {

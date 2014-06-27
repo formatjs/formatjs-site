@@ -74,6 +74,10 @@ pre code {
     background: rgb(255, 255, 233);
     box-shadow: 0 0 3px rgba(203, 205, 188, 0.3);
 }
+.switcher {
+    text-align:right;
+    padding-top: 4px;
+}
 
 .helper {
     margin: 1em 0;

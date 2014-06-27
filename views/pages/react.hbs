@@ -1,6 +1,119 @@
 {{setTitle "React Helpers for Internationalization"}}
 
 <h1>React Helpers for Internationalization</h1>
+
+<h2>React Intl Mixin API reference</h2>
+
+<h4 id="component-intlNumber">component.intlNumber(number [, options])</h4>
+
+<p>Parameters:</p>
+
+<dl>
+    <dt>{{code "number : number"}}</dt>
+    <dd>
+        <p>Date to format or a number specifying the number of milliseconds since January 1st, 1970.</p>
+    </dd>
+</dl>
+<dl>
+    <dt>{{code "options : Object"}}</dt>
+    <dd>
+        <p>Optional. These are the configuration options for {{code "Intl.NumberFormat"}}:</p>
+        <dl>
+            <dt>{{code "localeMatcher"}}</dt>
+            <dt>{{code "style"}}</dt>
+            <dt>{{code "currency"}}</dt>
+            <dt>{{code "currencyDisplay"}}</dt>
+            <dt>{{code "useGrouping"}}</dt>
+        </dl>
+    </dd>
+</dl>
+
+<p>Format numbers according to the locale. For example, consider the following React component:</p>
+
+{{#code}}
+var MyComponent = React.createClass({
+    mixins: [ReactIntlMixin],
+    render: function () {
+        return <p>this.intlNumber(4000)</p>
+    }
+});
+{{/code}}
+
+<p>When the locale is set to {{code "en-US"}} the number will be rendered as {{code "4.000"}}.</p>
+
+{{#code}}
+// renders <p>4,000</p>
+React.renderComponent(
+    <MyComponent locales="en-US"/>,
+    document.getElementById('example')
+);
+{{/code}}
+
+<p>However, when the locale is set to {{code "fr-FR"}} the number will be printed as {{code "4.000"}}.</p>
+
+{{#code}}
+// renders <p>4.000</p>
+React.renderComponent(
+    <MyComponent locales="fr-FR"/>,
+    document.getElementById('example')
+);
+{{/code}}
+
+
+<h4 id="component-intlDate">component.intlDate(date [, options])</h4>
+
+<p>Parameters:</p>
+
+<dl>
+    <dt>{{code "date : Date | number"}}</dt>
+    <dd>
+        <p>Date to format or a number specifying the number of milliseconds since January 1st, 1970.</p>
+    </dd>
+</dl>
+<dl>
+    <dt>{{code "options : Object"}}</dt>
+    <dd>
+        <p>Optional. These are the configuration options for {{code "Intl.DateTimeFormat"}}:</p>
+        <dl>
+            <dt>{{code "localeMatcher"}}</dt>
+            <dt>{{code "timeZone"}}</dt>
+            <dt>{{code "hour12"}}</dt>
+            <dt>{{code "formatMatcher"}}</dt>
+            <dt>{{code "weekday"}}</dt>
+            <dt>{{code "era"}}</dt>
+            <dt>{{code "year"}}</dt>
+            <dt>{{code "month"}}</dt>
+            <dt>{{code "day"}}</dt>
+            <dt>{{code "hour"}}</dt>
+            <dt>{{code "minute"}}</dt>
+            <dt>{{code "second"}}</dt>
+            <dt>{{code "timeZoneName"}}</dt>
+        </dl>
+    </dd>
+</dl>
+
+<p>Format dates according to the locale. This method also helps display the date in a meaningful way. For example we can show the time of a date using a 24 hour clock or AM/PM depending on the locale:</p>
+
+{{#code}}
+var MyComponent = React.createClass({
+    mixins: [ReactIntlMixin],
+    render: function () {
+        return <p>A: {this.intlDate(1390518044403, {
+            hour: 'numeric',
+            minute: 'numeric'
+        })}</p>;
+    }
+});
+{{/code}}
+
+<p>The ouput when the locale is set to {{code "fr-FR"}} will be {{code "18:00"}}, while in a {{code "en-US"}} locale it will be {{code "6:00 PM"}}.</p>
+
+{{#code}}
+{{{examples.react.strings}}}
+{{/code}}
+
+<h2 id="examples">Examples</h2>
+
 <p>Here's a little example with React Intl Helpers:</p>
 
 <div class="example">

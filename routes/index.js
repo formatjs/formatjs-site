@@ -15,6 +15,7 @@ function render(viewName, layoutPath) {
             res.locals.layout = layoutPath;
         }
 
+        res.expose(viewName === 'home' ? 'vanilla' : viewName, 'example');
         res.render(viewName);
     };
 }

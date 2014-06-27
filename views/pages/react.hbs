@@ -11,7 +11,7 @@
 <dl>
     <dt>{{code "number : number"}}</dt>
     <dd>
-        <p>Date to format or a number specifying the number of milliseconds since January 1st, 1970.</p>
+        <p>Number to format.</p>
     </dd>
 </dl>
 <dl>
@@ -30,7 +30,7 @@
 
 <p>Format numbers according to the locale. For example, consider the following React component:</p>
 
-{{#code}}
+{{#code "jsx"}}
 var MyComponent = React.createClass({
     mixins: [ReactIntlMixin],
     render: function () {
@@ -41,7 +41,7 @@ var MyComponent = React.createClass({
 
 <p>When the locale is set to {{code "en-US"}} the number will be rendered as {{code "4.000"}}.</p>
 
-{{#code}}
+{{#code "jsx"}}
 // renders <p>4,000</p>
 React.renderComponent(
     <MyComponent locales="en-US"/>,
@@ -51,7 +51,7 @@ React.renderComponent(
 
 <p>However, when the locale is set to {{code "fr-FR"}} the number will be printed as {{code "4.000"}}.</p>
 
-{{#code}}
+{{#code "jsx"}}
 // renders <p>4.000</p>
 React.renderComponent(
     <MyComponent locales="fr-FR"/>,
@@ -94,7 +94,7 @@ React.renderComponent(
 
 <p>Format dates according to the locale. This method also helps display the date in a meaningful way. For example we can show the time of a date using a 24 hour clock or AM/PM depending on the locale:</p>
 
-{{#code}}
+{{#code "jsx"}}
 var MyComponent = React.createClass({
     mixins: [ReactIntlMixin],
     render: function () {
@@ -110,6 +110,39 @@ var MyComponent = React.createClass({
 
 {{#code}}
 {{{examples.react.strings}}}
+{{/code}}
+
+<h4 id="component-intlMessage">component.intlMessage(message, data)</h4>
+
+<p>Parameters:</p>
+
+<dl>
+    <dt>{{code "message : string"}}</dt>
+    <dd>
+        <p>Message using <a href="/javascript/#messageformat-strings">Simple String Format</a>.</p>
+    </dd>
+</dl>
+<dl>
+    <dt>{{code "data : Object"}}</dt>
+    <dd>
+        <p>Data used by each token in the form of key-value pairs where the key matches the token name.</p>
+    </dd>
+</dl>
+
+<p>Format messages according to the locale. The simplest form of formatting is actually just token replacement, ie:</p>
+
+{{#code "jsx"}}
+var MyComponent = React.createClass({
+    mixins: [ReactIntlMixin],
+    render: function () {
+        return <p>A: {this.intlMessage('{employee} reports to {manager}.')}</p>;
+    }
+});
+
+React.renderComponent(
+    <MyComponent locales={["de-DE"]} employee="John" manager="Mike" />,
+    document.getElementById('example')
+);
 {{/code}}
 
 <h2 id="examples">Examples</h2>

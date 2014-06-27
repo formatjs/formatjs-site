@@ -18,6 +18,10 @@ h6 {
     padding: 1.5em;
 }
 
+.warning {
+    color:#a31515;
+}
+
 .example {
     padding: 1em;
     border: 1px solid #ccc;

@@ -1,0 +1,31 @@
+{{sectionHeading "@intlNumber"}}
+
+<p>Use the {{code "@intlNumber"}} helper to format numbers, currencies and percentages for different locales.</p>
+
+<h3>Parameters</h3>
+<dl class="parameters-list">
+    <dt>{{code "val: Number"}}</dt>
+    <dd>The value of the number that you wish to format.</dd>
+
+    <dt>{{code "locales: String"}}</dt>
+    <dd>The locale of the value as a <a href="http://tools.ietf.org/html/rfc5646">BCP 47 language tag</a>.</dd>
+
+    <dt>{{code "style: String"}}</dt>
+    <dd>Set to either {{code "'currency'"}} or {{code "'percent'"}}, depending on your preferred style. Not setting this parameter will render the value as a normal number.</dd>
+
+    <dt>{{code "currency: String"}}<dt>
+    <dd>The type of currency that should be used to render the number.</dd>
+</dl>
+
+<h3>Example</h3>
+
+<p>Template String:</p>
+
+{{#code "generic"}}
+{{{examples.number.source}}}
+{{/code}}
+
+<p>Rendered Output:</p>
+<div class="example">
+    {{{examples.number.rendered}}}
+</div>

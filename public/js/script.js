@@ -11,9 +11,7 @@
         test : !!window.Intl,
         nope : comboUrl
     }, {
-        load : intlMessageFormatUrl,
-    }, {
-        load : exampleUrl,
+        load : (APP.scripts || [intlMessageFormatUrl]).concat([exampleUrl]),
         complete : init 
     }]);
 

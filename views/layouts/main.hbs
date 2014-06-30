@@ -11,8 +11,18 @@
     <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="content">
-        {{{body}}}
+    <div class="wrapper pure-g {{#hasSections}} wrapper-has-sections {{/hasSections}}">
+        <div class="content pure-u-1">
+            {{{body}}}
+        </div>
+
+        {{#hasSections}}
+        {{> sidebar}}
+        {{/hasSections}}
+
+        <div class="footer pure-u-1">
+            Footer content goes here
+        </div>
     </div>
     <script>
         {{{state}}}
@@ -20,6 +30,8 @@
     <script src="/bower_components/yepnope/yepnope.js"></script>
     <script src="/bower_components/rainbow/js/rainbow.min.js"></script>
     <script src="/bower_components/rainbow/js/language/generic.js"></script>
+    <script src="http://yui.yahooapis.com/3.17.2/build/yui/yui-min.js"></script>
+    <script src="/js/ui.js"></script>
     <script src="/js/script.js"></script>
 </body>
 </html>

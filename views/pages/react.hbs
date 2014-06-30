@@ -4,6 +4,28 @@
 
 <h2>React Intl Mixin API reference</h2>
 
+<h3>Locale configuration</h3>
+
+<p>All React components that use the React Intl mixin require the locales to be declared as a property of the component. For example:</p>
+
+{{#code "jsx"}}
+React.renderComponent(
+    <MyIntlComponent locales={["en-US"]}/>,
+    document.getElementById('example')
+);
+{{/code}}
+
+<p>However, {{code "ReactIntlMixin"}} is designed so that descendants of components that use the mixin inherit the value of {{code "locales"}}.</p>
+
+{{#code "jsx"}}
+React.renderComponent(
+    <MyIntlComponent locales={["en-US"]}>
+        <IntlDescendant/> //IntlDescendant doesn't need the "locales" property
+    </MyIntlComponent>,
+    document.getElementById('example')
+);
+{{/code}}
+
 <h4 id="component-intlNumber">component.intlNumber(number [, options])</h4>
 
 <p>Parameters:</p>

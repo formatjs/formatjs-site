@@ -70,7 +70,7 @@ router.route('/quickstart/node/')
     .get(routes.render('quickstart/node'));
 
 router.route('/handlebars/').get(routes.handlebars);
-
 router.route('/dust/').get(routes.dust);
 router.route('/react/').get(routes.react);
 router.route('/overview/').get(routes.render('overview'));
+router.route('/javascript/').get(routes.render('javascript'));

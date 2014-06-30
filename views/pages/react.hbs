@@ -203,7 +203,15 @@ React.renderComponent(
 
 <p>This example is an extension of one of React basic examples in which a timer tracks elapsed time, but in this case we are using the Intl API to pluralize the minute and second count.</p>
 
-<div class="example" id="timer-example">
+<div id="timer-example">
+    <div class="example"></div>
+    <div class="switcher">
+        View this example in
+        <select>
+            <option value="en-US">en-US</option>
+            <option value="es-AR">es-AR</option>
+        </select>
+    </div>
 </div>
 
 {{#code "js"}}
@@ -212,10 +220,17 @@ React.renderComponent(
 
 <script>
 function init() {
-var mountNode = document.getElementById('timer-example');
+var mountNode = document.querySelector('#timer-example .example');
 
 {{> react/timer}}
 
+var timer = React.renderComponent(Timer({ locales: [APP.intl.locale] }), mountNode);
+
+document.querySelector('#timer-example select').addEventListener('change', function (e) {
+    timer.setProps({
+        locales: [e.target.value]
+    })
+});
 }
 </script>
 

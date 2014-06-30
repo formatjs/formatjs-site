@@ -1,7 +1,7 @@
 var Timer = React.createClass({
     mixins: [ReactIntlMixin],
     getMessage: function () {
-        return 'Time elapsed: {minutes, plural, one {# minute} other {# minutes}} {seconds, plural, one {# second} other {# seconds}}';
+        return reactExample.translations[this.props.locales[0]].message;
     },
     getInitialState: function () {
         return {secondsElapsed: 45};
@@ -16,7 +16,7 @@ var Timer = React.createClass({
         clearInterval(this.interval);
     },
     render: function () {
-        return React.DOM.div({
+        return React.DOM.p({
             children: [
                 this.intlMessage(this.getMessage(), {
                     minutes: Math.floor(this.state.secondsElapsed / 60),
@@ -26,5 +26,3 @@ var Timer = React.createClass({
         });
     }
 });
-
-React.renderComponent(Timer({ locales: ['en-US'] }), mountNode);

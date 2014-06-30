@@ -11,7 +11,7 @@
     <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="wrapper pure-g">
+    <div class="wrapper pure-g {{#hasSections}} wrapper-has-sections {{/hasSections}}">
         {{!-- <div id="main" class="pure-u-1 {{#hasSections}} pure-u-xl-3-4 {{/hasSections}}"> --}}
         <div class="content pure-u-1">
             {{{body}}}

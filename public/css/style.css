@@ -109,7 +109,7 @@ pre code {
 
 @media screen and (min-width: 48em) {
 
-    .wrapper {
+    .wrapper-has-sections {
         padding-right: 200px;
     }
 

@@ -1,0 +1,31 @@
+{{sectionHeading "intlNumber"}}
+
+<p>Use the {{code "intlNumber"}} helper to format numbers, currencies and percentages for different locales. Remember to use the {{code "{{#intl}}"}} helper to properly set any custom number or currency formats, or locales you wish to use.</p>
+
+<h3>Required Parameter</h3>
+<dl class="parameters-list">
+    <dt>{{code "value: Number"}}</dt>
+    <dd>The value of the number that you wish to format.</dd>
+</dl>
+
+<h3>Hash Arguments (optional)</h3>
+<dl class="parameters-list">
+    <dt>{{code "style: String"}}</dt>
+    <dd>Set to either {{code "'currency'"}} or {{code "'percent'"}}, depending on your preferred style. Not setting this parameter will render the value as a normal number.</dd>
+
+    <dt>{{code "currency: String"}}<dt>
+    <dd>The type of currency that should be used to render the number.</dd>
+</dl>
+
+<h3>Example</h3>
+
+<p>Template String:</p>
+
+{{#code "generic"}}
+{{{examples.number.source}}}
+{{/code}}
+
+<p>Rendered Output:</p>
+<div class="example">
+    {{{examples.number.rendered}}}
+</div>

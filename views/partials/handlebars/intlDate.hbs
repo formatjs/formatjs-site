@@ -1,0 +1,61 @@
+{{sectionHeading "intlDate"}}
+
+<p>Use the {{code "intlDate"}} helper to format dates for different locales. Remember to use the {{code "{{#intl}}"}} helper to properly set any custom date formats or locales you wish to use.</p>
+
+<h3>Required Parameter</h3>
+<dl class="parameters-list">
+    <dt>{{code "value: String|Timestamp"}}
+    <dd>The stringified value of the date that you wish to format.</dd>
+</dl>
+
+<h3>Hash Arguments (optional)</h3>
+<dl class="parameters-list">
+    <dt>{{code "weekday: String"}}</dt>
+    <dd>Control the formatting of the weekday. Possible values are {{code "'narrow'"}}, {{code "'short'"}}, or {{code "'long'"}}.</dd>
+
+    <dt>{{code "era: String"}}</dt>
+    <dd>Control the formatting of the era. Possible values are {{code "'narrow'"}}, {{code "'short'"}}, or {{code "'long'"}}.</dd>
+
+    <dt>{{code "year: String"}}</dt>
+    <dd>Control the formatting of the year. Possible values are {{code "'2-digit'"}}, or {{code "'numeric'"}}.</dd>
+
+    <dt>{{code "month: String"}}</dt>
+    <dd>Control the formatting of the month. Possible values are {{code "'2-digit'"}}, {{code "'numeric'"}}, {{code "'narrow'"}}, {{code "'short'"}}, or {{code "'long'"}}.</dd>
+
+    <dt>{{code "day: String"}}</dt>
+    <dd>Control the formatting of the day. Possible values are {{code "'2-digit'"}}, or {{code "'numeric'"}}.</dd>
+
+    <dt>{{code "hour: String"}}</dt>
+    <dd>Control the formatting of the hour. Possible values are {{code "'2-digit'"}} or {{code "'numeric'"}}.</dd>
+
+    <dt>{{code "minute: String"}}</dt>
+    <dd>Control the formatting of the minutes. Possible values are {{code "'2-digit'"}} or {{code "'numeric'"}}.</dd>
+
+    <dt>{{code "second: String"}}</dt>
+    <dd>Control the formatting of the seconds. Possible values are {{code "'2-digit'"}} or {{code "'numeric'"}}.</dd>
+
+    <dt>{{code "timeZone: String"}}</dt>
+    <dd>The specific time zone that you wish to format the date for</dd>
+
+    <dt>{{code "timeZoneName: String"}}<dt>
+    <dd>The name of the timezone. Possible values are {{code "'short'"}} or {{code "'long'"}}</dd>
+</dl>
+
+<h3>Example</h3>
+
+<p>Template String:</p>
+
+{{#code "generic"}}
+{{{examples.date.source}}}
+{{/code}}
+
+<p>Rendered Output:</p>
+
+<div class="example">
+    {{{examples.date.rendered}}}
+</div>
+
+<h3>Notes</h3>
+<p>
+	The {{code "intlNumber"}} helper takes a stringified value, or a timestamp of a {{code "Date"}} object. You can get these values out of a {{code "Date"}} object, by using the {{code "getTime()"}} and {{code "toString()"}} methods.
+</p>

@@ -18,6 +18,12 @@ module.exports = function (req, res, next) {
             res.expose(example.source, 'examples.react.' + example.name);
         });
 
+        res.expose('react', 'example');
+        res.expose([
+            'http://fb.me/react-0.10.0.min.js',
+            '/bower_components/react-intl/dist/react-intl.min.js'
+        ], 'scripts');
+
         res.render('react', {
             examples: reactExamples
         });

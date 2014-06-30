@@ -2,11 +2,22 @@
 
 <h1>React Helpers for Internationalization</h1>
 
+<p>Here's a little example with React Intl Helpers:</p>
+
+<div class="example">
+    {{{examples.product.rendered}}}
+</div>
+
+{{#code "js"}}
+{{{examples.product.source}}}
+{{/code}}
+
 {{sectionHeading "Locale configuration"}}
 
 <p>All React components that use the React Intl mixin require the locales to be declared as a property of the component. For example:</p>
 
 {{#code "jsx"}}
+/** @jsx React.DOM */
 React.renderComponent(
     <MyIntlComponent locales={["en-US"]}/>,
     document.getElementById('example')
@@ -16,6 +27,7 @@ React.renderComponent(
 <p>However, {{code "ReactIntlMixin"}} is designed so that descendants of components that use the mixin inherit the value of {{code "locales"}}.</p>
 
 {{#code "jsx"}}
+/** @jsx React.DOM */
 React.renderComponent(
     <MyIntlComponent locales={["en-US"]}>
         <IntlDescendant/> //IntlDescendant doesn't need the "locales" property
@@ -56,6 +68,7 @@ React.renderComponent(
 <p>Format numbers according to the locale. For example, consider the following React component:</p>
 
 {{#code "jsx"}}
+/** @jsx React.DOM */
 var MyComponent = React.createClass({
     mixins: [ReactIntlMixin],
     render: function () {
@@ -67,9 +80,10 @@ var MyComponent = React.createClass({
 <p>When the locale is set to {{code "en-US"}} the number will be rendered as {{code "4.000"}}.</p>
 
 {{#code "jsx"}}
+/** @jsx React.DOM */
 // renders <p>4,000</p>
 React.renderComponent(
-    <MyComponent locales="en-US"/>,
+    <MyComponent locales={["en-US"]}/>,
     document.getElementById('example')
 );
 {{/code}}
@@ -77,9 +91,10 @@ React.renderComponent(
 <p>However, when the locale is set to {{code "fr-FR"}} the number will be printed as {{code "4.000"}}.</p>
 
 {{#code "jsx"}}
+/** @jsx React.DOM */
 // renders <p>4.000</p>
 React.renderComponent(
-    <MyComponent locales="fr-FR"/>,
+    <MyComponent locales={["fr-FR"]}/>,
     document.getElementById('example')
 );
 {{/code}}
@@ -132,6 +147,7 @@ React.renderComponent(
 <p>Format dates according to the locale. This method also helps display the date in a meaningful way. For example we can show the time of a date using a 24 hour clock or AM/PM depending on the locale:</p>
 
 {{#code "jsx"}}
+/** @jsx React.DOM */
 var MyComponent = React.createClass({
     mixins: [ReactIntlMixin],
     render: function () {
@@ -167,6 +183,7 @@ var MyComponent = React.createClass({
 <p>Format messages according to the locale. The simplest form of formatting is actually just token replacement, ie:</p>
 
 {{#code "jsx"}}
+/** @jsx React.DOM */
 var MyComponent = React.createClass({
     mixins: [ReactIntlMixin],
     render: function () {
@@ -180,16 +197,26 @@ React.renderComponent(
 );
 {{/code}}
 
-<h2 id="examples">Examples</h2>
+{{sectionHeading "Examples"}}
 
-<p>Here's a little example with React Intl Helpers:</p>
+<h3>Pluralization</h3>
 
-<div class="example">
-    {{{examples.product.rendered}}}
+<p>This example is an extension of one of React basic examples in which a timer tracks elapsed time, but in this case we are using the Intl API to pluralize the minute and second count.</p>
+
+<div class="example" id="timer-example">
 </div>
 
-{{#code}}
-{{{examples.product.source}}}
+{{#code "js"}}
+{{> react/timer}}
 {{/code}}
+
+<script>
+function init() {
+var mountNode = document.getElementById('timer-example');
+
+{{> react/timer}}
+
+}
+</script>
 
 <p>Note: content includes excerpts from the <a href="https://developer.mozilla.org/">Mozilla Developer Network website</a>.</p>

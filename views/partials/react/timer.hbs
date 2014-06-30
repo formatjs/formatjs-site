@@ -1,0 +1,30 @@
+var Timer = React.createClass({
+    mixins: [ReactIntlMixin],
+    getMessage: function () {
+        return 'Time elapsed: {minutes, plural, one {# minute} other {# minutes}} {seconds, plural, one {# second} other {# seconds}}';
+    },
+    getInitialState: function () {
+        return {secondsElapsed: 45};
+    },
+    tick: function () {
+        this.setState({secondsElapsed: this.state.secondsElapsed + 1});
+    },
+    componentDidMount: function () {
+        this.interval = setInterval(this.tick, 1000);
+    },
+    componentWillUnmount: function () {
+        clearInterval(this.interval);
+    },
+    render: function () {
+        return React.DOM.div({
+            children: [
+                this.intlMessage(this.getMessage(), {
+                    minutes: Math.floor(this.state.secondsElapsed / 60),
+                    seconds: this.state.secondsElapsed % 60
+                })
+            ]
+        });
+    }
+});
+
+React.renderComponent(Timer({ locales: ['en-US'] }), mountNode);

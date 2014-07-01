@@ -28,7 +28,6 @@
     "dustjs-linkedin": "~2.4.0",
     "dust-helper-intl": "0.0.3",
     "ypromise": "~0.2.3",
-    "pfs": "^0.10.20",
     "react": "~0.10.0",
     "react-intl": "0.1.0-rc-1"
   },

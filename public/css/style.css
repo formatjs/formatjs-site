@@ -151,10 +151,10 @@ hr {
 }
 
 /* 
-We need to add the .menu prefix for specificity on these selectors
+We need to add the #menu prefix for specificity on these selectors
 until we update the menu styles in Pure.
 */
-.menu.pure-menu-open {
+#menu.pure-menu-open {
     text-align: left;
     background: transparent;
     font-weight: 300;
@@ -162,37 +162,40 @@ until we update the menu styles in Pure.
     border-bottom: 1px solid #ddd;
 }
 
-.splash .menu.pure-menu-open {
+.splash #menu.pure-menu-open {
     border: none;
 }
 
-.menu ul {
-    float: right;
-    margin-top: 5px;
-}
-
 /* We only want the menu to be white when it is within the .splash selector */
-.menu .menu-heading,
+#menu .menu-heading,
 .menu-item a {
     letter-spacing: 0.13em;
 }
 
-.splash .menu .menu-heading,
+.splash #menu .menu-heading,
 .splash .menu-item a {
     color: white;
 }
 
-.menu .menu-heading {
-    letter-spacing: 0.2em;
+#menu ul {
+    display: block;
+    text-align: center;
 }
 
-.menu .menu-item a {
+#menu .menu-heading {
+    letter-spacing: 0.2em;
+    text-align: center;
+    /* other option is to have a huge specificity selector, we really need to fix Pure Menus :( */
+    display: block; 
+}
+
+#menu .menu-item a {
     font-size: 0.75em;
     padding: 5px 10px;
 }
 
-.menu .menu-item a:hover,
-.menu .menu-item a:focus {
+#menu .menu-item a:hover,
+#menu .menu-item a:focus {
     background: transparent;
     text-decoration: none;
     color: #d092f7;
@@ -273,6 +276,19 @@ until we update the menu styles in Pure.
     display: none;
 }
 
+@media screen and (min-width: 25em) {
+    #menu .menu-heading {
+        display: inline-block;
+        text-align: left;
+        margin-top: 5px;
+    }
+    #menu ul {
+        float: right;
+        margin-top: 5px;
+        text-align: left;
+    }
+}
+
 
 @media screen and (min-width: 48em) {
 
@@ -344,7 +360,7 @@ until we update the menu styles in Pure.
         padding: 2em 5em 0;
     }
 
-    .menu .menu-item a {
+    #menu .menu-item a {
         padding: 5px 20px;
     }
 }

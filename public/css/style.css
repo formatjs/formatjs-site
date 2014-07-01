@@ -6,7 +6,11 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-html, button, input, select, textarea,
+html, 
+button, 
+input, 
+select, 
+textarea,
 .pure-g [class *= "pure-u"] {
     font-family: "Open Sans", sans-serif;
 }
@@ -36,6 +40,7 @@ h4,
 h5,
 h6 {
     color: #333;
+    font-weight: 500;
 }
 
 code {
@@ -124,8 +129,7 @@ hr {
     background: transparent url('/images/splash-head.jpg') no-repeat;
     background-size: cover;
     width: 100%;
-    height: auto;
-    max-height: 500px;
+    min-height: 100%;
     font-size: 1em;
     padding-bottom: 17%;
     text-align: center;
@@ -147,39 +151,48 @@ hr {
 }
 
 /* 
-We need to add the .splash-menu prefix for specificity on these selectors
+We need to add the .menu prefix for specificity on these selectors
 until we update the menu styles in Pure.
 */
-.splash-menu.pure-menu-open {
+.menu.pure-menu-open {
     text-align: left;
     background: transparent;
     font-weight: 300;
     text-transform: uppercase;
+    border-bottom: 1px solid #ddd;
 }
 
-.splash-menu ul {
+.splash .menu.pure-menu-open {
+    border: none;
+}
+
+.menu ul {
     float: right;
     margin-top: 5px;
 }
 
-.splash-menu .splash-menu-heading,
-.splash-menu-item a {
-    color: white;
+/* We only want the menu to be white when it is within the .splash selector */
+.menu .menu-heading,
+.menu-item a {
     letter-spacing: 0.13em;
-
 }
 
-.splash-menu .splash-menu-heading {
+.splash .menu .menu-heading,
+.splash .menu-item a {
+    color: white;
+}
+
+.menu .menu-heading {
     letter-spacing: 0.2em;
 }
 
-.splash-menu .splash-menu-item a {
+.menu .menu-item a {
     font-size: 0.75em;
     padding: 5px 10px;
 }
 
-.splash-menu .splash-menu-item a:hover,
-.splash-menu .splash-menu-item a:focus {
+.menu .menu-item a:hover,
+.menu .menu-item a:focus {
     background: transparent;
     text-decoration: none;
     color: #d092f7;
@@ -263,8 +276,13 @@ until we update the menu styles in Pure.
 
 @media screen and (min-width: 48em) {
 
+    .body-has-sections {
+        background: #603a7c;
+    }
+
     .wrapper-has-sections {
         margin-right: 200px;
+        background: white;
     }
 
     .sidebar-wrapper {
@@ -280,6 +298,7 @@ until we update the menu styles in Pure.
         text-align: right;
         font-size: 0.875em;
         width: 200px;
+        position: fixed;
     }
 
     .sidebar-head {
@@ -297,13 +316,18 @@ until we update the menu styles in Pure.
     }
 
     .sidebar-list-item a {
-        color: #999;
+        color: #AD76CA;
     }
 
-    .is-sidebar-list-item-active a {
-        font-weight: bold;
-        color: #333;
+    .sidebar-title {
+        font-weight: 300;
     }
+
+    .sidebar-title,
+    .is-sidebar-list-item-active a {
+        color: white;
+    }
+
 
     .splash {
         font-size: 1.2em;
@@ -314,7 +338,17 @@ until we update the menu styles in Pure.
         padding: 2em 5em 0;
     }
 
-    .splash-menu .splash-menu-item a {
+    .menu .menu-item a {
         padding: 5px 20px;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    body {
+        font-size: 16px;
+    }
+
+    .content {
+        max-width: 50em;
     }
 }

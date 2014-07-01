@@ -1,23 +1,31 @@
+/* ------------------------------------ */
+/* Base Styles (HTML elements directly) */
+/* ------------------------------------ */
 * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-body {
+html, button, input, select, textarea,
+.pure-g [class *= "pure-u"] {
     font-family: "Open Sans", sans-serif;
+}
+
+body, 
+p {
     color: #666;
     line-height: 1.6;
     font-size: 14px;
 }
 
 a {
-    color: #33b5e5;
+    color: #7f5794;
     text-decoration: none;
 }
 
 a:hover,
 a:focus {
-    color: #1a9bcb;
+    color: #b759e9;
     text-decoration: underline;
 }
 
@@ -57,10 +65,148 @@ pre code {
     white-space: pre-wrap;
 }
 
-.sidebar {
-    display: none;
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+    height: 0;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
 }
 
+.rule {
+    width: 100px;
+    margin: 40px auto;
+}
+
+.btn {
+    background: transparent;
+    border: 1px solid #7f5794;
+    color: #7f5794;
+    border-radius: 5px;
+}
+
+.splash-btn {
+    border: 1px solid white;
+    color: white;
+}
+
+.btn-primary {
+    background: rgb(76, 25, 100);
+    border: 1px solid rgb(76, 25, 100);
+}
+
+.btn:hover,
+.btn:active {
+    background: #7f5794;
+    color: white;
+    text-decoration: none;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+    background: rgb(59, 17, 79);
+    border-color: rgb(59, 17, 79);
+}
+
+.animated {
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    transition: all 0.25s;
+}
+
+/* ---------------------------------- */
+/* Splash Menu (Menu on the homepage) */
+/* ---------------------------------- */
+
+.splash {
+    background: transparent url('/images/splash-head.jpg') no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    font-size: 1em;
+    padding-bottom: 17%;
+    text-align: center;
+}
+
+.splash-head,
+.splash-example {
+    padding: 1em 2em 0;
+}
+
+.splash-head {
+    font-weight: 300;
+    color: white;
+    font-size: 1.75em;
+}
+
+.splash-rule {
+    border-color: #d092f7;
+}
+
+/* 
+We need to add the .splash-menu prefix for specificity on these selectors
+until we update the menu styles in Pure.
+*/
+.splash-menu.pure-menu-open {
+    text-align: left;
+    background: transparent;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.splash-menu ul {
+    float: right;
+    margin-top: 5px;
+}
+
+.splash-menu .splash-menu-heading,
+.splash-menu-item a {
+    color: white;
+    letter-spacing: 0.13em;
+
+}
+
+.splash-menu .splash-menu-heading {
+    letter-spacing: 0.2em;
+}
+
+.splash-menu .splash-menu-item a {
+    font-size: 0.75em;
+    padding: 5px 10px;
+}
+
+.splash-menu .splash-menu-item a:hover,
+.splash-menu .splash-menu-item a:focus {
+    background: transparent;
+    text-decoration: none;
+    color: #d092f7;
+}
+
+.splash-example {
+    max-width: 40em;
+    margin: 0 auto;
+}
+.splash-example-message {
+    padding: 1em;
+    border: 2px solid #d092f7;
+    border-radius: 10px;
+    color: white;
+}
+
+.splash-example-switcher {
+    margin-top: 1em;
+    text-align: right;
+    color: #d092f7;
+    font-size: 0.7em;
+    font-weight: 300;
+}
+
+/* ----------------------------------------------------- */
+/* Content (all the docs should be within this selector) */
+/* ----------------------------------------------------- */
 .content {
     max-width: 40em;
     margin: 0 auto;
@@ -68,9 +214,12 @@ pre code {
 }
 
 .warning {
-    color:#a31515;
+    color: #a31515;
 }
 
+/* --------------------------------------------------------- */
+/* Example (all the examples should be within this selector) */
+/* --------------------------------------------------------- */
 .example {
     padding: 1em;
     border: 1px solid #DBDAC8;
@@ -78,6 +227,7 @@ pre code {
     background: rgb(255, 255, 233);
     box-shadow: 0 0 3px rgba(203, 205, 188, 0.3);
 }
+
 .switcher {
     text-align:right;
     padding-top: 4px;
@@ -106,11 +256,15 @@ pre code {
     padding-bottom: 1em;
 }
 
+.sidebar {
+    display: none;
+}
+
 
 @media screen and (min-width: 48em) {
 
     .wrapper-has-sections {
-        padding-right: 200px;
+        margin-right: 200px;
     }
 
     .sidebar-wrapper {
@@ -149,5 +303,18 @@ pre code {
     .is-sidebar-list-item-active a {
         font-weight: bold;
         color: #333;
+    }
+
+    .splash {
+        font-size: 1.2em;
+    }
+
+    .splash-head {
+        font-size: 1.9em;
+        padding: 2em 5em 0;
+    }
+
+    .splash-menu .splash-menu-item a {
+        padding: 5px 20px;
     }
 }

@@ -294,11 +294,11 @@ until we update the menu styles in Pure.
     .sidebar {
         position: absolute;
         display: block;
-        right: 0;
         padding: 1em 2em 0;
         text-align: right;
         font-size: 0.875em;
         width: 200px;
+        position: absolute;
     }
 
     .sidebar-head {
@@ -317,6 +317,11 @@ until we update the menu styles in Pure.
 
     .sidebar-list-item a {
         color: #AD76CA;
+        -webkit-transition: color 150ms ease-in-out;
+        -moz-transition: color 150ms ease-in-out;
+        -ms-transition: color 150ms ease-in-out;
+        -o-transition: color 150ms ease-in-out;
+        transition: color 150ms ease-in-out;
     }
 
     .sidebar-title {

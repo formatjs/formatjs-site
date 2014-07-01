@@ -292,6 +292,7 @@ until we update the menu styles in Pure.
     }
 
     .sidebar {
+        position: absolute;
         display: block;
         right: 0;
         padding: 1em 2em 0;

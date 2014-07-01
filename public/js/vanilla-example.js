@@ -23,7 +23,7 @@ var vanillaExample = {
     },
     setup: function(){
         var trans = APP.translations,
-            switcher = document.querySelectorAll(".switcher select")[0];
+            switcher = document.querySelectorAll("#switcher select")[0];
             //console.log(switcher);
         for(var key in trans){
             if(trans.hasOwnProperty(key)){
@@ -37,7 +37,7 @@ var vanillaExample = {
         this.render(this);
     },
     render: function(obj){
-        var chosenLocale = document.querySelectorAll(".switcher select")[0].value,
+        var chosenLocale = document.querySelectorAll("#switcher select")[0].value,
             msg = new IntlMessageFormat(APP.translations[chosenLocale].USER_HAS_BOOKS,chosenLocale),
             msg2 = new IntlMessageFormat(APP.translations[chosenLocale].USER_WILL_SELL,chosenLocale, this.intlFormat),
             out = msg.format({
@@ -53,11 +53,11 @@ var vanillaExample = {
             });
 
         // output both messages
-        document.getElementsByClassName("message")[0].innerHTML = "<span class='msg'>"+out+"</span> \n <span class='msg2'>" + out2 +"</span>";
+        document.getElementById("message").innerHTML = "<span class='msg'>"+out+"</span> \n <span class='msg2'>" + out2 +"</span>";
 
     },
     bind: function(){
-        var switcher = document.querySelectorAll(".switcher select")[0],
+        var switcher = document.querySelectorAll("#switcher select")[0],
         self = this;
         switcher.addEventListener("change", function(){self.render(self)});
     }

@@ -1,74 +1,76 @@
 {{setTitle "Handlebars Helpers for Internationalization"}}
+{{> menu}}
+<div class="content pure-u-1">
+    <h1>Handlebars Helpers for Internationalization</h1>
 
-<h1>Handlebars Helpers for Internationalization</h1>
+    <h2>Introduction</h2>
 
-<h2>Introduction</h2>
+    <p>
+        If you're using the <a href="http://handlebarsjs.com/">Handlebars templating engine</a>, the Handlebars Internationalization Helpers are an easy way to internationalize your templates.
+    </p>
 
-<p>
-    If you're using the <a href="http://handlebarsjs.com/">Handlebars templating engine</a>, the Handlebars Internationalization Helpers are an easy way to internationalize your templates.
-</p>
+    {{sectionHeading "Installation"}}
 
-{{sectionHeading "Installation"}}
+    <p>
+        You can install the {{code "handlebars-helper-intl"}} module through <a href="http://bower.io">Bower</a> on the client side.
+    </p>
 
-<p>
-    You can install the {{code "handlebars-helper-intl"}} module through <a href="http://bower.io">Bower</a> on the client side.
-</p>
+    {{#code}}
+    bower install handlebars-helper-intl
+    {{/code}}
 
-{{#code}}
-bower install handlebars-helper-intl
-{{/code}}
+    <p>
+        Alternatively, you can install via <a href="http://npmjs.org">npm</a> on the server.
+    </p>
 
-<p>
-    Alternatively, you can install via <a href="http://npmjs.org">npm</a> on the server.
-</p>
+    {{#code}}
+    npm install handlebars-helper-intl
+    {{/code}}
 
-{{#code}}
-npm install handlebars-helper-intl
-{{/code}}
+    <p>
+        When serving the content on your page, you need to ensure that {{code "intl-messageformat.js"}} and {{code "handlebars.js"}} are loaded before the Handlebars helpers. These modules can also be installed via Bower and npm as well.
+    </p>
 
-<p>
-    When serving the content on your page, you need to ensure that {{code "intl-messageformat.js"}} and {{code "handlebars.js"}} are loaded before the Handlebars helpers. These modules can also be installed via Bower and npm as well.
-</p>
+    {{#code}}
+    <script src="intl-messageformat.js"></script>
+    <script src="handlebars.js"></script>
+    <script src="handlebars-helper-intl.js"></script>
+    {{/code}}
 
-{{#code}}
-<script src="intl-messageformat.js"></script>
-<script src="handlebars.js"></script>
-<script src="handlebars-helper-intl.js"></script>
-{{/code}}
+    <p>
+        Once the scripts have loaded, you have to register the helpers so that they can be used in your project.
+    </p>
 
-<p>
-    Once the scripts have loaded, you have to register the helpers so that they can be used in your project.
-</p>
+    {{#code "js"}}
+    HandlebarsHelperIntl.registerWith(Handlebars);
+    {{/code}}
 
-{{#code "js"}}
-HandlebarsHelperIntl.registerWith(Handlebars);
-{{/code}}
+    <p>Now, you're ready to start internationalizing your Handlebars templates!</p>
 
-<p>Now, you're ready to start internationalizing your Handlebars templates!</p>
+    {{sectionHeading "Overview"}}
 
-{{sectionHeading "Overview"}}
+    <p>
+        The Dust internationalization helpers look similar to the <a href="/dust/">Dust</a> and <a href="/react/">React</a> helpers. There are three primary helpers:
+        <ul>
+            <li><a href="#intldate">{{code "intlDate"}}</a> for date formatting</li>
+            <li><a href="#intlnumber">{{code "intlNumber"}}</a> for number formatting</li>
+            <li><a href="#intlmessage">{{code "intlMessage"}}</a> for string formatting</li>
+        </ul>
+    </p>
 
-<p>
-    The Dust internationalization helpers look similar to the <a href="/dust/">Dust</a> and <a href="/react/">React</a> helpers. There are three primary helpers:
-    <ul>
-        <li><a href="#intldate">{{code "intlDate"}}</a> for date formatting</li>
-        <li><a href="#intlnumber">{{code "intlNumber"}}</a> for number formatting</li>
-        <li><a href="#intlmessage">{{code "intlMessage"}}</a> for string formatting</li>
-    </ul>
-</p>
+    <section class="helper">
+        {{> handlebars/intl}}
+    </section>
 
-<section class="helper">
-    {{> handlebars/intl}}
-</section>
+    <section class="helper">
+        {{> handlebars/intlDate}}
+    </section>
 
-<section class="helper">
-    {{> handlebars/intlDate}}
-</section>
+    <section class="helper">
+        {{> handlebars/intlNumber}}
+    </section>
 
-<section class="helper">
-    {{> handlebars/intlNumber}}
-</section>
-
-<section class="helper">
-    {{> handlebars/intlMessage}}
-</section>
+    <section class="helper">
+        {{> handlebars/intlMessage}}
+    </section>
+</div>

@@ -73,4 +73,5 @@ router.route('/handlebars/').get(routes.handlebars);
 router.route('/dust/').get(routes.dust);
 router.route('/react/').get(routes.react);
 router.route('/overview/').get(routes.render('overview'));
+router.route('/faq/').get(routes.render('faq'));
 router.route('/javascript/').get(routes.render('javascript'));

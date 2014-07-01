@@ -1,237 +1,240 @@
 {{setTitle "React Helpers for Internationalization"}}
 
-<h1>React Helpers for Internationalization</h1>
+<div class="content pure-u-1">
+    <h1>React Helpers for Internationalization</h1>
 
-<p>Here's a little example with React Intl Helpers:</p>
+    <p>Here's a little example with React Intl Helpers:</p>
 
-<div class="example">
-    {{{examples.product.rendered}}}
-</div>
-
-{{#code "js"}}
-{{{examples.product.source}}}
-{{/code}}
-
-{{sectionHeading "Locale configuration"}}
-
-<p>All React components that use the React Intl mixin require the locales to be declared as a property of the component. For example:</p>
-
-{{#code "jsx"}}
-/** @jsx React.DOM */
-React.renderComponent(
-    <MyIntlComponent locales={["en-US"]}/>,
-    document.getElementById('example')
-);
-{{/code}}
-
-<p>However, {{code "ReactIntlMixin"}} is designed so that descendants of components that use the mixin inherit the value of {{code "locales"}}.</p>
-
-{{#code "jsx"}}
-/** @jsx React.DOM */
-React.renderComponent(
-    <MyIntlComponent locales={["en-US"]}>
-        <IntlDescendant/> //IntlDescendant doesn't need the "locales" property
-    </MyIntlComponent>,
-    document.getElementById('example')
-);
-{{/code}}
-
-{{sectionHeading "React Intl Mixin API reference"}}
-
-<h4 id="component-intlNumber">component.intlNumber(number [, options])</h4>
-
-<p>Parameters:</p>
-
-<dl>
-    <dt>{{code "number"}} : {{code "number"}}</dt>
-    <dd>
-        <p>Number to format.</p>
-    </dd>
-    <dt>{{code "options"}} : {{code "Object"}}</dt>
-    <dd>
-        <p>Optional. These are the configuration options for {{code "Intl.NumberFormat"}}:</p>
-        <dl>
-            <dt>{{code "localeMatcher"}}</dt>
-            <dd>The locale matching algorithm to use. Possible values are "lookup" and "best fit"; the default is "best fit".</dd>
-            <dt>{{code "style"}}</dt>
-            <dd>The formatting style to use. Possible values are "decimal" for plain number formatting, "currency" for currency formatting, and "percent" for percent formatting; the default is "decimal".</dd>
-            <dt>{{code "currency"}}</dt>
-            <dd>The currency to use in currency formatting. Possible values are the ISO 4217 currency codes, such as "USD" for the US dollar or "EUR" for the euro.</dd>
-            <dt>{{code "currencyDisplay"}}</dt>
-            <dd>How to display the currency in currency formatting. Possible values are "symbol" to use a localized currency symbol such as €, "code" to use the ISO currency code, "name" to use a localized currency name such as "dollar"; the default is "symbol".</dd>
-            <dt>{{code "useGrouping"}}</dt>
-            <dd>Whether to use grouping separators, such as thousands separators or thousand/lakh/crore separators. Possible values are true and false; the default is true.</dd>
-        </dl>
-    </dd>
-</dl>
-
-<p>Format numbers according to the locale. For example, consider the following React component:</p>
-
-{{#code "jsx"}}
-/** @jsx React.DOM */
-var MyComponent = React.createClass({
-    mixins: [ReactIntlMixin],
-    render: function () {
-        return <p>this.intlNumber(4000)</p>
-    }
-});
-{{/code}}
-
-<p>When the locale is set to {{code "en-US"}} the number will be rendered as {{code "4.000"}}.</p>
-
-{{#code "jsx"}}
-/** @jsx React.DOM */
-// renders <p>4,000</p>
-React.renderComponent(
-    <MyComponent locales={["en-US"]}/>,
-    document.getElementById('example')
-);
-{{/code}}
-
-<p>However, when the locale is set to {{code "fr-FR"}} the number will be printed as {{code "4.000"}}.</p>
-
-{{#code "jsx"}}
-/** @jsx React.DOM */
-// renders <p>4.000</p>
-React.renderComponent(
-    <MyComponent locales={["fr-FR"]}/>,
-    document.getElementById('example')
-);
-{{/code}}
-
-
-<h4 id="component-intlDate">component.intlDate(date [, options])</h4>
-
-<p>Parameters:</p>
-
-<dl>
-    <dt>{{code "date"}} : {{code "Date | number"}}</dt>
-    <dd>
-        <p>Date to format or a number specifying the number of milliseconds since January 1st, 1970.</p>
-    </dd>
-    <dt>{{code "options"}} : {{code "Object"}}</dt>
-    <dd>
-        <p>Optional. An object with any of the following properties (same as {{code "Intl.DateTimeFormat"}}):</p>
-        <dl>
-            <dt>{{code "localeMatcher"}}</dt>
-            <dd>The locale matching algorithm to use. Possible values are "lookup" and "best fit"; the default is "best fit".</dd>
-            <dt>{{code "timeZone"}}</dt>
-            <dd>The time zone to use. The only value implementations must recognize is "UTC"; the default is the runtime's default time zone.</dd>
-            <dt>{{code "hour12"}}</dt>
-            <dd>Whether to use 12-hour time (as opposed to 24-hour time). Possible values are true and false; the default is locale dependent.</dd>
-            <dt>{{code "formatMatcher"}}</dt>
-            <dd>The format matching algorithm to use. Possible values are "basic" and "best fit"; the default is "best fit".</dd>
-            <dt>{{code "weekday"}}</dt>
-            <dd>The representation of the weekday. Possible values are "narrow", "short", "long".</dd>
-            <dt>{{code "era"}}</dt>
-            <dd>The representation of the era. Possible values are "narrow", "short", "long".</dd>
-            <dt>{{code "year"}}</dt>
-            <dd>The representation of the year. Possible values are "numeric", "2-digit".</dd>
-            <dt>{{code "month"}}</dt>
-            <dd>The representation of the month. Possible values are "numeric", "2-digit", "narrow", "short", "long".</dd>
-            <dt>{{code "day"}}</dt>
-            <dd>The representation of the day. Possible values are "numeric", "2-digit".</dd>
-            <dt>{{code "hour"}}</dt>
-            <dd>The representation of the hour. Possible values are "numeric", "2-digit".</dd>
-            <dt>{{code "minute"}}</dt>
-            <dd>The representation of the minute. Possible values are "numeric", "2-digit".</dd>
-            <dt>{{code "second"}}</dt>
-            <dd>The representation of the second. Possible values are "numeric", "2-digit".</dd>
-            <dt>{{code "timeZoneName"}}</dt>
-            <dd>The representation of the time zone name. Possible values are "short", "long".</dd>
-        </dl>
-        <p>For more in-depth information about these parameters see the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Mozilla Developer Network page for {{code "Intl.DateTimeFormat"}}</a>.</p>
-    </dd>
-</dl>
-
-<p>Format dates according to the locale. This method also helps display the date in a meaningful way. For example we can show the time of a date using a 24 hour clock or AM/PM depending on the locale:</p>
-
-{{#code "jsx"}}
-/** @jsx React.DOM */
-var MyComponent = React.createClass({
-    mixins: [ReactIntlMixin],
-    render: function () {
-        return <p>A: {this.intlDate(1390518044403, {
-            hour: 'numeric',
-            minute: 'numeric'
-        })}</p>;
-    }
-});
-{{/code}}
-
-<p>The ouput when the locale is set to {{code "fr-FR"}} will be {{code "18:00"}}, while in a {{code "en-US"}} locale it will be {{code "6:00 PM"}}.</p>
-
-{{#code}}
-{{{examples.react.strings}}}
-{{/code}}
-
-<h4 id="component-intlMessage">component.intlMessage(message, data)</h4>
-
-<p>Parameters:</p>
-
-<dl>
-    <dt>{{code "message : string"}}</dt>
-    <dd>
-        <p>Message using <a href="/javascript/#messageformat-strings">Simple String Format</a>.</p>
-    </dd>
-    <dt>{{code "data : Object"}}</dt>
-    <dd>
-        <p>Data used by each token in the form of key-value pairs where the key matches the token name.</p>
-    </dd>
-</dl>
-
-<p>Format messages according to the locale. The simplest form of formatting is actually just token replacement, ie:</p>
-
-{{#code "jsx"}}
-/** @jsx React.DOM */
-var MyComponent = React.createClass({
-    mixins: [ReactIntlMixin],
-    render: function () {
-        return <p>A: {this.intlMessage('{employee} reports to {manager}.')}</p>;
-    }
-});
-
-React.renderComponent(
-    <MyComponent locales={["de-DE"]} employee="John" manager="Mike" />,
-    document.getElementById('example')
-);
-{{/code}}
-
-{{sectionHeading "Examples"}}
-
-<h3>Pluralization</h3>
-
-<p>This example is an extension of one of React basic examples in which a timer tracks elapsed time, but in this case we are using the Intl API to pluralize the minute and second count.</p>
-
-<div id="timer-example">
-    <div class="example"></div>
-    <div class="switcher">
-        View this example in
-        <select>
-            <option value="en-US">en-US</option>
-            <option value="es-AR">es-AR</option>
-        </select>
+    <div class="example">
+        {{{examples.product.rendered}}}
     </div>
+
+    {{#code "js"}}
+    {{{examples.product.source}}}
+    {{/code}}
+
+    {{sectionHeading "Locale configuration"}}
+
+    <p>All React components that use the React Intl mixin require the locales to be declared as a property of the component. For example:</p>
+
+    {{#code "jsx"}}
+    /** @jsx React.DOM */
+    React.renderComponent(
+        <MyIntlComponent locales={["en-US"]}/>,
+        document.getElementById('example')
+    );
+    {{/code}}
+
+    <p>However, {{code "ReactIntlMixin"}} is designed so that descendants of components that use the mixin inherit the value of {{code "locales"}}.</p>
+
+    {{#code "jsx"}}
+    /** @jsx React.DOM */
+    React.renderComponent(
+        <MyIntlComponent locales={["en-US"]}>
+            <IntlDescendant/> //IntlDescendant doesn't need the "locales" property
+        </MyIntlComponent>,
+        document.getElementById('example')
+    );
+    {{/code}}
+
+    {{sectionHeading "React Intl Mixin API reference"}}
+
+    <h4 id="component-intlNumber">component.intlNumber(number [, options])</h4>
+
+    <p>Parameters:</p>
+
+    <dl>
+        <dt>{{code "number"}} : {{code "number"}}</dt>
+        <dd>
+            <p>Number to format.</p>
+        </dd>
+        <dt>{{code "options"}} : {{code "Object"}}</dt>
+        <dd>
+            <p>Optional. These are the configuration options for {{code "Intl.NumberFormat"}}:</p>
+            <dl>
+                <dt>{{code "localeMatcher"}}</dt>
+                <dd>The locale matching algorithm to use. Possible values are "lookup" and "best fit"; the default is "best fit".</dd>
+                <dt>{{code "style"}}</dt>
+                <dd>The formatting style to use. Possible values are "decimal" for plain number formatting, "currency" for currency formatting, and "percent" for percent formatting; the default is "decimal".</dd>
+                <dt>{{code "currency"}}</dt>
+                <dd>The currency to use in currency formatting. Possible values are the ISO 4217 currency codes, such as "USD" for the US dollar or "EUR" for the euro.</dd>
+                <dt>{{code "currencyDisplay"}}</dt>
+                <dd>How to display the currency in currency formatting. Possible values are "symbol" to use a localized currency symbol such as €, "code" to use the ISO currency code, "name" to use a localized currency name such as "dollar"; the default is "symbol".</dd>
+                <dt>{{code "useGrouping"}}</dt>
+                <dd>Whether to use grouping separators, such as thousands separators or thousand/lakh/crore separators. Possible values are true and false; the default is true.</dd>
+            </dl>
+        </dd>
+    </dl>
+
+    <p>Format numbers according to the locale. For example, consider the following React component:</p>
+
+    {{#code "jsx"}}
+    /** @jsx React.DOM */
+    var MyComponent = React.createClass({
+        mixins: [ReactIntlMixin],
+        render: function () {
+            return <p>this.intlNumber(4000)</p>
+        }
+    });
+    {{/code}}
+
+    <p>When the locale is set to {{code "en-US"}} the number will be rendered as {{code "4.000"}}.</p>
+
+    {{#code "jsx"}}
+    /** @jsx React.DOM */
+    // renders <p>4,000</p>
+    React.renderComponent(
+        <MyComponent locales={["en-US"]}/>,
+        document.getElementById('example')
+    );
+    {{/code}}
+
+    <p>However, when the locale is set to {{code "fr-FR"}} the number will be printed as {{code "4.000"}}.</p>
+
+    {{#code "jsx"}}
+    /** @jsx React.DOM */
+    // renders <p>4.000</p>
+    React.renderComponent(
+        <MyComponent locales={["fr-FR"]}/>,
+        document.getElementById('example')
+    );
+    {{/code}}
+
+
+    <h4 id="component-intlDate">component.intlDate(date [, options])</h4>
+
+    <p>Parameters:</p>
+
+    <dl>
+        <dt>{{code "date"}} : {{code "Date | number"}}</dt>
+        <dd>
+            <p>Date to format or a number specifying the number of milliseconds since January 1st, 1970.</p>
+        </dd>
+        <dt>{{code "options"}} : {{code "Object"}}</dt>
+        <dd>
+            <p>Optional. An object with any of the following properties (same as {{code "Intl.DateTimeFormat"}}):</p>
+            <dl>
+                <dt>{{code "localeMatcher"}}</dt>
+                <dd>The locale matching algorithm to use. Possible values are "lookup" and "best fit"; the default is "best fit".</dd>
+                <dt>{{code "timeZone"}}</dt>
+                <dd>The time zone to use. The only value implementations must recognize is "UTC"; the default is the runtime's default time zone.</dd>
+                <dt>{{code "hour12"}}</dt>
+                <dd>Whether to use 12-hour time (as opposed to 24-hour time). Possible values are true and false; the default is locale dependent.</dd>
+                <dt>{{code "formatMatcher"}}</dt>
+                <dd>The format matching algorithm to use. Possible values are "basic" and "best fit"; the default is "best fit".</dd>
+                <dt>{{code "weekday"}}</dt>
+                <dd>The representation of the weekday. Possible values are "narrow", "short", "long".</dd>
+                <dt>{{code "era"}}</dt>
+                <dd>The representation of the era. Possible values are "narrow", "short", "long".</dd>
+                <dt>{{code "year"}}</dt>
+                <dd>The representation of the year. Possible values are "numeric", "2-digit".</dd>
+                <dt>{{code "month"}}</dt>
+                <dd>The representation of the month. Possible values are "numeric", "2-digit", "narrow", "short", "long".</dd>
+                <dt>{{code "day"}}</dt>
+                <dd>The representation of the day. Possible values are "numeric", "2-digit".</dd>
+                <dt>{{code "hour"}}</dt>
+                <dd>The representation of the hour. Possible values are "numeric", "2-digit".</dd>
+                <dt>{{code "minute"}}</dt>
+                <dd>The representation of the minute. Possible values are "numeric", "2-digit".</dd>
+                <dt>{{code "second"}}</dt>
+                <dd>The representation of the second. Possible values are "numeric", "2-digit".</dd>
+                <dt>{{code "timeZoneName"}}</dt>
+                <dd>The representation of the time zone name. Possible values are "short", "long".</dd>
+            </dl>
+            <p>For more in-depth information about these parameters see the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Mozilla Developer Network page for {{code "Intl.DateTimeFormat"}}</a>.</p>
+        </dd>
+    </dl>
+
+    <p>Format dates according to the locale. This method also helps display the date in a meaningful way. For example we can show the time of a date using a 24 hour clock or AM/PM depending on the locale:</p>
+
+    {{#code "jsx"}}
+    /** @jsx React.DOM */
+    var MyComponent = React.createClass({
+        mixins: [ReactIntlMixin],
+        render: function () {
+            return <p>A: {this.intlDate(1390518044403, {
+                hour: 'numeric',
+                minute: 'numeric'
+            })}</p>;
+        }
+    });
+    {{/code}}
+
+    <p>The ouput when the locale is set to {{code "fr-FR"}} will be {{code "18:00"}}, while in a {{code "en-US"}} locale it will be {{code "6:00 PM"}}.</p>
+
+    {{#code}}
+    {{{examples.react.strings}}}
+    {{/code}}
+
+    <h4 id="component-intlMessage">component.intlMessage(message, data)</h4>
+
+    <p>Parameters:</p>
+
+    <dl>
+        <dt>{{code "message : string"}}</dt>
+        <dd>
+            <p>Message using <a href="/javascript/#messageformat-strings">Simple String Format</a>.</p>
+        </dd>
+        <dt>{{code "data : Object"}}</dt>
+        <dd>
+            <p>Data used by each token in the form of key-value pairs where the key matches the token name.</p>
+        </dd>
+    </dl>
+
+    <p>Format messages according to the locale. The simplest form of formatting is actually just token replacement, ie:</p>
+
+    {{#code "jsx"}}
+    /** @jsx React.DOM */
+    var MyComponent = React.createClass({
+        mixins: [ReactIntlMixin],
+        render: function () {
+            return <p>A: {this.intlMessage('{employee} reports to {manager}.')}</p>;
+        }
+    });
+
+    React.renderComponent(
+        <MyComponent locales={["de-DE"]} employee="John" manager="Mike" />,
+        document.getElementById('example')
+    );
+    {{/code}}
+
+    {{sectionHeading "Examples"}}
+
+    <h3>Pluralization</h3>
+
+    <p>This example is an extension of one of React basic examples in which a timer tracks elapsed time, but in this case we are using the Intl API to pluralize the minute and second count.</p>
+
+    <div id="timer-example">
+        <div class="example"></div>
+        <div class="switcher">
+            View this example in
+            <select>
+                <option value="en-US">en-US</option>
+                <option value="es-AR">es-AR</option>
+            </select>
+        </div>
+    </div>
+
+    {{#code "js"}}
+    {{> react/timer}}
+    {{/code}}
+
+    <script>
+    function init() {
+    var mountNode = document.querySelector('#timer-example .example');
+
+    {{> react/timer}}
+
+    var timer = React.renderComponent(Timer({ locales: [APP.intl.locale] }), mountNode);
+
+    document.querySelector('#timer-example select').addEventListener('change', function (e) {
+        timer.setProps({
+            locales: [e.target.value]
+        })
+    });
+    }
+    </script>
+
+    <p>Note: content includes excerpts from the <a href="https://developer.mozilla.org/">Mozilla Developer Network website</a>.</p>
 </div>
 
-{{#code "js"}}
-{{> react/timer}}
-{{/code}}
-
-<script>
-function init() {
-var mountNode = document.querySelector('#timer-example .example');
-
-{{> react/timer}}
-
-var timer = React.renderComponent(Timer({ locales: [APP.intl.locale] }), mountNode);
-
-document.querySelector('#timer-example select').addEventListener('change', function (e) {
-    timer.setProps({
-        locales: [e.target.value]
-    })
-});
-}
-</script>
-
-<p>Note: content includes excerpts from the <a href="https://developer.mozilla.org/">Mozilla Developer Network website</a>.</p>

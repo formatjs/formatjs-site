@@ -286,7 +286,7 @@ until we update the menu styles in Pure.
     }
 
     .sidebar-wrapper {
-        padding-top: 2em; /* same as .content-subhead margin-top */
+        padding-top: 3em; /* should match about the position of the first h1 */
         margin-right: -200px;
         width: 200px;
     }
@@ -294,11 +294,10 @@ until we update the menu styles in Pure.
     .sidebar {
         display: block;
         right: 0;
-        padding: 0 2em;
+        padding: 1em 2em 0;
         text-align: right;
         font-size: 0.875em;
         width: 200px;
-        position: fixed;
     }
 
     .sidebar-head {
@@ -321,6 +320,7 @@ until we update the menu styles in Pure.
 
     .sidebar-title {
         font-weight: 300;
+        margin-top: 0;
     }
 
     .sidebar-title,

@@ -6,16 +6,16 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-html, 
-button, 
-input, 
-select, 
+html,
+button,
+input,
+select,
 textarea,
 .pure-g [class *= "pure-u"] {
     font-family: "Open Sans", sans-serif;
 }
 
-body, 
+body,
 p {
     color: #666;
     line-height: 1.6;
@@ -70,6 +70,9 @@ pre code {
     white-space: pre-wrap;
 }
 
+/* --------------- */
+/* Horizontal Rule */
+/* --------------- */
 hr {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -81,11 +84,15 @@ hr {
     box-sizing: content-box;
 }
 
+
 .rule {
     width: 100px;
     margin: 40px auto;
 }
 
+/* ------- */
+/* Buttons */
+/* ------- */
 .btn {
     background: transparent;
     border: 1px solid #7f5794;
@@ -150,7 +157,7 @@ hr {
     border-color: #d092f7;
 }
 
-/* 
+/*
 We need to add the #menu prefix for specificity on these selectors
 until we update the menu styles in Pure.
 */
@@ -186,7 +193,7 @@ until we update the menu styles in Pure.
     letter-spacing: 0.2em;
     text-align: center;
     /* other option is to have a huge specificity selector, we really need to fix Pure Menus :( */
-    display: block; 
+    display: block;
 }
 
 #menu .menu-item a {
@@ -362,6 +369,10 @@ until we update the menu styles in Pure.
 
     #menu .menu-item a {
         padding: 5px 20px;
+    }
+
+    .box {
+        padding-right: 1em;
     }
 }
 

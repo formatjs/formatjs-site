@@ -75,3 +75,4 @@ router.route('/react/').get(routes.react);
 router.route('/overview/').get(routes.render('overview'));
 router.route('/faq/').get(routes.render('faq'));
 router.route('/javascript/').get(routes.render('javascript'));
+router.route('/github/').get(routes.render('github'));

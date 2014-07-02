@@ -62,17 +62,17 @@ app.use(express.static(config.dirs.pub));
 
 router.route('/').get(routes.render('home', 'home'));
 
-router.route('/quickstart/')
+router.route('/quickstart')
     .get(routes.render('quickstart'));
-router.route('/quickstart/browser/')
+router.route('/quickstart/browser')
     .get(routes.render('quickstart/browser'));
-router.route('/quickstart/node/')
+router.route('/quickstart/node')
     .get(routes.render('quickstart/node'));
 
-router.route('/handlebars/').get(routes.handlebars);
-router.route('/dust/').get(routes.dust);
-router.route('/react/').get(routes.react);
-router.route('/overview/').get(routes.render('overview'));
-router.route('/faq/').get(routes.render('faq'));
-router.route('/javascript/').get(routes.render('javascript'));
-router.route('/github/').get(routes.render('github'));
+router.route('/handlebars').get(routes.handlebars);
+router.route('/dust').get(routes.dust);
+router.route('/react').get(routes.react);
+router.route('/overview').get(routes.render('overview'));
+router.route('/faq').get(routes.render('faq'));
+router.route('/javascript').get(routes.render('javascript'));
+router.route('/github').get(routes.render('github'));

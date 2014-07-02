@@ -273,12 +273,6 @@ until we update the menu styles in Pure.
     padding-top: 4px;
 }
 
-.helper {
-    margin: 1em 0;
-    padding: 1em 0;
-    border-top: 1px solid #ddd;
-}
-
 .parameters-list dt code {
     background: none;
     border: none;

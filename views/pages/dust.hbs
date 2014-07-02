@@ -11,23 +11,23 @@
     You can install the {{code "dust-helper-intl"}} module through <a href="http://bower.io">Bower</a> on the client side.
 </p>
 
-{{#code}}
-bower install dust-helper-intl
+{{#code "shell"}}
+$ bower install dust-helper-intl
 {{/code}}
 
 <p>
     Alternatively, you can install via <a href="http://npmjs.org">npm</a> on the server.
 </p>
 
-{{#code}}
-npm install dust-helper-intl
+{{#code "shell"}}
+$ npm install dust-helper-intl
 {{/code}}
 
 <p>
     When serving the content on your page, you need to ensure that {{code "intl-messageformat.js"}} and {{code "dustjs-linkedin.js"}} are loaded before the Dust helpers. These modules can also be installed via Bower and npm as well.
 </p>
 
-{{#code}}
+{{#code "html"}}
 <script src="intl-messageformat.js"></script>
 <script src="dustjs-linkedin.js"></script>
 <script src="dust-helper-intl.js"></script>
@@ -54,14 +54,14 @@ DustHelperIntl.register(dust);
     </ul>
 </p>
 
-<section class="helper">
-    {{> dust/intlDate}}
-</section>
+<hr class="rule">
 
-<section class="helper">
-    {{> dust/intlNumber}}
-</section>
+{{> dust/intlDate}}
 
-<section class="helper">
-    {{> dust/intlMessage}}
-</section>
+<hr class="rule">
+
+{{> dust/intlNumber}}
+
+<hr class="rule">
+
+{{> dust/intlMessage}}

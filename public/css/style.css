@@ -312,16 +312,15 @@ until we update the menu styles in Pure.
         padding-top: 3em; /* should match about the position of the first h1 */
         margin-right: -200px;
         width: 200px;
+        float: right;
     }
 
     .sidebar {
-        position: absolute;
         display: block;
         padding: 1em 2em 0;
         text-align: right;
         font-size: 0.875em;
         width: 200px;
-        position: absolute;
     }
 
     .sidebar-head {

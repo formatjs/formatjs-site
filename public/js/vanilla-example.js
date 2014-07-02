@@ -50,18 +50,28 @@ var vanillaExample = {
                 numBooks: 10,
                 price: 1000,
                 dateBooks: this.now
-            });
+            }),
 
-        // output both messages
-        document.getElementById("message").innerHTML = "<span class='msg'>"+out+"</span> \n <span class='msg2'>" + out2 +"</span>";
+            msgDiv = document.querySelector('.splash-example-message'),
+            className = msgDiv.className;
 
+
+        // hide the div.
+        msgDiv.className = msgDiv.className.replace('show', '');
+
+        setTimeout(function () {
+            //change the content.
+            msgDiv.innerHTML = '<span>' + out + '<br>' + out2 + '</span>';
+
+            //show the div.
+            msgDiv.className += ' show';
+        }, 1200);
     },
     bind: function(){
         var switcher = document.querySelectorAll("#switcher select")[0],
         self = this;
         switcher.addEventListener("change", function(){self.render(self)});
     }
-
 }
 
 

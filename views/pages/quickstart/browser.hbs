@@ -1,180 +1,177 @@
 {{setTitle "Internationalization in the Browser"}}
-{{> menu}}
 
-<div class="content pure-u-1">
-    <h1>Internationalization in the Browser</h1>
+<h1>Internationalization in the Browser</h1>
 
-    <p>
-        In the early days of browser development, Internationalization would happen most often on the server,
-        since browsers did not have a standard way of formatting things like dates and numbers based on
-        the locale of the browser. With more modern browsers we have the benefit of the ECMAScript Internationalization
-        API (<a href="http://www.ecma-international.org/ecma-402/1.0/#sec-8">ECMA-402</a>) which provides
-        language sensitive string comparison, number formatting, and date and time formatting.
-    </p>
-    <p>
-        This is of great benefit for developers of websites and single page applications where data is often
-        downloaded dynamically without location specific formatting. The
-        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">{{code "Intl"}}</a> object
-        provides constructors for {{code "Collator"}}, {{code "NumberFormat"}}, and {{code "DateTimeFormat"}}
-        which give browser developers the basic tools they need for formatting.
-    </p>
-    <p>
-    Here are some examples:
-    </p>
+<p>
+    In the early days of browser development, Internationalization would happen most often on the server,
+    since browsers did not have a standard way of formatting things like dates and numbers based on
+    the locale of the browser. With more modern browsers we have the benefit of the ECMAScript Internationalization
+    API (<a href="http://www.ecma-international.org/ecma-402/1.0/#sec-8">ECMA-402</a>) which provides
+    language sensitive string comparison, number formatting, and date and time formatting.
+</p>
+<p>
+    This is of great benefit for developers of websites and single page applications where data is often
+    downloaded dynamically without location specific formatting. The
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">{{code "Intl"}}</a> object
+    provides constructors for {{code "Collator"}}, {{code "NumberFormat"}}, and {{code "DateTimeFormat"}}
+    which give browser developers the basic tools they need for formatting.
+</p>
+<p>
+Here are some examples:
+</p>
 
-    {{sectionHeading "Formatting Dates"}}
+{{sectionHeading "Formatting Dates"}}
 
-    <p>
-        You can format dates easily once you create a {{code "Date"}} object and call
-        the {{code "format"}} method on {{code "Intl.DateTimeFormat"}}.
-    </p>
+<p>
+    You can format dates easily once you create a {{code "Date"}} object and call
+    the {{code "format"}} method on {{code "Intl.DateTimeFormat"}}.
+</p>
 
-    {{#code "js"}}
-    var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
-    new Intl.DateTimeFormat("en-US").format(date);
-    {{/code}}
+{{#code "js"}}
+var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
+new Intl.DateTimeFormat("en-US").format(date);
+{{/code}}
 
-    Returns "{{code "12/19/2012"}}" if run in the {{code "en-US"}} locale with time zone {{code "America/Los-Angeles"}}.
-    Using {{code "Intl.DateTimeFormat()"}} with no arguments will use the system's locale and time zone.
+Returns "{{code "12/19/2012"}}" if run in the {{code "en-US"}} locale with time zone {{code "America/Los-Angeles"}}.
+Using {{code "Intl.DateTimeFormat()"}} with no arguments will use the system's locale and time zone.
 
-    <p>
-    You can also format dates and times via the {{code "options"}} argument:
-    </p>
+<p>
+You can also format dates and times via the {{code "options"}} argument:
+</p>
 
-    {{#code "js"}}
-    var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
-    new Intl.DateTimeFormat("de-DE", options).format(date);
-    {{/code}}
+{{#code "js"}}
+var options = {weekday: "long", year: "numeric", month: "long", day: "numeric"};
+new Intl.DateTimeFormat("de-DE", options).format(date);
+{{/code}}
 
-    Returns "{{code "Mittwoch, 19. Dezember 2012"}}" as you requested a weekday along with a long date.
+Returns "{{code "Mittwoch, 19. Dezember 2012"}}" as you requested a weekday along with a long date.
 
-    <p>
-        Note how you have the same date information in {{code "date"}} but specifying a different locale or formatting options
-        changes the output. You can find out more about date formatting via the Intl specification
-        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">here</a>.
-    <p>
+<p>
+    Note how you have the same date information in {{code "date"}} but specifying a different locale or formatting options
+    changes the output. You can find out more about date formatting via the Intl specification
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">here</a>.
+<p>
 
-    {{sectionHeading "Formatting Numbers"}}
+{{sectionHeading "Formatting Numbers"}}
 
-    <p>
-        You can also format numbers in a similar fashion using {{code "Intl.NumberFormat"}}.
-    </p>
+<p>
+    You can also format numbers in a similar fashion using {{code "Intl.NumberFormat"}}.
+</p>
 
-    {{#code "js"}}
-    var number = 123456.789;
-    new Intl.NumberFormat().format(number);
-    {{/code}}
+{{#code "js"}}
+var number = 123456.789;
+new Intl.NumberFormat().format(number);
+{{/code}}
 
-    Returns "{{code "123,456.789"}}" when in the US English locale.
+Returns "{{code "123,456.789"}}" when in the US English locale.
 
-    <p>
-        As in {{code "Intl.DateTimeFormat"}} you can pass in a specific locale to specify a different language.
-    </p>
+<p>
+    As in {{code "Intl.DateTimeFormat"}} you can pass in a specific locale to specify a different language.
+</p>
 
 
-    {{#code "js"}}
-    new Intl.NumberFormat("ar-EG").format(number);
-    {{/code}}
+{{#code "js"}}
+new Intl.NumberFormat("ar-EG").format(number);
+{{/code}}
 
-    Returns "{{code "١٢٣٬٤٥٦٫٧٨٩"}}" using real Arabic digits that are used in that language.
+Returns "{{code "١٢٣٬٤٥٦٫٧٨٩"}}" using real Arabic digits that are used in that language.
 
-    <p>
-        And just like {{code "Intl.DateTimeFormat"}}, you can use the {{code "options"}} argument to
-        customize the formatting.
-    </p>
-
-
-    {{#code "js"}}
-    new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(number);
-    {{/code}}
-
-    Returns "{{code "23.456,789 €"}}" using the Euro symbol for currency.
-
-    {{sectionHeading "Browser Compatibility"}}
-
-    <p>
-        For browsers that support {{code "window.Intl"}}, this makes it easy to do basic formatting of numbers and dates. However, the {{code "window.Intl"}} object is relatively new so not all modern browsers and devices support it. Here's a breakdown of desktop and mobile browsers support.
-    </p>
+<p>
+    And just like {{code "Intl.DateTimeFormat"}}, you can use the {{code "options"}} argument to
+    customize the formatting.
+</p>
 
 
-    <h3>Runtimes</h3>
-    <table class="pure-table">
-        <thead>
-            <tr>
-                <th>Feature</th>
-                <th>Chrome</th>
-                <th>Firefox (Gecko)</th>
-                <th>Internet Explorer</th>
-                <th>Opera</th>
-                <th>Safari (WebKit)</th>
-                <th>Node.js</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Basic support* </td>
-                <td>24</td>
-                <td>29</td>
-                <td>11</td>
-                <td>15</td>
-                <td><span class="warning">Not supported</span></td>
-                <td>Only via <a href="http://stackoverflow.com/questions/20125560/referenceerror-intl-is-not-defined-in-node-js/23255238#23255238">custom compile</a></td>
-            </tr>
-        </tbody>
-    </table>
-    <ul>
-        <li><small>* "Basic support" meaning window.Intl + Constructors and Methods</small></li>
-        <li><small>Source: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Browser_Compatibility">MDN</a></small></li>
-    </ul>
-    <p>
-        Mobile devices lag behind quite a bit, with only recent versions of Chrome for Android offering support. Which means Safari on mobile also does not support {{code "window.Intl"}}.
-    </p>
+{{#code "js"}}
+new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(number);
+{{/code}}
 
-    <p>
-        Lacking {{code "window.Intl"}} support across browsers presents a problem for you as a developer
-        since you want to use these features across all browsers and devices. Fortunately, there is a polyfill
-        for Intl called <a href="https://github.com/andyearnshaw/Intl.js/">{{code "Intl.js"}}</a> written
-        by Andy Earnshaw. This polyfill allows you to use the native API's
-        for {{code "window.Intl"}} in legacy or unsupported environments.
-    </p>
+Returns "{{code "23.456,789 €"}}" using the Euro symbol for currency.
 
-    <p>
-        Since you only want to load this polyfill in browsers that do not support the native {{code "Intl"}} object,
-        you may use a conditional loader like <a href="http://yepnopejs.com/">{{code "yepnope.js"}}</a> (available via
-        <a href="http://cdnjs.com/libraries/yepnope">cdnjs.com</a>). Here is an example below loading {{code "Intl.js"}}
-        from the Yahoo CDN along with the en-US locale information.
-    </p>
+{{sectionHeading "Browser Compatibility"}}
+
+<p>
+    For browsers that support {{code "window.Intl"}}, this makes it easy to do basic formatting of numbers and dates. However, the {{code "window.Intl"}} object is relatively new so not all modern browsers and devices support it. Here's a breakdown of desktop and mobile browsers support.
+</p>
+
+
+<h3>Runtimes</h3>
+<table class="pure-table">
+    <thead>
+        <tr>
+            <th>Feature</th>
+            <th>Chrome</th>
+            <th>Firefox (Gecko)</th>
+            <th>Internet Explorer</th>
+            <th>Opera</th>
+            <th>Safari (WebKit)</th>
+            <th>Node.js</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Basic support* </td>
+            <td>24</td>
+            <td>29</td>
+            <td>11</td>
+            <td>15</td>
+            <td><span class="warning">Not supported</span></td>
+            <td>Only via <a href="http://stackoverflow.com/questions/20125560/referenceerror-intl-is-not-defined-in-node-js/23255238#23255238">custom compile</a></td>
+        </tr>
+    </tbody>
+</table>
+<ul>
+    <li><small>* "Basic support" meaning window.Intl + Constructors and Methods</small></li>
+    <li><small>Source: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Browser_Compatibility">MDN</a></small></li>
+</ul>
+<p>
+    Mobile devices lag behind quite a bit, with only recent versions of Chrome for Android offering support. Which means Safari on mobile also does not support {{code "window.Intl"}}.
+</p>
+
+<p>
+    Lacking {{code "window.Intl"}} support across browsers presents a problem for you as a developer
+    since you want to use these features across all browsers and devices. Fortunately, there is a polyfill
+    for Intl called <a href="https://github.com/andyearnshaw/Intl.js/">{{code "Intl.js"}}</a> written
+    by Andy Earnshaw. This polyfill allows you to use the native API's
+    for {{code "window.Intl"}} in legacy or unsupported environments.
+</p>
+
+<p>
+    Since you only want to load this polyfill in browsers that do not support the native {{code "Intl"}} object,
+    you may use a conditional loader like <a href="http://yepnopejs.com/">{{code "yepnope.js"}}</a> (available via
+    <a href="http://cdnjs.com/libraries/yepnope">cdnjs.com</a>). Here is an example below loading {{code "Intl.js"}}
+    from the Yahoo CDN along with the en-US locale information.
+</p>
 
 {{#code "js"}}
 (function () {
-    var locale    = "en-US", //you should obtain this information potentially from the server.
-        baseUrl   = 'http://yui.yahooapis.com/combo?platform/intl/0.1.2/Intl.min.js&platform/intl/0.1.2/locale-data/jsonp/',
-        comboUrl  = baseUrl + locale + '.js';
-    yepnope([{
-        test : !!window.Intl,
-        nope : comboUrl
-    }]);
+var locale    = "en-US", //you should obtain this information potentially from the server.
+    baseUrl   = 'http://yui.yahooapis.com/combo?platform/intl/0.1.2/Intl.min.js&platform/intl/0.1.2/locale-data/jsonp/',
+    comboUrl  = baseUrl + locale + '.js';
+yepnope([{
+    test : !!window.Intl,
+    nope : comboUrl
+}]);
 
 })();
 {{/code}}
 
-    Note the test {{code "!!window.Intl"}} which {{code "yepnope"}} uses to to decide whether to load {{code "Intl.js"}} polyfill
-    and associated locale metadata.
+Note the test {{code "!!window.Intl"}} which {{code "yepnope"}} uses to to decide whether to load {{code "Intl.js"}} polyfill
+and associated locale metadata.
 
-    {{sectionHeading "Intl Message Format API"}}
+{{sectionHeading "Intl Message Format API"}}
 
-    <p>
-        Suppose however you want to construct more complex translations? There is a Yahoo library called <a href="/javascript/">{{code "intl-messageformat"}}</a> that allows you to use JavaScript to create strings with localization support, and it can be used on both the client and the server.
-    </p>
-    <a class="btn btn-small pure-button" href="/javascript/">View Intl Message Format API</a>
+<p>
+    Suppose however you want to construct more complex translations? There is a Yahoo library called <a href="/javascript/">{{code "intl-messageformat"}}</a> that allows you to use JavaScript to create strings with localization support, and it can be used on both the client and the server.
+</p>
+<a class="btn btn-small pure-button" href="/javascript/">View Intl Message Format API</a>
 
-    {{sectionHeading "Next Steps"}}
+{{sectionHeading "Next Steps"}}
 
-    <p>
-        If you've reached this point then you should have an understanding of how Internationalization works in the browser. We touched upon the ECMAScript Internationalization API (<a href="http://www.ecma-international.org/ecma-402/1.0/">ECMA-402</a>), and the need for a polyfill for unsupported browsers through <a href="https://github.com/andyearnshaw/Intl.js/">{{code "Intl.js"}}</a>.
-    </p>
+<p>
+    If you've reached this point then you should have an understanding of how Internationalization works in the browser. We touched upon the ECMAScript Internationalization API (<a href="http://www.ecma-international.org/ecma-402/1.0/">ECMA-402</a>), and the need for a polyfill for unsupported browsers through <a href="https://github.com/andyearnshaw/Intl.js/">{{code "Intl.js"}}</a>.
+</p>
 
-    <p>
-        You can start internationalizing your application by leveraging the <a href="/javascript/">Intl Message Format JavaScript API</a> directly. However, if you are developing a website or single page application you may already be using a template engine like Dust or Handlebars, or a library like ReactJS. We provide helpers for each of these. For more information check out the documentation for <a href="/dust/">Intl Dust Helpers</a>, <a href="/handlebars/">Intl Handlebars Helpers</a>, and <a href="/react/">Intl React Helpers</a>.
-    </p>
-</div>
+<p>
+    You can start internationalizing your application by leveraging the <a href="/javascript/">Intl Message Format JavaScript API</a> directly. However, if you are developing a website or single page application you may already be using a template engine like Dust or Handlebars, or a library like ReactJS. We provide helpers for each of these. For more information check out the documentation for <a href="/dust/">Intl Dust Helpers</a>, <a href="/handlebars/">Intl Handlebars Helpers</a>, and <a href="/react/">Intl React Helpers</a>.
+</p>

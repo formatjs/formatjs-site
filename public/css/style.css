@@ -272,6 +272,7 @@ until we update the menu styles in Pure.
 /* Footer */
 /* ------ */
 .footer {
+    background: #F6F6F6;
     margin-top: 3.4286em;
     padding: 1.1429em;
     text-align: center;
@@ -280,7 +281,7 @@ until we update the menu styles in Pure.
 .footer p,
 .footer li {
     color: #777;
-    font-size: 87.5%;
+    font-size: 0.8em;
 }
 
 .legal {

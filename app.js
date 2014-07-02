@@ -18,9 +18,9 @@ var config     = require('./config'),
     middleware = require('./middleware'),
     routes     = require('./routes');
 
-var app = module.exports = express();
-
 // -----------------------------------------------------------------------------
+
+var app = module.exports = express();
 
 hbsIntl.registerWith(hbs.handlebars);
 expstate.extend(app);
@@ -47,11 +47,19 @@ app.expose(allTranslations, 'translations', { cache: true });
 
 // -- Middleware ---------------------------------------------------------------
 
-var router = express.Router();
+var router = express.Router({
+    caseSensitive: app.get('case sensitive routing'),
+    strict       : app.get('strict routing')
+});
+
+if (app.get('env') === 'development') {
+    app.use(middleware.logger('tiny'));
+}
 
 app.use(compress());
 app.use(middleware.intl);
 app.use(router);
+app.use(middleware.slash());
 app.use('/bower_components/',  express.static(config.dirs.bower));
 app.use(express.static(config.dirs.pub));
 
@@ -60,19 +68,16 @@ app.use(express.static(config.dirs.pub));
 
 // -- Routes -------------------------------------------------------------------
 
-router.route('/').get(routes.render('home', 'home'));
+router.get('/', routes.render('home', 'home'));
 
-router.route('/quickstart')
-    .get(routes.render('quickstart'));
-router.route('/quickstart/browser')
-    .get(routes.render('quickstart/browser'));
-router.route('/quickstart/node')
-    .get(routes.render('quickstart/node'));
+router.get('/quickstart/',        routes.render('quickstart'));
+router.get('/quickstart/browser', routes.render('quickstart/browser'));
+router.get('/quickstart/node',    routes.render('quickstart/node'));
 
-router.route('/handlebars').get(routes.handlebars);
-router.route('/dust').get(routes.dust);
-router.route('/react').get(routes.react);
-router.route('/overview').get(routes.render('overview'));
-router.route('/faq').get(routes.render('faq'));
-router.route('/javascript').get(routes.render('javascript'));
-router.route('/github').get(routes.render('github'));
+router.get('/handlebars', routes.handlebars);
+router.get('/dust', routes.dust);
+router.get('/react', routes.react);
+router.get('/overview', routes.render('overview'));
+router.get('/faq', routes.render('faq'));
+router.get('/javascript', routes.render('javascript'));
+router.get('/github', routes.render('github'));

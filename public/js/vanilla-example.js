@@ -65,7 +65,7 @@ var vanillaExample = {
 
         if (msgDiv.children.length) {
             msgDiv.className = msgDiv.className.replace('show', '');
-            setTimeout(_show, 800);
+            setTimeout(_show, 900);
         }
 
         else {

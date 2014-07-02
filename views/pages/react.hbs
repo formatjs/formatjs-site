@@ -1,8 +1,6 @@
-{{setTitle "React Helpers for Internationalization"}}
+{{setTitle "IntlJS React Helpers"}}
 
 <h1>React Helpers for Internationalization</h1>
-
-<h2>Introduction</h2>
 
 <p>
     If you're using <a href="http://facebook.github.io/react/">Facebook's React</a>, the React Intl Mixin are an easy way to internationalize your templates.
@@ -14,23 +12,23 @@
     You can install {{code "react-intl"}} through <a href="http://bower.io">Bower</a> on the client side.
 </p>
 
-{{#code}}
-bower install react-intl
+{{#code "shell"}}
+$ bower install react-intl
 {{/code}}
 
 <p>
     Alternatively, you can install via <a href="http://npmjs.org">npm</a> on the server.
 </p>
 
-{{#code}}
-npm install react-intl
+{{#code "shell"}}
+$ npm install react-intl
 {{/code}}
 
 <p>
-    The browser distribution is bundled with <a href="https://github.com/yahoo/intl-messageformat">IntlMessageFormat</a> so you only need to make sure both React and the Intl polyfill are loaded before {{code "react-intl"}}.
+    The browser distribution is bundled with <a href="https://github.com/yahoo/intl-messageformat">IntlMessageFormat</a>. You need to make sure that both React and the Intl polyfill are loaded before {{code "react-intl"}}.
 </p>
 
-{{#code}}
+{{#code "html"}}
 <script src="path/to/react.js"></script>
 <script src="path/to/bower_components/react-intl/dist/react-intl.min.js"></script>
 {{/code}}
@@ -60,20 +58,24 @@ npm install react-intl
     </ul>
 </p>
 
-<section class="helper">
-    {{> react/locales}}
-</section>
+<hr class="rule">
 
-<section class="helper">
-    {{> react/intlDate}}
-</section>
+{{> react/locales}}
 
-<section class="helper">
-    {{> react/intlNumber}}
-</section>
+<hr class="rule">
 
-<section class="helper">
-    {{> react/intlMessage}}
-</section>
+{{> react/intlDate}}
 
-<p>Note: content includes excerpts from the <a href="https://developer.mozilla.org/">Mozilla Developer Network website</a>.</p>
+<hr class="rule">
+
+{{> react/intlNumber}}
+
+<hr class="rule">
+
+{{> react/intlMessage}}
+
+<aside>
+    <p>
+        <strong class="upper">Note</strong> This page uses includes excerpts from the <a href="https://developer.mozilla.org/">Mozilla Developer Network website</a>.
+    </p>
+</aside>

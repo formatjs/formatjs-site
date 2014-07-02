@@ -240,7 +240,7 @@ until we update the menu styles in Pure.
     border: 2px solid #d092f7;
     border-radius: 10px;
     color: rgba(0,0,0,0); /* transparent */
-    transition: color 1s ease-in-out 0.25s;
+    transition: color 0.65s ease-in-out 0.25s;
 }
 
 .splash-example-switcher {

@@ -53,19 +53,25 @@ var vanillaExample = {
             }),
 
             msgDiv = document.querySelector('.splash-example-message'),
-            className = msgDiv.className;
+            className = msgDiv.className,
+
+            _show = function () {
+                //change the content.
+                msgDiv.innerHTML = '<span>' + out + '<br>' + out2 + '</span>';
+                //show the div.
+                msgDiv.className += ' show';
+            };
 
 
-        // hide the div.
-        msgDiv.className = msgDiv.className.replace('show', '');
+        if (msgDiv.children.length) {
+            msgDiv.className = msgDiv.className.replace('show', '');
+            setTimeout(_show, 800);
+        }
 
-        setTimeout(function () {
-            //change the content.
-            msgDiv.innerHTML = '<span>' + out + '<br>' + out2 + '</span>';
+        else {
+            _show();
+        }
 
-            //show the div.
-            msgDiv.className += ' show';
-        }, 1200);
     },
     bind: function(){
         var switcher = document.querySelectorAll("#switcher select")[0],

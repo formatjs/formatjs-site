@@ -393,7 +393,7 @@ until we update the menu styles in Pure.
 }
 
 @media screen and (min-width: 60em) {
-    body {
+    body, p {
         font-size: 16px;
     }
 

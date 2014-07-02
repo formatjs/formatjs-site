@@ -263,6 +263,7 @@ until we update the menu styles in Pure.
 .footer {
     margin-top: 3.4286em;
     padding: 1.1429em;
+    text-align: center;
 }
 
 .footer p,
@@ -286,9 +287,6 @@ until we update the menu styles in Pure.
 .legal-copyright {
     margin-top: 0;
     margin-bottom: 0;
-}
-.legal-links, .legal-copyright {
-    text-align: right;
 }
 
 /* --------------------------------------------------------- */
@@ -338,6 +336,15 @@ until we update the menu styles in Pure.
         float: right;
         margin-top: 5px;
         text-align: left;
+    }
+}
+
+@media screen and (min-width: 35.5em) {
+    .footer {
+        text-align: left;
+    }
+    .legal-links, .legal-copyright {
+        text-align: right;
     }
 }
 

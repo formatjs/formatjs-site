@@ -268,6 +268,38 @@ until we update the menu styles in Pure.
     color: #a31515;
 }
 
+/* ------ */
+/* Footer */
+/* ------ */
+.footer {
+    margin-top: 3.4286em;
+    padding: 1.1429em;
+    text-align: center;
+}
+
+.footer p,
+.footer li {
+    color: #777;
+    font-size: 87.5%;
+}
+
+.legal {
+    line-height: 1.6;
+}
+
+.legal-license {
+    margin-top: 0;
+}
+.legal-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.legal-copyright {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 /* --------------------------------------------------------- */
 /* Example (all the examples should be within this selector) */
 /* --------------------------------------------------------- */
@@ -315,6 +347,15 @@ until we update the menu styles in Pure.
         float: right;
         margin-top: 5px;
         text-align: left;
+    }
+}
+
+@media screen and (min-width: 35.5em) {
+    .footer {
+        text-align: left;
+    }
+    .legal-links, .legal-copyright {
+        text-align: right;
     }
 }
 

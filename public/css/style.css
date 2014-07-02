@@ -70,6 +70,16 @@ pre code {
     white-space: pre-wrap;
 }
 
+aside {
+    background: #E9D7F2;
+    padding: 1em;
+    border-radius: 3px;
+}
+
+.upper {
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.5);
+}
 /* --------------- */
 /* Horizontal Rule */
 /* --------------- */
@@ -87,7 +97,7 @@ hr {
 
 .rule {
     width: 100px;
-    margin: 40px auto;
+    margin: 30px auto;
 }
 
 /* ------- */
@@ -95,9 +105,16 @@ hr {
 /* ------- */
 .btn {
     background: transparent;
-    border: 1px solid #7f5794;
+    border: 1px solid #D5C6DD;
     color: #7f5794;
-    border-radius: 5px;
+    border-radius: 3px;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    transition: all 0.25s;
+}
+
+.btn-small {
+    font-size: 0.8em;
 }
 
 .splash-btn {

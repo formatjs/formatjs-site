@@ -4,61 +4,67 @@
     <h1>Internationalization in Node.js</h1>
 
     <p>
-    For application developers, it's recommended to use the helpers for the template engine of your choice, rather than using {{code "intl-messageformat"}} directly.
+        The best way to explain how Internationalization on the server works is through an example. For this example, we'll be using the <a href="/handlebars/">Intl Handlebars Helpers</a>, though we also have helpers available if you're using <a href="/dust/">Dust</a> or <a href="/react/">React</a>.
     </p>
 
-    <p>
-    For this quickstart example, we'll be using the <a href="https://www.npmjs.org/package/handlebars-helper-intl">helpers</a> for the <a href="http://handlebarsjs.com">Handlebars</a> template engine, though we also have <a href="https://www.npmjs.org/package/dust-helper-intl">helpers</a> available if you're using <a href="http://akdubya.github.io/dustjs/">Dust</a> templates too.
-    </p>
+    <aside>
+        <p>
+            <strong class="upper">Note</strong> You may find it handy to skim over the <a href="/handlebars/">Intl Handlebars Helpers</a> before continuing, or refer to it as we go along. By the end of this example, we'll have a working server-side app with localization support for English and French.
+        </p>
+    </aside>
 
-    <h2>Installation</h2>
+    {{sectionHeading "Installation"}}
 
     <p>
     Install the helpers and the Intl polyfill from {{code "npm"}} using:
     </p>
 
-    {{#code "bash"}}
-    npm install handlebars-helper-intl intl
-    {{/code}}
+{{#code "shell"}}
+npm install handlebars-helper-intl intl
+{{/code}}
+
+    {{sectionHeading "Usage"}}
 
     <p>
-    Then, inside your application, you can use the helpers like this:
+    Once the modules are installed, we can leverage the helpers in the following way:
     </p>
 
-    {{#code "js"}}
-    // Use native Intl object if possible - otherwise, use the polyfill
-    global.Intl = global.Intl || require('intl');
-    global.IntlMessageFormat = require('intl-messageformat')
+{{#code "js"}}
+// Use native Intl object if possible - otherwise, use the polyfill
+global.Intl = global.Intl || require('intl');
+global.IntlMessageFormat = require('intl-messageformat')
 
-    var Handlebars = require('handlebars'),
-        hbsIntl    = require('handlebars-helper-intl');
+var Handlebars = require('handlebars'),
+    hbsIntl    = require('handlebars-helper-intl');
 
-    // Register the Handlebars helpers with the Handlebars object
-    hbsIntl.registerWith(Handlebars);
-    {{/code}}
+// Register the Handlebars helpers with the Handlebars object
+hbsIntl.registerWith(Handlebars);
+{{/code}}
 
     <p>
-    Now, let's set up our Express application:
+        Now, let's set up our Express application:
     </p>
 
-    {{#code "js"}}
-    var express = require('express'),
-        exphbs  = require('express3-handlebars'),
+{{#code "js"}}
+var express = require('express'),
+    exphbs  = require('express3-handlebars'),
 
-    // Core Node modules to be used later
-    var fs   = require('fs'),
-        path = require('path');
+// Core Node modules to be used later
+var fs   = require('fs'),
+    path = require('path');
 
-    // Set up our Express app
-    var app = express();
+// Set up our Express app
+var app = express();
 
-    // Set up our Handlebars engine with a default layout
-    app.set('view engine', 'handlebars');
-    app.engine('handlebars', exphbs({
-        defaultLayout: 'main',
-        handlebars   : Handlebars
-    }));
-    {{/code}}
+// Set up our Handlebars engine with a default layout
+app.set('view engine', 'handlebars');
+app.engine('handlebars', exphbs({
+    defaultLayout: 'main',
+    handlebars   : Handlebars
+}));
+{{/code}}
+
+    {{sectionHeading "Creating i18n Messages"}}
 
     <p>
     Now that we have the core of our application set up, we can start
@@ -66,9 +72,9 @@
     folder called {{code 'i18n'}} in the current directory:
     </p>
 
-    {{#code "bash"}}
-    $ mkdir i18n && cd i18n
-    {{/code}}
+{{#code "shell"}}
+$ mkdir i18n && cd i18n
+{{/code}}
 
     <p>
     In here, we'll keep all of our translated strings as JSON objects.
@@ -76,60 +82,69 @@
     in a file called {{code 'en-US.json'}}:
     </p>
 
-    {{#code "js"}}
-    {
-      "TITLE": "Your Personal Bookstore",
-      "USER_HAS_BOOKS": "{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}.",
-      "USER_WILL_SELL": "{firstName} will sell them on {dateBooks, date, long} for {price, number, USD}."
-    }
-    {{/code}}
+{{#code "js"}}
+{
+  "TITLE": "Your Personal Bookstore",
+  "USER_HAS_BOOKS": "{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}.",
+  "USER_WILL_SELL": "{firstName} will sell them on {dateBooks, date, long} for {price, number, USD}."
+}
+{{/code}}
+
+    <aside>
+        <p>
+            <strong class="upper">Note</strong> If you're new to creating these templatized messages, refer to the <a href="/javascript/#how-it-works">JavaScript API Docs</a>, which has a little tutorial on them. For more in-depth information, refer to <a href="http://userguide.icu-project.org/formatparse/messages">this guide</a>.
+        </p>
+    </aside>
 
     <p>
     And similarly, the exact same thing in French, in a file called {{code 'fr-CA.json'}}:
     </p>
 
-    {{#code "js"}}
-    {
-      "TITLE": "Votre Librarie Personnelle",
-      "USER_HAS_BOOKS": "{firstName} {lastName} a {numBooks, number, integer} {numBooks, plural, one {livre} other {livres}}.",
-      "USER_WILL_SELL": "{firstName} les vendra le {dateBooks, date, long} pour {price, number, USD}."
-    }
-    {{/code}}
-
-    <p>Notice how the internationalized message format is handled for the special cases, such as numbers, currency, and dates.</p>
+{{#code "js"}}
+{
+  "TITLE": "Votre Librarie Personnelle",
+  "USER_HAS_BOOKS": "{firstName} {lastName} a {numBooks, number, integer} {numBooks, plural, one {livre} other {livres}}.",
+  "USER_WILL_SELL": "{firstName} les vendra le {dateBooks, date, long} pour {price, number, USD}."
+}
+{{/code}}
 
     <p>
-    Now, let's start using these strings inside of our templates.
-    Go back into the parent directory and create a directory for our templates:
+        Notice how the internationalized message format is handled for the special cases, such as numbers, currency, and dates.
     </p>
 
-    {{#code "bash"}}
-    $ cd ..
-    $ mkdir views && cd views
-    $ mkdir layouts && cd layouts
-    {{/code}}
+    {{sectionHeading "Using i18n Messages"}}
+
+    <p>
+        Now, let's start using these strings inside of our templates. Go back into the parent directory and create a directory for our templates:
+    </p>
+
+{{#code "shell"}}
+$ cd ..
+$ mkdir views && cd views
+$ mkdir layouts && cd layouts
+{{/code}}
 
     <p>
     For our app, we can just create a simple layout to wrap around our main content.
     Create a file called {{code 'main.handlebars'}}:
     </p>
 
-    {{#code "html"}}
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
+{{#code "html"}}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
 
-      \{{#intl locales=intl.locale messages=intl.messages}}
-        <title>\{{intlMessage (intlGet "messages.TITLE")}}</title>
-      \{{/intl}}
-    </head>
+  \{{#intl locales=intl.locale messages=intl.messages}}
+    <title>\{{intlMessage (intlGet "messages.TITLE")}}</title>
+  \{{/intl}}
+</head>
 
-    <body>
-        \{{{body}}}
-    </body>
-    <html>
-    {{/code}}
+<body>
+    \{{{body}}}
+</body>
+<html>
+{{/code}}
 
     <p>
     Inside the {{code '\{{#intl}}'}} block is where we're setting the context for our locale
@@ -146,31 +161,31 @@
     Next, we'll set up our main content. Go back up one folder:
     </p>
 
-    {{#code "bash"}}
-    $ cd ..
-    {{/code}}
+{{#code "shell"}}
+$ cd ..
+{{/code}}
 
     <p>
     And create a file called {{code 'index.handlebars'}}:
     </p>
 
-    {{#code "html"}}
-    \{{#intl locales=intl.locale messages=intl.messages formats=intl.formats}}
-    <p>
-        \{{intlMessage (intlGet "messages.USER_HAS_BOOKS")
-                firstName=user.firstName
-                lastName=user.lastName
-                numBooks=user.numBooks}}
-    </p>
+{{#code "html"}}
+\{{#intl locales=intl.locale messages=intl.messages formats=intl.formats}}
+<p>
+    \{{intlMessage (intlGet "messages.USER_HAS_BOOKS")
+            firstName=user.firstName
+            lastName=user.lastName
+            numBooks=user.numBooks}}
+</p>
 
-    <p>
-        \{{intlMessage (intlGet "messages.USER_WILL_SELL")
-                firstName=user.firstName
-                price=1000
-                dateBooks=now}}
-    </p>
-    \{{/intl}}
-    {{/code}}
+<p>
+    \{{intlMessage (intlGet "messages.USER_WILL_SELL")
+            firstName=user.firstName
+            price=1000
+            dateBooks=now}}
+</p>
+\{{/intl}}
+{{/code}}
 
     <p>
     This template accesses our translated strings using the {{code 'intlGet'}} helper, and
@@ -182,20 +197,22 @@
     during the rendering step, which we'll implement next.
     </p>
 
+    {{sectionHeading "Setting a locale"}}
+
     <p>
     Finally, we'll open our {{code 'app.js'}} file once more. Add this to the bottom, after
     where we set up our Handlebars engine:
     </p>
 
-    {{#code "js"}}
-    app.set('locales', fs.readdirSync('./i18n/').filter(function (file) {
-        return path.extname(file) === '.json';
-    }).map(function (file) {
-        return path.basename(file, '.json');
-    }));
+{{#code "js"}}
+app.set('locales', fs.readdirSync('./i18n/').filter(function (file) {
+    return path.extname(file) === '.json';
+}).map(function (file) {
+    return path.basename(file, '.json');
+}));
 
-    app.set('default locale', 'en-US');
-    {{/code}}
+app.set('default locale', 'en-US');
+{{/code}}
 
     <p>
     This will iterate through our {{code 'i18n'}} directory and examine all of translated
@@ -216,72 +233,70 @@
     route:
     </p>
 
-    {{#code "js"}}
-    app.route('/')
-       .get(function (req, res) {
-           var app     = req.app,
-                locales = app.get('locales'),
-                locale  = req.acceptsLanguage(locales) || app.get('default locale');
+{{#code "js"}}
+app.route('/')
+   .get(function (req, res) {
+       var app     = req.app,
+            locales = app.get('locales'),
+            locale  = req.acceptsLanguage(locales) || app.get('default locale');
 
-            res.render('index', {
-                intl: {
-                    locale  : locale,
-                    messages: require('./i18n/' + locale),
+        res.render('index', {
+            intl: {
+                locale  : locale,
+                messages: require('./i18n/' + locale),
 
-                    formats: {
-                        number: {
-                            USD: {
-                                style   : 'currency',
-                                currency: 'USD'
-                            }
+                formats: {
+                    number: {
+                        USD: {
+                            style   : 'currency',
+                            currency: 'USD'
                         }
                     }
-                },
+                }
+            },
 
-                user: {
-                    firstName: 'John',
-                    lastName : 'Smith',
-                    numBooks : 2000
-                },
+            user: {
+                firstName: 'John',
+                lastName : 'Smith',
+                numBooks : 2000
+            },
 
-                now: new Date()
-            });
-
+            now: new Date()
         });
 
-    app.listen(3000, function () {
-        console.log('App started on port 3000');
     });
-    {{/code}}
+
+app.listen(3000, function () {
+    console.log('App started on port 3000');
+});
+{{/code}}
 
     <p>
     Now, run your application:
     </p>
 
-    {{#code "bash"}}
-    $ node server.js
-    {{/code}}
+{{#code "shell"}}
+$ node server.js
+{{/code}}
 
     <p>
     When you visit {{code 'http://localhost:3000'}}, if you have the US English locale,
     you should now see something like:
     </p>
 
-    {{#code}}
-    John Smith has 2000 books.
-
-    John will sell them on June 11, 2014 for $1,000.00.
-    {{/code}}
+{{#code}}
+John Smith has 2000 books.
+John will sell them on June 11, 2014 for $1,000.00.
+{{/code}}
 
     <p>
     Otherwise, if you have the French Canadian locale, you should see
     something like this instead:
     </p>
 
-    {{#code}}
-    John Smith a 2 000 livres.
-
-    John les vendra le 11 juin 2014 pour 1 000,00 $US.
-    {{/code}}
+{{#code}}
+John Smith a 2 000 livres.
+John les vendra le 11 juin 2014 pour 1 000,00 $US.
+{{/code}}
 </div>
 

@@ -1,0 +1,8 @@
+{{#intl locales=intl.locale messages=intl.messages formats=intl.formats}}
+    <p>
+    {{! make sure 'domain' is safe before passing it in as an argument}}
+    {{intlHTMLMessage (intlGet "messages.DEMO_FORM")
+            siteDomain=domain}}
+    </p>
+
+{{/intl}}

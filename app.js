@@ -74,6 +74,7 @@ router.get('/quickstart/',        routes.render('quickstart'));
 router.get('/quickstart/browser', routes.render('quickstart/browser'));
 router.get('/quickstart/node',    routes.render('quickstart/node'));
 
+<<<<<<< HEAD
 router.get('/handlebars', routes.handlebars);
 router.get('/dust', routes.dust);
 router.get('/react', routes.react);
@@ -81,3 +82,7 @@ router.get('/overview', routes.render('overview'));
 router.get('/faq', routes.render('faq'));
 router.get('/javascript', routes.render('javascript'));
 router.get('/github', routes.render('github'));
+=======
+router.route('/handlebars/').get(routes.handlebars);
+router.route('/overview/').get(routes.render('overview'));
+>>>>>>> bfee8d076c01a7dcc7bb0cf9d68907891990de02

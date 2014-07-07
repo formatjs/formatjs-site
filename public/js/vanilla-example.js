@@ -78,6 +78,7 @@ var vanillaExample = {
         self = this;
         switcher.addEventListener("change", function(){self.render(self)});
     }
+
 }
 
 

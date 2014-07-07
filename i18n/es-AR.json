@@ -1,5 +1,6 @@
 {
   "TITLE": "Tu librería personal",
   "USER_HAS_BOOKS": "{firstName} {lastName} tiene {numBooks, number, integer} {numBooks, plural, one {libro} other {libros}}.",
-  "USER_WILL_SELL": "{firstName} {numBooks, plural, one {lo} other {los}} va a vender el {dateBooks, date, long} a {price, number, USD}."
+  "USER_WILL_SELL": "{firstName} {numBooks, plural, one {lo} other {los}} va a vender el {dateBooks, date, long} a {price, number, USD}.",
+  "DEMO_FORM": "<a href='{siteDomain}/test/demo_form.asp?name1=value1&name2=value2'>presentar</a>"
 }

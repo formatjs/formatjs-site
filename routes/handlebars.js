@@ -15,7 +15,8 @@ module.exports = function (req, res, next) {
                     lastName: 'Mitra',
                     numBooks: 20
                 },
-                now: new Date()
+                now: new Date(),
+                domain: "http://www.example.com"
             });
 
             //expose just the source file for each example here.

@@ -1,8 +1,6 @@
-{{setTitle "Handlebars Helpers for Internationalization"}}
+{{setTitle "IntlJS Handlebars Helpers"}}
 
 <h1>Handlebars Helpers for Internationalization</h1>
-
-<h2>Introduction</h2>
 
 <p>
     If you're using the <a href="http://handlebarsjs.com/">Handlebars templating engine</a>, the Handlebars Internationalization Helpers are an easy way to internationalize your templates.
@@ -14,23 +12,23 @@
     You can install the {{code "handlebars-helper-intl"}} module through <a href="http://bower.io">Bower</a> on the client side.
 </p>
 
-{{#code}}
-bower install handlebars-helper-intl
+{{#code "shell"}}
+$ bower install handlebars-helper-intl
 {{/code}}
 
 <p>
     Alternatively, you can install via <a href="http://npmjs.org">npm</a> on the server.
 </p>
 
-{{#code}}
-npm install handlebars-helper-intl
+{{#code "shell"}}
+$ npm install handlebars-helper-intl
 {{/code}}
 
 <p>
     When serving the content on your page, you need to ensure that {{code "intl-messageformat.js"}} and {{code "handlebars.js"}} are loaded before the Handlebars helpers. These modules can also be installed via Bower and npm as well.
 </p>
 
-{{#code}}
+{{#code "html"}}
 <script src="intl-messageformat.js"></script>
 <script src="handlebars.js"></script>
 <script src="handlebars-helper-intl.js"></script>
@@ -49,7 +47,7 @@ HandlebarsHelperIntl.registerWith(Handlebars);
 {{sectionHeading "Overview"}}
 
 <p>
-    The Dust internationalization helpers look similar to the <a href="/dust/">Dust</a> and <a href="/react/">React</a> helpers. There are three primary helpers:
+    The Handlebars internationalization helpers look similar to the <a href="/dust/">Dust</a> and <a href="/react/">React</a> helpers. There are three primary helpers:
     <ul>
         <li><a href="#intldate">{{code "intlDate"}}</a> for date formatting</li>
         <li><a href="#intlnumber">{{code "intlNumber"}}</a> for number formatting</li>
@@ -57,18 +55,22 @@ HandlebarsHelperIntl.registerWith(Handlebars);
     </ul>
 </p>
 
-<section class="helper">
-    {{> handlebars/intl}}
-</section>
+<hr class="rule">
 
-<section class="helper">
-    {{> handlebars/intlDate}}
-</section>
+{{> handlebars/intl}}
 
-<section class="helper">
-    {{> handlebars/intlNumber}}
-</section>
+<hr class="rule">
 
-<section class="helper">
-    {{> handlebars/intlMessage}}
-</section>
+{{> handlebars/intlDate}}
+
+<hr class="rule">
+
+{{> handlebars/intlNumber}}
+
+<hr class="rule">
+
+{{> handlebars/intlMessage}}
+
+<hr class="rule">
+
+{{> handlebars/intlHTMLMessage}}

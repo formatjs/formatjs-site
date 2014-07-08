@@ -12,10 +12,12 @@
         nope : comboUrl
     }, {
         load : (APP.scripts || [intlMessageFormatUrl]).concat([exampleUrl]),
-        complete : init 
+        complete : init
     }]);
 
     function init () {
-        window[APP.example + 'Example'].init();
+        if (window[APP.example + 'Example']) {
+            window[APP.example + 'Example'].init();
+        }
     }
 })();

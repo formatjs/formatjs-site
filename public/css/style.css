@@ -1,23 +1,41 @@
+/* ------------------------------------ */
+/* Base Styles (HTML elements directly) */
+/* ------------------------------------ */
 * {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-body {
+html,
+button,
+input,
+select,
+textarea,
+.pure-g [class *= "pure-u"] {
     font-family: "Open Sans", sans-serif;
+}
+
+html,
+body,
+.wrapper {
+    min-height: 100%;
+}
+
+body,
+p {
     color: #666;
     line-height: 1.6;
     font-size: 14px;
 }
 
 a {
-    color: #33b5e5;
+    color: #7f5794;
     text-decoration: none;
 }
 
 a:hover,
 a:focus {
-    color: #1a9bcb;
+    color: #b759e9;
     text-decoration: underline;
 }
 
@@ -28,6 +46,7 @@ h4,
 h5,
 h6 {
     color: #333;
+    font-weight: 500;
 }
 
 code {
@@ -57,10 +76,188 @@ pre code {
     white-space: pre-wrap;
 }
 
-.sidebar {
-    display: none;
+aside {
+    background: #E9D7F2;
+    padding: 1em;
+    border-radius: 3px;
 }
 
+.upper {
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.5);
+}
+/* --------------- */
+/* Horizontal Rule */
+/* --------------- */
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #eee;
+    height: 0;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+
+
+.rule {
+    width: 100px;
+    margin: 30px auto;
+}
+
+/* ------- */
+/* Buttons */
+/* ------- */
+.btn {
+    background: transparent;
+    border: 1px solid #D5C6DD;
+    color: #7f5794;
+    border-radius: 3px;
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    transition: all 0.25s;
+}
+
+.btn-small {
+    font-size: 0.8em;
+}
+
+.splash-btn {
+    border: 1px solid white;
+    color: white;
+}
+
+.btn-primary {
+    background: rgb(76, 25, 100);
+    border: 1px solid rgb(76, 25, 100);
+}
+
+.btn:hover,
+.btn:active {
+    background: #7f5794;
+    color: white;
+    text-decoration: none;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+    background: rgb(59, 17, 79);
+    border-color: rgb(59, 17, 79);
+}
+
+.animated {
+    -webkit-transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    transition: all 0.25s;
+}
+
+/* ---------------------------------- */
+/* Splash Menu (Menu on the homepage) */
+/* ---------------------------------- */
+
+.splash {
+    background: transparent url('/images/splash-head.jpg') no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 100%;
+    font-size: 1em;
+    padding-bottom: 17%;
+    text-align: center;
+}
+
+.splash-head,
+.splash-example {
+    padding: 1em 2em 0;
+}
+
+.splash-head {
+    font-weight: 300;
+    color: white;
+    font-size: 1.75em;
+}
+
+.splash-rule {
+    border-color: #d092f7;
+}
+
+/*
+We need to add the #menu prefix for specificity on these selectors
+until we update the menu styles in Pure.
+*/
+#menu.pure-menu-open {
+    text-align: left;
+    background: transparent;
+    font-weight: 300;
+    text-transform: uppercase;
+    border-bottom: 1px solid #ddd;
+}
+
+.splash #menu.pure-menu-open {
+    border: none;
+}
+
+/* We only want the menu to be white when it is within the .splash selector */
+#menu .menu-heading,
+.menu-item a {
+    letter-spacing: 0.13em;
+}
+
+.splash #menu .menu-heading,
+.splash .menu-item a {
+    color: white;
+}
+
+#menu ul {
+    display: block;
+    text-align: center;
+}
+
+#menu .menu-heading {
+    letter-spacing: 0.2em;
+    text-align: center;
+    /* other option is to have a huge specificity selector, we really need to fix Pure Menus :( */
+    display: block;
+}
+
+#menu .menu-item a {
+    font-size: 0.75em;
+    padding: 5px 10px;
+}
+
+#menu .menu-item a:hover,
+#menu .menu-item a:focus {
+    background: transparent;
+    text-decoration: none;
+    color: #d092f7;
+}
+
+.splash-example {
+    max-width: 40em;
+    margin: 0 auto;
+}
+.splash-example-message {
+    padding: 1em;
+    border: 2px solid #d092f7;
+    border-radius: 10px;
+    color: rgba(0,0,0,0); /* transparent */
+    transition: color 0.65s ease-in-out 0.25s;
+}
+
+.splash-example-switcher {
+    margin-top: 1em;
+    text-align: right;
+    color: #d092f7;
+    font-size: 0.7em;
+    font-weight: 300;
+}
+
+.show {
+    color: white;
+}
+
+/* ----------------------------------------------------- */
+/* Content (all the docs should be within this selector) */
+/* ----------------------------------------------------- */
 .content {
     max-width: 40em;
     margin: 0 auto;
@@ -68,9 +265,45 @@ pre code {
 }
 
 .warning {
-    color:#a31515;
+    color: #a31515;
 }
 
+/* ------ */
+/* Footer */
+/* ------ */
+.footer {
+    background: #F6F6F6;
+    margin-top: 3.4286em;
+    padding: 1.1429em;
+    text-align: center;
+}
+
+.footer p,
+.footer li {
+    color: #777;
+    font-size: 0.8em;
+}
+
+.legal {
+    line-height: 1.6;
+}
+
+.legal-license {
+    margin-top: 0;
+}
+.legal-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.legal-copyright {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* --------------------------------------------------------- */
+/* Example (all the examples should be within this selector) */
+/* --------------------------------------------------------- */
 .example {
     padding: 1em;
     border: 1px solid #DBDAC8;
@@ -78,15 +311,10 @@ pre code {
     background: rgb(255, 255, 233);
     box-shadow: 0 0 3px rgba(203, 205, 188, 0.3);
 }
+
 .switcher {
     text-align:right;
     padding-top: 4px;
-}
-
-.helper {
-    margin: 1em 0;
-    padding: 1em 0;
-    border-top: 1px solid #ddd;
 }
 
 .parameters-list dt code {
@@ -106,23 +334,54 @@ pre code {
     padding-bottom: 1em;
 }
 
+.sidebar {
+    display: none;
+}
+
+@media screen and (min-width: 25em) {
+    #menu .menu-heading {
+        display: inline-block;
+        text-align: left;
+        margin-top: 5px;
+    }
+    #menu ul {
+        float: right;
+        margin-top: 5px;
+        text-align: left;
+    }
+}
+
+@media screen and (min-width: 35.5em) {
+    .footer {
+        text-align: left;
+    }
+    .legal-links, .legal-copyright {
+        text-align: right;
+    }
+}
+
 
 @media screen and (min-width: 48em) {
 
+    .body-has-sections {
+        background: #603a7c;
+    }
+
     .wrapper-has-sections {
-        padding-right: 200px;
+        margin-right: 200px;
+        background: white;
     }
 
     .sidebar-wrapper {
-        padding-top: 2em; /* same as .content-subhead margin-top */
+        padding-top: 3em; /* should match about the position of the first h1 */
         margin-right: -200px;
         width: 200px;
+        float: right;
     }
 
     .sidebar {
         display: block;
-        right: 0;
-        padding: 0 2em;
+        padding: 1em 2em 0;
         text-align: right;
         font-size: 0.875em;
         width: 200px;
@@ -143,11 +402,49 @@ pre code {
     }
 
     .sidebar-list-item a {
-        color: #999;
+        color: #AD76CA;
+        -webkit-transition: color 150ms ease-in-out;
+        -moz-transition: color 150ms ease-in-out;
+        -ms-transition: color 150ms ease-in-out;
+        -o-transition: color 150ms ease-in-out;
+        transition: color 150ms ease-in-out;
     }
 
+    .sidebar-title {
+        font-weight: 300;
+        margin-top: 0;
+    }
+
+    .sidebar-title,
     .is-sidebar-list-item-active a {
-        font-weight: bold;
-        color: #333;
+        color: white;
+    }
+
+
+    .splash {
+        font-size: 1.2em;
+    }
+
+    .splash-head {
+        font-size: 1.9em;
+        padding: 2em 5em 0;
+    }
+
+    #menu .menu-item a {
+        padding: 5px 20px;
+    }
+
+    .box {
+        padding-right: 1em;
+    }
+}
+
+@media screen and (min-width: 60em) {
+    body, p {
+        font-size: 16px;
+    }
+
+    .content {
+        max-width: 50em;
     }
 }

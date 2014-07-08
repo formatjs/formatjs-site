@@ -23,7 +23,7 @@ var vanillaExample = {
     },
     setup: function(){
         var trans = APP.translations,
-            switcher = document.querySelectorAll(".switcher select")[0];
+            switcher = document.querySelectorAll("#switcher select")[0];
             //console.log(switcher);
         for(var key in trans){
             if(trans.hasOwnProperty(key)){
@@ -37,7 +37,7 @@ var vanillaExample = {
         this.render(this);
     },
     render: function(obj){
-        var chosenLocale = document.querySelectorAll(".switcher select")[0].value,
+        var chosenLocale = document.querySelectorAll("#switcher select")[0].value,
             msg = new IntlMessageFormat(APP.translations[chosenLocale].USER_HAS_BOOKS,chosenLocale),
             msg2 = new IntlMessageFormat(APP.translations[chosenLocale].USER_WILL_SELL,chosenLocale, this.intlFormat),
             out = msg.format({
@@ -50,18 +50,34 @@ var vanillaExample = {
                 numBooks: 10,
                 price: 1000,
                 dateBooks: this.now
-            });
+            }),
 
-        // output both messages
-        document.getElementsByClassName("message")[0].innerHTML = "<span class='msg'>"+out+"</span> \n <span class='msg2'>" + out2 +"</span>";
+            msgDiv = document.querySelector('.splash-example-message'),
+            className = msgDiv.className,
+
+            _show = function () {
+                //change the content.
+                msgDiv.innerHTML = '<span>' + out + '<br>' + out2 + '</span>';
+                //show the div.
+                msgDiv.className += ' show';
+            };
+
+
+        if (msgDiv.children.length) {
+            msgDiv.className = msgDiv.className.replace('show', '');
+            setTimeout(_show, 900);
+        }
+
+        else {
+            _show();
+        }
 
     },
     bind: function(){
-        var switcher = document.querySelectorAll(".switcher select")[0],
+        var switcher = document.querySelectorAll("#switcher select")[0],
         self = this;
         switcher.addEventListener("change", function(){self.render(self)});
     }
-
 }
 
 

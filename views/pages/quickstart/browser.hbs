@@ -20,7 +20,7 @@
 Here are some examples:
 </p>
 
-<h2>Date Formatting</h2>
+{{sectionHeading "Formatting Dates"}}
 
 <p>
     You can format dates easily once you create a {{code "Date"}} object and call
@@ -52,7 +52,7 @@ Returns "{{code "Mittwoch, 19. Dezember 2012"}}" as you requested a weekday alon
     <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">here</a>.
 <p>
 
-<h2>Number Formatting</h2>
+{{sectionHeading "Formatting Numbers"}}
 
 <p>
     You can also format numbers in a similar fashion using {{code "Intl.NumberFormat"}}.
@@ -88,11 +88,12 @@ new Intl.NumberFormat("de-DE", {style: "currency", currency: "EUR"}).format(numb
 
 Returns "{{code "23.456,789 €"}}" using the Euro symbol for currency.
 
-<h2>Browser Compatibility</h2>
+{{sectionHeading "Browser Compatibility"}}
 
-For browsers that support {{code "window.Intl"}}, this makes it easy to do basic formatting of numbers
-and dates. However, the {{code "window.Intl"}} object is relatively new so not all modern browsers
-and devices support it. Here's a breakdown of desktop and mobile browsers support.
+<p>
+    For browsers that support {{code "window.Intl"}}, this makes it easy to do basic formatting of numbers and dates. However, the {{code "window.Intl"}} object is relatively new so not all modern browsers and devices support it. Here's a breakdown of desktop and mobile browsers support.
+</p>
+
 
 <h3>Runtimes</h3>
 <table class="pure-table">
@@ -142,143 +143,35 @@ and devices support it. Here's a breakdown of desktop and mobile browsers suppor
     from the Yahoo CDN along with the en-US locale information.
 </p>
 
-
 {{#code "js"}}
-
-
 (function () {
-    var locale    = "en-US", //you should obtain this information potentially from the server.
-        baseUrl   = 'http://yui.yahooapis.com/combo?platform/intl/0.1.2/Intl.min.js&platform/intl/0.1.2/locale-data/jsonp/',
-        comboUrl  = baseUrl + locale + '.js';
-    yepnope([{
-        test : !!window.Intl,
-        nope : comboUrl
-    }]);
+var locale    = "en-US", //you should obtain this information potentially from the server.
+    baseUrl   = 'http://yui.yahooapis.com/combo?platform/intl/0.1.2/Intl.min.js&platform/intl/0.1.2/locale-data/jsonp/',
+    comboUrl  = baseUrl + locale + '.js';
+yepnope([{
+    test : !!window.Intl,
+    nope : comboUrl
+}]);
 
 })();
-
 {{/code}}
 
 Note the test {{code "!!window.Intl"}} which {{code "yepnope"}} uses to to decide whether to load {{code "Intl.js"}} polyfill
 and associated locale metadata.
 
-<h2>intl-messageformat</h2>
+{{sectionHeading "Intl Message Format API"}}
 
 <p>
-    Suppose however you want to construct more complex translations? There is a Yahoo library called
-    <a href="https://github.com/yahoo/intl-messageformat">{{code "intl-messageformat"}}</a> that allows you to use JavaScript to create strings with localization support, and it can be used on both the client and the server.
-    The constructor looks something like this:
+    Suppose however you want to construct more complex translations? There is a Yahoo library called <a href="/javascript/">{{code "intl-messageformat"}}</a> that allows you to use JavaScript to create strings with localization support, and it can be used on both the client and the server.
 </p>
-{{#code "js"}}
-var msg = new IntlMessageFormat(pattern, locale, [optFieldFormatters]);
-{{/code}}
+<a class="btn btn-small pure-button" href="/javascript/">View Intl Message Format API</a>
+
+{{sectionHeading "Next Steps"}}
 
 <p>
-    Where the {{code "pattern"}} and {{code "locale"}} are strings and {{code "[optFieldFormatters]"}} is an object.
+    If you've reached this point then you should have an understanding of how Internationalization works in the browser. We touched upon the ECMAScript Internationalization API (<a href="http://www.ecma-international.org/ecma-402/1.0/">ECMA-402</a>), and the need for a polyfill for unsupported browsers through <a href="https://github.com/andyearnshaw/Intl.js/">{{code "Intl.js"}}</a>.
 </p>
-
 
 <p>
-    Let's look at how to load the {{code "intl-messageformat" }} library. In a previous example, we conditionally loaded {{code "Intl.js"}} based off of the existance of the {{code "window.Intl"}} object
-    in the browser. We can add additional directives to this code to also load the {{code "intl-messageformat"}} library.
-    The most common way to do this is to load the base and all of the locales ({{code "intl-messageformat/build/intl-messageformat.complete.js"}}) in one file. This is a bit larger download but simplifies the need to have multiple locales.
+    You can start internationalizing your application by leveraging the <a href="/javascript/">Intl Message Format JavaScript API</a> directly. However, if you are developing a website or single page application you may already be using a template engine like Dust or Handlebars, or a library like ReactJS. We provide helpers for each of these. For more information check out the documentation for <a href="/dust/">Intl Dust Helpers</a>, <a href="/handlebars/">Intl Handlebars Helpers</a>, and <a href="/react/">Intl React Helpers</a>.
 </p>
-<p>
-    The path used in the example below assumes you have installed {{code "intl-messageformat"}} via bower using:
-</p>
-
-{{#code "js"}}
-$ bower install intl-messageformat
-{{/code}}
-
-<p>
-    For this example we've loaded the complete version which has been minified.
-</p>
-
-{{#code "js"}}
-(function () {
-    var locale    = APP.intl.locale,
-        baseUrl   = 'http://yui.yahooapis.com/combo?platform/intl/0.1.2/Intl.min.js&platform/intl/0.1.2/locale-data/jsonp/',
-        comboUrl  = baseUrl + locale + '.js',
-        intlMessageFormatUrl = '/bower_components/intl-messageformat/build/intl-messageformat.complete.min.js';
-
-    yepnope([{
-        test : !!window.Intl,
-        nope : comboUrl
-    }, {
-        load     : intlMessageFormatUrl,
-        complete : init
-    }]);
-
-    function init () {
-        // Initialize application here
-    }
-})();
-{{/code}}
-
-
-<p>
-    In fact, this site itself loads {{code "intl-messageformat"}} in this fashion. View source to check it out!
-</p>
-
-
-<p>
-    Now let's take a look at some examples.
-</p>
-
-
-<h3>Simple String Example</h3>
-
-{{#code "js"}}
-// create the message object
-var msg = new IntlMessageFormat("My name is {NAME}.", "en-US");
-
-// now call format on the resulting object and pass in JSON
-var myNameIs = msg.format({NAME: "Ferris Wheeler"});
-
-// myNameIs == "My name is Ferris Wheeler."
-
-{{/code}}
-
-<h3>More Complex Example</h3>
-
-{{#code "js"}}
-// create the message object
-var msg = new IntlMessageFormat("{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}" , "en-US");
-
-// create the data object
-var user =  {
-    firstName: 'John',
-    lastName : 'Smith',
-    numBooks : 2000
-}
-
-// now call format on the resulting object and pass in your data
-var books = msg.format({
-    firstName: user.firstName,
-    lastName:user.lastName,
-    numBooks: user.numBooks
-    });
-
-// books == "John Smith has 2,000 books"
-{{/code}}
-<p>
-    You also may have noticed there is a third parameter. This allows you to pass in optional custom formatters.
-    This is a very powerful feature which allows you to expand upon the existing built-in formatters for just
-    about any sort of formatting such as currency, percents, or relative times. You can read more about user defined formatters in the <a href="https://github.com/yahoo/intl-messageformat#user-defined-formatters">{{code "intl-messageformat"}} documentation</a>.
-</p>
-
-
-
-
-<h2>Where To Go From Here?</h2>
-
-<p>
-    If you've reached this point then you should have an understanding of how Internationalization works in the
-    browser. We touched upon the ECMAScript Internationalization API (<a href="http://www.ecma-international.org/ecma-402/1.0/">ECMA-402</a>), the need for a polyfill for unsupported browsers through <a href="https://github.com/andyearnshaw/Intl.js/">{{code "Intl.js"}}</a>, and how to format strings with placeholders to create localized
-    messages through <a href="https://github.com/yahoo/intl-messageformat">{{code "intl-messageformat"}}</a>.
-</p>
-<p>
-    Working with {{code "intl-messageformat"}} is fairly easy, but if you are developing a website or single page application you may already be using a template engine like Dust or Handlebars, or a library like ReactJS. We provide helpers for each of these. For more information check out the documentation for <a href="#">{{code "dust-helper-intl"}}</a> , <a href="#">{{code "handlebars-helper-intl"}}</a>, and <a href="#">{{code "react-intl"}}</a>.
-</p>
-

@@ -1,0 +1,63 @@
+{{setTitle "Frequently Asked Questions"}}
+
+<h1>Frequently Asked Questions</h1>
+
+{{sectionHeading "What is this project?"}}
+
+<p>
+    We're organizing this project to document a set of components to make it easier for JavaScript developers to internationalize their web applications. It includes three main parts:
+    <ul>
+        <li>A polyfill for the Intl API for older browsers</li>
+        <li>A "prollyfill" for the proposed Intl.MessageFormat API specification</li>
+        <li>Template helpers for different engines like Handlebars, Dust, and React to make using the above two easier</li>
+    </ul>
+</p>
+
+<hr class="rule"/>
+{{sectionHeading "What is Intl?"}}
+
+<p>
+    The Intl object is the namespace for the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">JavaScript Internationalization API</a>, which provides a set of built-in functions to perform locale-specific string comparison, number formatting, and date and time formatting. It's currently based on the specification in <a href="http://norbertlindenberg.com/ecmascript/intl.html">ECMA-402</a>.
+</p>
+<p>
+    These functions are now available in most modern browsers today, with the notable exception of Safari and Safari Mobile on iOS. <a href="https://github.com/andyearnshaw">Andy Earnshaw</a> began the work on this project by creating the <a href="https://github.com/andyearnshaw/Intl.js">Intl.js polyfill</a>, which helps to fill the void in older browsers and the modern ones that are missing this functionality.
+</p>
+
+<hr class="rule"/>
+{{sectionHeading "What is Intl.MessageFormat?"}}
+
+<p>
+    Intl.MessageFormat is a proposed addition to the Internationalization API, that includes features to help with formatting strings with plurals and gender cases, in different international locales. It's based on existing message formatting systems, such as the ICU's rules for handling translatable phrases.
+</p>
+<p>
+    Although this hasn't been accepted into the ECMA-402 specification yet, we've created a <a href="https://github.com/yahoo/intl-messageformat">"prollyfill" of the proposed specification</a> to let people start trying to use it today.
+</p>
+
+<hr class="rule"/>
+{{sectionHeading "What are the template helpers for?"}}
+
+<p>
+    The template helpers in this project are meant to help application developers use the above Internationalization APIs more easily, and integrate their translations directly into their templates. Today, we currently support helpers or mixins for the following libraries:
+    <uL>
+        <li><a href="/handlebars/">Handlebars</a></li>
+        <li><a href="/dust/">Dust</a></li>
+        <li><a href="/react/">React</a></li>
+    </ul>
+</p>
+
+<hr class="rule"/>
+{{sectionHeading "What is the release cycle for this project?"}}
+
+<p>
+    We follow <a href="http://semver.org/">Semantic Versioning</a>, and we'll roll out new releases as new features or bugfixes are released.
+</p>
+
+<hr class="rule"/>
+{{sectionHeading "Who is using this in production today?"}}
+
+<p>
+    The original Intl.js polyfill was developed by <a href="https://github.com/andyearnshaw">Andy Earnshaw</a>, and the Intl.MessageFormat "prollyfill" and the template helpers were developed by the Presentation Technologies team at Yahoo.
+</p>
+<p>
+    These libraries are now being used in production in various applications at Yahoo today, notably by Flickr. Contact us if you're using any of these libraries on your site!
+</p>

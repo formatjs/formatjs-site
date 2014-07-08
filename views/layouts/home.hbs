@@ -18,11 +18,18 @@
 </head>
 <body class="{{#hasSections}} body-has-sections {{/hasSections}}">
     <div class="wrapper {{#hasSections}} wrapper-has-sections {{/hasSections}}">
-        {{> menu}}
-        
-        {{#hasSections}}
-        {{> sidebar}}
-        {{/hasSections}}
+        <div class="splash">
+            {{> menu}}
+            
+            <h2 class="splash-head">Internationalize your web apps on the client and server</h2>
+
+            {{>intlmessageformat/books}}
+
+            <hr class="rule splash-rule">
+
+            <a class="animated btn splash-btn btn-primary pure-button" href="/quickstart/">Get Started</a>
+            <a class="animated btn splash-btn pure-button" href="/overview/">Learn about Intl</a>
+        </div>
 
         <div class="content">
             {{{body}}}

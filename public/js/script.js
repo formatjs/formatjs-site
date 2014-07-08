@@ -12,7 +12,7 @@
         nope : comboUrl
     }, {
         load : (APP.scripts || [intlMessageFormatUrl]).concat([exampleUrl]),
-        complete : init 
+        complete : init
     }]);
 
     function init () {

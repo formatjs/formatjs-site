@@ -1,5 +1,6 @@
 {
   "TITLE": "Your Personal Bookstore",
   "USER_HAS_BOOKS": "{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}.",
-  "USER_WILL_SELL": "{firstName} will sell them on {dateBooks, date, long} for {price, number, USD}."
+  "USER_WILL_SELL": "{firstName} will sell them on {dateBooks, date, long} for {price, number, USD}.",
+  "SUBSCRIPTION_WARNING": "<strong>Warning:</strong> you have only <strong> {numDays, number, integer} </strong> {numDays, plural, one {day} other {days}} left in your subscription."
 }

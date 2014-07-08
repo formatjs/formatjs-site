@@ -1,5 +1,7 @@
 {
     "TITLE": "你的個人書店",
     "USER_HAS_BOOKS": "{firstName} {lastName}有{numBooks, number, integer}本書。",
-    "USER_WILL_SELL": "他將會在{dateBooks, date, long}以{price, number, USD}出售這些書。"
+    "USER_WILL_SELL": "他將會在{dateBooks, date, long}以{price, number, USD}出售這些書。",
+    "SUBSCRIPTION_WARNING": "<strong>Warning:</strong> you have only <strong> {numDays, number, integer} </strong> {numDays, plural, one {day} other {days}} left in your subscription."
+
 }

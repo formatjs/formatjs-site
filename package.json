@@ -34,5 +34,8 @@
   },
   "devDependencies": {
     "bower": "~1.3.4"
+  },
+  "scripts": {
+    "postinstall": "bower install"
   }
 }

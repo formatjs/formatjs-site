@@ -5,10 +5,14 @@ var React = require('react'),
 
 var getExamples = require('../lib/examples');
 
+var fileSizes = require('../config/sizes.json');
+
 module.exports = function (req, res, next) {
 
     getExamples('react', {cache: true}).then(function (examples) {
-        var reactExamples = examples;
+        var reactExamples = examples,
+            helperSize    = fileSizes['react-intl/dist/react-intl.min.js'];
+
         Object.keys(reactExamples).forEach(function(key) {
             var example = reactExamples[key];
 
@@ -25,7 +29,8 @@ module.exports = function (req, res, next) {
         ], 'scripts');
 
         res.render('react', {
-            examples: reactExamples
+            examples: reactExamples,
+            helperSize: helperSize.bytes < 1024 ? (helperSize.bytes + ' bytes') : (helperSize.kbs + ' KBs')
         });
     }).catch(next);
 };

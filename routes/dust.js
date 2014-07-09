@@ -5,11 +5,14 @@ var Dust   = require('dustjs-linkedin');
 var getExamples = require('../lib/examples'),
     Utils       = require('../lib/utils');
 
+var fileSizes = require('../config/sizes.json');
+
 require('dust-helper-intl').register(Dust);
 
 module.exports = function (req, res, next) {
     getExamples('dust', {cache: false}).then(function (examples) {
-        var dustExamples = examples;
+        var dustExamples = examples,
+            helperSize   = fileSizes['dust-helper-intl/dist/helpers.min.js'];
 
         Object.keys(dustExamples).forEach(function(key) {
             var example = dustExamples[key],
@@ -37,7 +40,8 @@ module.exports = function (req, res, next) {
         });
 
         res.render('dust', {
-            examples: dustExamples
+            examples: dustExamples,
+            helperSize: helperSize.bytes < 1024 ? (helperSize.bytes + ' bytes') : (helperSize.kbs + ' KBs')
         });
     }).catch(next);
 };

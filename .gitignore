@@ -6,3 +6,4 @@ npm-debug.log
 deploy.json
 grasshopper.json
 *.tmp
+config/sizes.json

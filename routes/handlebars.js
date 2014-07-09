@@ -2,10 +2,14 @@
 
 var getExamples = require('../lib/examples');
 
+var fileSizes = require('../config/sizes.json');
+
 module.exports = function (req, res, next) {
 
     getExamples('handlebars', {cache: true}).then(function (examples) {
-        var hbsExamples = examples;
+        var hbsExamples = examples,
+            helperSize  = fileSizes['handlebars-helper-intl/dist/helpers.min.js'];
+
         Object.keys(hbsExamples).forEach(function(key) {
             var example = examples[key];
             example.rendered = example.compiled({
@@ -24,7 +28,8 @@ module.exports = function (req, res, next) {
         });
 
         res.render('handlebars', {
-            examples: hbsExamples
+            examples: hbsExamples,
+            helperSize: helperSize.bytes < 1024 ? (helperSize.bytes + ' bytes') : (helperSize.kbs + ' KBs')
         });
     }).catch(next);
 };

@@ -37,5 +37,16 @@
   },
   "scripts": {
     "postinstall": "bower install"
+  },
+  "main": "server.js",
+  "yahoo": {
+    "bugzilla": {
+      "product": "yui utilities",
+       "component": "Intl"
+    },
+    "custodian": {
+      "email": "tilo@yahoo-inc.com",
+      "url": "http://intljs.io"
+    }
   }
 }

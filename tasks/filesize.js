@@ -28,7 +28,10 @@ module.exports = function (grunt) {
                 var result = {};
 
                 values.forEach(function (value, i) {
-                    result[src[i]] = value;
+                    result[src[i]] = {
+                        bytes: value,
+                        kbs: Math.round(value * 10 / 1024) / 10
+                    };
                 });
 
                 // Write joined contents to destination filepath.

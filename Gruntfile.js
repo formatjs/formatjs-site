@@ -5,9 +5,11 @@ module.exports = function (grunt) {
                 files: [{
                     cwd: 'bower_components/',
                     src: [
-                        'intl/intl.min.js',
-                        'intl-messageformat/build/*.js',
-                        'react-intl/dist/react-intl.min.js'
+                        'intl/*.min.js',
+                        'intl-messageformat/build/*.complete.min.js',
+                        'react-intl/dist/*.min.js',
+                        'dust-helper-intl/dist/*.min.js',
+                        'handlebars-helper-intl/dist/*.min.js'
                     ],
                     dest: 'config/sizes.json'
                 }]
@@ -18,4 +20,5 @@ module.exports = function (grunt) {
     grunt.loadTasks('tasks/');
 
     grunt.registerTask('build', ['filesize']);
+    grunt.registerTask('default', ['build']);
 };

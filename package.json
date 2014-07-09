@@ -39,6 +39,6 @@
     "grunt-cli": "^0.1.13"
   },
   "scripts": {
-    "postinstall": "bower install"
+    "postinstall": "bower install && grunt"
   }
 }

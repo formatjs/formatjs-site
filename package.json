@@ -41,7 +41,6 @@
     "xunit-file": "~0.0.5"
   },
   "scripts": {
-    "postinstall": "bower install && grunt",
     "test": "_mocha tests/index.js"
   },
   "main": "server.js",

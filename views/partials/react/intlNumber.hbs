@@ -30,12 +30,7 @@
 
 {{#code "jsx"}}
 /** @jsx React.DOM */
-var MyComponent = React.createClass({
-    mixins: [ReactIntlMixin],
-    render: function () {
-        return <p>this.intlNumber(4000)</p>
-    }
-});
+var MyComponent = {{{examples.number.source}}}
 {{/code}}
 
 <p>When the locale is set to {{code "en-US"}} the number will be rendered as {{code "4,000"}}.</p>
@@ -59,3 +54,9 @@ React.renderComponent(
     document.getElementById('example')
 );
 {{/code}}
+
+<p>Rendered output:</p>
+
+<div class="example">
+    {{{examples.number.rendered}}}
+</div>

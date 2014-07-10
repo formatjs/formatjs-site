@@ -16,7 +16,11 @@ module.exports = function (req, res, next) {
         Object.keys(reactExamples).forEach(function(key) {
             var example = reactExamples[key];
 
-            example.rendered = React.renderComponentToString(example.compiled({locales: ['en-US']}));
+            example.rendered = React.renderComponentToString(example.compiled({
+                locales: ['en-US'],
+                employee: 'John',
+                manager: 'Mike'
+            }));
 
             //For React, we want to expose the source code so we can eval() on the client
             res.expose(example.source, 'examples.react.' + example.name);

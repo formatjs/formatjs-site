@@ -20,15 +20,18 @@
 
 {{#code "jsx"}}
 /** @jsx React.DOM */
-var MyComponent = React.createClass({
-    mixins: [ReactIntlMixin],
-    render: function () {
-        return <p>A: {this.intlMessage('{employee} reports to {manager}.')}</p>;
-    }
-});
+var MyComponent = {{{examples.message.source}}}
 
 React.renderComponent(
-    <MyComponent locales={["de-DE"]} employee="John" manager="Mike" />,
+    <MyComponent locales={["en-US"]} employee="John" manager="Mike" />,
     document.getElementById('example')
 );
 {{/code}}
+
+<p>Rendered output:</p>
+
+<div class="example">
+    {{{examples.message.rendered}}}
+</div>
+
+<hr>

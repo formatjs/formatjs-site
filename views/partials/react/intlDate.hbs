@@ -48,19 +48,11 @@
 
 {{#code "jsx"}}
 /** @jsx React.DOM */
-var MyComponent = React.createClass({
-    mixins: [ReactIntlMixin],
-    render: function () {
-        return <p>A: {this.intlDate(1390518044403, {
-            hour: 'numeric',
-            minute: 'numeric'
-        })}</p>;
-    }
-});
+var MyComponent = {{{examples.date.source}}}
 {{/code}}
 
-<p>The ouput when the locale is set to {{code "fr-FR"}} will be {{code "18:00"}}, while in a {{code "en-US"}} locale it will be {{code "6:00 PM"}}.</p>
+<p>The ouput when the locale is set to {{code "fr-FR"}} will be {{code "20:00"}}, while in a {{code "en-US"}} locale it will be {{code "8:00 PM"}}.</p>
 
-{{#code}}
-{{{examples.react.strings}}}
-{{/code}}
+<div class="example">
+    {{{examples.date.rendered}}}
+</div>

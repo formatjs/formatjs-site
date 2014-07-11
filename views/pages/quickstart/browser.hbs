@@ -140,12 +140,14 @@ Returns "{{code "23.456,789 €"}}" using the Euro symbol for currency.
     Since you only want to load this polyfill in browsers that do not support the native {{code "Intl"}} object,
     you may use a conditional loader like <a href="http://yepnopejs.com/">{{code "yepnope.js"}}</a> (available via
     <a href="http://cdnjs.com/libraries/yepnope">cdnjs.com</a>). Here is an example below loading {{code "Intl.js"}}
-    from the Yahoo CDN along with the en-US locale information.
+    from the Yahoo CDN along with your browser's locale information.
 </p>
 
 {{#code "js"}}
 (function () {
-var locale    = "en-US", //you should obtain this information potentially from the server.
+
+var navigator = window.navigator,
+    locale    = navigator.language || (navigator.userLanguage && navigator.userLanguage.split('-')[0]) || 'en-US',
     baseUrl   = 'http://yui.yahooapis.com/combo?platform/intl/0.1.2/Intl.min.js&platform/intl/0.1.2/locale-data/jsonp/',
     comboUrl  = baseUrl + locale + '.js';
 yepnope([{

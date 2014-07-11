@@ -1,0 +1,34 @@
+{
+  "name": "intl",
+  "version": "0.1.4",
+  "description": "polyfill the ECMA-402 Intl API (except collation)",
+  "main": [
+    "Intl.js",
+    "Intl.min.js"
+  ],
+  "keywords": [
+    "intl",
+    "i18n",
+    "internationalization",
+    "ecma402",
+    "polyfill"
+  ],
+  "ignore": [
+    "/cldr",
+    "*.pyc",
+    "*.log",
+    ".d8_history",
+    "/tools",
+    "/tests"
+  ],
+  "homepage": "https://github.com/andyearnshaw/Intl.js",
+  "_release": "0.1.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.4",
+    "commit": "cd27720a328eb3ac6fc021808f50b29c19231165"
+  },
+  "_source": "git://github.com/andyearnshaw/Intl.js.git",
+  "_target": "~0.1.2",
+  "_originalSource": "intl"
+}

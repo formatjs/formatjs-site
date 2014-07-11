@@ -1,0 +1,31 @@
+{
+  "name": "intl-messageformat",
+  "main": "build/intl-messageformat.complete.min.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/yahoo/intl-messageformat",
+  "authors": [
+    "Anthony Pipkin <a.pipkin@yahoo.com>"
+  ],
+  "description": "implementation of the ECMA 402 proposal for MessageFormat",
+  "keywords": [
+    "intl",
+    "messageformat"
+  ],
+  "license": "Yahoo BSD",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.0",
+    "commit": "6d8bbdb4ae8459758e81a6ad1234151db0c3207c"
+  },
+  "_source": "git://github.com/yahoo/intl-messageformat.git",
+  "_target": "~0.1.0",
+  "_originalSource": "intl-messageformat"
+}

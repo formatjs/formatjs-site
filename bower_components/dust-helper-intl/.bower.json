@@ -1,0 +1,38 @@
+{
+  "name": "dust-helpers-intl",
+  "main": "dist/helpers.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/yahoo/dust-helpers-intl",
+  "author": "Drew Folta <drew@folta.net>",
+  "description": "dust helpers for internationalization",
+  "keywords": [
+    "intl",
+    "i18n",
+    "dust"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yahoo/dust-helper-intl.git"
+  },
+  "licenses": [
+    {
+      "type": "Yahoo BSD",
+      "url": "https://github.com/yahoo/dust-helper-intl/blob/master/LICENSE"
+    }
+  ],
+  "dependencies": {
+    "intl-messageformat": "~0.1.0"
+  },
+  "ignore": [
+    "!dist/*.js"
+  ],
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.0",
+    "commit": "aaa45ed6beef4e97578ae7dc92a87f2fe615a22b"
+  },
+  "_source": "git://github.com/yahoo/dust-helper-intl.git",
+  "_target": "~0.1.0",
+  "_originalSource": "dust-helper-intl"
+}

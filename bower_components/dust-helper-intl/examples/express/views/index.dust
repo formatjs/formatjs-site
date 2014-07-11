@@ -1,0 +1,14 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <strong>request locale:</strong> {intl.locales} <br>
+        <ul>
+            <li>{@intlMessage _key="FROM" num=NUM/}</li>
+            {@intl locales="en"}
+            <li>fixed to "en": {@intlNumber val=NUM formatName="eur" /}</li>
+            {/intl}
+            <li>{@intlMessage _key="FROM" num=NUM/}</li>
+        </ul>
+    </body>
+</html>

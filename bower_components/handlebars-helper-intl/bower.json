@@ -1,0 +1,32 @@
+{
+    "name": "handlebars-helper-intl",
+    "main": "dist/helpers.js",
+    "version": "0.1.1",
+    "homepage": "https://github.com/yahoo/handlebars-helpers-intl",
+
+    "authors": [
+        "Anthony Pipkin <a.pipkin@yahoo.com>"
+    ],
+
+    "description": "handlebars helpers for internationalization",
+
+    "keywords": [
+        "intl",
+        "i18n",
+        "handlebars"
+    ],
+
+    "license": "Yahoo BSD",
+
+    "dependencies": {
+        "intl-messageformat": "~0.1.0"
+    },
+
+    "ignore": [
+        "**/.*",
+        "coverage",
+        "node_modules",
+        "bower_components",
+        "tests"
+    ]
+}

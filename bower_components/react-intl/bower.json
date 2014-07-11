@@ -1,0 +1,22 @@
+{
+    "name": "react-intl",
+    "version": "0.0.1-pre",
+    "main": ["dist/react-intl.js", "dist/react-intl.min.js"],
+    "dependencies": {
+        "intl": "~0.1.2"
+    },
+    "keywords": [
+        "intl",
+        "i18n",
+        "internationalization",
+        "ecma402",
+        "react",
+        "reactjs"
+    ],
+    "ignore": [
+        "/example",
+        "/tests",
+        "/coverage",
+        "/src"
+    ]
+}

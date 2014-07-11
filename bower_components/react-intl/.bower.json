@@ -1,0 +1,35 @@
+{
+  "name": "react-intl",
+  "version": "0.1.0-rc-1",
+  "main": [
+    "dist/react-intl.js",
+    "dist/react-intl.min.js"
+  ],
+  "dependencies": {
+    "intl": "~0.1.2"
+  },
+  "keywords": [
+    "intl",
+    "i18n",
+    "internationalization",
+    "ecma402",
+    "react",
+    "reactjs"
+  ],
+  "ignore": [
+    "/example",
+    "/tests",
+    "/coverage",
+    "/src"
+  ],
+  "homepage": "https://github.com/caridy/react-intl",
+  "_release": "0.1.0-rc-1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.0-rc-1",
+    "commit": "ed67855c81497165a74361dc088f44123a77961d"
+  },
+  "_source": "git://github.com/caridy/react-intl.git",
+  "_target": "0.1.0-rc-1",
+  "_originalSource": "react-intl"
+}

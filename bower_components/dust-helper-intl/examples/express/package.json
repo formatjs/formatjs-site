@@ -1,0 +1,23 @@
+{
+    "name": "express",
+    "version": "0.0.0",
+    "description": "an example app of how to use dust-helper-intl in an express app",
+    "main": "app.js",
+    "author": "Drew Folta <drew@folta.net>",
+    "dependencies": {
+        "consolidate": "0.10.0",
+        "dustjs-linkedin": "2.3.2",
+        "express": "3.4.8",
+        "intl": "~0.1.0",
+        "intl-messageformat": "~0.1.0"
+    },
+    "licenses": [
+        {
+            "type": "Yahoo BSD",
+            "url": "https://github.com/yahoo/dust-helper-intl/blob/master/LICENSE"
+        }
+    ],
+    "scripts": {
+        "start": "node app.js"
+    }
+}

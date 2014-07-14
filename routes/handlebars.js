@@ -18,7 +18,7 @@ module.exports = function (req, res, next) {
                     firstName: 'Tilo',
                     lastName: 'Mitra',
                     numBooks: 20,
-                    daysLeft: 8
+                    daysLeft: 8,
                     travelDate: new Date()
                 },
                 now: new Date()

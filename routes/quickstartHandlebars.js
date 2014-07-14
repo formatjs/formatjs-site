@@ -2,24 +2,21 @@
 
 var getExamples = require('../lib/examples');
 
-var fileSizes = require('../config/sizes.json');
-
 module.exports = function (req, res, next) {
-
     getExamples('handlebars', {cache: true}).then(function (examples) {
-        var hbsExamples = examples,
-            helperSize  = fileSizes['handlebars-helper-intl/dist/helpers.min.js'];
-
+        var hbsExamples = examples;
         Object.keys(hbsExamples).forEach(function(key) {
             var example = examples[key];
+
+            console.log(example);
             example.rendered = example.compiled({
                 intl: res.locals.intl,
                 user: {
                     firstName: 'Tilo',
                     lastName: 'Mitra',
-                    numBooks: 20,
-                    daysLeft: 8
-                    travelDate: new Date()
+                    travelDate: new Date(),
+                    price: 465,
+                    numBooks: 20
                 },
                 now: new Date()
             });
@@ -28,9 +25,15 @@ module.exports = function (req, res, next) {
             res.expose(example.source, 'examples.hbs.' + example.name);
         });
 
-        res.render('handlebars', {
-            examples: hbsExamples,
-            helperSize: helperSize.bytes < 1024 ? (helperSize.bytes + ' bytes') : (helperSize.kbs + ' KBs')
+        //Expose this string so the necessary client-side JS file gets loaded
+        res.expose('Travel', 'example');
+        res.expose([
+            '/bower_components/intl-messageformat/build/intl-messageformat.complete.min.js',
+            '/bower_components/handlebars-helper-intl/dist/helpers.js'
+        ], 'scripts');
+
+        res.render('quickstart/handlebars', {
+            examples: hbsExamples
         });
     }).catch(next);
 };

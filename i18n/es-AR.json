@@ -2,6 +2,6 @@
   "TITLE": "Tu librería personal",
   "USER_HAS_BOOKS": "{firstName} {lastName} tiene {numBooks, number, integer} {numBooks, plural, one {libro} other {libros}}.",
   "USER_WILL_SELL": "{firstName} {numBooks, plural, one {lo} other {los}} va a vender el {dateBooks, date, long} a {price, number, USD}.",
-  "SUBSCRIPTION_WARNING": "<strong>Warning:</strong> you have only <strong> {numDays, number, integer} </strong> {numDays, plural, one {day} other {days}} left in your subscription."
-
+  "SUBSCRIPTION_WARNING": "<strong>Warning:</strong> you have only <strong> {numDays, number, integer} </strong> {numDays, plural, one {day} other {days}} left in your subscription.",
+  "TRAVEL": "{firstName} {lastName} viajará a Perú el {travelDate, date, long} por {price, number, EUR}"
 }

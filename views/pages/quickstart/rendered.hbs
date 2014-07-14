@@ -1,0 +1,119 @@
+<div class="example">
+    <div id="travel-example"></div>
+    <div>
+        View this example in
+        <select id="switcher">
+            <option value="en_US">en-US</option>
+            <option value="es_AR">es-AR</option>
+            <option value="fr_FR">fr-FR</option>
+            <option value="zh_HK">zh-HK</option>
+        </select>
+    </div>
+</div>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.4/handlebars.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/yepnope/1.5.4/yepnope.min.js"></script>
+
+<script type="x-handlebars-template/text" id="travel-example-source">
+    \{{#intl locales=intl.locale messages=intl.messages formats=intl.formats}}
+        <p>
+        \{{intlMessage (intlGet "messages.TRAVEL")
+                firstName=user.firstName
+                lastName=user.lastName
+                travelDate=user.travelDate
+                price=user.price}}
+        </p>
+    \{{/intl}}
+</script>
+
+
+<script>
+yepnope([{
+    // Test to see if Intl exists natively in the browser.
+    test : !!window.Intl,
+
+    // We are assuming you're using the en-US locale, but you can change that here.
+    nope : 'http://yui.yahooapis.com/combo?platform/intl/0.1.2/Intl.min.js&platform/intl/0.1.2/locale-data/jsonp/en-US.js'
+},
+{
+    // Other scripts to load.
+    load : [
+        'https://cdn.rawgit.com/yahoo/intl-messageformat/master/build/intl-messageformat.complete.min.js',
+        'https://cdn.rawgit.com/yahoo/handlebars-helper-intl/master/dist/helpers.min.js'
+    ],
+
+    // Call init() when everything is loaded.
+    complete : init
+}
+]);
+
+function init() {
+    var intl = {
+        // These messages tell the Intl API how to render the string for different locales.
+        // Intl will take care of formatting the dates, strings, and numbers for different
+        // locales based on the placeholder properties.
+        messages: {
+            "en_US": {
+                "TRAVEL": "{firstName} {lastName} will travel to Peru on {travelDate, date, long} for {price, number, USD}."
+            },
+            "fr_FR": {
+                "TRAVEL": "{firstName} {lastName} voyagera à Peru le {travelDate, date, long} pour {price, number, USD}."
+            },
+            "es_AR": {
+                "TRAVEL": "{firstName} {lastName} viajará a Perú el {travelDate, date, long} por {price, number, USD}"
+            },
+
+            "zh_HK": {
+                "TRAVEL": "{firstName} {lastName} 會在{travelDate, date, long}花{price, number, USD}去秘鲁。"
+            }
+        },
+
+        // These formats tell Intl to render "USD" and "EUR" in currency form.
+        formats: {
+            number: {
+                USD: {
+                    style   : 'currency',
+                    currency: 'USD'
+                },
+                EUR: {
+                    style   : 'currency',
+                    currency: 'EUR'
+                }
+            }
+        }
+    };
+
+    var context = {
+        firstName : "Tilo",
+        lastName  : "Mitra",
+        travelDate: new Date(),
+        price     : 465
+    };
+
+    HandlebarsHelperIntl.registerWith(Handlebars);
+
+    var source   = document.getElementById('travel-example-source').innerHTML,
+        template = Handlebars.compile(source),
+        switcher = document.getElementById('switcher');
+
+    function render (locale, template) {
+
+        var html = template({
+            intl: {
+                messages: intl.messages[locale],
+                formats: intl.formats
+            },
+            user: context
+        });
+
+        document.getElementById('travel-example').innerHTML = html;
+    }
+
+    switcher.addEventListener('change', function(e) {
+        render(e.srcElement.value, template);
+    });
+
+    render(switcher.value, template);
+}
+
+</script>

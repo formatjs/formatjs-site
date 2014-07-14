@@ -70,7 +70,7 @@ app.use(express.static(config.dirs.pub));
 
 router.get('/', routes.render('home', 'home'));
 
-router.get('/quickstart/',        routes.render('quickstart'));
+router.get('/quickstart',         routes.render('quickstart'));
 router.get('/quickstart/browser', routes.render('quickstart/browser'));
 router.get('/quickstart/node',    routes.render('quickstart/node'));
 

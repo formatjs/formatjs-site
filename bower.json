@@ -6,6 +6,7 @@
     "rainbow": "~1.1.9",
     "yepnope": "~1.5.4",
     "intl-messageformat": "~0.1.0",
-    "react-intl": "0.1.0-rc-1"
+    "react-intl": "0.1.0-rc-1",
+    "handlebars-helper-intl": "~0.1.1"
   }
 }

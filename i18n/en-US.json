@@ -1,5 +1,6 @@
 {
   "TITLE": "Your Personal Bookstore",
   "USER_HAS_BOOKS": "{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}.",
-  "USER_WILL_SELL": "{firstName} will sell them on {dateBooks, date, long} for {price, number, USD}."
+  "USER_WILL_SELL": "{firstName} will sell them on {dateBooks, date, long} for {price, number, USD}.",
+  "TRAVEL": "{firstName} {lastName} will travel to Peru on {travelDate, date, long} for {price, number, USD}."
 }

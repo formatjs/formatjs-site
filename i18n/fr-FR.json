@@ -1,5 +1,6 @@
 {
   "TITLE": "Votre Librarie Personnelle",
   "USER_HAS_BOOKS": "{firstName} {lastName} a {numBooks, number, integer} {numBooks, plural, one {livre} other {livres}}.",
-  "USER_WILL_SELL": "{firstName} {numBooks, plural, one {le} other {les}} vendra le {dateBooks, date, long} pour {price, number, USD}."
+  "USER_WILL_SELL": "{firstName} {numBooks, plural, one {le} other {les}} vendra le {dateBooks, date, long} pour {price, number, USD}.",
+  "TRAVEL": "{firstName} {lastName} voyagera à Peru le {travelDate, date, long} pour {price, number, USD}."
 }

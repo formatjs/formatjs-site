@@ -15,6 +15,18 @@ module.exports = function (req, res, next) {
     res.locals.intl || (res.locals.intl = {});
     res.locals.intl.locale   = locale;
     res.locals.intl.messages = messages;
+    res.locals.intl.formats  = {
+        number: {
+            USD: {
+                style   : 'currency',
+                currency: 'USD'
+            },
+            EUR: {
+                style   : 'currency',
+                currency: 'EUR'
+            }
+        }
+    };
 
     // TODO: Handle/merge and Expose the common formats.
     res.expose(res.locals.intl, 'intl')

@@ -13,7 +13,8 @@ module.exports = function (req, res, next) {
                 user: {
                     firstName: 'Tilo',
                     lastName: 'Mitra',
-                    numBooks: 20
+                    numBooks: 20,
+                    travelDate: new Date()
                 },
                 now: new Date()
             });

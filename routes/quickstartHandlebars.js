@@ -27,7 +27,7 @@ module.exports = function (req, res, next) {
         });
 
         //Expose this string so the necessary client-side JS file gets loaded
-        res.expose('Travel', 'example');
+        res.expose('travel', 'example');
         res.expose([
             '/bower_components/intl-messageformat/build/intl-messageformat.complete.min.js',
             '/bower_components/handlebars-helper-intl/dist/helpers.js'

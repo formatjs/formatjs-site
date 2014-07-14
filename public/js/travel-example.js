@@ -1,6 +1,6 @@
 'use strict';
 
-var TravelExample = {
+var travelExample = {
     user: {
         firstName  : 'Tilo',
         lastName   : 'Mitra',

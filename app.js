@@ -73,7 +73,7 @@ router.get('/', routes.render('home', 'home'));
 router.get('/quickstart/',           routes.render('quickstart'));
 router.get('/quickstart/browser',    routes.render('quickstart/browser'));
 router.get('/quickstart/node',       routes.render('quickstart/node'));
-router.get('/quickstart/handlebars', routes.quickstartHandlebars);
+router.get('/quickstart/handlebars/', routes.quickstartHandlebars);
 router.get('/quickstart/handlebars/rendered', routes.render('quickstart/rendered', 'blank'));
 
 router.get('/handlebars', routes.handlebars);

@@ -1,7 +1,9 @@
 YUI({
     gallery: 'gallery-2013.05.15-21-12'
 }).use('node-base', 'gallery-affix', 'gallery-scrollspy', function (Y) {
-    var sidebar  = Y.one('.sidebar');
+    var sidebar    = Y.one('.sidebar'),
+        menuToggle = Y.one('.pure-menu-toggle'),
+        menu       = Y.one('#menu');
 
     // Create Affix (Fixes the sidebar as you scroll)
     // Doing an if check here because we don't include a sidebar if there are
@@ -17,6 +19,13 @@ YUI({
         Y.one('body').plug(Y.Plugin.ScrollSpy, {
             target: sidebar,
             activeClass: 'is-sidebar-list-item-active'
+        });
+    }
+
+    if (menuToggle) {
+        menuToggle.on('click', function (e) {
+            e.preventDefault();
+            menu.toggleClass('pure-menu-active');
         });
     }
 });

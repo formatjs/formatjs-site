@@ -19,8 +19,11 @@ module.exports = function (req, res, next) {
                     lastName: 'Mitra',
                     numBooks: 20,
                     daysLeft: 8,
-                    travelDate: new Date()
+                    travelDate: new Date(),
+                    price: 465
                 },
+
+                amount: 15000,
                 now: new Date()
             });
 

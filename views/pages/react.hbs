@@ -26,6 +26,13 @@ $ bower install react-intl
 $ npm install react-intl
 {{/code}}
 
+<aside>
+    <p>
+        <strong>Note:</strong> When working with the client-side version of this helper, make sure that {{code "window.Intl"}} is
+        available, otherwise you'll need to install a polyfill. For more information check out the <a href="/quickstart/browser#browser-compatibility">browser compatibility chart</a>.
+    </p>
+</aside>
+
 <p>
     The browser distribution is bundled with <a href="https://github.com/yahoo/intl-messageformat">IntlMessageFormat</a>. You need to make sure that both React and the Intl polyfill are loaded before {{code "react-intl"}}.
 </p>
@@ -76,8 +83,11 @@ $ npm install react-intl
 
 {{> react/intlMessage}}
 
+<hr class="rule">
 <aside>
     <p>
-        <strong class="upper">Note</strong> This page uses includes excerpts from the <a href="https://developer.mozilla.org/">Mozilla Developer Network website</a>.
+        <strong>Note:</strong> The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">Mozilla Developer Network</a> provides
+        excellent
+        documentation about the underlying {{code "Intl"}} API's. This page uses excerpts from that site.
     </p>
 </aside>

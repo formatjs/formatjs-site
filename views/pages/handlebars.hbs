@@ -32,6 +32,13 @@ $ bower install handlebars-helper-intl
 $ npm install handlebars-helper-intl
 {{/code}}
 
+<aside>
+    <p>
+        <strong>Note:</strong> When working with the client-side version of this helper, make sure that {{code "window.Intl"}} is
+        available, otherwise you'll need to install a polyfill. For more information check out the <a href="/quickstart/browser#browser-compatibility">browser compatibility chart</a>.
+    </p>
+</aside>
+
 <p>
     When serving the content on your page, you need to ensure that {{code "intl-messageformat.js"}} and {{code "handlebars.js"}} are loaded before the Handlebars helpers. These modules can also be installed via Bower and npm as well.
 </p>
@@ -63,9 +70,7 @@ HandlebarsHelperIntl.registerWith(Handlebars);
     </ul>
 </p>
 
-<hr class="rule">
 
-{{> handlebars/intl}}
 
 <hr class="rule">
 
@@ -82,3 +87,16 @@ HandlebarsHelperIntl.registerWith(Handlebars);
 <hr class="rule">
 
 {{> handlebars/intlHTMLMessage}}
+
+<hr class="rule">
+
+{{> handlebars/intl}}
+
+<hr class="rule">
+<aside>
+    <p>
+        <strong>Note:</strong> The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">Mozilla Developer Network</a> provides
+        excellent
+        documentation about the underlying {{code "Intl"}} API's.
+    </p>
+</aside>

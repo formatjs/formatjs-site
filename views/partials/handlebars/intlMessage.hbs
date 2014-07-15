@@ -1,19 +1,5 @@
 {{sectionHeading "intlMessage"}}
 
-<p>Use the {{code "intlMessage"}} helper to format strings for different locales. Remember to use the {{code "{{#intl}}"}} helper to properly set any custom message formats or locales you wish to use.</p>
-
-<h3>Required Parameter</h3>
-<dl class="parameters-list">
-    <dt>{{code "value: String"}}</dt>
-    <dd>The message that you want to format. <a href="/javascript/#messageformat-strings">Find out more</a> about how to construct templatized messages.</dd>
-</dl>
-
-<h3>Hash Arguments (optional)</h3>
-<p>
-    Other parameters can be passed into {{code "intlMessage"}} as key/value pairs via the {{code "context"}} object. The examples below demonstrate how you can format strings by modifying the properties of the {{code "context"}} object.
-</p>
-
-
 <h3>Examples</h3>
 
 <h4>Using a context object</h4>
@@ -47,3 +33,19 @@
 <div class="example">
     {{{examples.books.rendered}}}
 </div>
+
+
+<p>Use the {{code "intlMessage"}} helper to format strings for different locales. Remember to use the {{code "{{#intl}}"}} helper to properly set any custom message formats or locales you wish to use.</p>
+
+<h3>Required Parameter</h3>
+<dl class="parameters-list">
+    <dt>{{code "value: String"}}</dt>
+    <dd>The message that you want to format. <a href="/javascript/#messageformat-strings">Find out more</a> about how to construct templatized messages.</dd>
+</dl>
+
+<h3>Hash Arguments (optional)</h3>
+<p>
+    Other parameters can be passed into {{code "intlMessage"}} as key/value pairs via the {{code "context"}} object. The examples below demonstrate how you can format strings by modifying the properties of the {{code "context"}} object.
+</p>
+
+

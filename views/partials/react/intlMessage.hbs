@@ -1,19 +1,5 @@
 {{sectionHeading "component.intlMessage" "component.intlMessage(message, data)"}}
 
-<p>Format messages according to the locale.</p>
-
-<h3>Parameters</h3>
-<dl class="parameters-list">
-    <dt>{{code "message: string"}}</dt>
-    <dd>
-        <p>Message using <a href="/javascript/#messageformat-strings">Simple String Format</a>.</p>
-    </dd>
-    <dt>{{code "data: Object"}}</dt>
-    <dd>
-        <p>Data used by each token in the form of key-value pairs where the key matches the token name.</p>
-    </dd>
-</dl>
-
 <h3>Example</h3>
 
 <p>The simplest form of formatting is actually just token replacement, e.g.:</p>
@@ -34,4 +20,17 @@ React.renderComponent(
     {{{examples.message.rendered}}}
 </div>
 
-<hr>
+
+<p>Use this method to format messages according to the locale.</p>
+
+<h3>Parameters</h3>
+<dl class="parameters-list">
+    <dt>{{code "message: string"}}</dt>
+    <dd>
+        <p>Message using <a href="/javascript/#messageformat-strings">Simple String Format</a>.</p>
+    </dd>
+    <dt>{{code "data: Object"}}</dt>
+    <dd>
+        <p>Data used by each token in the form of key-value pairs where the key matches the token name.</p>
+    </dd>
+</dl>

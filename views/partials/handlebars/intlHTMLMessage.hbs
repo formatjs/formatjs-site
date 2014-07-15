@@ -1,19 +1,5 @@
 {{sectionHeading "intlHTMLMessage"}}
 
-<p>The {{code "intlHTMLMessage"}} helper can format strings in the same way as {{code "intlMessage"}}, however this method returns a
-Handlebars <a href="http://handlebarsjs.com/#html-escaping">{{code "SafeString"}}</a>. This means that Handlebars will not escape this string so <strong>only use this when absolutely necessary</strong>. Also <strong>make sure</strong> that variables you pass in are escaped properly. Remember to use the {{code "{{#intl}}"}} helper to properly set any custom message formats or locales you wish to use.</p>
-
-<h3>Required Parameter</h3>
-<dl class="parameters-list">
-    <dt>{{code "value: String"}}</dt>
-    <dd>The message that you want to format. <a href="/javascript/#messageformat-strings">Find out more</a> about how to construct templatized messages.</dd>
-</dl>
-
-<h3>Hash Arguments (optional)</h3>
-<p>
-    Other parameters can be passed into {{code "intlHTMLMessage"}} as key/value pairs via the {{code "context"}} object. The examples below demonstrate how you can format strings by modifying the properties of the {{code "context"}} object.
-</p>
-
 <h3>Examples</h3>
 
 <h4>Using a context object</h4>
@@ -45,3 +31,19 @@ Handlebars <a href="http://handlebarsjs.com/#html-escaping">{{code "SafeString"}
 <div class="example">
     {{{examples.warning.rendered}}}
 </div>
+
+<p>The {{code "intlHTMLMessage"}} helper can format strings in the same way as {{code "intlMessage"}}, however this method returns a
+Handlebars <a href="http://handlebarsjs.com/#html-escaping">{{code "SafeString"}}</a>. This means that Handlebars will not escape this string so <strong>only use this when absolutely necessary</strong>. Also <strong>make sure</strong> that variables you pass in are escaped properly. Remember to use the {{code "{{#intl}}"}} helper to properly set any custom message formats or locales you wish to use.</p>
+
+<h3>Required Parameter</h3>
+<dl class="parameters-list">
+    <dt>{{code "value: String"}}</dt>
+    <dd>The message that you want to format. <a href="/javascript/#messageformat-strings">Find out more</a> about how to construct templatized messages.</dd>
+</dl>
+
+<h3>Hash Arguments (optional)</h3>
+<p>
+    Other parameters can be passed into {{code "intlHTMLMessage"}} as key/value pairs via the {{code "context"}} object. The examples below demonstrate how you can format strings by modifying the properties of the {{code "context"}} object.
+</p>
+
+

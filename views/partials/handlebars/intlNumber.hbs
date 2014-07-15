@@ -1,5 +1,18 @@
 {{sectionHeading "intlNumber"}}
 
+<h3>Example</h3>
+
+<p>Template String:</p>
+
+{{#code "generic"}}
+{{{examples.number.source}}}
+{{/code}}
+
+<p>Rendered Output:</p>
+<div class="example">
+    {{{examples.number.rendered}}}
+</div>
+
 <p>Use the {{code "intlNumber"}} helper to format numbers, currencies and percentages for different locales. Remember to use the {{code "{{#intl}}"}} helper to properly set any custom number or currency formats, or locales you wish to use.</p>
 
 <h3>Required Parameter</h3>
@@ -17,15 +30,4 @@
     <dd>The type of currency that should be used to render the number.</dd>
 </dl>
 
-<h3>Example</h3>
 
-<p>Template String:</p>
-
-{{#code "generic"}}
-{{{examples.number.source}}}
-{{/code}}
-
-<p>Rendered Output:</p>
-<div class="example">
-    {{{examples.number.rendered}}}
-</div>

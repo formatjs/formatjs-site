@@ -1,5 +1,21 @@
 {{sectionHeading "component.intlDate" "component.intlDate(date [, options])"}}
-<p>Format dates according to the locale.</p>
+
+<h3>Example</h3>
+
+<p>This method helps display the date in a meaningful way. For example we can show the time of a date using a 24 hour clock or AM/PM depending on the locale:</p>
+
+{{#code "jsx"}}
+/** @jsx React.DOM */
+var MyComponent = {{{examples.date.source}}}
+{{/code}}
+
+<p>The output when the locale is set to {{code "fr-FR"}} will be {{code "20:00"}}, while in a {{code "en-US"}} locale it will be {{code "8:00 PM"}}.</p>
+
+<div class="example">
+    {{{examples.date.rendered}}}
+</div>
+
+<p>Use this method to format dates according to the locale.</p>
 
 <h3>Parameters</h3>
 <dl class="parameters-list">
@@ -42,17 +58,4 @@
     </dd>
 </dl>
 
-<h3>Example</h3>
 
-<p>This method also helps display the date in a meaningful way. For example we can show the time of a date using a 24 hour clock or AM/PM depending on the locale:</p>
-
-{{#code "jsx"}}
-/** @jsx React.DOM */
-var MyComponent = {{{examples.date.source}}}
-{{/code}}
-
-<p>The ouput when the locale is set to {{code "fr-FR"}} will be {{code "20:00"}}, while in a {{code "en-US"}} locale it will be {{code "8:00 PM"}}.</p>
-
-<div class="example">
-    {{{examples.date.rendered}}}
-</div>

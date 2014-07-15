@@ -1,31 +1,5 @@
 {{sectionHeading "component.intlNumber" "component.intlNumber(number [, options])"}}
 
-<p>Format numbers according to the locale.</p>
-
-<h3>Parameters</h3>
-<dl class="parameters-list">
-    <dt>{{code "number: number"}}</dt>
-    <dd>
-        <p>Number to format.</p>
-    </dd>
-    <dt>{{code "options: Object"}}</dt>
-    <dd>
-        <p>Optional. These are the configuration options for {{code "Intl.NumberFormat"}}:</p>
-        <dl>
-            <dt>{{code "localeMatcher"}}</dt>
-            <dd>The locale matching algorithm to use. Possible values are "lookup" and "best fit"; the default is "best fit".</dd>
-            <dt>{{code "style"}}</dt>
-            <dd>The formatting style to use. Possible values are "decimal" for plain number formatting, "currency" for currency formatting, and "percent" for percent formatting; the default is "decimal".</dd>
-            <dt>{{code "currency"}}</dt>
-            <dd>The currency to use in currency formatting. Possible values are the ISO 4217 currency codes, such as "USD" for the US dollar or "EUR" for the euro.</dd>
-            <dt>{{code "currencyDisplay"}}</dt>
-            <dd>How to display the currency in currency formatting. Possible values are "symbol" to use a localized currency symbol such as €, "code" to use the ISO currency code, "name" to use a localized currency name such as "dollar"; the default is "symbol".</dd>
-            <dt>{{code "useGrouping"}}</dt>
-            <dd>Whether to use grouping separators, such as thousands separators or thousand/lakh/crore separators. Possible values are true and false; the default is true.</dd>
-        </dl>
-    </dd>
-</dl>
-
 <h3>Example</h3>
 
 {{#code "jsx"}}
@@ -60,3 +34,31 @@ React.renderComponent(
 <div class="example">
     {{{examples.number.rendered}}}
 </div>
+
+
+<p>Use this method to format numbers according to the locale.</p>
+
+<h3>Parameters</h3>
+<dl class="parameters-list">
+    <dt>{{code "number: number"}}</dt>
+    <dd>
+        <p>Number to format.</p>
+    </dd>
+    <dt>{{code "options: Object"}}</dt>
+    <dd>
+        <p>Optional. These are the configuration options for {{code "Intl.NumberFormat"}}:</p>
+        <dl>
+            <dt>{{code "localeMatcher"}}</dt>
+            <dd>The locale matching algorithm to use. Possible values are "lookup" and "best fit"; the default is "best fit".</dd>
+            <dt>{{code "style"}}</dt>
+            <dd>The formatting style to use. Possible values are "decimal" for plain number formatting, "currency" for currency formatting, and "percent" for percent formatting; the default is "decimal".</dd>
+            <dt>{{code "currency"}}</dt>
+            <dd>The currency to use in currency formatting. Possible values are the ISO 4217 currency codes, such as "USD" for the US dollar or "EUR" for the euro.</dd>
+            <dt>{{code "currencyDisplay"}}</dt>
+            <dd>How to display the currency in currency formatting. Possible values are "symbol" to use a localized currency symbol such as €, "code" to use the ISO currency code, "name" to use a localized currency name such as "dollar"; the default is "symbol".</dd>
+            <dt>{{code "useGrouping"}}</dt>
+            <dd>Whether to use grouping separators, such as thousands separators or thousand/lakh/crore separators. Possible values are true and false; the default is true.</dd>
+        </dl>
+    </dd>
+</dl>
+

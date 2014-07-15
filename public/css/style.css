@@ -82,13 +82,116 @@ aside {
     border-radius: 3px;
 }
 
+
+/* -------------------- */
+/* Pure Menu Dropdowns  */
+/* -------------------- */
+.pure-menu ul li:hover > ul,
+.pure-menu ul li:focus > ul {
+    display: block;
+    top: 0;
+    left: 100%;
+    visibility: visible;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.pure-menu.pure-menu-horizontal > ul > li:hover > .pure-menu-children,
+.pure-menu.pure-menu-horizontal > ul > li:focus > .pure-menu-children {
+    top: 100%;
+    left: 0;
+    display: block;
+    width: inherit;
+}
+
+.pure-menu.pure-menu-horizontal li .pure-menu-children {
+    border: 1px solid #eee;
+}
+
+.pure-menu-horizontal > .pure-menu-children > .pure-menu-can-have-children > .pure-menu-label {
+    *zoom: expression(
+        this.runtimeStyle.zoom = "1",
+        this.innerHTML += '<span class="pure-dropdown-arrow">\25BE</span>'
+        );
+}
+
+.pure-dropdown-arrow {
+    padding-left: 10px;
+    margin-right: -20px;
+    margin-top: -1px;
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'DejaVu Sans', sans-serif;
+}
+
+.pure-menu-has-children > .pure-menu-label:after {
+    content: "\25BE";
+}
+
+/* --------------------- */
+/* Responsive Pure Menu  */
+/* --------------------- */
+
+.pure-menu-horizontal {
+    width: 100%;
+    border-left: none;
+    border-right: none;
+}
+
+.pure-menu-responsive .pure-menu-toggle {
+    float: right;
+    text-transform: uppercase;
+    font-size: 80%;
+    display: none;
+}
+
+.pure-menu-responsive.pure-menu-active .pure-menu-toggle {
+    display: block;
+}
+
+
+.pure-menu-responsive .pure-menu-toggle:after {
+    content: "\25BE";
+    float: right;
+    /* These specific fonts have the Unicode char we need. */
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'DejaVu Sans', sans-serif;
+    margin-right: -15px;
+    margin-top: -1px;
+}
+
+.pure-menu-responsive.pure-menu-horizontal.pure-menu-active > ul,
+.pure-menu-responsive.pure-menu-active .menu-item {
+    display: block;
+    float: none;
+}
+
+.pure-menu-responsive .pure-menu-toggle {
+    display: block;
+    font-size: 90%;
+    letter-spacing: 0.2em;
+    text-decoration: none;
+}
+
+.splash .pure-menu-toggle {
+    color: white;
+}
+
+.pure-menu-responsive.pure-menu-horizontal > ul {
+    display: none;
+}
+
+.pure-menu-responsive.pure-menu-active .pure-menu-children li {
+    border-color: transparent;
+}
+
+/* --------------- */
+/* Helper Classes  */
+/* --------------- */
+
 .upper {
     text-transform: uppercase;
     color: rgba(0,0,0,0.5);
 }
-/* --------------- */
-/* Horizontal Rule */
-/* --------------- */
+
+
 hr {
     margin-top: 20px;
     margin-bottom: 20px;
@@ -99,7 +202,6 @@ hr {
     -moz-box-sizing: content-box;
     box-sizing: content-box;
 }
-
 
 .rule {
     width: 100px;
@@ -207,16 +309,11 @@ until we update the menu styles in Pure.
     color: white;
 }
 
-#menu ul {
-    display: block;
-    text-align: center;
-}
 
 #menu .menu-heading {
     letter-spacing: 0.2em;
     text-align: center;
-    /* other option is to have a huge specificity selector, we really need to fix Pure Menus :( */
-    display: block;
+    padding: 5px 10px;
 }
 
 #menu .menu-item a {
@@ -229,6 +326,13 @@ until we update the menu styles in Pure.
     background: transparent;
     text-decoration: none;
     color: #d092f7;
+}
+
+/* not the main children, but sub-children */
+.splash #menu > ul .pure-menu-children {
+    background: #603a7c;
+    color: white;
+    border-color: transparent;
 }
 
 .splash-example {
@@ -338,15 +442,17 @@ until we update the menu styles in Pure.
     display: none;
 }
 
+@media screen and (max-width: 48em) {
+    .pure-menu-responsive.pure-menu-active .pure-menu-children {
+        display: block;
+        visibility: visible;
+        position: static;
+    }
+}
+
 @media screen and (min-width: 25em) {
     #menu .menu-heading {
         display: inline-block;
-        text-align: left;
-        margin-top: 5px;
-    }
-    #menu ul {
-        float: right;
-        margin-top: 5px;
         text-align: left;
     }
 }
@@ -362,6 +468,26 @@ until we update the menu styles in Pure.
 
 
 @media screen and (min-width: 48em) {
+
+    #menu > ul {
+        display: inline;
+    }
+
+
+    .pure-menu-responsive .pure-menu-toggle,
+    .pure-menu-responsive.pure-menu-active .pure-menu-toggle {
+        display: none;
+    }
+
+    .pure-menu-responsive.pure-menu-horizontal > ul,
+    .pure-menu-responsive.pure-menu-active .menu-item {
+        float: right;
+    }
+
+/*    .pure-menu-responsive.pure-menu-active > ul,
+    .pure-menu-responsive.pure-menu-active .menu-item  {
+        float: right;
+    }*/
 
     .body-has-sections {
         background: #603a7c;
@@ -448,3 +574,4 @@ until we update the menu styles in Pure.
         max-width: 50em;
     }
 }
+

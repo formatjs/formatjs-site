@@ -23,7 +23,9 @@ module.exports = function (req, res, next) {
                         lastName: 'Mitra',
                         numBooks: '20'
                     },
-                    dateBooks: 'Fri Jun 27 2014 13:08:19 GMT-0400'
+                    dateBooks: 'Fri Jun 27 2014 13:08:19 GMT-0400',
+                    now: new Date().getTime(),
+                    amount: 15000
             };
 
             Dust.loadSource(example.compiled);

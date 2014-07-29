@@ -13,6 +13,7 @@ module.exports = function (req, res, next) {
         Object.keys(hbsExamples).forEach(function(key) {
             var example = examples[key];
             example.rendered = example.compiled({
+                //passing the intl object in here as well as line 29 so that the {{#intl}} example works.
                 intl: res.locals.intl,
                 user: {
                     firstName: 'Tilo',
@@ -25,7 +26,7 @@ module.exports = function (req, res, next) {
 
                 amount: 15000,
                 now: new Date()
-            });
+            }, {data: {intl: res.locals.intl}});
 
             //expose just the source file for each example here.
             res.expose(example.source, 'examples.hbs.' + example.name);

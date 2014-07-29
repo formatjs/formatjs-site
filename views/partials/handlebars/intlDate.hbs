@@ -3,13 +3,18 @@
 <h3>Example</h3>
 
 <p>Template String:</p>
-
 {{#code "generic"}}
 {{{examples.date.source}}}
 {{/code}}
 
-<p>Rendered Output:</p>
+<p>JavaScript:</p>
+{{#code "js"}}
+var context = {
+    now: new Date()
+};
+{{/code}}
 
+<p>Rendered Output:</p>
 <div class="example">
     {{{examples.date.rendered}}}
 </div>

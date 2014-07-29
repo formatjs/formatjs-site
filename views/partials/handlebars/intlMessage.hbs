@@ -12,20 +12,26 @@
 {{{examples.books.source}}}
 {{/code}}
 
-<p>Context:</p>
+<p>JavaScript:</p>
 {{#code "js"}}
-{
-    intl: {
-        messages: {
-            USER_HAS_BOOKS: "{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}."
-        }
-    },
+var context = {
     user: {
         firstName: "Tilo",
         lastName: "Mitra",
         numBooks: 20
     }
-}
+};
+
+var intl = {
+    messages: {
+        USER_HAS_BOOKS: "{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}."
+    },
+    locale: "en-US"
+};
+
+//`source` represents the contents of the Handlebars template.
+var template = Handlebars.compile(source);
+var html = template(context, {data: {intl: intl} });
 {{/code}}
 
 <p>Rendered Output:</p>

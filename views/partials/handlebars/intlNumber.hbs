@@ -3,9 +3,23 @@
 <h3>Example</h3>
 
 <p>Template String:</p>
-
 {{#code "generic"}}
 {{{examples.number.source}}}
+{{/code}}
+
+<p>JavaScript:</p>
+{{#code "js"}}
+var context = {
+    amount: 15000
+};
+
+var intl = {
+    locale: "de-DE"
+};
+
+//`source` represents the contents of the Handlebars template.
+var template = Handlebars.compile(source);
+var html = template(context, {data: {intl: intl} });
 {{/code}}
 
 <p>Rendered Output:</p>

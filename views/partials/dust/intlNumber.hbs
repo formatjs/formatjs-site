@@ -3,9 +3,18 @@
 <h3>Example</h3>
 
 <p>Template String:</p>
-
 {{#code "generic"}}
 {{{examples.number.source}}}
+{{/code}}
+
+<p>Context:</p>
+{{#code "js"}}
+var context = {
+    intl: {
+        locale: "de-DE"
+    },
+    amount: 15000
+}
 {{/code}}
 
 <p>Rendered Output:</p>

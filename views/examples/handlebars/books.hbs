@@ -1,10 +1,7 @@
-{{#intl locales=intl.locale messages=intl.messages formats=intl.formats}}
-
-    <p>
+<p>
     {{intlMessage (intlGet "messages.USER_HAS_BOOKS")
             firstName=user.firstName
             lastName=user.lastName
             numBooks=user.numBooks}}
-    </p>
+</p>
 
-{{/intl}}

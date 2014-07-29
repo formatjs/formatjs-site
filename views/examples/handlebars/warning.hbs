@@ -1,8 +1,4 @@
-{{#intl locales=intl.locale messages=intl.messages formats=intl.formats}}
-
-    <div class='warning'>
-    {{intlHTMLMessage (intlGet "messages.SUBSCRIPTION_WARNING")
-            numDays=user.daysLeft}}
-    </div>
-
-{{/intl}}
+<div class='warning'>
+{{intlHTMLMessage (intlGet "messages.SUBSCRIPTION_WARNING")
+        numDays=user.daysLeft}}
+</div>

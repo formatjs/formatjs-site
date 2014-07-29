@@ -14,11 +14,12 @@
 
 <p>Context:</p>
 {{#code "js"}}
-{
+var context = {
     intl: {
         messages: {
              "SUBSCRIPTION_WARNING": "<strong>Warning:</strong> you have only <strong> {numDays, number, integer} </strong> {numDays, plural, one {day} other {days}} left in your subscription."
-        }
+        },
+        locale: "en-US"
     },
     user: {
         daysLeft: 8

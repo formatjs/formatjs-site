@@ -2,6 +2,47 @@
 
 <p>Use the {{code "{{#intl}}"}} block helper to set up the specific locale or load in any custom messages that your helpers will be using.</p>
 
+
+<h3>Example</h3>
+<p>
+    The {{code "{{#intl}}"}} block helper isn't meant to be used alone, but used to help organize and group together the other helpers.
+</p>
+
+<p>Template:</p>
+{{#code "generic"}}
+{{{examples.travel.source}}}
+{{/code}}
+
+<p>Context:</p>
+{{#code "js"}}
+var context = {
+    intl: {
+        messages: {
+            TRAVEL: "{firstName} {lastName} will travel to Peru on {travelDate, date, long} for {price, number, USD}."
+        },
+        formats: {
+            number: {
+                EUR: {currency: "EUR", style: "currency"},
+                USD: {currency: "USD", style: "currency"}
+            }
+        },
+        locale: "en-US"
+    },
+    user: {
+        firstName: "Tilo",
+        lastName: "Mitra",
+        travelDate: new Date(),
+        price: 465
+    }
+};
+{{/code}}
+
+<p>Rendered Output:</p>
+
+<div class="example">
+    {{{examples.travel.rendered}}}
+</div>
+
 <h3>Hash Arguments (optional)</h3>
 <dl class="parameters-list">
     <dt>{{code "locales: String"}}</dt>
@@ -14,18 +55,3 @@
     <dd>A JavaScript object with its keys linking to custom formats for numbers, currency, or dates, meant to be passed in to the Intl.MessageFormat library. <a href="/javascript/#messageformat-strings">Find out more</a> about how to construct custom formats.</dd>
 </dl>
 
-<h3>Examples</h3>
-<p>
-    The {{code "{{#intl}}"}} block helper isn't meant to be used alone, but used to help organize and group together the other helpers.
-</p>
-
-<p>Template:</p>
-{{#code "generic"}}
-{{{examples.intl.source}}}
-{{/code}}
-
-<p>Rendered Output:</p>
-
-<div class="example">
-    {{{examples.intl.rendered}}}
-</div>

@@ -14,11 +14,12 @@
 
 <p>Context:</p>
 {{#code "js"}}
-{
+var context = {
     intl: {
         messages: {
             USER_HAS_BOOKS: "{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}."
-        }
+        },
+        locale: "en-US"
     },
     user: {
         firstName: "Tilo",

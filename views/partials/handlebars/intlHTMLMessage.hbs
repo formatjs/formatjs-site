@@ -12,19 +12,24 @@
 {{{examples.warning.source}}}
 {{/code}}
 
-<p>Context:</p>
+<p>JavaScript:</p>
 {{#code "js"}}
 var context = {
-    intl: {
-        messages: {
-             "SUBSCRIPTION_WARNING": "<strong>Warning:</strong> you have only <strong> {numDays, number, integer} </strong> {numDays, plural, one {day} other {days}} left in your subscription."
-        },
-        locale: "en-US"
-    },
     user: {
         daysLeft: 8
     }
-}
+};
+
+var intl = {
+    messages: {
+         "SUBSCRIPTION_WARNING": "<strong>Warning:</strong> you have only <strong> {numDays, number, integer} </strong> {numDays, plural, one {day} other {days}} left in your subscription."
+    },
+    locale: "en-US"
+};
+
+//`source` represents the contents of the Handlebars template.
+var template = Handlebars.compile(source);
+var html = template(context, {data: {intl: intl} });
 {{/code}}
 
 <p>Rendered Output:</p>

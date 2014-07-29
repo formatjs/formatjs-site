@@ -7,14 +7,19 @@
 {{{examples.number.source}}}
 {{/code}}
 
-<p>Context Object:</p>
+<p>JavaScript:</p>
 {{#code "js"}}
 var context = {
-    intl: {
-        locale: "de-DE"
-    },
     amount: 15000
 };
+
+var intl = {
+    locale: "de-DE"
+};
+
+//`source` represents the contents of the Handlebars template.
+var template = Handlebars.compile(source);
+var html = template(context, {data: {intl: intl} });
 {{/code}}
 
 <p>Rendered Output:</p>

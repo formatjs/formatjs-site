@@ -1,7 +1,16 @@
 {{sectionHeading "#intl"}}
 
-<p>Use the {{code "{{#intl}}"}} block helper to set up the specific locale or load in any custom messages that your helpers will be using.</p>
+<p>
+    Generally speaking, you should not need to use the {{code "{{#intl}}"}} block helper to load locales or messages. This can be done by passing in the {{code "intl"}} object as part of the {{code "data"}} object when evaluating a compiled template. Consider the code snippet below:
+</p>
 
+{{#code "js"}}
+var html = template(context,  {data: {intl: myIntlObject}});
+{{/code}}
+
+<p>
+    However, if needed, you can use the {{code "{{#intl}}"}} block helper to set up the specific locale or load in any custom messages that your helpers will be using. In this case, you will need to nest the {{code "intl"}} object within your {{code "context"}} object, as in the example below.
+</p>
 
 <h3>Example</h3>
 <p>
@@ -10,10 +19,10 @@
 
 <p>Template:</p>
 {{#code "generic"}}
-{{{examples.travel.source}}}
+{{{examples.intl.source}}}
 {{/code}}
 
-<p>Context:</p>
+<p>JavaScript:</p>
 {{#code "js"}}
 var context = {
     intl: {
@@ -35,12 +44,16 @@ var context = {
         price: 465
     }
 };
+
+//`source` represents the contents of the Handlebars template.
+var template = Handlebars.compile(source);
+var html = template(context);
 {{/code}}
 
 <p>Rendered Output:</p>
 
 <div class="example">
-    {{{examples.travel.rendered}}}
+    {{{examples.intl.rendered}}}
 </div>
 
 <h3>Hash Arguments (optional)</h3>

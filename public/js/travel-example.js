@@ -35,13 +35,14 @@ var travelExample = {
         var source   = APP.examples.hbs.travel,
             template = Handlebars.compile(source),
             locale   = document.querySelectorAll('#switcher select')[0].value,
-            html     = template({
-                intl: {
-                    formats: APP.intl.formats,
-                    locale: locale,
-                    messages: APP.translations[locale]
-                },
-                user: this.user
+            html     = template({user: this.user}, {
+                data: {
+                    intl:{
+                        formats: APP.intl.formats,
+                        locale: locale,
+                        messages: APP.translations[locale]
+                    }
+                }
             });
 
         document.getElementById('travel-example').innerHTML = html;
@@ -50,5 +51,6 @@ var travelExample = {
     init: function(){
         this.setup();
         this.bind();
+        this.render();
     }
 }

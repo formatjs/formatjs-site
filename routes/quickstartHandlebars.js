@@ -7,20 +7,21 @@ module.exports = function (req, res, next) {
         var hbsExamples = examples;
         Object.keys(hbsExamples).forEach(function(key) {
             var example = examples[key];
-
-            console.log(example);
             example.rendered = example.compiled({
+                //passing the intl object in here as well as line 29 so that the {{#intl}} example works.
                 intl: res.locals.intl,
                 user: {
                     firstName: 'Tilo',
                     lastName: 'Mitra',
-                    travelDate: new Date(),
-                    price: 465,
+                    numBooks: 20,
                     daysLeft: 8,
-                    numBooks: 20
+                    travelDate: new Date(),
+                    price: 465
                 },
+
+                amount: 15000,
                 now: new Date()
-            });
+            }, {data: {intl: res.locals.intl}});
 
             //expose just the source file for each example here.
             res.expose(example.source, 'examples.hbs.' + example.name);
@@ -33,7 +34,7 @@ module.exports = function (req, res, next) {
             '/bower_components/handlebars-helper-intl/dist/helpers.js'
         ], 'scripts');
 
-        res.render('quickstart/handlebars', {
+        res.render('start/handlebars', {
             examples: hbsExamples
         });
     }).catch(next);

@@ -5,11 +5,11 @@
 
 <aside>
     <p>
-        This page explains how you can localize text on the client side with the provided <a href="/quickstart#helpers-and-template-engines">Intl Helpers</a>. For this example, we are using Handlebars as our template engine, and leveraging the <a href="/handlebars">Intl Handlebars Helpers</a>.
+        This page explains how you can localize text on the client side with the provided <a href="/start#helpers-and-template-engines">Intl Helpers</a>. For this example, we are using Handlebars as our template engine, and leveraging the <a href="/handlebars">Intl Handlebars Helpers</a>.
     </p>
 
     <p>
-        For a more general introduction to Internationalization in the browser, <a href="/quickstart/browser">visit this page</a>.
+        For a more general introduction to Internationalization in the browser, <a href="/browser">visit this page</a>.
 </aside>
 
 
@@ -205,15 +205,8 @@ var context = {
 <p>Add the following {{code "<script>"}} tag to your page. This will define the Handlebars template's source. You can add this just before the closing {{code "</body>"}}.</p>
 
 
-<aside>
-    <p>
-        If you haven't referred to the <a href="/handlebars/">Intl Handlebars Helpers</a> documentation, the helpers below may appear new to you. We are wrapping the {{code "{{intlMessage}}"}} helper inside a {{code "{{#intl}}"}} context. Check out the Handlebars documentation for more information.
-    </p>
-</aside>
-
 {{#code "html"}}
 <script type="x-handlebars-template/text" id="travel-example-source">
-    \{{#intl locales=intl.locale messages=intl.messages formats=intl.formats}}
         <p>
         \{{intlMessage (intlGet "messages.TRAVEL")
                 firstName=user.firstName
@@ -221,12 +214,11 @@ var context = {
                 travelDate=user.travelDate
                 price=user.price}}
         </p>
-    \{{/intl}}
 </script>
 {{/code}}
 
 <p>
-    If you examine the code above, you'll notice that we're setting up references to the the context objects ({{code "intl"}}, and {{code "user"}}) within the Handlebars helper. We're also telling the helper to "get a message from {{code "messages.TRAVEL"}}". Once we compile the Handlebars template, these references will allow us to correctly render the string.
+    If you examine the code above, you'll notice that we're calling a ({{code "{{intlMessage}}"}} helper, and are referencing the {{code "user"}}) object within the helper. We're also telling the helper to "get a message from {{code "messages.TRAVEL"}}". Once we compile the Handlebars template, these references will allow us to correctly render the string.
 </p>
 
 
@@ -266,12 +258,11 @@ var source   = document.getElementById('travel-example-source').innerHTML,
 {{#code "js"}}
 function render (locale, template) {
     var html = template({
-        intl: {
-            messages: intl.messages[locale],
-            formats: intl.formats
-        },
         user: context
-    });
+    }, {data: intl: {
+        messages: intl.messages[locale],
+        formats: intl.formats
+    }});
 
     document.getElementById('travel-example').innerHTML = html;
 }
@@ -304,11 +295,11 @@ switcher.addEventListener('change', function(e) {
 {{sectionHeading "Complete Source"}}
 
 <p>
-    <a href="/quickstart/handlebars/rendered">Here's a complete source</a> of the page that we just created. Feel free to refer to it if you run into any issues. It's also copy/paste friendly.
+    <a href="/start/handlebars/rendered">Here's a complete source</a> of the page that we just created. Feel free to refer to it if you run into any issues. It's also copy/paste friendly.
 </p>
 
 {{sectionHeading "Moving Forward"}}
 
 <p>
-    The example that we just created was rendered completely on the client-side for simplicity. In a real-world project, we recommend rendering the initial response on the server. Check out the <a href="node">Server Quickstart Guide</a> to learn more about localizing strings on the server.
+    The example that we just created was rendered completely on the client-side for simplicity. In a real-world project, we recommend rendering the initial response on the server. Check out the <a href="node">Server Guide</a> to learn more about localizing strings on the server.
 </p>

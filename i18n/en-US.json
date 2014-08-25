@@ -1,7 +1,9 @@
 {
   "TITLE": "Your Personal Bookstore",
   "USER_HAS_BOOKS": "{firstName} {lastName} has {numBooks, number, integer} {numBooks, plural, one {book} other {books}}.",
-  "USER_WILL_SELL": "{firstName} will sell them on {dateBooks, date, long} for {price, number, USD}.",
+  "USER_HAS_BOOKS_DENOTED": "{firstName} {lastName} has <input id='numBooksInput' type='text' value='{numBooks, number, integer}' pattern='[0-9]*'> {numBooks, plural, one {book} other {books}}.",
+  "USER_WILL_SELL": "{firstName} will sell {numBooks, plural, one {it} other {them}} on {dateBooks, date, long} for {price, number, USD}.",
+  "USER_WILL_SELL_DENOTED": "{firstName} will sell {numBooks, plural, one {it} other {them}} on {dateBooks, date, long} for {price, number, USD}.",
   "SUBSCRIPTION_WARNING": "<strong>Warning:</strong> you have only <strong> {numDays, number, integer} </strong> {numDays, plural, one {day} other {days}} left in your subscription.",
   "TRAVEL": "{firstName} {lastName} will travel to Peru on {travelDate, date, long} for {price, number, USD}."
 }

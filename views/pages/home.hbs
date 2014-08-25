@@ -1,6 +1,32 @@
-<h2>A simple JavaScript API.</h2>
+{{addRemoteJS "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.4/handlebars.min.js"}}
+
+<h2>Integrates with template engines</h2>
 <p>
-    The Intl Message Format API allows developers to add localization support to their applications on the client and the server via <a href="http://nodejs.org">NodeJS</a>.
+    Localize your application with our <a href="http://handlebarsjs.com">Handlebars</a>, and <a href="http://linkedin.github.io/dustjs/">Dust</a> helpers, or our <a href="http://reactjs.org">React Mixins</a>.
+
+</p>
+
+<div class="pure-g">
+    <div class="l-box l-centered pure-u-1 pure-u-md-1-3">
+        <img class="l-img-block pure-image" src="http://cache.preserve.io/v5f01jmy/assets/7a270a6e6dbc5c9086d1c17bb0d5c030.png" height="100" alt="Handlebars">
+        <a href="/handlebars/">Use Intl with Handlebars</a>
+    </div>
+    <div class="l-box l-centered pure-u-1 pure-u-md-1-3">
+        <img class="l-img-block pure-image" src="http://photos4.meetupstatic.com/photos/event/6/9/6/6/600_344726982.jpeg" height="100" alt="Dust">
+        <a href="/dust/">Use Intl with Dust</a>
+    </div>
+    <div class="l-box l-centered pure-u-1 pure-u-md-1-3">
+        <img src="http://sc5.io/blog/wp-content/uploads/2014/06/react.png" alt="React" class="l-img-block pure-image" height="100">
+        <a href="/react/">Use Intl with React</a>
+    </div>
+
+</div>
+
+<hr class="rule">
+
+<h2>Extend using the JavaScript API</h2>
+<p>
+    The Intl Message Format API allows developers to add localization support to their applications on the client and the server via <a href="http://nodejs.org">NodeJS</a>. You can use the API to build helpers for other template engines.
 </p>
 
 <a class="btn pure-button" href="/node">Server Guide</a>
@@ -8,20 +34,17 @@
 
 <hr class="rule">
 
-<h2>Works with template engines.</h2>
-<p>
-    In addition to the JavaScript API, we have helpers that you can use with <a href="http://handlebarsjs.com">Handlebars</a>, <a href="http://linkedin.github.io/dustjs/">Dust</a>, or <a href="http://reactjs.org">React</a>.
-
-    <ul>
-        <li><a href="/handlebars/">Use Intl with Handlebars</a></li>
-        <li><a href="/dust/">Use Intl with Dust</a></li>
-        <li><a href="/react/">Use Intl with React</a></li>
-    </ul>
-</p>
-
-<hr class="rule">
-
 <h2>Developed by Yahoo. Open source for everyone.</h2>
 <p>
     Intl Message Format and its associated helpers were developed at Yahoo, and are being used in popular sites like <a href="https://flickr.com">Flickr</a>. The project is open-source and available on <a href="/github/">GitHub</a>.
 </p>
+
+
+<script type="text/x-handlebars" id="about-template">
+    <div class="splash-about-inner">
+        <p>
+            The example above uses the <a href="/handlebars">Handlebars helpers</a> to localize a string of text in multiple langauges with support for pluralization. The text above is composed from an <a href="http://userguide.icu-project.org/formatparse/messages">ICU formatted message</a>, which is locale and template-engine agnostic:
+        </p>
+        <pre><code>\{{{code}}}</code></pre>
+    </div>
+</script>

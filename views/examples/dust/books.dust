@@ -1,1 +1,0 @@
-{@intlMessage _msg=intl.messages.USER_HAS_BOOKS firstName=user.firstName lastName=user.lastName numBooks=user.numBooks /}

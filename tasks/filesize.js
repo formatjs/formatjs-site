@@ -1,11 +1,10 @@
 'use strict';
 
-var path    = require('path'),
-    Promise = require('ypromise'),
-    utils   = require('../lib/utils'),
-    zlib    = require('zlib');
+var path  = require('path'),
+    utils = require('../lib/utils'),
+    zlib  = require('zlib');
 
-var gzip    = utils.promisify(zlib.gzip);
+var gzip = utils.promisify(zlib.gzip);
 
 function getLength(compressed) {
     return compressed.length;
@@ -21,7 +20,8 @@ module.exports = function (grunt) {
             });
 
             var sizes = Promise.all(src.map(function(filepath) {
-                return gzip(grunt.file.read(path.join(file.cwd, filepath))).then(getLength);
+                filepath = path.join(file.cwd, filepath);
+                return gzip(grunt.file.read(filepath)).then(getLength);
             }));
 
             return sizes.then(function (values) {
@@ -35,7 +35,7 @@ module.exports = function (grunt) {
                 });
 
                 // Write joined contents to destination filepath.
-                grunt.file.write(file.dest, JSON.stringify(result));
+                grunt.file.write(file.dest, JSON.stringify(result, null, 4));
                 // Print a success message.
                 grunt.log.writeln('File "' + file.dest + '" created.');
 

@@ -1,9 +1,10 @@
 'use strict';
 
 module.exports = function (route) {
-    route.name = 'react';
+    route.name = 'github';
+    route.menu = 'GitHub';
 
     route.get(function (req, res, next) {
-        res.render('react');
+        res.render('github');
     });
 };

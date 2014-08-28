@@ -1,7 +1,0 @@
-{
-    "TITLE": "你的個人書店",
-    "USER_HAS_BOOKS": "{firstName} {lastName}有{numBooks, number, integer}本書。",
-    "USER_WILL_SELL": "他將會在{dateBooks, date, long}以{price, number, USD}出售這些書。",
-    "SUBSCRIPTION_WARNING": "<strong>温馨提示</strong>: 你的訂閱期限只剩<strong>{numDays, number, integer}</strong>天。",
-    "TRAVEL": "{firstName} {lastName} 會在{travelDate, date, long}花{price, number, USD}去秘鲁。"
-}

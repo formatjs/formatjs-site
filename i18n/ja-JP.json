@@ -1,7 +1,0 @@
-{
-  "TITLE": "あなたのブックストア",
-  "USER_HAS_BOOKS": "{firstName} {lastName}は{numBooks, number, integer}冊{numBooks, plural, one {の} other {もの}}本を持っています。",
-  "USER_WILL_SELL": "{firstName}はこの本を{dateBooks, date, long}に{price, number, USD}で売ります。",
-  "SUBSCRIPTION_WARNING": "<strong>警告：</strong>あなたの購読期間は残り<strong> {numDays, number, integer} </strong> {numDays, plural, one {日} other {日}}です。",
-  "TRAVEL": "{firstName} {lastName}は{travelDate, date, long}に{price, number, USD}でペルーに旅行に行きます。"
-}

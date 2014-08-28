@@ -1,53 +1,73 @@
 {
-  "name": "js-intl-docs-site",
-  "description": "Documentation for Yahoo Intl Docs",
-  "homepage": "",
-  "version": "0.0.0",
+  "name": "js-intl-docs",
+  "version": "1.0.0",
+  "description": "Documentation for client/server internationalization in JavaScript.",
   "private": true,
-  "repository": "git://github.com/yahoo/js-intl-docs.git#website",
-  "author": "Tilo Mitra <tilomitra@gmail.com> (http://www.tilomitra.com/)",
-  "contributors": [
-    "Juan Dopazo <jdopazo@yahoo-inc.com>"
-  ],
   "main": "server.js",
-  "engines": {
-    "node": ">=0.8.x",
-    "npm": ">=1.1.2"
-  },
   "dependencies": {
-    "express": "4.x",
-    "express3-handlebars": "0.5.0",
-    "express-slash": "^2.0.0",
-    "handlebars": "^2.0.0-alpha.4",
-    "compression": "~1.0.3",
-    "errorhandler": "~1.0.1",
-    "intl": "^0.1.4",
-    "intl-messageformat": "^0.1.0",
-    "handlebars-helper-intl": "^0.1.0",
+    "compression": "^1.0.11",
+    "dust-helper-intl": "^1.0.0-beta-1",
+    "dustjs-linkedin": "^2.4.0",
+    "errorhandler": "^1.1.1",
+    "express": "^4.8.5",
+    "express-handlebars": "^1.0.1",
+    "express-slash": "^2.0.1",
     "express-state": "^1.2.0",
-    "dustjs-linkedin": "~2.4.0",
-    "dust-helper-intl": "0.0.3",
-    "ypromise": "~0.2.3",
+    "glob": "^4.0.5",
+    "handlebars": "^2.0.0-alpha.4",
+    "handlebars-helper-intl": "^1.0.0-rc-2",
+    "intl": "^0.1.4",
+    "intl-messageformat": "^1.0.0-rc-2",
+    "js-yaml": "^3.2.1",
+    "morgan": "^1.2.3",
     "nodeify": "^1.0.0",
-    "react": "~0.10.0",
-    "react-intl": "0.1.0-rc-1",
-    "morgan": "^1.1.1"
+    "react": "^0.11.1",
+    "react-intl": "^1.0.0-rc-1",
+    "reverend": "^0.3.0",
+    "serve-favicon": "^2.1.1",
+    "serve-static": "^1.5.3",
+    "ypromise": "^0.2.3"
   },
   "devDependencies": {
-    "bower": "^1.3.8",
+    "bower": "^1.3.9",
+    "broccoli": "^0.12.3",
+    "broccoli-es6-module-transpiler": "git://github.com/ericf/broccoli-es6-module-transpiler#bundle-format-fixes",
+    "broccoli-file-mover": "^0.4.0",
+    "broccoli-merge-trees": "^0.1.4",
+    "broccoli-react": "^0.5.0",
+    "broccoli-sane-watcher": "0.0.6",
+    "broccoli-unwatched-tree": "^0.1.1",
     "grunt": "^0.4.5",
+    "grunt-broccoli-build": "^0.4.0",
     "grunt-cli": "^0.1.13",
-    "mocha": "^1.20.1",
-    "xunit-file": "~0.0.5"
+    "grunt-contrib-clean": "^0.6.0",
+    "mocha": "^1.21.4",
+    "rimraf": "^2.2.8",
+    "xunit-file": "^0.0.5"
   },
   "scripts": {
-    "test": "_mocha tests/index.js",
-    "postinstall": "bower install && grunt"
+    "test": "mocha tests/*",
+    "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yahoo/js-intl-docs.git"
+  },
+  "author": "Eric Ferraiuolo <eferraiuolo@gmail.com>",
+  "contributors": [
+    "Tilo Mitra <tilomitra@gmail.com>",
+    "Juan Dopazo <jdopazo@yahoo-inc.com>",
+    "Clarence Leung <clarle@yahoo-inc.com>"
+  ],
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/yahoo/js-intl-docs/issues"
+  },
+  "homepage": "http://intljs.io/",
   "yahoo": {
     "bugzilla": {
       "product": "yui utilities",
-       "component": "Intl"
+      "component": "Intl"
     },
     "custodian": {
       "email": "jlecomte@yahoo-inc.com",

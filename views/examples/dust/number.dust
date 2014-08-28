@@ -1,1 +1,0 @@
-{@intlNumber val=amount locales=intl.locale style="currency" currency="EUR"/}

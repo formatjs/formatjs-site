@@ -1,13 +1,17 @@
 {
   "name": "js-intl-docs",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "homepage": "http://intljs.io/",
+  "authors": [
+    "Eric Ferraiuolo <eferraiuolo@gmail.com>",
+    "Tilo Mitra <tilomitra@gmail.com>",
+    "Juan Dopazo <jdopazo@yahoo-inc.com>",
+    "Clarence Leung <clarle@yahoo-inc.com>"
+  ],
+  "description": "Documentation for client/server internationalization in JavaScript.",
+  "license": "BSD",
   "private": true,
   "dependencies": {
-    "rainbow": "~1.1.9",
-    "yepnope": "~1.5.4",
-    "intl-messageformat": "~0.1.0",
-    "react-intl": "0.1.0-rc-1",
-    "dust-helper-intl": "~0.1.0",
-    "handlebars-helper-intl": "~0.1.1"
+    "rainbow": "~1.1.9"
   }
 }

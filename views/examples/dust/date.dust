@@ -1,1 +1,0 @@
-{@intlDate val=now weekday="long" timeZone="UTC" locales="en-US"/}

@@ -1,50 +1,41 @@
-{{addRemoteJS "//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.4/handlebars.min.js"}}
+<section class="splash">
+    {{> nav}}
 
-<h2>Integrates with template engines</h2>
-<p>
-    Localize your application with our <a href="http://handlebarsjs.com">Handlebars</a>, and <a href="http://linkedin.github.io/dustjs/">Dust</a> helpers, or our <a href="http://reactjs.org">React Mixins</a>.
+    <div class="splash-content l-wrap">
+        <h1 class="tagline">Localize your web apps on the client and server.</h1>
 
-</p>
+        <div class="splash-example-container l-wrap">
+            {{{example}}}
+        </div>
 
-<div class="pure-g">
-    <div class="l-box l-centered pure-u-1 pure-u-md-1-3">
-        <img class="l-img-block pure-image" src="http://cache.preserve.io/v5f01jmy/assets/7a270a6e6dbc5c9086d1c17bb0d5c030.png" height="100" alt="Handlebars">
-        <a href="/handlebars/">Use Intl with Handlebars</a>
-    </div>
-    <div class="l-box l-centered pure-u-1 pure-u-md-1-3">
-        <img class="l-img-block pure-image" src="http://photos4.meetupstatic.com/photos/event/6/9/6/6/600_344726982.jpeg" height="100" alt="Dust">
-        <a href="/dust/">Use Intl with Dust</a>
-    </div>
-    <div class="l-box l-centered pure-u-1 pure-u-md-1-3">
-        <img src="http://sc5.io/blog/wp-content/uploads/2014/06/react.png" alt="React" class="l-img-block pure-image" height="100">
-        <a href="/react/">Use Intl with React</a>
-    </div>
-
-</div>
-
-<hr class="rule">
-
-<h2>Extend using the JavaScript API</h2>
-<p>
-    The Intl Message Format API allows developers to add localization support to their applications on the client and the server via <a href="http://nodejs.org">NodeJS</a>. You can use the API to build helpers for other template engines.
-</p>
-
-<a class="btn pure-button" href="/node">Server Guide</a>
-<a class="btn pure-button" href="/browser">Browser Guide</a>
-
-<hr class="rule">
-
-<h2>Developed by Yahoo. Open source for everyone.</h2>
-<p>
-    Intl Message Format and its associated helpers were developed at Yahoo, and are being used in popular sites like <a href="https://flickr.com">Flickr</a>. The project is open-source and available on <a href="/github/">GitHub</a>.
-</p>
-
-
-<script type="text/x-handlebars" id="about-template">
-    <div class="splash-about-inner">
-        <p>
-            The example above uses the <a href="/handlebars">Handlebars helpers</a> to localize a string of text in multiple langauges with support for pluralization. The text above is composed from an <a href="http://userguide.icu-project.org/formatparse/messages">ICU formatted message</a>, which is locale and template-engine agnostic:
+        <p class="splash-cta">
+            <a class="splash-cta-button pure-button" href="{{pathTo 'guide'}}">
+                Get Started
+            </a>
         </p>
-        <pre><code>\{{{code}}}</code></pre>
     </div>
-</script>
+</section>
+
+<section class="standards">
+    <div class="l-wrap">
+        <h2>Built on standards.</h2>
+
+    </div>
+</section>
+
+<section class="integrations">
+    <div class="l-wrap">
+        <h2>Integrates with template and component libraries.</h2>
+
+    </div>
+</section>
+
+<section class="features">
+    <div class="l-wrap">
+        <h2>Formats numbers, dates, and complex messages.</h2>
+
+        <h2>Modular, and ready to use.</h2>
+
+        <h2>Runs in the browser and Node.js.</h2>
+    </div>
+</section>

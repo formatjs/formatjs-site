@@ -1,623 +1,215 @@
-/* ------------------------------------ */
-/* Base Styles (HTML elements directly) */
-/* ------------------------------------ */
-* {
-    -moz-box-sizing: border-box;
+/*
+pink: d092f7
+*/
+
+*,
+*:before,
+*:after {
     -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
-html,
-button,
-input,
-select,
-textarea,
+
+html, button, input, select, textarea,
 .pure-g [class *= "pure-u"] {
     font-family: "Open Sans", sans-serif;
 }
 
+.pure-button {
+    border-radius: 0.25em;
+}
+
+.pure-button-hover,
+.pure-button-active,
+.pure-button:hover,
+.pure-button:focus,
+.pure-button:active {
+    filter: none;
+    background-image: none;
+    box-shadow: none;
+}
+
 html,
-body,
-.wrapper {
-    min-height: 100%;
+body {
+    height: 100%;
 }
 
-body,
-p {
-    color: #666;
-    line-height: 1.6;
-    font-size: 14px;
-}
-
-a {
-    color: #8339C2;
-    text-decoration: none;
-}
-
-a:hover,
-a:focus {
-    color: #b759e9;
-    text-decoration: underline;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: #333;
-    font-weight: 500;
-}
-
-code {
-    padding: 2px 4px;
-    font-size: 90%;
-    white-space: nowrap;
-    border-radius: 3px;
-    padding: 2px 6px 3px;
+body {
+    min-wdith: 320px;
     line-height: 1.5;
-    white-space: nowrap;
 }
 
-pre {
-    color: #a2a8a8;
-    padding: 20px;
-    margin: 1em 0 3em;
-    font-family: monaco, monospace;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 3px;
+h1, h2, h3, h4 {
+    font-weight: 300;
 }
 
-pre code {
-    display: block;
-    padding: 0.5em;
-    color: #333;
-    white-space: pre-wrap;
-}
-
-aside {
-    background: #E9D7F2;
-    padding: 1em;
-    border-radius: 3px;
-}
-
-
-/* -------------------- */
-/* Pure Menu Dropdowns  */
-/* -------------------- */
-.pure-menu ul li:hover > ul,
-.pure-menu ul li:focus > ul {
-    display: block;
-    top: 0;
-    left: 100%;
-    visibility: visible;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.pure-menu.pure-menu-horizontal > ul > li:hover > .pure-menu-children,
-.pure-menu.pure-menu-horizontal > ul > li:focus > .pure-menu-children {
-    top: 100%;
-    left: 0;
-    display: block;
-    width: inherit;
-}
-
-.pure-menu.pure-menu-horizontal li .pure-menu-children {
-    border: 1px solid #eee;
-}
-
-.pure-menu-horizontal > .pure-menu-children > .pure-menu-can-have-children > .pure-menu-label {
-    *zoom: expression(
-        this.runtimeStyle.zoom = "1",
-        this.innerHTML += '<span class="pure-dropdown-arrow">\25BE</span>'
-        );
-}
-
-.pure-dropdown-arrow {
-    padding-left: 10px;
-    margin-right: -20px;
-    margin-top: -1px;
-    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'DejaVu Sans', sans-serif;
-}
-
-.pure-menu-has-children > .pure-menu-label:after {
-    content: "\25BE";
-}
-
-/* --------------------- */
-/* Responsive Pure Menu  */
-/* --------------------- */
-
-.pure-menu-horizontal {
-    width: 100%;
-    border-left: none;
-    border-right: none;
-}
-
-.pure-menu-responsive .pure-menu-toggle {
-    float: right;
-    text-transform: uppercase;
-    font-size: 80%;
-    display: none;
-}
-
-.pure-menu-responsive.pure-menu-active .pure-menu-toggle {
-    display: block;
-}
-
-
-.pure-menu-responsive .pure-menu-toggle:after {
-    content: "\25BE";
-    float: right;
-    /* These specific fonts have the Unicode char we need. */
-    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'DejaVu Sans', sans-serif;
-    margin-right: -15px;
-    margin-top: -1px;
-}
-
-.pure-menu-responsive.pure-menu-horizontal.pure-menu-active > ul,
-.pure-menu-responsive.pure-menu-active .menu-item {
-    display: block;
-    float: none;
-}
-
-.pure-menu-responsive .pure-menu-toggle {
-    display: block;
-    font-size: 90%;
-    letter-spacing: 0.2em;
+a:link,
+a:visited {
     text-decoration: none;
 }
 
-.splash .pure-menu-toggle {
-    color: white;
+.l-wrap {
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.pure-menu-responsive.pure-menu-horizontal > ul {
-    display: none;
+.example-output-enter {
+    opacity: 0.01;
+    transition: opacity 0.5s ease-in;
 }
-
-.pure-menu-responsive.pure-menu-active .pure-menu-children li {
-    border-color: transparent;
+.example-output-enter-active {
+    opacity: 1;
 }
-
-/* --------------- */
-/* Helper Classes  */
-/* --------------- */
-
-.upper {
-    text-transform: uppercase;
-    color: rgba(0,0,0,0.5);
-}
-
-
-hr {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    border: 0;
-    border-top: 1px solid #eee;
-    height: 0;
-    -webkit-box-sizing: content-box;
-    -moz-box-sizing: content-box;
-    box-sizing: content-box;
-}
-
-.rule {
-    width: 100px;
-    margin: 30px auto;
-}
-
-/* ------- */
-/* Buttons */
-/* ------- */
-.btn {
-    background: transparent;
-    border: 1px solid #D5C6DD;
-    color: #8339C2;
-    border-radius: 3px;
-    -webkit-transition: all 0.25s;
-    -moz-transition: all 0.25s;
-    transition: all 0.25s;
-}
-
-.btn-small {
-    font-size: 0.8em;
-}
-
-.splash-btn {
-    border: 1px solid white;
-    color: white;
-}
-
-.btn-primary {
-    background: rgb(76, 25, 100);
-    border: 1px solid rgb(76, 25, 100);
-}
-
-.btn:hover,
-.btn:active {
-    background: #8339C2;
-    color: white;
-    text-decoration: none;
-}
-.btn-primary:hover,
-.btn-primary:focus {
-    background: #8339C2;
-    border-color: #8339C2;
-}
-
-.animated {
-    -webkit-transition: all 0.25s;
-    -moz-transition: all 0.25s;
-    transition: all 0.25s;
-}
-
-/* ---------------------------------- */
-/* Splash Menu (Menu on the homepage) */
-/* ---------------------------------- */
 
 .splash {
-    background: transparent url('/images/splash-head.jpg') no-repeat;
+    background: url('/img/splash-head.jpg') no-repeat;
     background-size: cover;
-    width: 100%;
-    min-height: 100%;
-    font-size: 1em;
-    padding-bottom: 17%;
+    color: #fff;
     text-align: center;
 }
-
-.splash-head,
-.splash-example {
-    padding: 1em 2em 0;
+.splash a:link,
+.splash a:visited {
+    color: #fff;
 }
 
-.splash-head {
-    font-weight: 300;
-    color: white;
-    font-size: 1.75em;
+.nav,
+.splash-example-controls {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    -ms-flex-align: baseline;
+    -webkit-align-items: baseline;
+    align-items: baseline;
 }
 
-.splash-rule {
-    border-color: #d092f7;
+.splash-example-container {
+    max-width: 40rem;
+}
+.splash-example-output {
+    padding: 1rem;
+    border: 0.125rem solid #d092f7;
+    border-radius: 0.5rem;
+}
+.splash-example-controls,
+.splash-example-controls a:link,
+.splash-example-controls a:visited {
+    color: #d092f7;
+}
+.splash-example-controls {
+    margin-top: 0.25rem;
+}
+.splash-example-control:first-child {
+    margin-right: 1rem;
+}
+.splash-example-label {
+    margin-right: 0.375rem;
 }
 
-/*
-We need to add the #menu prefix for specificity on these selectors
-until we update the menu styles in Pure.
-*/
-#menu.pure-menu-open {
-    text-align: left;
+.splash-cta-button {
+    color: #fff;
     background: transparent;
-    font-weight: 300;
+    border: 1px solid #fff;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+.nav {
     text-transform: uppercase;
-    border-bottom: 1px solid #ddd;
 }
-
-.splash #menu.pure-menu-open {
-    border: none;
+.nav a {
+    padding: 0.5rem;
 }
-
-/* We only want the menu to be white when it is within the .splash selector */
-#menu .menu-heading,
-.menu-item a {
-    letter-spacing: 0.13em;
-}
-
-.splash #menu .menu-heading,
-.splash .menu-item a {
-    color: white;
-}
-
-
-#menu .menu-heading {
-    letter-spacing: 0.2em;
-    text-align: center;
-    padding: 5px 10px;
-}
-
-#menu .menu-item a {
-    font-size: 0.75em;
-    padding: 5px 10px;
-}
-
-#menu .menu-item a:hover,
-#menu .menu-item a:focus {
-    background: transparent;
-    text-decoration: none;
-    color: #d092f7;
-}
-
-/* not the main children, but sub-children */
-.splash #menu > ul .pure-menu-children {
-    background: #603a7c;
-    color: white;
-    border-color: transparent;
-}
-
-.splash-example {
-    max-width: 40em;
-    margin: 0 auto;
-}
-.splash-example-message {
-    padding: 1em;
-    border: 2px solid #d092f7;
-    border-radius: 10px;
-    color: rgba(0,0,0,0); /* transparent */
-    transition: color 0.65s ease-in-out 0.25s;
-}
-
-.splash-example-meta {
-    margin-top: 1em;
-    font-size: 0.7em;
+.nav-menu {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
     font-weight: 300;
 }
-
-.splash-example-meta,
-.splash-example-meta a {
-    color: #d092f7;
+.nav-menu-item:first-child {
+    margin-left: 0;
+}
+.nav-menu-item:last-child {
+    margin-right: 0;
 }
 
-.splash-example-switcher {
-    text-align: right;
-}
+@media screen and (min-width: 0) {
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.25rem; }
+    h3 { font-size: 1.125rem; }
 
-.show {
-    color: white;
-}
-
-/* ----------------------------------------------------- */
-/* Content (all the docs should be within this selector) */
-/* ----------------------------------------------------- */
-.l-box {
-    padding: 10px;
-}
-
-.l-centered {
-    text-align: center;
-}
-
-.l-img-block {
-    margin: 0 auto;
-    display: block;
-}
-
-.content {
-    max-width: 40em;
-    margin: 0 auto;
-    padding: 1.5em;
-}
-
-.warning {
-    color: #a31515;
-}
-
-/* ------ */
-/* Footer */
-/* ------ */
-.footer {
-    background: #F6F6F6;
-    margin-top: 3.4286em;
-    padding: 1.1429em;
-    text-align: center;
-}
-
-.footer p,
-.footer li {
-    color: #777;
-    font-size: 0.8em;
-}
-
-.legal {
-    line-height: 1.6;
-}
-
-.legal-license {
-    margin-top: 0;
-}
-.legal-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.legal-copyright {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-/* --------------------------------------------------------- */
-/* Example (all the examples should be within this selector) */
-/* --------------------------------------------------------- */
-.example {
-    padding: 1em;
-    border: 1px solid #DBDAC8;
-    border-radius: 3px;
-    background: rgb(255, 255, 233);
-    box-shadow: 0 0 3px rgba(203, 205, 188, 0.3);
-}
-
-.switcher {
-    text-align:right;
-    padding-top: 4px;
-}
-
-.parameters-list dt code {
-    background: none;
-    border: none;
-    font-size: 100%;
-    padding: 0;
-    margin: 0;
-}
-
-.parameters-list dt {
-    font-weight: bold;
-}
-
-.parameters-list dd {
-    margin: 0;
-    padding-bottom: 1em;
-}
-
-.sidebar {
-    display: none;
-}
-
-@media screen and (max-width: 48em) {
-    .pure-menu-responsive.pure-menu-active .pure-menu-children {
-        display: block;
-        visibility: visible;
-        position: static;
+    .l-wrap {
+        padding-left: 0.625rem;
+        padding-right: 0.625rem;
     }
-}
-
-@media screen and (min-width: 25em) {
-    #menu .menu-heading {
-        display: inline-block;
-        text-align: left;
-    }
-}
-
-@media screen and (min-width: 35.5em) {
-    .footer {
-        text-align: left;
-    }
-    .legal-links, .legal-copyright {
-        text-align: right;
-    }
-}
-
-
-@media screen and (min-width: 48em) {
-
-    #menu > ul {
-        display: inline;
-    }
-
-
-    .pure-menu-responsive .pure-menu-toggle,
-    .pure-menu-responsive.pure-menu-active .pure-menu-toggle {
-        display: none;
-    }
-
-    .pure-menu-responsive.pure-menu-horizontal > ul,
-    .pure-menu-responsive.pure-menu-active .menu-item {
-        float: right;
-    }
-
-/*    .pure-menu-responsive.pure-menu-active > ul,
-    .pure-menu-responsive.pure-menu-active .menu-item  {
-        float: right;
-    }*/
-
-    .body-has-sections {
-        background: #603a7c;
-    }
-
-    .wrapper-has-sections {
-        margin-right: 200px;
-        background: white;
-    }
-
-    .sidebar-wrapper {
-        padding-top: 3em; /* should match about the position of the first h1 */
-        margin-right: -200px;
-        width: 200px;
-        float: right;
-    }
-
-    .sidebar {
-        display: block;
-        padding: 1em 2em 0;
-        text-align: right;
-        font-size: 0.875em;
-        width: 200px;
-    }
-
-    .sidebar-head {
-        margin-bottom: 0;
-    }
-
-    .sidebar-list {
-        list-style: none;
-        padding: 0;
-    }
-
-    .sidebar-list-item {
-        padding: 0.4em 0;
-        line-height: 1.2em;
-    }
-
-    .sidebar-list-item a {
-        color: #AD76CA;
-        -webkit-transition: color 150ms ease-in-out;
-        -moz-transition: color 150ms ease-in-out;
-        -ms-transition: color 150ms ease-in-out;
-        -o-transition: color 150ms ease-in-out;
-        transition: color 150ms ease-in-out;
-    }
-
-    .sidebar-title {
-        font-weight: 300;
-        margin-top: 0;
-    }
-
-    .sidebar-title,
-    .is-sidebar-list-item-active a {
-        color: white;
-    }
-
 
     .splash {
-        font-size: 1.2em;
+        min-height: 100%;
+        padding-bottom: 2rem;
     }
 
-    .splash-head {
-        font-size: 1.9em;
-        padding: 2em 5em 0;
+    .nav {
+        margin: 0 0.125rem 1rem;
     }
 
-    #menu .menu-item a {
-        padding: 5px 20px;
+    .tagline {
+        margin: 2rem 0;
     }
 
-    .box {
-        padding-right: 1em;
-    }
-}
-
-@media screen and (min-width: 60em) {
-    body, p {
-        font-size: 16px;
+    .splash-example-output {
+        font-size: 1.25rem;
     }
 
-    .content {
-        max-width: 50em;
+    .splash-cta {
+        font-size: 1.125rem;
+        margin: 4rem 0 2rem;
     }
 }
 
-
-
-/* Page Specific CSS */
-
-/* Home Page */
-#numBooksInput {
-    width: 60px;
-    text-align: center;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid white;
-    color: white;
-    font-weight: bold;
+@media screen and (max-height: 20em) {
+    .splash-cta {
+        margin-top: 2rem;
+    }
 }
 
-.splash-about-inner {
-    border-radius: 10px;
-    margin-top: 1em;
-    padding: 1em;
-    background: white;
-    text-align: left;
+@media screen and (min-width: 30em) {
+    .nav-menu-item {
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+    }
 }
 
-.splash-about-inner p {
-    font-size: 14px;
+@media screen and (min-width: 40em), screen and (min-height: 40em) {
+    .splash {
+        min-height: 50%;
+    }
+}
+
+@media screen and (min-width: 48em) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.25rem; }
+
+    .l-wrap {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .nav {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .tagline {
+        margin: 4rem 0;
+    }
+
+    .splash-cta {
+        font-size: 1.25rem;
+    }
 }

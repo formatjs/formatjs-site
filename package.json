@@ -47,7 +47,7 @@
   "yahoo": {
     "bugzilla": {
       "product": "yui utilities",
-       "component": "Intl"
+      "component": "Intl"
     },
     "custodian": {
       "email": "jlecomte@yahoo-inc.com",

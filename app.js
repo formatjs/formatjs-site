@@ -51,9 +51,9 @@ var router = express.Router({
     strict       : app.get('strict routing')
 });
 
-// if (app.get('env') === 'development') {
+if (app.get('env') === 'development') {
     app.use(middleware.logger('tiny'));
-// }
+}
 
 app.use(middleware.compress());
 // app.use(middleware.favicon(path.join(config.dirs.build, 'favicon.ico')));

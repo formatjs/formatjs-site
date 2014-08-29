@@ -18,18 +18,21 @@ export default React.createClass({
     },
 
     render: function () {
+        var currentLocale = this.state.currentLocale,
+            messages      = this.props.intl.messages[currentLocale];
+
         return (
             <div>
                 <HandlebarsOutput
-                    locales={this.state.currentLocale}
+                    locales={currentLocale}
                     formats={this.props.intl.formats}
-                    messages={this.props.intl.messages}
+                    messages={messages}
 
                     source={this.props.source}
                     context={this.props.context} />
 
                 <LocaleSelect
-                    currentLocale={this.state.currentLocale}
+                    currentLocale={currentLocale}
                     availableLocales={this.props.intl.availableLocales}
                     onLocaleChange={this.updateLocale} />
             </div>

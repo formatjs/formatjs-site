@@ -3,7 +3,9 @@
 import HandlebarsExample from '../components/handlebars-example';
 
 export default function init(state) {
-    state.examples.forEach(function (example) {
+    Object.keys(state.examples).forEach(function (name) {
+        var example = state.examples[name];
+
         hydrateExampleOutput(example.id, example.type, {
             source : example.source.template,
             context: example.context,

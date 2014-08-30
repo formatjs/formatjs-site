@@ -10,6 +10,16 @@ export default React.createClass({
     displayName: 'HandlebarsExample',
     mixins     : [ExampleMixin],
 
+    genderateRenderCode: function () {
+        return [
+            this.generateIntlDataCode(),
+            '',
+            'var html = template(context, {',
+            '    data: {intl: intlData}',
+            '});'
+        ].join('\n');
+    },
+
     render: function () {
         var example       = this.props.example,
             currentLocale = this.state.currentLocale,
@@ -18,15 +28,18 @@ export default React.createClass({
         return (
             <div id={example.id} className="example">
                 <div className="example-source">
+                    <h3>Template</h3>
                     <Code lang="html">{example.source.template}</Code>
                 </div>
 
                 <div className="example-context">
+                    <h3>Context</h3>
                     <Code lang="javascript">{example.source.context}</Code>
                 </div>
 
-                <div className="example-intl">
-                    <Code lang="javascript">{this.generateIntlDataCode()}</Code>
+                <div className="example-render">
+                    <h3>Rendering</h3>
+                    <Code lang="javascript">{this.genderateRenderCode()}</Code>
                 </div>
 
                 <div className="example-output">

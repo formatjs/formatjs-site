@@ -8,9 +8,9 @@ exports = module.exports = {
     dirs: {
         build   : path.resolve('build/'),
         i18n    : path.resolve('i18n/'),
+        examples: path.resolve('examples/'),
         views   : path.resolve('views/pages/'),
         layouts : path.resolve('views/layouts/'),
-        partials: path.resolve('views/partials/'),
-        examples: path.resolve('views/examples/')
+        partials: path.resolve('views/partials/')
     }
 };

@@ -3,12 +3,9 @@
 import HandlebarsExample from '../components/handlebars-example';
 
 export default function init(state) {
-    Object.keys(state.examples).forEach(function (name) {
-        var example = state.examples[name];
-
+    state.examples.forEach(function (example) {
         hydrateExampleOutput(example.id, example.type, {
-            source : example.source.template,
-            context: example.context,
+            example: example,
             intl   : state.intl
         });
     });
@@ -22,7 +19,7 @@ function hydrateExampleOutput(id, type, props) {
 
     React.renderComponent(
         new OutputComponent(props),
-        exampleNode.querySelector('.example-output')
+        exampleNode.parentNode
     );
 }
 

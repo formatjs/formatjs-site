@@ -18,17 +18,15 @@ export default React.createClass({
         }
     },
 
-    getIntlData: function () {
-        return {
-            locales : this.props.locales,
-            formats : this.props.formats,
-            messages: this.props.messages
-        };
-    },
-
     render: function () {
         var html = this.state.template(this.props.context, {
-            data: {intl: this.getIntlData()}
+            data: {
+                intl: {
+                    locales : this.props.locales,
+                    formats : this.props.formats,
+                    messages: this.props.messages
+                }
+            }
         });
 
         return (

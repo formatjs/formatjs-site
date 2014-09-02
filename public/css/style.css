@@ -1,14 +1,14 @@
-/*
-pink:   rgb(208, 146, 247)
-purple: rgb(103, 58, 131)
-*/
+:root {
+    --white      : rgb(255, 255, 255);
+    --pink       : rgb(208, 146, 247);
+    --purple     : rgb(131, 57, 194);
+    --purple-dark: rgb(103, 58, 131);
+}
 
 *,
 *:before,
 *:after {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html, button, input, select, textarea,
@@ -46,6 +46,7 @@ h1, h2, h3, h4 {
 
 a:link,
 a:visited {
+    color: var(--purple);
     text-decoration: none;
 }
 
@@ -64,33 +65,28 @@ a:visited {
 }
 
 .head {
-    background: rgb(103, 58, 131);
+    background: var(--purple-dark);
 }
 .head a:link,
 .head a:visited {
-    color: #fff;
+    color: var(--white);
 }
 
 .splash {
     background: url('/img/splash-head.jpg') no-repeat;
     background-size: cover;
-    color: #fff;
+    color: var(--white);
     text-align: center;
 }
 .splash a:link,
 .splash a:visited {
-    color: #fff;
+    color: var(--white);
 }
 
 .nav,
 .splash-example-controls {
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: space-between;
     justify-content: space-between;
-    -ms-flex-align: baseline;
-    -webkit-align-items: baseline;
     align-items: baseline;
 }
 
@@ -99,13 +95,13 @@ a:visited {
 }
 .splash-example-output {
     padding: 1rem;
-    border: 0.125rem solid rgb(208, 146, 247);
+    border: 0.125rem solid var(--pink);
     border-radius: 0.5rem;
 }
 .splash-example-controls,
 .splash-example-controls a:link,
 .splash-example-controls a:visited {
-    color: rgb(208, 146, 247);
+    color: var(--pink);
 }
 .splash-example-controls {
     margin-top: 0.25rem;
@@ -118,9 +114,9 @@ a:visited {
 }
 
 .splash-cta-button {
-    color: #fff;
+    color: var(--white);
     background: transparent;
-    border: 1px solid #fff;
+    border: 1px solid var(--white);
     padding-left: 2em;
     padding-right: 2em;
 }
@@ -135,8 +131,6 @@ a:visited {
     margin: 0;
     padding: 0;
     list-style: none;
-    display: -ms-flexbox;
-    display: -webkit-flex;
     display: flex;
     font-weight: 300;
 }
@@ -145,6 +139,33 @@ a:visited {
 }
 .nav-menu-item:last-child {
     margin-right: 0;
+}
+
+.libs-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+.libs-list-item {
+    width: 33.3333%;
+    text-align: center;
+    align-self: flex-end;
+}
+.libs-list-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.libs-list-name {
+    order: 2;
+    margin: 0.5rem 0 0;
+}
+.libs-list-mark {
+    display: block;
+    order: 1;
+    max-width: 100%;
 }
 
 @media screen and (min-width: 0) {
@@ -178,6 +199,10 @@ a:visited {
         font-size: 1.125rem;
         margin: 4rem 0 2rem;
     }
+
+    .libs-list-item {
+        margin: 0 0.5rem;
+    }
 }
 
 @media screen and (max-height: 20em) {
@@ -190,6 +215,12 @@ a:visited {
     .nav-menu-item {
         margin-left: 0.25rem;
         margin-right: 0.25rem;
+    }
+}
+
+@media screen and (min-width: 35.5em) {
+    .libs-list-item {
+        margin: 0 1rem;
     }
 }
 
@@ -220,5 +251,9 @@ a:visited {
 
     .splash-cta {
         font-size: 1.25rem;
+    }
+
+    .libs-list-item {
+        margin: 0 1.5rem;
     }
 }

@@ -20,6 +20,7 @@ export default {
         return [
             "var intlData = {",
             "    locales : '" + this.state.currentLocale + "'",
+            "    formats : {…},",
             "    messages: {…}",
             "};"
         ].join('\n');

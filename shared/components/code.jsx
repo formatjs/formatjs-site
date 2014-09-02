@@ -5,6 +5,7 @@ export default React.createClass({
     displayName: 'Code',
 
     shouldComponentUpdate: function (nextProps) {
+        // This prevents double syntax highlighting of unchanged content.
         return this.props.children !== nextProps.children;
     },
 

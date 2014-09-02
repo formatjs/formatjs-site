@@ -10,13 +10,19 @@ export default React.createClass({
     displayName: 'HandlebarsExample',
     mixins     : [ExampleMixin],
 
+    statics: {
+        renderCode: [
+            'var html = template(context, {',
+            '    data: {intl: intlData}',
+            '});'
+        ].join('\n')
+    },
+
     genderateRenderCode: function () {
         return [
             this.generateIntlDataCode(),
             '',
-            'var html = template(context, {',
-            '    data: {intl: intlData}',
-            '});'
+            this.constructor.renderCode
         ].join('\n');
     },
 

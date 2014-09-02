@@ -1,5 +1,6 @@
 /*
-pink: d092f7
+pink:   rgb(208, 146, 247)
+purple: rgb(103, 58, 131)
 */
 
 *,
@@ -62,6 +63,14 @@ a:visited {
     opacity: 1;
 }
 
+.head {
+    background: rgb(103, 58, 131);
+}
+.head a:link,
+.head a:visited {
+    color: #fff;
+}
+
 .splash {
     background: url('/img/splash-head.jpg') no-repeat;
     background-size: cover;
@@ -90,13 +99,13 @@ a:visited {
 }
 .splash-example-output {
     padding: 1rem;
-    border: 0.125rem solid #d092f7;
+    border: 0.125rem solid rgb(208, 146, 247);
     border-radius: 0.5rem;
 }
 .splash-example-controls,
 .splash-example-controls a:link,
 .splash-example-controls a:visited {
-    color: #d092f7;
+    color: rgb(208, 146, 247);
 }
 .splash-example-controls {
     margin-top: 0.25rem;

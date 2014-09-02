@@ -1,10 +1,13 @@
 'use strict';
 
-var compileJSX     = require('broccoli-react'),
-    compileModules = require('broccoli-es6-module-transpiler'),
-    mergeTrees     = require('broccoli-merge-trees'),
-    moveFiles      = require('broccoli-file-mover'),
-    unwatchedTree  = require('broccoli-unwatched-tree');
+var autoprefixer     = require('autoprefixer-core'),
+    compileJSX       = require('broccoli-react'),
+    compileModules   = require('broccoli-es6-module-transpiler'),
+    customProperties = require('postcss-custom-properties'),
+    mergeTrees       = require('broccoli-merge-trees'),
+    moveFiles        = require('broccoli-file-mover'),
+    postcss          = require('./broccoli/postcss'),
+    unwatchedTree    = require('broccoli-unwatched-tree');
 
 var bower_components = unwatchedTree('bower_components/'),
     node_modules     = unwatchedTree('node_modules/'),
@@ -37,6 +40,13 @@ node_modules = moveFiles(node_modules, {
 
 shared = compileJSX(shared);
 pub    = compileJSX(pub);
+
+pub = postcss(pub, {
+    processors: [
+        customProperties(),
+        autoprefixer()
+    ]
+});
 
 var server = compileModules(shared, {
     description: 'ServerModules',

@@ -22,6 +22,10 @@ bower_components = moveFiles(bower_components, {
 
 node_modules = moveFiles(node_modules, {
     files: {
+        'es6-shim/es6-shim.js'    : 'vendor/es6-shim/es6-shim.js',
+        'es6-shim/es6-shim.min.js': 'vendor/es6-shim/es6-shim.min.js',
+        'es6-shim/es6-shim.js.map': 'vendor/es6-shim/es6-shim.js.map',
+
         'dustjs-linkedin/dist': 'vendor/dust',
         'handlebars/dist'     : 'vendor/handlebars',
         'react/dist'          : 'vendor/react',

@@ -1,5 +1,22 @@
 'use strict';
 
+// -- Configure JavaScript Runtime ---------------------------------------------
+
+var hasNativeIntl    = !!global.Intl,
+    hasNativePromise = !!global.Promise;
+
+require('es6-shim');
+
+hasNativeIntl    || (global.Intl = require('intl'));
+hasNativePromise || (global.Promise = require('ypromise'));
+
+global.React          = require('react/addons');
+global.ReactIntlMixin = require('react-intl');
+global.Handlebars     = require('handlebars');
+global.HandlebarsIntl = require('handlebars-helper-intl');
+
+// -----------------------------------------------------------------------------
+
 var path     = require('path'),
     express  = require('express'),
     expstate = require('express-state'),
@@ -8,18 +25,7 @@ var path     = require('path'),
 var config     = require('./config'),
     hbs        = require('./lib/hbs'),
     middleware = require('./middleware'),
-    routes     = require('./routes'),
-    utils      = require('./lib/utils');
-
-// -- Configure JavaScript Runtime ---------------------------------------------
-
-global.Intl    || (global.Intl = require('intl'));
-global.Promise || (global.Promise = require('ypromise'));
-
-global.React          = require('react/addons');
-global.ReactIntlMixin = require('react-intl');
-global.Handlebars     = require('handlebars');
-global.HandlebarsIntl = require('handlebars-helper-intl');
+    routes     = require('./routes');
 
 // -- Configure Express App ----------------------------------------------------
 
@@ -94,7 +100,7 @@ app.getPathTo = function (routeName, context) {
 
 // -- Locals -------------------------------------------------------------------
 
-utils.extend(app.locals, {
+Object.assign(app.locals, {
     brand      : app.get('name'),
     description: 'Localize your web apps on the client and server in JavaScript.',
 

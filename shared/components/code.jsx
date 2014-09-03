@@ -15,8 +15,11 @@ export default React.createClass({
     },
 
     render: function () {
+        var classNames = this.props.wrap ? 'code code-wrap': 'code',
+            lang       = this.props.lang;
+
         return (
-            <pre><code ref="code" data-language={this.props.lang}>
+            <pre className={classNames}><code ref="code" data-language={lang}>
                 {this.props.children}
             </code></pre>
         );

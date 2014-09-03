@@ -16,8 +16,7 @@ var bower_components = unwatchedTree('bower_components/'),
 
 bower_components = moveFiles(bower_components, {
     files: {
-        'rainbow/js'    : 'vendor/rainbow',
-        'rainbow/themes': 'vendor/rainbow/themes'
+        'rainbow/js': 'vendor/rainbow'
     }
 });
 

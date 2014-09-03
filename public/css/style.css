@@ -1,8 +1,13 @@
 :root {
-    --white      : rgb(255, 255, 255);
-    --pink       : rgb(208, 146, 247);
-    --purple     : rgb(131, 57, 194);
-    --purple-dark: rgb(103, 58, 131);
+    --black        : rgb(65, 57, 70);
+    --gray         : rgb(95, 90, 99);
+    --gray-medium  : rgb(100, 100, 100);
+    --gray-light   : rgb(247, 247, 247);
+    --white        : rgb(255, 255, 255);
+    --pink         : rgb(208, 146, 247);
+    --purple       : rgb(131, 57, 194);
+    --purple-medium: rgb(94, 67, 112);
+    --purple-dark  : rgb(103, 58, 131);
 }
 
 *,
@@ -38,9 +43,16 @@ body {
 body {
     min-wdith: 320px;
     line-height: 1.5;
+    color: var(--gray);
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
+    color: var(--black);
+    font-weight: 400;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+h1 {
     font-weight: 300;
 }
 
@@ -48,6 +60,36 @@ a:link,
 a:visited {
     color: var(--purple);
     text-decoration: none;
+}
+
+pre,
+code {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    color: var(--black);
+    background: var(--gray-light);
+}
+code {
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.125rem;
+}
+p code {
+    font-size: 90%;
+}
+.code {
+    padding: 1rem;
+    overflow-x: auto;
+    -webkit-overflow-srolling: touch;
+}
+.code code {
+    font-size: 90%;
+    white-space: pre;
+    word-wrap: normal;
+    padding: 0;
+    background: none;
+}
+.code-wrap code {
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 .l-wrap {
@@ -79,7 +121,8 @@ a:visited {
     text-align: center;
 }
 .splash a:link,
-.splash a:visited {
+.splash a:visited,
+.splash .tagline {
     color: var(--white);
 }
 
@@ -161,11 +204,13 @@ a:visited {
 .libs-list-name {
     order: 2;
     margin: 0.5rem 0 0;
+    color: var(--purple);
 }
 .libs-list-mark {
     display: block;
     order: 1;
-    max-width: 100%;
+    width: 100%;
+    max-width: 150px;
 }
 
 @media screen and (min-width: 0) {
@@ -238,6 +283,10 @@ a:visited {
     .l-wrap {
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+
+    .docs {
+        font-size: 1.125rem;
     }
 
     .nav {

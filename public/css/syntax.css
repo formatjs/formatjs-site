@@ -1,0 +1,59 @@
+:root {
+    --black        : rgb(65, 57, 70);
+    --gray         : rgb(95, 90, 99);
+    --gray-medium  : rgb(100, 100, 100);
+    --gray-light   : rgb(247, 247, 247);
+    --white        : rgb(255, 255, 255);
+    --pink         : rgb(208, 146, 247);
+    --purple       : rgb(131, 57, 194);
+    --purple-medium: rgb(94, 67, 112);
+    --purple-dark  : rgb(103, 58, 131);
+}
+
+pre .comment {
+    color: var(--gray);
+}
+
+pre .tag,
+pre .tag-name,
+pre .support.tag-name {
+    color: var(--gray-medium);
+}
+
+pre .keyword,
+pre .css-property,
+pre .vendor-prefix,
+pre .sass,
+pre .class,
+pre .id,
+pre .css-value,
+pre .entity.function,
+pre .storage.function {
+    font-weight: bold;
+}
+
+pre .css-property,
+pre .css-value,
+pre .vendor-prefix,
+pre .support.namespace {
+    color: var(--gray);
+}
+
+pre .constant.numeric,
+pre .keyword.unit,
+pre .hex-color {
+    font-weight: normal;
+    color: var(--purple);
+}
+
+pre .attribute,
+pre .variable,
+pre .support {
+    color: var(--purple-medium);
+}
+
+pre .string,
+pre .support.value  {
+    font-weight: normal;
+    color: var(--pink);
+}

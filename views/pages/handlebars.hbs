@@ -1,89 +1,16 @@
-{{setTitle "Handlebars Helpers for Internationalization"}}
+<section class="head">
+    {{> nav}}
+</section>
 
-<h1>Handlebars Helpers for Internationalization</h1>
+<section class="main docs l-wrap">
+    <h1>Handlebars</h1>
 
-<p>
-    If you're using the <a href="http://handlebarsjs.com/">Handlebars templating engine</a>, the Handlebars Internationalization Helpers are an easy way to internationalize your templates.
-</p>
+    <h2>\{{formatDate}}</h2>
+    {{~> example examples.date}}
 
-<p>This module clocks in at {{helperSize}} minified and compressed.</p>
+    <h2>\{{formatNumber}}</h2>
+    {{~> example examples.number}}
 
-<aside>
-    <p>
-        <strong>Note:</strong> Interested in localizing strings on the client-side? Check out this <a href="/start/handlebars/">step-by-step walkthrough</a>.
-    </p>
-</aside>
-
-{{sectionHeading "Installation"}}
-
-<p>
-    You can install the {{code "handlebars-helper-intl"}} module through <a href="http://bower.io">Bower</a> on the client side.
-</p>
-
-{{#code "shell"}}
-$ bower install handlebars-helper-intl
-{{/code}}
-
-<p>
-    Alternatively, you can install via <a href="http://npmjs.org">npm</a> on the server.
-</p>
-
-{{#code "shell"}}
-$ npm install handlebars-helper-intl
-{{/code}}
-
-<aside>
-    <p>
-        <strong>Note:</strong> When working with the client-side version of this helper, make sure that {{code "window.Intl"}} is
-        available, otherwise you'll need to install a polyfill. For more information check out the <a href="/browser#browser-compatibility">browser compatibility chart</a>.
-    </p>
-</aside>
-
-<p>
-    When serving the content on your page, you need to ensure that {{code "intl-messageformat.js"}} and {{code "handlebars.js"}} are loaded before the Handlebars helpers. These modules can also be installed via Bower and npm as well.
-</p>
-
-{{#code "html"}}
-<script src="intl-messageformat.js"></script>
-<script src="handlebars.js"></script>
-<script src="handlebars-helper-intl.js"></script>
-{{/code}}
-
-<p>
-    Once the scripts have loaded, you have to register the helpers so that they can be used in your project.
-</p>
-
-{{#code "js"}}
-HandlebarsHelperIntl.registerWith(Handlebars);
-{{/code}}
-
-<p>Now, you're ready to start internationalizing your Handlebars templates!</p>
-
-<hr class="rule">
-
-{{> handlebars/intlDate}}
-
-<hr class="rule">
-
-{{> handlebars/intlNumber}}
-
-<hr class="rule">
-
-{{> handlebars/intlMessage}}
-
-<hr class="rule">
-
-{{> handlebars/intlHTMLMessage}}
-
-<hr class="rule">
-
-{{> handlebars/intl}}
-
-<hr class="rule">
-<aside>
-    <p>
-        <strong>Note:</strong> The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">Mozilla Developer Network</a> provides
-        excellent
-        documentation about the underlying {{code "Intl"}} API's.
-    </p>
-</aside>
+    <h2>\{{formatMessage}}</h2>
+    {{~> example examples.message}}
+</section>

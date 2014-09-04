@@ -1,0 +1,11 @@
+<div class="nav">
+    <a class="brand-name" href="{{pathTo 'home'}}">{{brand}}</a>
+
+    <menu class="nav-menu">
+      {{#each menuItems}}
+        <li class="nav-menu-item">
+            <a href="{{pathTo name}}">{{label}}</a>
+        </li>
+      {{/each}}
+    </menu>
+</div>

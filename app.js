@@ -1,33 +1,40 @@
 'use strict';
 
-var Intl = global.Intl || require('intl');
+// -- Configure JavaScript Runtime ---------------------------------------------
 
-// TODO: This should be required by `handlebars-helper-intl`.
-require('intl-messageformat');
+var hasNativeIntl    = !!global.Intl,
+    hasNativePromise = !!global.Promise;
 
-var fs           = require('fs'),
-    path         = require('path'),
-    express      = require('express'),
-    expstate     = require('express-state'),
-    hbsIntl      = require('handlebars-helper-intl'),
-    compress     = require('compression'),
-    errorhandler = require('errorhandler');
+require('es6-shim');
+
+hasNativeIntl    || (global.Intl = require('intl'));
+hasNativePromise || (global.Promise = require('ypromise'));
+
+global.React          = require('react/addons');
+global.ReactIntlMixin = require('react-intl');
+global.Handlebars     = require('handlebars');
+global.HandlebarsIntl = require('handlebars-helper-intl');
+
+// -----------------------------------------------------------------------------
+
+var path     = require('path'),
+    express  = require('express'),
+    expstate = require('express-state'),
+    reverend = require('reverend');
 
 var config     = require('./config'),
     hbs        = require('./lib/hbs'),
     middleware = require('./middleware'),
     routes     = require('./routes');
 
-// -----------------------------------------------------------------------------
+// -- Configure Express App ----------------------------------------------------
 
 var app = module.exports = express();
 
-hbsIntl.registerWith(hbs.handlebars);
 expstate.extend(app);
 
-app.set('name', 'JS Intl Docs');
+app.set('name', 'IntlJS');
 app.set('port', config.port);
-app.set('locales', config.locales);
 app.set('default locale', 'en-US');
 app.set('state namespace', 'APP');
 
@@ -38,12 +45,10 @@ app.engine(hbs.extname, hbs.engine);
 app.set('view engine', hbs.extname);
 app.set('views', config.dirs.views);
 
-var allTranslations = config.locales.reduce(function (translations, locale) {
-    translations[locale] = require(path.join(config.dirs.i18n, locale));
-    return translations;
-}, {});
-
-app.expose(allTranslations, 'translations', { cache: true });
+if (app.get('env') === 'development') {
+    // This will watch files during development and automattically re-build.
+    app.watcher = require('./lib/watcher');
+}
 
 // -- Middleware ---------------------------------------------------------------
 
@@ -56,30 +61,65 @@ if (app.get('env') === 'development') {
     app.use(middleware.logger('tiny'));
 }
 
-app.use(compress());
-app.use(middleware.intl);
+app.use(middleware.compress());
+// app.use(middleware.favicon(path.join(config.dirs.build, 'favicon.ico')));
+app.use(middleware.static(path.join(config.dirs.build, 'client')));
 app.use(router);
 app.use(middleware.slash());
-app.use('/bower_components/',  express.static(config.dirs.bower));
-app.use(express.static(config.dirs.pub));
-
-// When we get a favicon, we can uncomment this line
-// app.use(express.favicon(path.join(config.dirs.pub, 'favicon.ico')));
 
 // -- Routes -------------------------------------------------------------------
 
-router.get('/', routes.render('home', 'home'));
+var route = router.route.bind(router);
 
-router.get('/start',                     routes.render('start'));
-router.get('/browser',                   routes.render('browser'));
-router.get('/node',                      routes.render('node'));
-router.get('/start/handlebars/',         routes.quickstartHandlebars);
-router.get('/start/handlebars/rendered', routes.render('start/rendered', 'blank'));
+router.use(middleware.intl);
 
-router.get('/handlebars', routes.handlebars);
-router.get('/dust', routes.dust);
-router.get('/react', routes.react);
-router.get('/overview', routes.render('overview'));
-router.get('/faq', routes.render('faq'));
-router.get('/javascript', routes.render('javascript'));
-router.get('/github', routes.render('github'));
+routes.home(route('/'));
+routes.guide(route('/guide/'));
+routes.integrations(route('/integrations/'));
+routes.github(route('/github/'));
+
+routes.handlebars(route('/handlebars/'));
+routes.react(route('/react/'));
+routes.dust(route('/dust/'));
+
+app.getPathTo = function (routeName, context) {
+    var path;
+
+    router.stack.some(function (layer) {
+        if (layer.route && layer.route.name === routeName) {
+            path = layer.route.path;
+        }
+    });
+
+    if (!path) {
+        throw new ReferenceError('No route named: ' + routeName);
+    }
+
+    return reverend(path, context);
+};
+
+// -- Locals -------------------------------------------------------------------
+
+Object.assign(app.locals, {
+    brand      : app.get('name'),
+    description: 'Internationalize your web apps on the client and server in JavaScript.',
+
+    min: app.get('env') === 'production' ? '.min' : '',
+
+    menuItems: router.stack
+        .filter(function (layer) {
+            return layer.route && layer.route.menu;
+        })
+        .map(function (layer) {
+            return {
+                name : layer.route.name,
+                label: layer.route.menu
+            };
+        }),
+
+    helpers: {
+        pathTo: function (name, options) {
+            return app.getPathTo(name, options.hash);
+        }
+    }
+});

@@ -20,7 +20,9 @@ module.exports = function (route) {
                 splash: renderComponent('splash-example',
                     Object.assign({}, res.intl, splashExample)
                 )
-            }
+            },
+
+            data: {intl: res.intl}
         });
     });
 };

@@ -1,7 +1,7 @@
 :root {
     --black        : rgb(65, 57, 70);
     --gray         : rgb(95, 90, 99);
-    --gray-medium  : rgb(100, 100, 100);
+    --gray-medium  : rgb(150, 150, 150);
     --gray-light   : rgb(247, 247, 247);
     --white        : rgb(255, 255, 255);
     --pink         : rgb(208, 146, 247);
@@ -42,7 +42,7 @@ body {
 
 body {
     min-wdith: 320px;
-    line-height: 1.5;
+    line-height: 1.625;
     color: var(--gray);
 }
 
@@ -50,7 +50,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--black);
     font-weight: 400;
     margin-top: 1.5em;
-    margin-bottom: 0.5em;
+    margin-bottom: 0.25em;
 }
 h1 {
     font-weight: 300;
@@ -96,6 +96,11 @@ p code {
     max-width: 48rem;
     margin-left: auto;
     margin-right: auto;
+}
+
+.subheading {
+    margin-top: 0;
+    color: var(--gray);
 }
 
 .example-output-enter {
@@ -217,6 +222,40 @@ p code {
     order: 1;
     width: 100%;
     max-width: 150px;
+}
+
+.features-ex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+}
+.features-ex-input {
+    background: transparent;
+    font-size: 1.5rem;
+}
+.features-ex-transform {
+    margin: 0 2rem;
+}
+.features-ex-output {
+    font-size: 1.75rem;
+    color: var(--purple-medium);
+    padding: 0 1rem;
+}
+.features-ex-output {
+    line-height: 1.0;
+    border-right: 1px solid var(--gray-medium);
+}
+.features-ex-output:last-child {
+    border-right: 0;
+}
+.features-ex-locale {
+    display: block;
+    font-size: 1rem;
+    font-style: normal;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--gray-medium);
 }
 
 @media screen and (min-width: 0) {

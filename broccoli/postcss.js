@@ -1,9 +1,10 @@
 'use strict';
 
-var Filter       = require('broccoli-filter'),
-    objectAssign = require('object-assign'),
-    postcss      = require('postcss'),
-    util         = require('util');
+var assign = Object.assign || require('object.assign');
+
+var Filter  = require('broccoli-filter'),
+    postcss = require('postcss'),
+    util    = require('util');
 
 module.exports = PostCSSFilter;
 
@@ -15,7 +16,7 @@ function PostCSSFilter(inputTree, options) {
     }
 
     this.inputTree = inputTree;
-    this.options   = objectAssign({processors: []}, options);
+    this.options   = assign({processors: []}, options);
 }
 
 util.inherits(PostCSSFilter, Filter);
@@ -26,7 +27,7 @@ PostCSSFilter.prototype.targetExtension = 'css';
 PostCSSFilter.prototype.processString = function (css, relPath) {
     var processor = postcss();
 
-    var options = objectAssign({
+    var options = assign({
         from: relPath,
         to  : relPath
     }, this.options);

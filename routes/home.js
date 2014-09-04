@@ -7,7 +7,7 @@ module.exports = function (route) {
 
     route.get(function (req, res, next) {
         var splashExample = {
-            name     : 'Eric',
+            name     : 'Annie',
             numPhotos: 1000,
             takenDate: Date.now()
         };

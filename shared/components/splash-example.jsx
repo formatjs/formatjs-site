@@ -9,35 +9,27 @@ export default React.createClass({
     displayName: 'SplashExample',
     mixins     : [ReactIntlMixin],
 
-    componentDidMount: function () {
-        // setInterval(function () {
-        //     var nextNumPhotos;
-        //
-        //     switch(this.props.numPhotos) {
-        //         case 0:
-        //             nextNumPhotos = 1;
-        //             break;
-        //         case 1:
-        //             nextNumPhotos = 1000;
-        //             break;
-        //         default:
-        //             nextNumPhotos = 0;
-        //             break;
-        //     }
-        //
-        //     this.setProps({numPhotos: nextNumPhotos});
-        // }.bind(this), 5000);
-    },
-
     updateLocale: function (newLocale) {
         this.setProps({locales: newLocale});
     },
 
+    handleNumPhotosChange: function (e) {
+        this.setProps({numPhotos: parseInt(e.target.value, 10)});
+    },
+
     render: function () {
-        var photosMessage = this.getIntlMessage(this.props.locales + '.photos');
+        var locales       = this.props.locales,
+            currentLocale = Array.isArray(locales) ? locales[0] : locales,
+            photosMessage = this.getIntlMessage(currentLocale + '.photos');
+
+        var numPhotosOptions = [0, 1, 1000].map(function (num) {
+            return <option key={num} value={num}>{num}</option>;
+        });
 
         return (
             <div className="splash-example">
+                <h2 className="splash-example-heading">Example</h2>
+
                 <div className="splash-example-output">
                     <ReactCSSTransitionGroup
                         transitionName="example-output"
@@ -50,9 +42,18 @@ export default React.createClass({
                 </div>
 
                 <form className="splash-example-controls">
-                    <a className="splash-example-control" href="#">
-                        About example
-                    </a>
+                    <label className="splash-example-control">
+                        <span className="splash-example-label">
+                            # Photos:
+                        </span>
+
+                        <select
+                            value={this.props.numPhotos}
+                            onChange={this.handleNumPhotosChange}>
+
+                            {numPhotosOptions}
+                        </select>
+                    </label>
 
                     <label className="splash-example-control">
                         <span className="splash-example-label">
@@ -60,7 +61,7 @@ export default React.createClass({
                         </span>
 
                         <LocaleSelect
-                            currentLocale={this.props.locales}
+                            currentLocale={currentLocale}
                             availableLocales={this.props.availableLocales}
                             onLocaleChange={this.updateLocale} />
                     </label>

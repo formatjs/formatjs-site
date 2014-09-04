@@ -1,22 +1,13 @@
 /* global React */
 
 import SplashExample from '../components/splash-example';
+import FeaturesExample from '../components/features-example';
 
 export default function init(state) {
-    var splashExample = state.splash.example;
+    var splashProps = Object.assign({}, state.intl, state.examples.splash);
 
     React.renderComponent(
-        new SplashExample({
-            locales         : state.intl.locales[0],
-            formats         : state.intl.formats,
-            messages        : state.intl.messages,
-            availableLocales: state.intl.availableLocales,
-
-            name     : splashExample.name,
-            numPhotos: splashExample.numPhotos,
-            takenDate: splashExample.takenDate
-        }),
-
+        new SplashExample(splashProps),
         document.querySelector('.splash-example-container')
     );
 }

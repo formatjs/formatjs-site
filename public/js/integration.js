@@ -26,6 +26,7 @@ function hydrateExampleOutput(id, type, props) {
 function getOutputComponent(type) {
     switch (type) {
         case 'handlebars': return HandlebarsExample;
+        
         default:
             throw new Error('No output component for type: ' + type);
     }

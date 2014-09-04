@@ -3,8 +3,7 @@
 var path = require('path');
 
 var config      = require('../config'),
-    getMessages = require('../lib/messages'),
-    utils       = require('../lib/utils');
+    getMessages = require('../lib/messages');
 
 module.exports = function (req, res, next) {
     var app           = req.app,
@@ -25,7 +24,7 @@ module.exports = function (req, res, next) {
 
         var intlData = res.intl || (res.intl = {});
 
-        utils.extend(intlData, {
+        Object.assign(intlData, {
             availableLocales: availableLocales,
 
             locales : [locale],

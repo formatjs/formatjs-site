@@ -9,9 +9,15 @@ export default React.createClass({
     },
 
     render: function () {
+        var currentLocale = this.props.currentLocale;
+
+        if (Array.isArray(currentLocale)) {
+            currentLocale = currentLocale[0];
+        }
+
         return (
             <select className="locale-select"
-                value={this.props.currentLocale}
+                value={currentLocale}
                 onChange={this.handleChange}>
 
                 {this.props.availableLocales.map(function (locale) {

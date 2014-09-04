@@ -2,6 +2,124 @@
     {{> nav}}
 </section>
 
-<section class="main docs l-wrap">
-    <h1>GitHub</h1>
+<section class="main l-wrap">
+    <h1>Everything is on GitHub</h1>
+
+    <p class="docs">
+        All of the packages that make up IntlJS are open-source and available on GitHub. Instead of having one large repository, there are several smaller repositories; one per package.
+    </p>
+
+    <h2>Repositories</h2>
+
+    <div class="repos">
+        <div class="repo">
+            <h3 class="repo-name">
+                <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a>
+            </h3>
+            <div class="repo-badges">
+              {{#with "intl"}}
+                {{> npm-badge}}
+              {{/with}}
+            </div>
+            <p class="repo-description">
+                Compatibility implementation of the ECMAScript Internationalization API (ECMA-402) for JavaScript. <b>Developed by <a href="https://github.com/andyearnshaw">Andy Earnshaw</a></b>
+            </p>
+        </div>
+
+        <div class="repo">
+            <h3 class="repo-name">
+                <a href="https://github.com/yahoo/handlebars-helper-intl">Handlebars Helper Intl</a>
+            </h3>
+            <div class="repo-badges">
+              {{#with "handlebars-helper-intl"}}
+                {{> npm-badge}}
+              {{/with}}
+            </div>
+            <p class="repo-description">
+                Handlebars helpers for internationalization.
+            </p>
+        </div>
+
+        <div class="repo">
+            <h3 class="repo-name">
+                <a href="https://github.com/yahoo/react-intl">React Intl</a>
+            </h3>
+            <div class="repo-badges">
+              {{#with "react-intl"}}
+                {{> npm-badge}}
+              {{/with}}
+            </div>
+            <p class="repo-description">
+                ReactJS mixin for internationalization.
+            </p>
+        </div>
+
+        <div class="repo">
+            <h3 class="repo-name">
+                <a href="https://github.com/yahoo/dust-helper-intl">Dust Helper Intl</a>
+            </h3>
+            <div class="repo-badges">
+              {{#with "dust-helper-intl"}}
+                {{> npm-badge}}
+              {{/with}}
+            </div>
+            <p class="repo-description">
+                Dust helpers for internationalization.
+            </p>
+        </div>
+
+        <div class="repo">
+            <h3 class="repo-name">
+                <a href="https://github.com/yahoo/intl-format-cache">Intl Format Cache</a>
+            </h3>
+            <div class="repo-badges">
+              {{#with "intl-format-cache"}}
+                {{> npm-badge}}
+              {{/with}}
+            </div>
+            <p class="repo-description">
+                Produces instances of JavaScript Intl formats, and caches them for reuse.
+            </p>
+        </div>
+
+        <div class="repo">
+            <h3 class="repo-name">
+                <a href="https://github.com/yahoo/intl-messageformat">Intl MessageFormat</a>
+            </h3>
+            <div class="repo-badges">
+              {{#with "intl-messageformat"}}
+                {{> npm-badge}}
+              {{/with}}
+            </div>
+            <p class="repo-description">
+                Format a string with placeholders, including plural and select support to create localized messages.
+            </p>
+        </div>
+
+        <div class="repo">
+            <h3 class="repo-name">
+                <a href="https://github.com/yahoo/intl-messageformat-parser">Intl MessageFormat Praser</a>
+            </h3>
+            <div class="repo-badges">
+              {{#with "intl-messageformat-parser"}}
+                {{> npm-badge}}
+              {{/with}}
+            </div>
+            <p class="repo-description">
+                Parses ICU message strings to an AST that can be used to format the messages for a person's locale.
+            </p>
+        </div>
+    </div>
+
+    <h2>Filing Issues</h2>
+
+    <p>
+        If you wish to file an issue, you can do so on the specific package's GitHub repository. Try to be descriptive when filing issues, as it makes it easier for us to debug.
+    </p>
+
+    <h2>Submitting Pull Requests</h2>
+
+    <p>
+        Pull requests are very welcome, but should be within the scope of the project, and follow the repository's code conventions. Before submitting a pull request, it's always good to file an issue, so we can discuss the details of the PR.
+    </p>
 </section>

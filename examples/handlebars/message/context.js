@@ -1,5 +1,5 @@
 var context = {
-    name     : 'Eric',
+    name     : 'Annie',
     numPhotos: 1000,
     takenDate: Date.now()
 };

@@ -261,19 +261,17 @@ p code {
     color: var(--gray-medium);
 }
 
-.repos,
-.repo {
+.repos {
     display: flex;
 }
 .repos {
     flex-wrap: wrap;
-    justify-content: center;
 }
 .repo {
-    flex-direction: column;
-}
-.repo-description {
     flex-grow: 1;
+}
+.repo-name {
+    margin-top: 0.5rem;
 }
 
 @media screen and (min-width: 0) {

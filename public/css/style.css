@@ -24,7 +24,10 @@ html, button, input, select, textarea,
 .pure-button {
     border-radius: 0.25em;
 }
-
+a.pure-button:link,
+a.pure-button:visited {
+    color: var(--purple);
+}
 .pure-button-hover,
 .pure-button-active,
 .pure-button:hover,
@@ -258,6 +261,19 @@ p code {
     color: var(--gray-medium);
 }
 
+.repos {
+    display: flex;
+}
+.repos {
+    flex-wrap: wrap;
+}
+.repo {
+    flex-grow: 1;
+}
+.repo-name {
+    margin-top: 0.5rem;
+}
+
 @media screen and (min-width: 0) {
     h1 { font-size: 1.5rem; }
     h2 { font-size: 1.25rem; }
@@ -296,6 +312,10 @@ p code {
     .libs-list-item {
         margin: 0 0.5rem;
     }
+
+    .repo {
+        width: 100%;
+    }
 }
 
 @media screen and (max-height: 20em) {
@@ -321,6 +341,18 @@ p code {
 @media screen and (min-width: 35.5em) {
     .libs-list-item {
         margin: 0 1rem;
+    }
+
+    .repos {
+        margin-left: -0.625rem;
+        margin-right: -0.625rem;
+    }
+    .repo {
+        width: 50%;
+        padding: 0 0.625rem;
+    }
+    .repo-description {
+        font-size: 0.875rem;
     }
 }
 
@@ -360,5 +392,16 @@ p code {
 
     .libs-list-item {
         margin: 0 1.5rem;
+    }
+
+    .repos {
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+    .repo {
+        padding: 0 1rem;
+    }
+    .repo-description {
+        font-size: 1rem;
     }
 }

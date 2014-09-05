@@ -33,7 +33,7 @@ var app = module.exports = express();
 
 expstate.extend(app);
 
-app.set('name', 'IntlJS');
+app.set('name', 'FormatJS');
 app.set('port', config.port);
 app.set('default locale', 'en-US');
 app.set('state namespace', 'APP');

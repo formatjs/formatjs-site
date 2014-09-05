@@ -1,7 +1,7 @@
 {
-  "name": "js-intl-docs",
+  "name": "formatjs-site",
   "version": "1.0.0",
-  "homepage": "http://intljs.io/",
+  "homepage": "http://formatjs.io/",
   "authors": [
     "Eric Ferraiuolo <eferraiuolo@gmail.com>",
     "Tilo Mitra <tilomitra@gmail.com>",

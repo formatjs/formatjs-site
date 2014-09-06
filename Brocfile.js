@@ -16,7 +16,9 @@ var bower_components = unwatchedTree('bower_components/'),
 
 bower_components = moveFiles(bower_components, {
     files: {
-        'rainbow/js': 'vendor/rainbow'
+        'rainbow/js/rainbow.js'    : 'vendor/rainbow/rainbow.js',
+        'rainbow/js/rainbow.min.js': 'vendor/rainbow/rainbow.min.js',
+        'rainbow/js/language'      : 'vendor/rainbow/language'
     }
 });
 
@@ -24,7 +26,8 @@ node_modules = moveFiles(node_modules, {
     files: {
         'es6-shim/es6-shim.js'    : 'vendor/es6-shim/es6-shim.js',
         'es6-shim/es6-shim.min.js': 'vendor/es6-shim/es6-shim.min.js',
-        'es6-shim/es6-shim.js.map': 'vendor/es6-shim/es6-shim.js.map',
+        'es6-shim/es6-shim.map'   : 'vendor/es6-shim/es6-shim.map',
+
 
         'dustjs-linkedin/dist': 'vendor/dust',
         'handlebars/dist'     : 'vendor/handlebars',

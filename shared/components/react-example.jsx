@@ -30,12 +30,12 @@ export default React.createClass({
         return (
             <div id={example.id} className="example">
                 <div className="example-source">
-                    <h3>Component</h3>
+                    <h3 className="subheading">Component</h3>
                     <Code lang="js">{example.source.component}</Code>
                 </div>
 
                 <div className="example-render">
-                    <h3>Rendering</h3>
+                    <h3 className="subheading">Rendering</h3>
                     <Code lang="javascript">{this.genderateRenderCode()}</Code>
                 </div>
 

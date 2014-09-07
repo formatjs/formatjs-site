@@ -34,17 +34,17 @@ export default React.createClass({
         return (
             <div id={example.id} className="example">
                 <div className="example-source">
-                    <h3>Template</h3>
+                    <h3 className="subheading">Template</h3>
                     <Code lang="html">{example.source.template}</Code>
                 </div>
 
                 <div className="example-context">
-                    <h3>Context</h3>
+                    <h3 className="subheading">Context</h3>
                     <Code lang="javascript">{example.source.context}</Code>
                 </div>
 
                 <div className="example-render">
-                    <h3>Rendering</h3>
+                    <h3 className="subheading">Rendering</h3>
                     <Code lang="javascript">{this.genderateRenderCode()}</Code>
                 </div>
 

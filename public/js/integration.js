@@ -1,6 +1,7 @@
 /* global React */
 
 import HandlebarsExample from '../components/handlebars-example';
+import ReactExample from '../components/react-example';
 
 export default function init(state) {
     state.examples.forEach(function (example) {
@@ -26,7 +27,8 @@ function hydrateExampleOutput(id, type, props) {
 function getOutputComponent(type) {
     switch (type) {
         case 'handlebars': return HandlebarsExample;
-        
+        case 'react':      return ReactExample;
+
         default:
             throw new Error('No output component for type: ' + type);
     }

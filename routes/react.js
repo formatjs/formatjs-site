@@ -14,6 +14,6 @@ module.exports = function (route) {
             res.expose(examples, 'examples');
             res.expose('integration', 'pageType');
             res.render('react');
-        });
+        }).catch(next);
     });
 };

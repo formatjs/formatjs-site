@@ -53,6 +53,7 @@
     "xunit-file": "^0.0.5"
   },
   "scripts": {
+    "postinstall": "bower install && grunt",
     "test": "mocha tests/*",
     "start": "node server.js"
   },

@@ -4,25 +4,19 @@
 import ExampleMixin from '../mixins/example';
 import Code from './code';
 import LocaleSelect from './locale-select';
-import HandlebarsOutput from './handlebars-output';
 
 export default React.createClass({
-    displayName: 'HandlebarsExample',
+    displayName: 'ReactExample',
     mixins     : [ExampleMixin],
-
-    statics: {
-        renderCode: [
-            'var html = template(context, {',
-            '    data: {intl: intlData}',
-            '});'
-        ].join('\n')
-    },
 
     genderateRenderCode: function () {
         return [
-            this.generateIntlDataCode(),
-            '',
-            this.constructor.renderCode
+            '/** @jsx React.DOM */',
+            'React.renderComponent(',
+            '    <Component locales={[\'' + this.state.currentLocale + '\']} ' +
+                            'formats={…} messages={…} />',
+            '    document.getElementById(\'example\')',
+            ');'
         ].join('\n');
     },
 
@@ -31,16 +25,13 @@ export default React.createClass({
             currentLocale = this.state.currentLocale,
             messages      = this.props.intl.messages[currentLocale];
 
+        var ExampleComponent = example.getComponent();
+
         return (
             <div id={example.id} className="example">
                 <div className="example-source">
-                    <h3 className="subheading">Template</h3>
-                    <Code lang="html">{example.source.template}</Code>
-                </div>
-
-                <div className="example-context">
-                    <h3 className="subheading">Context</h3>
-                    <Code lang="javascript">{example.source.context}</Code>
+                    <h3 className="subheading">Component</h3>
+                    <Code lang="js">{example.source.component}</Code>
                 </div>
 
                 <div className="example-render">
@@ -49,13 +40,10 @@ export default React.createClass({
                 </div>
 
                 <div className="example-output">
-                    <HandlebarsOutput
+                    <ExampleComponent
                         locales={currentLocale}
                         formats={this.props.intl.formats}
-                        messages={messages}
-
-                        source={example.source.template}
-                        context={example.context} />
+                        messages={messages} />
                 </div>
 
                 <div className="example-controls">

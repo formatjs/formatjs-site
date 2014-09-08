@@ -18,11 +18,11 @@ export default {
 
     generateIntlDataCode: function () {
         return [
-            "var intlData = {",
-            "    locales : '" + this.state.currentLocale + "'",
-            "    formats : {…},",
-            "    messages: {…}",
-            "};"
+            'var intlData = {',
+            '    locales : \'' + this.state.currentLocale + '\'',
+            '    formats : {…},',
+            '    messages: {…}',
+            '};'
         ].join('\n');
     }
 };

@@ -24,6 +24,7 @@
     "nodeify": "^1.0.0",
     "react": "^0.11.1",
     "react-intl": "^1.0.0-rc-1",
+    "react-tools": "^0.11.1",
     "reverend": "^0.3.0",
     "serve-favicon": "^2.1.1",
     "serve-static": "^1.5.3",

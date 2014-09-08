@@ -79,7 +79,6 @@ p code {
     font-size: 90%;
 }
 .code {
-    padding: 1rem;
     overflow-x: auto;
     -webkit-overflow-srolling: touch;
 }
@@ -284,6 +283,13 @@ p code {
         padding-right: 0.625rem;
     }
 
+    .code {
+        font-size: 0.875rem;
+        margin-left: -0.625rem;
+        margin-right: -0.625rem;
+        padding: 1rem 0.625rem;
+    }
+
     .splash {
         min-height: 100%;
         padding-bottom: 2rem;
@@ -375,6 +381,13 @@ p code {
     .l-wrap {
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+
+    .code {
+        font-size: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 1rem;
     }
 
     .docs {

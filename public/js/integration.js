@@ -1,5 +1,4 @@
 /* global React */
-/* jshint browser: true, esnext: true */
 
 import HandlebarsExample from '../components/handlebars-example';
 import ReactExample from '../components/react-example';

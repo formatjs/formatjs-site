@@ -1,5 +1,5 @@
 /* global React */
-/* jslint esnext: true */
+
 export default {
     propTypes: {
         example: React.PropTypes.object,

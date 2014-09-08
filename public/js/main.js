@@ -1,5 +1,4 @@
 /* global Handlebars, HandlebarsIntl, APP */
-/* jshint browser: true, esnext: true */
 
 import homePage from './home';
 import integrationPage from './integration';

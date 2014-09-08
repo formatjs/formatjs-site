@@ -73,6 +73,8 @@
   "homepage": "http://formatjs.io/",
   "jshintConfig": {
     "node": true,
+    "browser": true,
+    "esnext": true,
     "excludes": [
       "bower_component/",
       "examples/"

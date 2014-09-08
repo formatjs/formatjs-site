@@ -30,31 +30,10 @@
     <div class="l-wrap">
         <h2>Integrates with other libraries.</h2>
 
-        <ul class="libs-list">
-            <li class="libs-list-item">
-                <a href="{{pathTo 'handlebars'}}">
-                    <h3 class="libs-list-name">Handlebars</h3>
-                    <img class="libs-list-mark" src="/img/handlebars.png">
-                </a>
-
-            </li>
-
-            <li class="libs-list-item">
-                <a href="{{pathTo 'react'}}">
-                    <h3 class="libs-list-name">React</h3>
-                    <img class="libs-list-mark" src="/img/react.svg">
-                </a>
-            </li>
-
-            <li class="libs-list-item">
-                <a href="{{pathTo 'dust'}}">
-                    <h3 class="libs-list-name">Dust</h3>
-                </a>
-            </li>
-        </ul>
+        {{> integrations-list}}
 
         <p>
-            For most projects, localization happens in the template or view layer. FormatJS integrates with common template and component libaries by providing a single {{code "<script>"}} that you can add to your project's HTML, or {{code "require()"}} in Node.js.
+            For most projects, localization happens in the template or view layer. FormatJS integrates with common template and component libraries by providing a single {{code "<script>"}} that you can add to your project's HTML, or {{code "require()"}} in Node.js.
         </p>
     </div>
 </section>

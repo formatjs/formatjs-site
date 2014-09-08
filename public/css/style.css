@@ -75,6 +75,10 @@ code {
     padding: 0.125rem 0.25rem;
     border-radius: 0.125rem;
 }
+a:link code,
+a:visited code {
+    color: var(--purple);
+}
 p code {
     font-size: 90%;
 }
@@ -198,29 +202,29 @@ p code {
     margin-right: 0;
 }
 
-.libs-list {
+.integrations-list {
     margin: 0;
     padding: 0;
     list-style: none;
     display: flex;
     justify-content: space-around;
 }
-.libs-list-item {
+.integrations-list-item {
     width: 33.3333%;
     text-align: center;
     align-self: flex-end;
 }
-.libs-list-item a {
+.integrations-list-item a {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.libs-list-name {
+.integrations-list-name {
     order: 2;
     margin: 0.5rem 0 0;
     color: var(--purple);
 }
-.libs-list-mark {
+.integrations-list-mark {
     display: block;
     order: 1;
     width: 100%;
@@ -310,7 +314,7 @@ p code {
         margin: 4rem 0 2rem;
     }
 
-    .libs-list-item {
+    .integrations-list-item {
         margin: 0 0.5rem;
     }
 
@@ -340,7 +344,7 @@ p code {
 }
 
 @media screen and (min-width: 35.5em) {
-    .libs-list-item {
+    .integrations-list-item {
         margin: 0 1rem;
     }
 
@@ -395,7 +399,7 @@ p code {
         font-size: 1.25rem;
     }
 
-    .libs-list-item {
+    .integrations-list-item {
         margin: 0 1.5rem;
     }
 

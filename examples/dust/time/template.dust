@@ -1,0 +1,1 @@
+{@formatTime val=date hour="numeric" minute="numeric" timeZone="UTC"/}

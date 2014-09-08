@@ -14,6 +14,8 @@ global.React          = require('react/addons');
 global.ReactIntlMixin = require('react-intl');
 global.Handlebars     = require('handlebars');
 global.HandlebarsIntl = require('handlebars-helper-intl');
+global.dust           = require('dustjs-linkedin');
+global.DustIntl       = require('dust-helper-intl');
 
 // -----------------------------------------------------------------------------
 
@@ -26,6 +28,8 @@ var config     = require('./config'),
     hbs        = require('./lib/hbs'),
     middleware = require('./middleware'),
     routes     = require('./routes');
+
+DustIntl.registerWith(dust);
 
 // -- Configure Express App ----------------------------------------------------
 

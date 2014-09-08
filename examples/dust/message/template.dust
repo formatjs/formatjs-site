@@ -1,0 +1,6 @@
+<p>
+    {@formatMessage _key="photos"
+        name=name
+        numPhotos=numPhotos
+        takenDate=takenDate/}
+</p>

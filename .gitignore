@@ -1,7 +1,7 @@
 .DS_Store
 bower_components/
 node_modules/
-build/
+build
 npm-debug.log
 deploy.json
 grasshopper.json

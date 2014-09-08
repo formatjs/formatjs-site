@@ -1,0 +1,1 @@
+{@formatDate val=date month="long" day="numeric" year="numeric"/}

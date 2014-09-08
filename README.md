@@ -1,5 +1,5 @@
-JS Intl Docs
-============
+FormatJS
+========
 
 [![Build Status](https://travis-ci.org/yahoo/formatjs-site.svg)](https://travis-ci.org/yahoo/formatjs-site)
 [![Dependency Status](https://gemnasium.com/yahoo/formatjs-site.svg)](https://gemnasium.com/yahoo/formatjs-site)

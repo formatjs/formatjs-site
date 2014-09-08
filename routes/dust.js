@@ -3,7 +3,7 @@
 module.exports = function (route) {
     route.name = 'dust';
 
-    route.get(function (req, res, next) {
+    route.get(function (req, res) {
         res.render('dust');
     });
 };

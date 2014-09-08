@@ -1,5 +1,5 @@
 /* global React */
-
+/* jshint browser: true, esnext: true */
 import SplashExample from '../components/splash-example';
 
 export default function init(state) {

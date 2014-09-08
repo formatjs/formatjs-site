@@ -4,7 +4,7 @@ module.exports = function (route) {
     route.name = 'integrations';
     route.menu = 'Integrations';
 
-    route.get(function (req, res, next) {
+    route.get(function (req, res) {
         res.render('integrations');
     });
 };

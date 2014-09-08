@@ -1,9 +1,6 @@
 'use strict';
 
-var path = require('path');
-
-var config      = require('../config'),
-    getMessages = require('../lib/messages');
+var getMessages = require('../lib/messages');
 
 module.exports = function (req, res, next) {
     var app           = req.app,

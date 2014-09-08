@@ -5,7 +5,7 @@ var renderComponent = require('../lib/component').render;
 module.exports = function (route) {
     route.name = 'home';
 
-    route.get(function (req, res, next) {
+    route.get(function (req, res) {
         var splashExample = {
             name     : 'Annie',
             numPhotos: 1000,

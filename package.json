@@ -71,6 +71,13 @@
     "url": "https://github.com/yahoo/formatjs-site/issues"
   },
   "homepage": "http://formatjs.io/",
+  "jshintConfig": {
+    "node": true,
+    "excludes": [
+      "bower_component/",
+      "examples/"
+    ]
+  },
   "yahoo": {
     "bugzilla": {
       "product": "yui utilities",

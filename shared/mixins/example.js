@@ -19,7 +19,7 @@ export default {
     generateIntlDataCode: function () {
         return [
             'var intlData = {',
-            '    locales : \'' + this.state.currentLocale + '\'',
+            '    locales : \'' + this.state.currentLocale + '\',',
             '    formats : {…},',
             '    messages: {…}',
             '};'

@@ -98,10 +98,14 @@ p code {
     word-wrap: break-word;
 }
 
-.l-wrap {
+.l-wrap,
+.l-wrap-wide {
     max-width: 48rem;
     margin-left: auto;
     margin-right: auto;
+}
+.l-wrap-wide {
+    max-width: 64rem;
 }
 
 .subheading {
@@ -201,33 +205,57 @@ p code {
     margin-right: 0;
 }
 
+.standards-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+.standards-logo {
+    margin-left: auto;
+    margin-right: auto;
+}
+.standards-logo img {
+    display: block;
+    margin: 0 auto;
+}
+
+.integrations-content,
+.integrations-list,
+.integration,
+.integration-content,
+.integration-brand {
+    display: flex;
+}
+.integrations-content {
+    flex-wrap: wrap;
+}
 .integrations-list {
-    margin: 0;
+    margin: 1rem 0;
     padding: 0;
     list-style: none;
-    display: flex;
+    justify-content: space-between;
+}
+.integration {
+    width: 33.3333%;
     justify-content: space-around;
 }
-.integrations-list-item {
-    width: 33.3333%;
-    text-align: center;
-    align-self: flex-end;
-}
-.integrations-list-item a {
-    display: flex;
+.integration-content {
+    flex-wrap: wrap;
     flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
 }
-.integrations-list-name {
+.integration-name {
     order: 2;
     margin: 0.5rem 0 0;
-    color: var(--purple);
 }
-.integrations-list-mark {
-    display: block;
+.integration-brand {
     order: 1;
+    flex-grow: 1;
+    align-items: center;
+}
+.integration-mark {
+    display: block;
     width: 100%;
-    max-width: 150px;
 }
 
 .features-ex {
@@ -282,7 +310,8 @@ p code {
     h2 { font-size: 1.25rem; }
     h3 { font-size: 1.125rem; }
 
-    .l-wrap {
+    .l-wrap,
+    .l-wrap-wide {
         padding-left: 0.625rem;
         padding-right: 0.625rem;
     }
@@ -295,7 +324,6 @@ p code {
     }
 
     .splash {
-        min-height: 100%;
         padding-bottom: 2rem;
     }
 
@@ -320,12 +348,30 @@ p code {
         margin: 4rem 0 2rem;
     }
 
-    .integrations-list-item {
-        margin: 0 0.5rem;
+    .standards-logo img {
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+    .integrations .integrations-list {
+        width: 100%;
+    }
+    .integration {
+        margin: 0 0.625rem;
+    }
+    .integration-mark {
+        max-width: 80px;
+        max-height: 80px;
     }
 
     .repo {
         width: 100%;
+    }
+}
+
+@media screen and (min-height: 0) {
+    .splash {
+        min-height: 100%;
     }
 }
 
@@ -350,8 +396,20 @@ p code {
 }
 
 @media screen and (min-width: 35.5em) {
-    .integrations-list-item {
-        margin: 0 1rem;
+    .standards-desc {
+        width: 62%;
+    }
+    .standards-logo {
+        width: 38%;
+    }
+    .standards-logo img {
+        max-width: 128px;
+        max-height: 128px;
+    }
+
+    .integration-mark {
+        max-width: 128px;
+        max-height: 128px;
     }
 
     .repos {
@@ -367,13 +425,28 @@ p code {
     }
 }
 
-@media screen and (min-width: 36em) and (min-height: 36em) {
+@media screen and (min-height: 36em) {
     .splash {
         min-height: 50%;
     }
+}
 
+@media screen and (min-width: 36em) and (min-height: 36em) {
     .nav {
         font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 40em) {
+    .integrations .integrations-desc {
+        width: 38%;
+    }
+    .integrations .integrations-list {
+        width: 62%;
+        padding-left: 1rem;
+    }
+    .integrations .integration:last-child {
+        margin-right: 0;
     }
 }
 
@@ -382,7 +455,8 @@ p code {
     h2 { font-size: 1.5rem; }
     h3 { font-size: 1.25rem; }
 
-    .l-wrap {
+    .l-wrap,
+    .l-wrap-wide {
         padding-left: 1rem;
         padding-right: 1rem;
     }
@@ -412,8 +486,8 @@ p code {
         font-size: 1.25rem;
     }
 
-    .integrations-list-item {
-        margin: 0 1.5rem;
+    .integration {
+        margin: 0 1rem;
     }
 
     .repos {

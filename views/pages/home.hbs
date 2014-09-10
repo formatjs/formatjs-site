@@ -46,32 +46,77 @@
 </section>
 
 <section class="features docs">
-    <div class="l-wrap">
+    <div class="l-wrap-wide">
         <h2>Formats numbers, dates, and complex messages.</h2>
 
-        <h3 class="subheading">
-            Show numbers with correct thousands and decimal separators.
-        </h3>
+        <div class="features-list">
+            <div class="feature">
+                <h3 class="subheading">Display numbers with separators.</h3>
 
-        <p class="features-ex">
-            <code class="features-ex-input">1000.95</code>
-            <img class="features-ex-transform" src="/img/arrow-right.svg">
-            <span class="features-ex-output">
-              {{#intl locales="en-US"}}
-                <i class="features-ex-locale">English</i>
-                <b>{{formatNumber 1000.95}}</b>
-              {{/intl}}
-            </span>
-            <span class="features-ex-output">
-              {{#intl locales="fr-FR"}}
-                <i class="features-ex-locale">French</i>
-                <b>{{formatNumber 1000.95}}</b>
-              {{/intl}}
-            </span>
-        </p>
+                <p class="feature-ex">
+                    <code class="feature-ex-input">1000.95</code>
+                    <span class="feature-ex-transform"></span>
+                    <span class="feature-ex-output">
+                        <span>
+                          {{#intl locales="en-US"}}
+                            <b>{{formatNumber 1000.95}}</b>
+                            <i class="feature-ex-locale">English</i>
+                          {{/intl}}
+                        </span>
+                        <span>
+                          {{#intl locales="fr-FR"}}
+                            <b>{{formatNumber 1000.95}}</b>
+                            <i class="feature-ex-locale">French</i>
+                          {{/intl}}
+                        </span>
+                    </span>
+                </p>
+            </div>
 
+            <div class="feature">
+                <h3 class="subheading">Display dates and times correctly.</h3>
+
+                <p class="feature-ex">
+                    <code class="feature-ex-input">new Date()</code>
+                    <span class="feature-ex-transform"></span>
+                    <span class="feature-ex-output">
+                        <span>
+                          {{#intl locales="en-US"}}
+                            <b>{{formatDate now}}</b>
+                            <i class="feature-ex-locale">English</i>
+                          {{/intl}}
+                        </span>
+                        <span>
+                          {{#intl locales="fr-FR"}}
+                            <b>{{formatDate now}}</b>
+                            <i class="feature-ex-locale">French</i>
+                          {{/intl}}
+                        </span>
+                    </span>
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3 class="subheading">Pluralize labels in translated strings.</h3>
+
+                <p class="feature-ex">
+                    <code class="feature-ex-input">comments.length</code>
+                    <span class="feature-ex-transform"></span>
+                    <span class="feature-ex-output">
+                      {{#intl locales="en-US"}}
+                        <b>{{formatMessage (intlGet "messages.en-US.comments") numComments=0}}</b>
+                        <b>{{formatMessage (intlGet "messages.en-US.comments") numComments=1}}</b>
+                        <b>{{formatMessage (intlGet "messages.en-US.comments") numComments=1000}}</b>
+                      {{/intl}}
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        {{!--
         <h2>Modular, and ready to use.</h2>
 
         <h2>Runs in the browser and Node.js.</h2>
+        --}}
     </div>
 </section>

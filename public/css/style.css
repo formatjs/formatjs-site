@@ -258,36 +258,39 @@ p code {
     width: 100%;
 }
 
-.features-ex {
+.features-list,
+.feature-ex,
+.feature-ex-output {
     display: flex;
-    justify-content: center;
+}
+.features-list {
+    flex-wrap: wrap;
+}
+.feature {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.feature-ex {
     align-items: center;
-    margin: 2rem 0;
 }
-.features-ex-input {
+.feature-ex-input {
     background: transparent;
-    font-size: 1.5rem;
+    font-size: 1.125rem;
 }
-.features-ex-transform {
-    margin: 0 2rem;
+.feature-ex-transform {
+    height: 40px;
+    width: 40px;
 }
-.features-ex-output {
-    font-size: 1.75rem;
+.feature-ex-output {
+    flex-direction: column;
+}
+.feature-ex-output {
+    font-size: 1.25rem;
     color: var(--purple-medium);
-    padding: 0 1rem;
 }
-.features-ex-output {
-    line-height: 1.0;
-    border-right: 1px solid var(--gray-medium);
-}
-.features-ex-output:last-child {
-    border-right: 0;
-}
-.features-ex-locale {
-    display: block;
-    font-size: 1rem;
+.feature-ex-locale {
+    font-size: 0.875rem;
     font-style: normal;
-    text-align: center;
     text-transform: uppercase;
     color: var(--gray-medium);
 }
@@ -364,6 +367,19 @@ p code {
         max-height: 80px;
     }
 
+    .feature {
+        width: 100%;
+    }
+    .feature-ex {
+        flex-direction: column;
+    }
+    .feature-ex-transform {
+        margin: 0.5rem 0;
+        background: url("/img/arrow-down.svg") no-repeat;
+        background-position: top center;
+        background-size: contain;
+    }
+
     .repo {
         width: 100%;
     }
@@ -412,6 +428,14 @@ p code {
         max-height: 128px;
     }
 
+    .features-list {
+        margin-left: -0.625rem;
+        margin-right: -0.625rem;
+    }
+    .feature {
+        padding: 0 0.625rem;
+    }
+
     .repos {
         margin-left: -0.625rem;
         margin-right: -0.625rem;
@@ -422,6 +446,15 @@ p code {
     }
     .repo-description {
         font-size: 0.875rem;
+    }
+
+    .feature {
+        width: 50%;
+    }
+    .feature:last-child {
+        width: 62%;
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
@@ -488,6 +521,23 @@ p code {
 
     .integration {
         margin: 0 1rem;
+    }
+
+    .features-list {
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+    .feature {
+        padding: 0 1rem;
+    }
+    .feature-ex {
+        flex-direction: row;
+    }
+    .feature-ex-transform {
+        margin: 0 1rem;
+        background: url("/img/arrow-right.svg") no-repeat;
+        background-position: center center;
+        background-size: contain;
     }
 
     .repos {

@@ -6,17 +6,98 @@
 
 <section class="main docs l-wrap">
     <h1>Dust</h1>
+    <p>
+    These dust helpers can be used to internationalize your dust templates.
+    </p>
 
-    <h2>{@formatDate}</h2>
+    <p>
+TODO
+    Please see the <a href="/guide/">Guide</a> for general details.
+    </p>
+
+
+    <h2 id="installation">Installation</h2>
+TODO
+
+
+    <h2 id="context-requirements">Context Requirements</h2>
+    <p>
+    For dust-helper-intl, the internationalization details are passed to the helpers via the <code>intl</code> key in the context.
+    </p>
+
+
+    <h3><code>locales</code></h3>
+    <p>
+    This key in the context (<code>intl.locales</code>) should be set to a
+    <a href="http://en.wikipedia.org/wiki/IETF_language_tag">IETF language tag</a> for the current language.
+    </p>
+
+
+    <h3><code>formats</code></h3>
+    <p>
+    This key in the context (<code>intl.formats</code>) can be used to set different preset formats for the handlers.
+    It is an object, which contains keys named for each handler.
+    </p>
+
+    <p>Example:</p>
+    <pre class="code">
+context = {
+    intl: {
+        formats: {
+            // predefined formats for {@formatDate}
+            date: {
+                bill: { month: 'long' day: 'numeric' year: 'numeric'}
+            },
+
+            // predefined formats for {@formatTime}
+            time: {
+                hm: { hour: 'numeric', minute: 'numeric' }
+            },
+
+            // predefined formats for {@formatNumber}
+            number: {
+                eur: { style: 'currency', currency: 'EUR' },
+                usd: { style: 'currency', currency: 'USD' }
+            }
+        }
+    }
+}
+</pre>
+
+
+    <h3><code>messages</code></h3>
+    <p>
+    This key in the context (<code>intl.messages</code>) is used by <code>{@formatMessage}</code>.
+    It is an object, each key being the name of a message, and each value being an <a href="http://userguide.icu-project.org/formatparse/messages">ICU formatted message</a>.
+    The formatted messages should be appropriate for the current language.
+    </p>
+
+    <p>Example:</p>
+    <pre class="code">
+context = {
+    intl: {
+        messages: {
+            photos: '{name} took {numPhotos, plural, =0 {no photos} =1 {one photo} other {# photos}} on {takenDate, date, long}.
+        }
+    }
+}
+</pre>
+
+
+    <h2 id="formatMessage">{@formatMessage}</h2>
+    {{~> example examples.message}}
+
+
+    <h2 id="formatDate">{@formatDate}</h2>
     {{~> example examples.date}}
 
-    <h2>{@formatTime}</h2>
+
+    <h2 id="formatTime">{@formatTime}</h2>
     {{~> example examples.time}}
 
-    <h2>{@formatNumber}</h2>
+
+    <h2 id="formatNumber">{@formatNumber}</h2>
     {{~> example examples.number}}
 
-    <h2>{@formatMessage}</h2>
-    {{~> example examples.message}}
 
 </section>

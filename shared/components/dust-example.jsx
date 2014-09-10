@@ -14,6 +14,7 @@ export default React.createClass({
         renderCode: [
             'context.intl = intlData;',
             'dust.render(template, context, function(err, html) {',
+            '    ...put `html` into the DOM or use it otherwise...',
             '});'
         ].join('\n')
     },

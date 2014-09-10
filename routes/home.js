@@ -22,6 +22,8 @@ module.exports = function (route) {
                 )
             },
 
+            now: new Date(),
+
             data: {intl: res.intl}
         });
     });

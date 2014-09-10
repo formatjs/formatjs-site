@@ -98,10 +98,14 @@ p code {
     word-wrap: break-word;
 }
 
-.l-wrap {
+.l-wrap,
+.l-wrap-wide {
     max-width: 48rem;
     margin-left: auto;
     margin-right: auto;
+}
+.l-wrap-wide {
+    max-width: 64rem;
 }
 
 .subheading {
@@ -201,65 +205,92 @@ p code {
     margin-right: 0;
 }
 
-.integrations-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+.standards-content {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
 }
-.integrations-list-item {
-    width: 33.3333%;
-    text-align: center;
-    align-self: flex-end;
+.standards-logo {
+    margin-left: auto;
+    margin-right: auto;
 }
-.integrations-list-item a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.integrations-list-name {
-    order: 2;
-    margin: 0.5rem 0 0;
-    color: var(--purple);
-}
-.integrations-list-mark {
+.standards-logo img {
     display: block;
-    order: 1;
-    width: 100%;
-    max-width: 150px;
+    margin: 0 auto;
 }
 
-.features-ex {
+.integrations-content,
+.integrations-list,
+.integration,
+.integration-content,
+.integration-brand {
     display: flex;
-    justify-content: center;
+}
+.integrations-content {
+    flex-wrap: wrap;
+}
+.integrations-list {
+    margin: 1rem 0;
+    padding: 0;
+    list-style: none;
+    justify-content: space-between;
+}
+.integration {
+    width: 33.3333%;
+    justify-content: space-around;
+}
+.integration-content {
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
-    margin: 2rem 0;
 }
-.features-ex-input {
-    background: transparent;
-    font-size: 1.5rem;
+.integration-name {
+    order: 2;
+    margin: 0.5rem 0 0;
 }
-.features-ex-transform {
-    margin: 0 2rem;
+.integration-brand {
+    order: 1;
+    flex-grow: 1;
+    align-items: center;
 }
-.features-ex-output {
-    font-size: 1.75rem;
-    color: var(--purple-medium);
-    padding: 0 1rem;
-}
-.features-ex-output {
-    line-height: 1.0;
-    border-right: 1px solid var(--gray-medium);
-}
-.features-ex-output:last-child {
-    border-right: 0;
-}
-.features-ex-locale {
+.integration-mark {
     display: block;
-    font-size: 1rem;
+    width: 100%;
+}
+
+.features-list,
+.feature-ex,
+.feature-ex-output {
+    display: flex;
+}
+.features-list {
+    flex-wrap: wrap;
+}
+.feature {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.feature-ex {
+    align-items: center;
+}
+.feature-ex-input {
+    background: transparent;
+    font-size: 1.125rem;
+}
+.feature-ex-transform {
+    height: 40px;
+    width: 40px;
+}
+.feature-ex-output {
+    flex-direction: column;
+}
+.feature-ex-output {
+    font-size: 1.25rem;
+    color: var(--purple-medium);
+}
+.feature-ex-locale {
+    font-size: 0.875rem;
     font-style: normal;
-    text-align: center;
     text-transform: uppercase;
     color: var(--gray-medium);
 }
@@ -282,7 +313,8 @@ p code {
     h2 { font-size: 1.25rem; }
     h3 { font-size: 1.125rem; }
 
-    .l-wrap {
+    .l-wrap,
+    .l-wrap-wide {
         padding-left: 0.625rem;
         padding-right: 0.625rem;
     }
@@ -295,7 +327,6 @@ p code {
     }
 
     .splash {
-        min-height: 100%;
         padding-bottom: 2rem;
     }
 
@@ -320,12 +351,43 @@ p code {
         margin: 4rem 0 2rem;
     }
 
-    .integrations-list-item {
-        margin: 0 0.5rem;
+    .standards-logo img {
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+    .integrations .integrations-list {
+        width: 100%;
+    }
+    .integration {
+        margin: 0 0.625rem;
+    }
+    .integration-mark {
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+    .feature {
+        width: 100%;
+    }
+    .feature-ex {
+        flex-direction: column;
+    }
+    .feature-ex-transform {
+        margin: 0.5rem 0;
+        background: url("/img/arrow-down.svg") no-repeat;
+        background-position: top center;
+        background-size: contain;
     }
 
     .repo {
         width: 100%;
+    }
+}
+
+@media screen and (min-height: 0) {
+    .splash {
+        min-height: 100%;
     }
 }
 
@@ -350,8 +412,28 @@ p code {
 }
 
 @media screen and (min-width: 35.5em) {
-    .integrations-list-item {
-        margin: 0 1rem;
+    .standards-desc {
+        width: 62%;
+    }
+    .standards-logo {
+        width: 38%;
+    }
+    .standards-logo img {
+        max-width: 128px;
+        max-height: 128px;
+    }
+
+    .integration-mark {
+        max-width: 128px;
+        max-height: 128px;
+    }
+
+    .features-list {
+        margin-left: -0.625rem;
+        margin-right: -0.625rem;
+    }
+    .feature {
+        padding: 0 0.625rem;
     }
 
     .repos {
@@ -365,15 +447,39 @@ p code {
     .repo-description {
         font-size: 0.875rem;
     }
+
+    .feature {
+        width: 50%;
+    }
+    .feature:last-child {
+        width: 62%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
-@media screen and (min-width: 36em) and (min-height: 36em) {
+@media screen and (min-height: 36em) {
     .splash {
         min-height: 50%;
     }
+}
 
+@media screen and (min-width: 36em) and (min-height: 36em) {
     .nav {
         font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 40em) {
+    .integrations .integrations-desc {
+        width: 38%;
+    }
+    .integrations .integrations-list {
+        width: 62%;
+        padding-left: 1rem;
+    }
+    .integrations .integration:last-child {
+        margin-right: 0;
     }
 }
 
@@ -382,7 +488,8 @@ p code {
     h2 { font-size: 1.5rem; }
     h3 { font-size: 1.25rem; }
 
-    .l-wrap {
+    .l-wrap,
+    .l-wrap-wide {
         padding-left: 1rem;
         padding-right: 1rem;
     }
@@ -412,8 +519,25 @@ p code {
         font-size: 1.25rem;
     }
 
-    .integrations-list-item {
-        margin: 0 1.5rem;
+    .integration {
+        margin: 0 1rem;
+    }
+
+    .features-list {
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+    .feature {
+        padding: 0 1rem;
+    }
+    .feature-ex {
+        flex-direction: row;
+    }
+    .feature-ex-transform {
+        margin: 0 1rem;
+        background: url("/img/arrow-right.svg") no-repeat;
+        background-position: center center;
+        background-size: contain;
     }
 
     .repos {

@@ -1,1 +1,1 @@
-{@formatTime val=date hour="numeric" minute="numeric" timeZone="UTC"/}
+<p>{@formatTime val=date hour="numeric" minute="numeric" timeZone="UTC"/}</p>

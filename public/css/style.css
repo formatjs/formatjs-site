@@ -308,6 +308,15 @@ p code {
     margin-top: 0.5rem;
 }
 
+a.npmlink {
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+.note {
+    padding: 0.4em;
+    background-color: #FFC;
+    border: 1px solid #CC8;
+}
+
 @media screen and (min-width: 0) {
     h1 { font-size: 1.5rem; }
     h2 { font-size: 1.25rem; }

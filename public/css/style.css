@@ -309,18 +309,27 @@ p code {
     margin-top: 0.5rem;
 }
 
-.legal {
-    display: flex;
-    justify-content: space-between;
+.foot {
+    margin-top: 4rem;
+    padding: 0.125rem 0;
     font-size: 0.875rem;
     border-top: 1px solid var(--gainsboro);
     background-color: var(--gray-light);
 }
-.legal-license {
-    margin-left: 1rem;
+.legal {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
-.legal-copy {
-    margin-right: 1rem;
+.legal-clause {
+    white-space: nowrap;
+}
+.legal-license,
+.legal-copyright {
+    flex-grow: 1;
+}
+.legal-copyright {
+    text-align: right;
 }
 
 @media screen and (min-width: 0) {

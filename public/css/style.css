@@ -2,6 +2,7 @@
     --black        : rgb(65, 57, 70);
     --gray         : rgb(95, 90, 99);
     --gray-medium  : rgb(150, 150, 150);
+    --gainsboro    : rgb(220, 220, 220);
     --gray-light   : rgb(247, 247, 247);
     --white        : rgb(255, 255, 255);
     --pink         : rgb(208, 146, 247);
@@ -306,6 +307,29 @@ p code {
 }
 .repo-name {
     margin-top: 0.5rem;
+}
+
+.foot {
+    margin-top: 4rem;
+    padding: 0.125rem 0;
+    font-size: 0.875rem;
+    border-top: 1px solid var(--gainsboro);
+    background-color: var(--gray-light);
+}
+.legal {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.legal-clause {
+    white-space: nowrap;
+}
+.legal-license,
+.legal-copyright {
+    flex-grow: 1;
+}
+.legal-copyright {
+    text-align: right;
 }
 
 @media screen and (min-width: 0) {

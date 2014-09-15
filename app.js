@@ -122,9 +122,6 @@ Object.assign(app.locals, {
         }),
 
     helpers: {
-        npmLink: function (name, options) {
-            return new Handlebars.SafeString('<a class="npmlink" href="https://www.npmjs.org/package/' + name + '">' + name + '</a>');
-        },
         pathTo: function (name, options) {
             return app.getPathTo(name, options.hash);
         }

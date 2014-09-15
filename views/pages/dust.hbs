@@ -30,15 +30,15 @@
     <ol>
         <li>Install with <a href="http://bower.io/">bower</a>: <code>bower install dust-helper-intl</code></li>
         <li>Load the scripts into your page.
-<pre class="code">
-&lt;script src="dustjs-linkedin.js"&gt;&lt;/script&gt;
-&lt;script src="dust-helper-intl.js"&gt;&lt;/script&gt;
-</pre>
+{{#code lang="html"}}
+<script src="dustjs-linkedin.js"></script>
+<script src="dust-helper-intl.js"></script>
+{{/code}}
         </li>
         <li>Register the helpers:
-<pre class="code">
+{{#code lang="js"}}
 DustHelperIntl.register(dust);
-</pre>
+{{/code}}
         </li>
     </ol>
 
@@ -47,11 +47,11 @@ DustHelperIntl.register(dust);
     <ol>
         <li>You can install the helpers with npm: <code>npm install dust-helper-intl</code></li>
         <li>Load in the module and register it:
-<pre class="code">
+{{#code lang="js"}}
 var dust = require('dustjs-linkedin');
 global.Intl = global.Intl || require('intl');
 require('dust-helper-intl').register(dust);
-</pre>
+{{/code}}
         </li>
     </ol>
 
@@ -76,12 +76,12 @@ require('dust-helper-intl').register(dust);
 
     <p>
     Example:
-    <pre class="code">context = {
+    {{#code lang="js"}}
     intl: {
         locales = 'en-US'
     }
 }
-</pre>
+{{/code}}
     </p>
 
 
@@ -96,7 +96,8 @@ require('dust-helper-intl').register(dust);
     </p>
 
     <p>Example:</p>
-    <pre class="code">context = {
+    {{#code lang="js"}}
+    context = {
     intl: {
         formats: {
             // predefined formats for {@formatDate}
@@ -117,7 +118,7 @@ require('dust-helper-intl').register(dust);
         }
     }
 }
-</pre>
+{{/code}}
 
 
     <h3 id="context-messages"><code>intl.messages</code></h3>
@@ -132,7 +133,7 @@ require('dust-helper-intl').register(dust);
     </p>
 
     <p>Example:</p>
-    <pre class="code">
+    {{#code lang="js"}}
 context = {
     intl: {
         messages: {
@@ -140,7 +141,7 @@ context = {
         }
     }
 }
-</pre>
+{{/code}}
 
 
     <h2 id="formatDate">{@formatDate}</h2>

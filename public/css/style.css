@@ -308,9 +308,6 @@ p code {
     margin-top: 0.5rem;
 }
 
-a.npmlink {
-    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-}
 .note {
     padding: 0.4em;
     background-color: #FFC;

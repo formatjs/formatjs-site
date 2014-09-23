@@ -475,11 +475,6 @@ p code {
     .feature {
         width: 50%;
     }
-    .feature:last-child {
-        width: 62%;
-        margin-left: auto;
-        margin-right: auto;
-    }
 }
 
 @media screen and (min-height: 36em) {

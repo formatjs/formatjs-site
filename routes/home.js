@@ -12,6 +12,9 @@ module.exports = function (route) {
             takenDate: Date.now()
         };
 
+        var now       = Date.now();
+        var lastMonth = new Date(now - (30 * 24 * 60 * 60 * 1000));
+
         res.expose('home', 'pageType');
         res.expose(splashExample, 'examples.splash');
 
@@ -22,7 +25,16 @@ module.exports = function (route) {
                 )
             },
 
-            now: new Date(),
+            now: now,
+
+            // Had to do this since the Intl.js polyfill doesn't seem to work
+            // correctly when you _just_ want the year or month. I should follow
+            // a bug.
+            lastMonth: [
+                lastMonth.getFullYear(),
+                lastMonth.getMonth() + 1,
+                lastMonth.getDate()
+            ].join('-'),
 
             data: {intl: res.intl}
         });

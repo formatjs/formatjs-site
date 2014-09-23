@@ -97,10 +97,34 @@
             </div>
 
             <div class="feature">
+                <h3 class="subheading">Display dates relative to "now".</h3>
+
+                <p class="feature-ex">
+                  {{#intl locales="en-US"}}
+                    <code class="feature-ex-input">
+                        "{{lastMonth}}"
+                    </code>
+                    <span class="feature-ex-transform"></span>
+                    <span class="feature-ex-output">
+                        <span>
+                            <b>{{formatRelative lastMonth}}</b>
+                        </span>
+                        <span>
+                            <b>{{formatRelative lastMonth style="numeric"}}</b>
+                        </span>
+                        <span>
+                            <b>{{formatRelative lastMonth units="day"}}</b>
+                        </span>
+                    </span>
+                  {{/intl}}
+                </p>
+            </div>
+
+            <div class="feature">
                 <h3 class="subheading">Pluralize labels in translated strings.</h3>
 
                 <p class="feature-ex">
-                    <code class="feature-ex-input">comments.length</code>
+                    <code class="feature-ex-input">numComments</code>
                     <span class="feature-ex-transform"></span>
                     <span class="feature-ex-output">
                       {{#intl locales="en-US"}}

@@ -27,6 +27,9 @@ module.exports = function (route) {
 
             now: now,
 
+            // Had to do this since the Intl.js polyfill doesn't seem to work
+            // correctly when you _just_ want the year or month. I should follow
+            // a bug.
             lastMonth: [
                 lastMonth.getFullYear(),
                 lastMonth.getMonth() + 1,

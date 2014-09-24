@@ -309,6 +309,11 @@ p code {
     margin-top: 0.5rem;
 }
 
+.note {
+    padding: 0.4em;
+    background-color: #FFC;
+    border: 1px solid #CC8;
+}
 .foot {
     margin-top: 4rem;
     padding: 0.125rem 0;

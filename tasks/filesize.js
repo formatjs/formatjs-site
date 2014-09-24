@@ -1,5 +1,9 @@
 'use strict';
 
+/* jshint -W079 */
+var Promise = global.Promise || require('ypromise');
+/* jshint +W079 */
+
 var path  = require('path'),
     utils = require('../lib/utils'),
     zlib  = require('zlib');

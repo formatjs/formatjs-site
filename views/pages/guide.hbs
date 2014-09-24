@@ -7,15 +7,25 @@
 <section class="main docs l-wrap">
     <h1>Guide</h1>
 
-    <h2>What is Internationalization and why does it matter?</h2>
+
+    <h2 id="what-and-why">What Is Internationalization and Why Does It Matter</h2>
 
     <p>
-        Internationalization is the process of adapting and conforming content to different locales by translating text and formatting data. The Web reaches people in all parts of the World and in order to provide the most number of people access to information and a great user experience, web apps need to be internationalized.
+        Internationalization is the process of adapting and conforming content to different locales by translating text and formatting data.
+        The Web reaches people in all parts of the World, and so web apps need to be internationalized in order to provide
+        a great user experience for the most number of people.
     </p>
 
     <p>
-        {{brand}} strives to handle the runtime formatting task of internationalization in JavaScript by building on industry standards and providing integrations with popular template/component libraries.
+        As well, single-language applications can use {{brand}} to format strings based on conditions of the data.
+        Subtle changes in text based on quantity, gender, etc. can be accomplished in the messages, keeping that logic out of code.
     </p>
+
+    <p>
+        {{brand}} strives to handle the runtime formatting tasks of internationalization in JavaScript by building on industry standards and providing
+        <a href="#integrations">integrations with popular template/component</a> libraries.
+    </p>
+
 
     <h2 id="builtin-intl">JavaScript Built-in {{code "Intl"}} APIs</h2>
 
@@ -27,49 +37,313 @@
         <li>
             <p>
                 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Collator">{{code "Intl.Collator"}}</a>
+                provides a way of comparing and sorting strings in a way sensitive to the locale.
             </p>
+{{#code lang="js"}}
+new Intl.Collator('de').compare('ä', 'z'); // -1
+new Intl.Collator('sv').compare('ä', 'z'); // 1
+{{/code}}
         </li>
         <li>
             <p>
                 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">{{code "Intl.DateTimeFormat"}}</a>
+                provides a way of presenting dates and times in a way sensitive to the locale.
             </p>
+{{#code lang="js"}}
+var date = new Date('Wed Dec 4 13:49:57 2013');
+new Intl.DateTimeFormat('ar-001').format(date); // "٤‏/١٢‏/٢٠"
+new Intl.DateTimeFormat('en-UK').format(date); // "12/4/2013"
+new Intl.DateTimeFormat('ko-KR').format(date); // "2013. 12. 4"
+{{/code}}
         </li>
         <li>
             <p>
                 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">{{code "Intl.NumberFormat"}}</a>
+                provides a way of presenting numbers in a way sensitive to the locale.
             </p>
+{{#code lang="js"}}
+new Intl.NumberFormat('ar-001').format(4000.03); // "٤٬٠٠٠٫٠٣"
+new Intl.NumberFormat('de-DE').format(4000.03); // "4.000,03"
+new Intl.NumberFormat('en-UK').format(4000.03); // "4,000.03"
+new Intl.NumberFormat('fr-FR').format(4000.03); // "4 000,03"
+{{/code}}
         </li>
     </ul>
 
-    <h3 id="browser-support">Browser Support</h3>
 
-    <h3 id="nodejs">Node.js</h3>
+    <h3 id="builtin-browsers">Browser Support</h3>
+    <p>
+        The global {{code "Intl"}} object is supported in many, but not all, modern browsers.
+        Mozilla Developer Network has a nice <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Browser_Compatibility">compatibility matrix</a>.
+    </p>
 
-    <h3 id="intl-polyfill">Intl.js Polyfill</h3>
+    <p>
+        If a browser doesn't support the {{code "Intl"}} global and the above APIs, they can be loaded using the <a href="#intl-polyfill">{{code "Intl.js"}} polyfill</a> mentioned below.
+    </p>
 
-    <h2 id="formatting-numbers">Formatting Numbers</h2>
 
-    <h2 id="formatting-dates-and-times">Formatting Dates and Times</h2>
+    <h3 id="builtin-node">Node.js</h3>
+    <p>
+        Node.js, as of 0.10, does not have a builtin {{code "Intl"}} object.
+        Support can be added by using the <a href="#intl-polyfill-node">{{code "Intl.js"}} polyfill</a> mentioned below.
+    </p>
 
-    <h3 id="formatting-relative-times">Relative Times</h3>
 
-    <h2 id="formatting-translated-strings">Formatting Translated Strings</h2>
+    <h2 id="format-numbers">Formatting Numbers</h2>
+    <p>
+    Different locales represent numbers differently.
+    The ECMA 402 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">{{code "Intl.NumberFormat"}} specification</a> describes an API for formatting decimals, percentages, and currency.
+    The formatting of each of these types of numbers can be further customized.
+    </p>
+
+{{#code lang="js"}}
+new Intl.NumberFormat('ar-001').format(4000.03); // "٤٬٠٠٠٫٠٣"
+new Intl.NumberFormat('de-DE').format(4000.03); // "4.000,03"
+new Intl.NumberFormat('en-UK').format(4000.03); // "4,000.03"
+new Intl.NumberFormat('fr-FR').format(4000.03); // "4 000,03"
+
+new Intl.NumberFormat('fr-FR', {style:'decimal', useGrouping:false, maximumFractionDigits:0}).format(32198.765);
+// "32198"
+new Intl.NumberFormat('fr-FR', {style:'percent', minimumFractionDigits:1}).format(0.32198765);
+// "32,2 %"
+new Intl.NumberFormat('fr-FR', {style:'currency', currency:'GBP'}).format(32198.765);
+// "32 198,76 £GB"
+{{/code}}
+
+
+    <h3 id="format-numbers-support">Support</h3>
+    <p>
+    The {{code "Intl.NumberFormat"}} API is supported by <a href="#builtin-browsers">most browsers</a>.
+    If you are running in an environment that doesn't provide this API, you can use the <a href="intl-polyfil">Intl.js polyfill</a> for a pure-javascript implementation.
+    </p>
+
+
+    <h2 id="format-dates-and-times">Formatting Dates and Times</h2>
+    <p>
+    Different locales represent dates and times differently.
+    The ECMA 402 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">{{code "Intl.DateTimeFormat"}} specification</a> describes an API for formatting dates and times.
+    </p>
+{{#code lang="js"}}
+var ts = new Date('Wed Dec 4 13:49:57 2013');
+var options = {year:'numeric', month:'short', day:'numeric', hour:'numeric', minute:'numeric', second:'numeric'};
+new Intl.DateTimeFormat('ar-001', options).format(ts); // "٤ ديسمبر، ٢٠١٣ ١:٤٩:٥٧ م"
+new Intl.DateTimeFormat('de-DE', options).format(ts); // "4. Dezember 2013 13:49:57"
+new Intl.DateTimeFormat('en-UK', options).format(ts); // "December 4, 2013 1:49:57 PM"
+new Intl.DateTimeFormat('ko-KR', options).format(ts); // "2013년 12월 4 오후 1:49:57"
+
+var options = {hour:'numeric', minute:'numeric', second:'numeric'};
+new Intl.DateTimeFormat('ko-KR', options).format(ts); // "오후 1:49:57"
+
+var options = {year:'numeric', month:'short'};
+new Intl.DateTimeFormat('ru-RU', options).format(ts); // "дек. 2013"
+{{/code}}
+
+
+    <h3 id="format-dates-and-times-support">Support</h3>
+    <p>
+    The {{code "Intl.DateTimeFormat"}} API is supported by <a href="#builtin-browsers">most browsers</a>.
+    If you are running in an environment that doesn't provide this API, you can use the <a href="intl-polyfil">Intl.js polyfill</a> for a pure-javascript implementation.
+    </p>
+
+
+    <h2 id="format-strings">Formatting Translated Strings</h2>
+    <p>
+        There are many considerations when formatting messages for different locales.
+        Gender and quantity (pluralization) are the two most common, and for some locales they can strongly affect the spelling and grammar of the message.
+    </p>
+
+    <p>
+        {{code "IntlMessageFormat"}} is a <a href="http://wiki.ecmascript.org/doku.php?id=globalization:messageformatting">proposed standard</a> for javascript, closely following the ICU message syntax (<a href="#icu-message-syntax">described below</a>).
+        Many professional translaters are familiar with ICU and so should be comfortable creating messages for {{code "IntlMessageFormat"}}.
+    </p>
+
+    <p>
+        The message format is flexible enough to enable customization of messages based on considerations beyond just gender and quantity.
+        Many considerations can be give to the {{code "{select}"}} construct to create different strings.
+    </p>
+
 
     <h3 id="icu-message-syntax">ICU Message Syntax</h3>
+    <p>
+        The ICU message format is a way to represent a message for a locale in a way that captures all the nuances for that locale.
+        The format describes ways to adjust the output based on many considerations.
+        Special locale-sensitive support is provided for pluralization based on the <a href="http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html">CLDR pluralization rules for different languages</a>.
+    </p>
+
+{{#code lang="js"}}
+//--- plain strings
+new IntlMessageFormat('foo', 'en-US').format({});
+// "foo"
+
+//--- content replacement
+context = {color: 'bar'};
+new IntlMessageFormat('foo {color}', 'en-US').format(context);
+// "foo bar"
+
+//--- select
+context = {gender: 'male'};
+message = '{gender, select, male {He}, female {She}, other {They}} ran far.';
+new IntlMessageFormat(message, 'en-US').format(context);
+// "He ran far."
+
+//--- plurals
+message = 'Mam {numCats} {numCats, plural, one {kota}, few {koty}, many {kotów}, other {kotów}}.';
+fmt = new IntlMessageFormat(message, 'pl-PL');
+fmt.format({numCats: 3});
+// "Mam 3 koty."
+fmt.format({numCats: 5});
+// "Mam 5 kotów."
+
+//--- numbers (via Intl.NumberFormat)
+context = {numCats: 3000, pctBlack: 0.3};
+message = 'Ich habe {numCats, number, decimal} Katzen. Fast {pctBlack, number, percent} sind schwarz.';
+new IntlMessageFormat(message, 'de-DE').format(context);
+// "Ich habe 3.000 Katzen. Fast 30 % sind schwarz."
+
+//--- dates (via Intl.DateTimeFormat)
+context = {start: new Date('Wed Dec 4 13:49:57 2013')};
+message = 'Der Verkauf startet am {start, date, long}.';
+new IntlMessageFormat(message, 'de-DE').format(context);
+// "Der Verkauf startet am 4. Dezember 2013."
+
+//--- times (via Intl.DateTimeFormat)
+context = {end: new Date('Wed Dec 4 13:49:57 2013')};
+message = 'Das Angebot endet um {end, time, short}.';
+new IntlMessageFormat(message, 'de-DE').format(context);
+// "Das Angebot endet um 13:49."
+{{/code}}
+
+    <p>
+        More details can be found in the documentation for the <a href="http://userguide.icu-project.org/formatparse/messages">ICU {{code "MessageFormat"}} class</a>.
+        <!-- TODO:  messageformat.js has a really nice/detailed readme. Do the same here? -->
+    </p>
+
+
+    <h3 id="format-strings-install">Installation and Availability</h3>
+    <p>
+        Since {{code "Intl.MessageFormat"}} is not yet a standard, we've created {{npmLink "intl-messageformat"}}, available on NPM and Bower.
+        The bower package is 6.5k minified and gzipped (including pluralization support for all locales).
+    </p>
+
+    <p>
+        This module works in all ES3 browsers, as well as nodejs.
+        Messages are portable between the different environments.
+    </p>
+
+    <p>
+        {{code "IntlMessageFormat"}} assumes that the {{code "Intl"}} global object exists.
+        If a runtime doesn't support the {{code "Intl"}} global, it can be loaded using the <a href="#intl-polyfill">{{code "Intl.js"}} polyfill</a> mentioned below.
+    </p>
+
+
+    <h3 id="format-strings-optimized">Optimization</h3>
+    <p>
+        Since the messages are provided to this library as a string, they must be parsed before they can be used.
+        If possible it is best to create only one {{code "IntlMessageFormat"}} for each message.
+        (Internally it is optiomized to compile the message only once.)
+    </p>
+
+    <p>
+        Alternately, you can use the {{npmLink "intl-format-cache"}} helper library.
+        It memoizes and caches the parsing of the messages.
+        You can use this as a convenient way to efficiently re-use {{code "IntlMessageFormat"}} objects.
+        (It is built into the <a href="#integrations">template engine integrations</a> that we provide.)
+    </p>
+
+    <p>
+        Finally, instead you can pre-parse a message into an AST using {{code "intl-messageformat-parser"}}.
+        The {{code "IntlMessageFormat"}} constructor takes either the message as a string or as an AST.
+        These AST work in both the server and client: you can create them on the server and send them to the client.
+    </p>
+
 
     <h2 id="determining-locale">Determining a Person's Locale</h2>
+    <p>
+        Since there is no way of being sure of a user's preferred language/locale, the best approach is to ask them and store it in their profile.
+    </p>
 
-    <h3 id="content-negotiation">HTTP Content Negotiation</h3>
+    <p>
+        However, the browser does have an idea of the user's locale.
+        This is sometimes no more than a guess, and sometimes the user has explicitely configured their browser to have the correct value.
+    </p>
 
-    <h2 id="loading-polyfill-and-locale-data">Loading Intl.js Polyfill and Locale Data</h2>
+    <p>
+        In client (browser) code, the locale can be inferred from {{code "navigator.language || navigator.browserLanguage"}}.
+    </p>
 
-    <h3>In the Browser</h3>
+    <p>
+        On the server, the browser should have sent an {{code "Accept-Language"}} HTTP request header.
+        If you are using nodejs, there are <a href="https://www.npmjs.org/search?q=accept-language">several libraries</a> that make it easy to use this header,
+        including finding the best match to the locales you have available in your application.
+    </p>
 
-    <h4>Conditionally Loading via {{code "&lt;script&gt;"}} Loader</h4>
 
-    <h3>In Node.js</h3>
+    <h2 id="intl-polyfill">Loading Intl.js Polyfill and Locale Data</h2>
+    <p>
+        If you are running in an environment that doesn't support the {{code 'Intl'}} namespace you can use the {{npmLink 'intl'}} polyfill, available via both NPM and bower.
+        It provides the {{code 'Intl.NumberFormat'}} and {{code 'Intl.DateTimeFormat'}} APIs.
+    </p>
 
-    <h2>Integrate with Template/View Layer</h2>
+    <p>
+        This polyfill is 9.8k (minified and gzipped) for the base library, plus about 4k (gzipped) per locale for the metadata required to support the locale.
+    </p>
+
+    <p class="note">
+        <strong>Note:</strong>
+        This polyfill doesn't currently support {{code 'Intl.Collator'}}.
+        This API is infrequently used, and the locale-specific data required to support it is rather large.
+    </p>
+
+
+    <h3 id="intl-polyfill-browser">In the Browser</h3>
+    <p>
+        Ideally, you will avoid loading this library if the browser supports the built-in {{code 'Intl'}}.
+        Since most browsers don't currently support it, you might want to load it into every page that needs to render localized dates, times, and numbers on the client.
+        Bower and browserify are common ways of getting this library (or other libraries) loaded into a page.
+    </p>
+
+    <p>
+        Instead, you can conditionally load it however you choose.
+        One option is to use the <a href="http://yepnopejs.com/">yepnopejs</a> library, like this...
+    </p>
+
+{{#code lang="js"}}
+yepnope({
+  test : window.Intl,
+  nope : ['path/to/intl.js'],
+  complete: function () {
+    var nf = new Intl.NumberFormat(undefined, {style:'currency', currency:'GBP'});
+    document.getElementById('price').textContent = nf.format(100);
+  }
+});
+{{/code}}
+
+
+    <h3 id="intl-polyfill-node">In Node.js</h3>
+    <p>
+        This polyfill is available on NPM as the {{npmLink 'intl'}} module.
+    </p>
+
+{{#code lang="js"}}
+global.Intl = require('intl');
+{{/code}}
+
+
+    <h2 id="integrations">Integrate with Template/View Layer</h2>
+    <p>
+        We've also added internationalization support to a few common template engines.
+    </p>
     {{> integrations-list}}
+
+
+    <h2 id="resources">Other Resources</h2>
+    <ul>
+        <li>the ECMA 402 <a href="http://www.ecma-international.org/ecma-402/1.0/">internationalization API</a> specification</li>
+        <li>Mozilla Developer Network's <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">documentation</a> of the {{code "Intl"}} namespace</li>
+        <li>Norbert Lindenberg&apos;s <a href="http://norbertlindenberg.com/2012/12/ecmascript-internationalization-api/index.html">detailed introduction</a> to the {{code "Intl"}} API</li>
+        <li><a href="http://marcoscaceres.github.io/jsi18n/">Using the Javascript Internationalization API</a> by Marcos Caceres</li>
+        <li>the {{npmLink 'messageformat'}} package on NPM</li>
+    </ul>
+
 
 </section>

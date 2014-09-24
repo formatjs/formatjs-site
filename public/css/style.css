@@ -2,6 +2,7 @@
     --black        : rgb(65, 57, 70);
     --gray         : rgb(95, 90, 99);
     --gray-medium  : rgb(150, 150, 150);
+    --gainsboro    : rgb(220, 220, 220);
     --gray-light   : rgb(247, 247, 247);
     --white        : rgb(255, 255, 255);
     --pink         : rgb(208, 146, 247);
@@ -308,6 +309,34 @@ p code {
     margin-top: 0.5rem;
 }
 
+.note {
+    padding: 0.4em;
+    background-color: #FFC;
+    border: 1px solid #CC8;
+}
+.foot {
+    margin-top: 4rem;
+    padding: 0.125rem 0;
+    font-size: 0.875rem;
+    border-top: 1px solid var(--gainsboro);
+    background-color: var(--gray-light);
+}
+.legal {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.legal-clause {
+    white-space: nowrap;
+}
+.legal-license,
+.legal-copyright {
+    flex-grow: 1;
+}
+.legal-copyright {
+    text-align: right;
+}
+
 @media screen and (min-width: 0) {
     h1 { font-size: 1.5rem; }
     h2 { font-size: 1.25rem; }
@@ -450,11 +479,6 @@ p code {
 
     .feature {
         width: 50%;
-    }
-    .feature:last-child {
-        width: 62%;
-        margin-left: auto;
-        margin-right: auto;
     }
 }
 

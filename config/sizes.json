@@ -3,20 +3,24 @@
         "bytes": 10005,
         "kbs": 9.8
     },
-    "intl-messageformat/dist/intl-messageformat.min.js": {
-        "bytes": 6634,
-        "kbs": 6.5
+    "react-intl/dist/react-intl-with-locales.min.js": {
+        "bytes": 33800,
+        "kbs": 33
     },
     "react-intl/dist/react-intl.min.js": {
-        "bytes": 7334,
-        "kbs": 7.2
+        "bytes": 6827,
+        "kbs": 6.7
     },
     "dust-helper-intl/dist/dust-intl.min.js": {
         "bytes": 7670,
         "kbs": 7.5
     },
-    "handlebars-helper-intl/dist/helpers.min.js": {
-        "bytes": 7589,
-        "kbs": 7.4
+    "handlebars-intl/dist/handlebars-intl-with-locales.min.js": {
+        "bytes": 34198,
+        "kbs": 33.4
+    },
+    "handlebars-intl/dist/handlebars-intl.min.js": {
+        "bytes": 7211,
+        "kbs": 7
     }
 }

@@ -14,6 +14,7 @@ export default React.createClass({
         renderCode: [
             'context.intl = intlData;',
             'dust.render(template, context, function(err, html) {',
+            '    ...put `html` into the DOM or use it otherwise...',
             '});'
         ].join('\n')
     },
@@ -33,22 +34,24 @@ export default React.createClass({
 
         return (
             <div id={example.id} className="example">
+                <h3>Live Example</h3>
                 <div className="example-source">
-                    <h3>Template</h3>
+                    <h4>Template</h4>
                     <Code lang="html">{example.source.template}</Code>
                 </div>
 
                 <div className="example-context">
-                    <h3>Context</h3>
+                    <h4>Context</h4>
                     <Code lang="javascript">{example.source.context}</Code>
                 </div>
 
                 <div className="example-render">
-                    <h3>Rendering</h3>
+                    <h4>Rendering</h4>
                     <Code lang="javascript">{this.genderateRenderCode()}</Code>
                 </div>
 
                 <div className="example-output">
+                    <h4>Results</h4>
                     <DustOutput
                         exampleId={this.props.example.id}
                         locales={currentLocale}

@@ -28,7 +28,6 @@ node_modules = moveFiles(node_modules, {
         'es6-shim/es6-shim.min.js': 'vendor/es6-shim/es6-shim.min.js',
         'es6-shim/es6-shim.map'   : 'vendor/es6-shim/es6-shim.map',
 
-
         'dustjs-linkedin/dist': 'vendor/dust',
         'handlebars/dist'     : 'vendor/handlebars',
         'react/dist'          : 'vendor/react',
@@ -37,10 +36,9 @@ node_modules = moveFiles(node_modules, {
         'intl/Intl.min.js': 'vendor/intl/Intl.min.js',
         'intl/locale-data': 'vendor/intl/locale-data',
 
-        'intl-messageformat/dist'    : 'vendor/intl-messageformat',
-        'dust-helper-intl/dist'      : 'vendor/dust-helper-intl',
-        'handlebars-helper-intl/dist': 'vendor/handlebars-helper-intl',
-        'react-intl/dist'            : 'vendor/react-intl'
+        'dust-helper-intl/dist': 'vendor/dust-helper-intl',
+        'handlebars-intl/dist' : 'vendor/handlebars-intl',
+        'react-intl/dist'      : 'vendor/react-intl'
     }
 });
 

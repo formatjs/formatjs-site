@@ -113,7 +113,7 @@ new Intl.NumberFormat('fr-FR', {style:'currency', currency:'GBP'}).format(32198.
 
     <h3 id="format-numbers-support">Support</h3>
     <p>
-    The {{code "Intl.NumberFormat"}} API is supported by <a href="#builtin-browsers">most browsers</a>.
+    The {{code "Intl.NumberFormat"}} API is supported by <a href="#builtin-browsers">most current browsers</a>.
     If you are running in an environment that doesn't provide this API, you can use the <a href="intl-polyfil">Intl.js polyfill</a> for a pure-javascript implementation.
     </p>
 
@@ -153,8 +153,8 @@ new Intl.DateTimeFormat('ru-RU', options).format(ts); // "дек. 2013"
     </p>
 
     <p>
-        {{code "IntlMessageFormat"}} is a <a href="http://wiki.ecmascript.org/doku.php?id=globalization:messageformatting">proposed standard</a> for javascript, closely following the ICU message syntax (<a href="#icu-message-syntax">described below</a>).
-        Many professional translaters are familiar with ICU and so should be comfortable creating messages for {{code "IntlMessageFormat"}}.
+        {{code "Intl.MessageFormat"}} is a <a href="http://wiki.ecmascript.org/doku.php?id=globalization:messageformatting">proposed standard</a> for javascript, closely following the ICU message syntax (<a href="#icu-message-syntax">described below</a>).
+        Many professional translaters are familiar with ICU and should be comfortable creating messages for {{code "intl-messageformat"}}.
     </p>
 
     <p>
@@ -240,7 +240,7 @@ new IntlMessageFormat(message, 'de-DE').format(context);
     <p>
         Since the messages are provided to this library as a string, they must be parsed before they can be used.
         If possible it is best to create only one {{code "IntlMessageFormat"}} for each message.
-        (Internally it is optiomized to compile the message only once.)
+        (Internally it is optimized to compile the message only once.)
     </p>
 
     <p>
@@ -259,7 +259,7 @@ new IntlMessageFormat(message, 'de-DE').format(context);
 
     <h2 id="determining-locale">Determining a Person's Locale</h2>
     <p>
-        Since there is no way of being sure of a user's preferred language/locale, the best approach is to ask them and store it in their profile.
+        Since there is no way to be sure of a user's preferred language/locale, the best approach is to ask them and store it in their profile.
     </p>
 
     <p>
@@ -274,7 +274,7 @@ new IntlMessageFormat(message, 'de-DE').format(context);
     <p>
         On the server, the browser should have sent an {{code "Accept-Language"}} HTTP request header.
         If you are using nodejs, there are <a href="https://www.npmjs.org/search?q=accept-language">several libraries</a> that make it easy to use this header,
-        including finding the best match to the locales you have available in your application.
+        including finding the best match for the locales you have available in your application.
     </p>
 
 
@@ -298,8 +298,8 @@ new IntlMessageFormat(message, 'de-DE').format(context);
     <h3 id="intl-polyfill-browser">In the Browser</h3>
     <p>
         Ideally, you will avoid loading this library if the browser supports the built-in {{code 'Intl'}}.
-        Since most browsers don't currently support it, you might want to load it into every page that needs to render localized dates, times, and numbers on the client.
-        Bower and browserify are common ways of getting this library (or other libraries) loaded into a page.
+        Since few common older browsers currently support it, you might want to load it into every page that needs to render localized dates, times, and numbers on the client.
+        Bower and browserify are common ways of getting this library (or other libraries) loaded into the page.
     </p>
 
     <p>
@@ -309,12 +309,11 @@ new IntlMessageFormat(message, 'de-DE').format(context);
 
 {{#code lang="js"}}
 yepnope({
-  test : window.Intl,
-  nope : ['path/to/intl.js'],
-  complete: function () {
-    var nf = new Intl.NumberFormat(undefined, {style:'currency', currency:'GBP'});
-    document.getElementById('price').textContent = nf.format(100);
-  }
+    test : window.Intl,
+    nope : ['path/to/intl.js'],
+    complete: function () {
+        ... Intl.NumberFormat and Intl.DateTimeFormat are now available ...
+    }
 });
 {{/code}}
 

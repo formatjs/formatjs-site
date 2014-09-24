@@ -78,6 +78,7 @@ var route = router.route.bind(router);
 router.use(middleware.intl);
 
 routes.home(route('/'));
+routes.about(route('/about/'));
 routes.guide(route('/guide/'));
 routes.integrations(route('/integrations/'));
 routes.github(route('/github/'));

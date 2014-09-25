@@ -185,10 +185,12 @@ p code {
     color: var(--white);
 }
 .splash .nav {
-    justify-content: center;
+    justify-content: flex-end;
+    order: 1;
 }
 .splash .brand {
     width: 100%;
+    order: 2;
 }
 .splash .brand-mark {
     background: url("/img/logo.svg") no-repeat;
@@ -196,7 +198,7 @@ p code {
     background-position: center;
 }
 .splash .nav-menu {
-    margin: 0;
+    margin-top: 1.25rem;
 }
 
 .splash-example-container {
@@ -405,7 +407,7 @@ p code {
     }
 
     .splash .brand {
-        margin: 1rem 0;
+        margin: 1rem 0 0;
     }
     .splash .brand-mark {
         margin: 0 auto;
@@ -615,11 +617,14 @@ p code {
 
     .tagline {
         font-size: 1.875rem;
-        margin: 4rem 0;
+        margin: 2rem 0 4rem;
     }
 
     .splash .brand {
         margin-top: 2rem;
+    }
+    .splash .nav-menu {
+        margin-top: 1.1875rem;
     }
 
     .splash-cta {

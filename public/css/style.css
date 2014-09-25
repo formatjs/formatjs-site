@@ -39,6 +39,17 @@ a.pure-button:visited {
     box-shadow: none;
 }
 
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
 html,
 body {
     height: 100%;
@@ -130,8 +141,40 @@ p code {
     color: var(--white);
 }
 
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.brand {
+    line-height: 1.0;
+}
+.brand-mark {
+    display: block;
+}
+
+.nav-menu {
+    margin: 0.625rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    font-weight: 300;
+}
+.nav-menu a {
+    padding: 0.5rem;
+}
+.nav-menu-item:first-child {
+    margin-left: 0;
+}
+.nav-menu-item:last-child {
+    margin-right: 0;
+}
+
 .splash {
-    background: url('/img/splash-head.jpg') no-repeat;
+    background: url("/img/splash-head.jpg") no-repeat;
     background-size: cover;
     color: var(--white);
     text-align: center;
@@ -140,6 +183,20 @@ p code {
 .splash a:visited,
 .splash .tagline {
     color: var(--white);
+}
+.splash .nav {
+    justify-content: center;
+}
+.splash .brand {
+    width: 100%;
+}
+.splash .brand-mark {
+    background: url("/img/logo.svg") no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.splash .nav-menu {
+    margin: 0;
 }
 
 .splash-example-container {
@@ -181,29 +238,6 @@ p code {
     border: 1px solid var(--white);
     padding-left: 2em;
     padding-right: 2em;
-}
-
-.nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    text-transform: uppercase;
-}
-.nav a {
-    padding: 0.5rem;
-}
-.nav-menu {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    font-weight: 300;
-}
-.nav-menu-item:first-child {
-    margin-left: 0;
-}
-.nav-menu-item:last-child {
-    margin-right: 0;
 }
 
 .standards-content {
@@ -316,25 +350,18 @@ p code {
 }
 .foot {
     margin-top: 4rem;
-    padding: 0.125rem 0;
     font-size: 0.875rem;
     border-top: 1px solid var(--gainsboro);
     background-color: var(--gray-light);
 }
+
 .legal {
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
 }
 .legal-clause {
     white-space: nowrap;
-}
-.legal-license,
-.legal-copyright {
-    flex-grow: 1;
-}
-.legal-copyright {
-    text-align: right;
 }
 
 @media screen and (min-width: 0) {
@@ -360,12 +387,30 @@ p code {
     }
 
     .nav {
-        font-size: 0.875rem;
         margin: 0 0.125rem 1rem;
+    }
+
+    .brand-mark {
+        margin: 0.5rem;
+        width: 2.1484rem;
+        height: 2.5rem;
+        background-image: url("/img/logo-element.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
     }
 
     .tagline {
         margin: 2rem 0;
+    }
+
+    .splash .brand {
+        margin: 1rem 0;
+    }
+    .splash .brand-mark {
+        margin: 0 auto;
+        width: 12.3436rem;
+        height: 2rem;
     }
 
     .splash-example-controls {
@@ -380,6 +425,9 @@ p code {
         margin: 4rem 0 2rem;
     }
 
+    .standards-logo {
+        width: 100%;
+    }
     .standards-logo img {
         max-width: 80px;
         max-height: 80px;
@@ -412,6 +460,15 @@ p code {
     .repo {
         width: 100%;
     }
+
+    .legal {
+        flex-wrap: wrap;
+    }
+    .legal-license,
+    .legal-copyright {
+        width: 100%;
+        text-align: center;
+    }
 }
 
 @media screen and (min-height: 0) {
@@ -427,6 +484,17 @@ p code {
 }
 
 @media screen and (min-width: 30em) {
+    .brand-mark {
+        width: 9.2578rem;
+        height: 2.5rem;
+        background-image: url("/img/logo.svg");
+    }
+
+    .nav-menu-item {
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+    }
+
     .splash-example-controls {
         justify-content: flex-end;
     }
@@ -434,9 +502,19 @@ p code {
         margin-right: 1rem;
     }
 
-    .nav-menu-item {
-        margin-left: 0.25rem;
-        margin-right: 0.25rem;
+    .legal {
+        flex-wrap: nowrap;
+    }
+    .legal-license,
+    .legal-copyright {
+        width: auto;
+        flex-grow: 1;
+    }
+    .legal-license {
+        text-align: left;
+    }
+    .legal-copyright {
+        text-align: right;
     }
 }
 
@@ -463,6 +541,7 @@ p code {
     }
     .feature {
         padding: 0 0.625rem;
+        width: 50%;
     }
 
     .repos {
@@ -475,10 +554,6 @@ p code {
     }
     .repo-description {
         font-size: 0.875rem;
-    }
-
-    .feature {
-        width: 50%;
     }
 }
 
@@ -534,9 +609,17 @@ p code {
         margin-right: 0.5rem;
     }
 
+    .nav-menu {
+        font-size: 1.125rem;
+    }
+
     .tagline {
         font-size: 1.875rem;
         margin: 4rem 0;
+    }
+
+    .splash .brand {
+        margin-top: 2rem;
     }
 
     .splash-cta {

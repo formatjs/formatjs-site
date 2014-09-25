@@ -1,5 +1,96 @@
 {{setTitle "Guide"}}
 
+<!--
+
+- as a developer, I want to learn the basic principles to use these libraries.
+- as a developer, I want to know how to patch the runtime when needed to be able to use these libraries in a way that's aligned with industry best practices.
+- as a developer, I want to know how to use these libraries on the server and in the browser within the same application.
+- as a developer, I want to learn more about the message format syntax, including examples and standard definitions.
+
+
+basic i18n principles
+
+    * locale
+        * represents the user's "locale" (language, as it's spoken in a region)
+        * identifier: {language}-{region}
+        * link to some official doc/page
+    * translated strings
+        * text at a certain spot on the page
+        * why not just translate templates? (do we need to address this _here_?)
+    * bundling translated strings
+        * each locale in a separate bundle
+            * our #integrations assume a bundle of messages for a single (user's current) locale
+            * client-side only needs to load the messages for the user's current locale
+    * structuring code / flow of data
+        * determine user's current locale
+        * setup #integrations with...
+            * user's current locale
+            * translated strings for that locale
+            * (optional) any custom formats (custom formats described below)
+        * call #integrations
+
+
+patch runtime
+
+    * which runtimes need patching
+    * how to patch
+        * aligned with industry best practices
+        * (yepnopejs?)
+    * intl.js polyfill
+        * (mention lack of Intl.Collator?)
+        * loading locale data for intl.js
+
+
+runtime environments
+
+    * client-side
+        * loading the libraries
+        * patch Intl
+            * only needed for number, date, time formatting (is this true?)
+            * loading locale data
+        * determining the user's locale
+            * best:  user explicitly chooses, you save in user's profile
+            * `navigator.language || navigator.browserLanguage`
+
+    * server-side
+        * loading the libraries
+        * patch Intl
+        * determining the user's locale
+            * best:  user explicitly chooses, you save in user's profile
+            * `Accept-Language` HTTP request header
+            * good NPM library(ies) to match against that
+
+
+message format syntax
+
+    * standard
+        * ICU
+        * proposed for ecmascript
+    * basic principals
+        * literals
+        * replacement syntax
+    * simple variable replacements
+        * syntax
+    * formatted variable replacements ({x, number}, {x, date}, and {x, time})
+        * syntax
+        * predefined options
+            * for each type
+        * creating your own options
+    * {select} replacement
+        * syntax
+        * matching rules
+        * nesting
+    * {plural} replacement
+        * syntax very similar to {select}
+        * pluralization groups (link to CLDR page)
+        * offset
+        * specific value matches ('=43')
+
+
+-->
+
+
+
 <section class="head">
     {{> nav}}
 </section>

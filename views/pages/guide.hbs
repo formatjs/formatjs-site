@@ -45,12 +45,12 @@ runtime environments
 
     * client-side
         * loading the libraries
-        * patch Intl
-            * only needed for number, date, time formatting (is this true?)
-            * loading locale data
         * determining the user's locale
             * best:  user explicitly chooses, you save in user's profile
             * `navigator.language || navigator.browserLanguage`
+        * patch Intl
+            * only needed for number, date, time formatting (is this true?)
+            * loading locale data (for user's current locale)
 
     * server-side
         * loading the libraries

@@ -141,7 +141,7 @@ new Intl.DateTimeFormat('ru-RU', options).format(ts); // "дек. 2013"
 
     <h3 id="format-dates-and-times-support">Support</h3>
     <p>
-    The {{code "Intl.DateTimeFormat"}} API is supported by <a href="#builtin-browsers">most browsers</a>.
+    The {{code "Intl.DateTimeFormat"}} API is supported by <a href="#builtin-browsers">most current browsers</a>.
     If you are running in an environment that doesn't provide this API, you can use the <a href="intl-polyfil">Intl.js polyfill</a> for a pure-javascript implementation.
     </p>
 
@@ -154,7 +154,7 @@ new Intl.DateTimeFormat('ru-RU', options).format(ts); // "дек. 2013"
 
     <p>
         {{code "Intl.MessageFormat"}} is a <a href="http://wiki.ecmascript.org/doku.php?id=globalization:messageformatting">proposed standard</a> for javascript, closely following the ICU message syntax (<a href="#icu-message-syntax">described below</a>).
-        Many professional translaters are familiar with ICU and should be comfortable creating messages for {{code "intl-messageformat"}}.
+        Many professional translators are familiar with ICU and should be comfortable creating messages for {{code "intl-messageformat"}}.
     </p>
 
     <p>
@@ -171,6 +171,8 @@ new Intl.DateTimeFormat('ru-RU', options).format(ts); // "дек. 2013"
     </p>
 
 {{#code lang="js"}}
+IntlMessageFormat = require('intl-messageformat');
+
 //--- plain strings
 new IntlMessageFormat('foo', 'en-US').format({});
 // "foo"
@@ -239,7 +241,7 @@ new IntlMessageFormat(message, 'de-DE').format(context);
     <h3 id="format-strings-optimized">Optimization</h3>
     <p>
         Since the messages are provided to this library as a string, they must be parsed before they can be used.
-        If possible it is best to create only one {{code "IntlMessageFormat"}} for each message.
+        If possible it is best to create only one {{code "IntlMessageFormat"}} object for each message.
         (Internally it is optimized to compile the message only once.)
     </p>
 
@@ -251,7 +253,7 @@ new IntlMessageFormat(message, 'de-DE').format(context);
     </p>
 
     <p>
-        Finally, instead you can pre-parse a message into an AST using {{code "intl-messageformat-parser"}}.
+        Finally, instead you can pre-parse a message into an AST using {{npmLink "intl-messageformat-parser"}}.
         The {{code "IntlMessageFormat"}} constructor takes either the message as a string or as an AST.
         These AST work in both the server and client: you can create them on the server and send them to the client.
     </p>
@@ -264,7 +266,7 @@ new IntlMessageFormat(message, 'de-DE').format(context);
 
     <p>
         However, the browser does have an idea of the user's locale.
-        This is sometimes no more than a guess, and sometimes the user has explicitely configured their browser to have the correct value.
+        This is sometimes no more than a guess, and sometimes the user has explicitly configured their browser to have the correct value.
     </p>
 
     <p>
@@ -274,7 +276,7 @@ new IntlMessageFormat(message, 'de-DE').format(context);
     <p>
         On the server, the browser should have sent an {{code "Accept-Language"}} HTTP request header.
         If you are using nodejs, there are <a href="https://www.npmjs.org/search?q=accept-language">several libraries</a> that make it easy to use this header,
-        including finding the best match for the locales you have available in your application.
+        including finding the best match for the locales which your app supports.
     </p>
 
 
@@ -286,6 +288,7 @@ new IntlMessageFormat(message, 'de-DE').format(context);
 
     <p>
         This polyfill is 9.8k (minified and gzipped) for the base library, plus about 4k (gzipped) per locale for the metadata required to support the locale.
+        (Only the user's single locale needs to be included on the page.)
     </p>
 
     <p class="note">

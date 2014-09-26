@@ -15,7 +15,7 @@ global.ReactIntlMixin = require('react-intl');
 global.Handlebars     = require('handlebars');
 global.HandlebarsIntl = require('handlebars-intl');
 global.dust           = require('dustjs-linkedin');
-global.DustIntl       = require('dust-helper-intl');
+global.DustIntl       = require('dust-intl');
 
 // -----------------------------------------------------------------------------
 

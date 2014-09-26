@@ -8,7 +8,7 @@
     <h1>Dust</h1>
 
     <p>
-    The {{npmLink 'dust-helper-intl'}} library provides helpers that can be used to internationalize your dust templates.
+    The {{npmLink 'dust-intl'}} library provides helpers that can be used to internationalize your dust templates.
     </p>
 
     <p>
@@ -28,16 +28,16 @@
 
     <h3 id="install-browser">Browser</h3>
     <ol>
-        <li>Install with <a href="http://bower.io/">bower</a>: <code>bower install dust-helper-intl</code></li>
+        <li>Install with <a href="http://bower.io/">bower</a>: <code>bower install dust-intl</code></li>
         <li>Load the scripts into your page.
 {{#code lang="html"}}
 <script src="dustjs-linkedin.js"></script>
-<script src="dust-helper-intl.js"></script>
+<script src="dust-intl.js"></script>
 {{/code}}
         </li>
         <li>Register the helpers:
 {{#code lang="js"}}
-DustHelperIntl.register(dust);
+DustIntl.registerWith(dust);
 {{/code}}
         </li>
     </ol>
@@ -45,12 +45,12 @@ DustHelperIntl.register(dust);
 
     <h3 id="install-node">Node/CommonJS</h3>
     <ol>
-        <li>You can install the helpers with npm: <code>npm install dust-helper-intl</code></li>
+        <li>You can install the helpers with npm: <code>npm install dust-intl</code></li>
         <li>Load in the module and register it:
 {{#code lang="js"}}
 var dust = require('dustjs-linkedin');
 global.Intl = global.Intl || require('intl');
-require('dust-helper-intl').register(dust);
+require('dust-intl').registerWith(dust);
 {{/code}}
         </li>
     </ol>
@@ -65,7 +65,7 @@ require('dust-helper-intl').register(dust);
 
     <h2 id="context-requirements">Context Requirements</h2>
     <p>
-    For dust-helper-intl, the internationalization details are passed to the helpers via the <code>intl</code> key in the context.
+    For dust-intl, the internationalization details are passed to the helpers via the <code>intl</code> key in the context.
     </p>
 
 
@@ -169,7 +169,7 @@ context = {
             If the <code>formatName</code> parameter is also used, these parameters override those specified in the named format.
         </dd>
     </dl>
-    
+
     {{~> example examples.date}}
 
 

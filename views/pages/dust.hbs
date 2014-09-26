@@ -37,7 +37,7 @@
         </li>
         <li>Register the helpers:
 {{#code lang="js"}}
-DustIntl.register(dust);
+DustIntl.registerWith(dust);
 {{/code}}
         </li>
     </ol>
@@ -50,7 +50,7 @@ DustIntl.register(dust);
 {{#code lang="js"}}
 var dust = require('dustjs-linkedin');
 global.Intl = global.Intl || require('intl');
-require('dust-intl').register(dust);
+require('dust-intl').registerWith(dust);
 {{/code}}
         </li>
     </ol>

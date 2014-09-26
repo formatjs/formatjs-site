@@ -2,6 +2,7 @@
     --black        : rgb(65, 57, 70);
     --gray         : rgb(95, 90, 99);
     --gray-medium  : rgb(150, 150, 150);
+    --gainsboro    : rgb(220, 220, 220);
     --gray-light   : rgb(247, 247, 247);
     --white        : rgb(255, 255, 255);
     --pink         : rgb(208, 146, 247);
@@ -36,6 +37,17 @@ a.pure-button:visited {
     filter: none;
     background-image: none;
     box-shadow: none;
+}
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
 }
 
 html,
@@ -98,10 +110,14 @@ p code {
     word-wrap: break-word;
 }
 
-.l-wrap {
+.l-wrap,
+.l-wrap-wide {
     max-width: 48rem;
     margin-left: auto;
     margin-right: auto;
+}
+.l-wrap-wide {
+    max-width: 64rem;
 }
 
 .subheading {
@@ -125,8 +141,40 @@ p code {
     color: var(--white);
 }
 
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.brand {
+    line-height: 1.0;
+}
+.brand-mark {
+    display: block;
+}
+
+.nav-menu {
+    margin: 0.625rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    font-weight: 300;
+}
+.nav-menu a {
+    padding: 0.5rem;
+}
+.nav-menu-item:first-child {
+    margin-left: 0;
+}
+.nav-menu-item:last-child {
+    margin-right: 0;
+}
+
 .splash {
-    background: url('/img/splash-head.jpg') no-repeat;
+    background: url("/img/splash-head.jpg") no-repeat;
     background-size: cover;
     color: var(--white);
     text-align: center;
@@ -135,6 +183,22 @@ p code {
 .splash a:visited,
 .splash .tagline {
     color: var(--white);
+}
+.splash .nav {
+    justify-content: flex-end;
+    order: 1;
+}
+.splash .brand {
+    width: 100%;
+    order: 2;
+}
+.splash .brand-mark {
+    background: url("/img/logo.svg") no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.splash .nav-menu {
+    margin-top: 1.25rem;
 }
 
 .splash-example-container {
@@ -178,88 +242,93 @@ p code {
     padding-right: 2em;
 }
 
-.nav {
+.standards-content {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    text-transform: uppercase;
+    flex-wrap: wrap;
 }
-.nav a {
-    padding: 0.5rem;
+.standards-logo {
+    margin-left: auto;
+    margin-right: auto;
 }
-.nav-menu {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    font-weight: 300;
-}
-.nav-menu-item:first-child {
-    margin-left: 0;
-}
-.nav-menu-item:last-child {
-    margin-right: 0;
+.standards-logo img {
+    display: block;
+    margin: 0 auto;
 }
 
+.integrations-content,
+.integrations-list,
+.integration,
+.integration-content,
+.integration-brand {
+    display: flex;
+}
+.integrations-content {
+    flex-wrap: wrap;
+}
 .integrations-list {
-    margin: 0;
+    margin: 1rem 0;
     padding: 0;
     list-style: none;
-    display: flex;
+    justify-content: space-between;
+}
+.integration {
+    width: 33.3333%;
     justify-content: space-around;
 }
-.integrations-list-item {
-    width: 33.3333%;
-    text-align: center;
-    align-self: flex-end;
-}
-.integrations-list-item a {
-    display: flex;
+.integration-content {
+    flex-wrap: wrap;
     flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
 }
-.integrations-list-name {
+.integration-name {
     order: 2;
     margin: 0.5rem 0 0;
-    color: var(--purple);
 }
-.integrations-list-mark {
-    display: block;
+.integration-brand {
     order: 1;
+    flex-grow: 1;
+    align-items: center;
+}
+.integration-mark {
+    display: block;
     width: 100%;
-    max-width: 150px;
 }
 
-.features-ex {
+.features-list,
+.feature-ex,
+.feature-ex-output {
     display: flex;
-    justify-content: center;
+}
+.features-list {
+    flex-wrap: wrap;
+}
+.feature {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.feature-ex {
     align-items: center;
-    margin: 2rem 0;
 }
-.features-ex-input {
+.feature-ex-input {
     background: transparent;
-    font-size: 1.5rem;
+    font-size: 1.125rem;
 }
-.features-ex-transform {
-    margin: 0 2rem;
+.feature-ex-transform {
+    height: 32px;
+    width: 32px;
+    opacity: 0.33;
 }
-.features-ex-output {
-    font-size: 1.75rem;
+.feature-ex-output {
+    flex-direction: column;
+}
+.feature-ex-output {
+    font-size: 1.25rem;
     color: var(--purple-medium);
-    padding: 0 1rem;
 }
-.features-ex-output {
-    line-height: 1.0;
-    border-right: 1px solid var(--gray-medium);
-}
-.features-ex-output:last-child {
-    border-right: 0;
-}
-.features-ex-locale {
-    display: block;
-    font-size: 1rem;
+.feature-ex-locale {
+    font-size: 0.875rem;
     font-style: normal;
-    text-align: center;
     text-transform: uppercase;
     color: var(--gray-medium);
 }
@@ -277,12 +346,34 @@ p code {
     margin-top: 0.5rem;
 }
 
+.note {
+    padding: 0.4em;
+    background-color: #FFC;
+    border: 1px solid #CC8;
+}
+.foot {
+    margin-top: 4rem;
+    font-size: 0.875rem;
+    border-top: 1px solid var(--gainsboro);
+    background-color: var(--gray-light);
+}
+
+.legal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.legal-clause {
+    white-space: nowrap;
+}
+
 @media screen and (min-width: 0) {
     h1 { font-size: 1.5rem; }
     h2 { font-size: 1.25rem; }
     h3 { font-size: 1.125rem; }
 
-    .l-wrap {
+    .l-wrap,
+    .l-wrap-wide {
         padding-left: 0.625rem;
         padding-right: 0.625rem;
     }
@@ -295,17 +386,34 @@ p code {
     }
 
     .splash {
-        min-height: 100%;
         padding-bottom: 2rem;
     }
 
     .nav {
-        font-size: 0.875rem;
         margin: 0 0.125rem 1rem;
+    }
+
+    .brand-mark {
+        margin: 0.5rem;
+        width: 2.1484rem;
+        height: 2.5rem;
+        background-image: url("/img/logo-element.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
     }
 
     .tagline {
         margin: 2rem 0;
+    }
+
+    .splash .brand {
+        margin: 1rem 0 0;
+    }
+    .splash .brand-mark {
+        margin: 0 auto;
+        width: 12.3436rem;
+        height: 2rem;
     }
 
     .splash-example-controls {
@@ -320,12 +428,55 @@ p code {
         margin: 4rem 0 2rem;
     }
 
-    .integrations-list-item {
-        margin: 0 0.5rem;
+    .standards-logo {
+        width: 100%;
+    }
+    .standards-logo img {
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+    .integrations .integrations-list {
+        width: 100%;
+    }
+    .integration {
+        margin: 0 0.625rem;
+    }
+    .integration-mark {
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+    .feature {
+        width: 100%;
+    }
+    .feature-ex {
+        flex-direction: column;
+    }
+    .feature-ex-transform {
+        margin: 0.5rem 0;
+        background: url("/img/arrow-down.svg") no-repeat;
+        background-position: top center;
+        background-size: contain;
     }
 
     .repo {
         width: 100%;
+    }
+
+    .legal {
+        flex-wrap: wrap;
+    }
+    .legal-license,
+    .legal-copyright {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media screen and (min-height: 0) {
+    .splash {
+        min-height: 100%;
     }
 }
 
@@ -336,6 +487,17 @@ p code {
 }
 
 @media screen and (min-width: 30em) {
+    .brand-mark {
+        width: 9.2578rem;
+        height: 2.5rem;
+        background-image: url("/img/logo.svg");
+    }
+
+    .nav-menu-item {
+        margin-left: 0.25rem;
+        margin-right: 0.25rem;
+    }
+
     .splash-example-controls {
         justify-content: flex-end;
     }
@@ -343,15 +505,46 @@ p code {
         margin-right: 1rem;
     }
 
-    .nav-menu-item {
-        margin-left: 0.25rem;
-        margin-right: 0.25rem;
+    .legal {
+        flex-wrap: nowrap;
+    }
+    .legal-license,
+    .legal-copyright {
+        width: auto;
+        flex-grow: 1;
+    }
+    .legal-license {
+        text-align: left;
+    }
+    .legal-copyright {
+        text-align: right;
     }
 }
 
 @media screen and (min-width: 35.5em) {
-    .integrations-list-item {
-        margin: 0 1rem;
+    .standards-desc {
+        width: 62%;
+    }
+    .standards-logo {
+        width: 38%;
+    }
+    .standards-logo img {
+        max-width: 128px;
+        max-height: 128px;
+    }
+
+    .integration-mark {
+        max-width: 128px;
+        max-height: 128px;
+    }
+
+    .features-list {
+        margin-left: -0.625rem;
+        margin-right: -0.625rem;
+    }
+    .feature {
+        padding: 0 0.625rem;
+        width: 50%;
     }
 
     .repos {
@@ -367,13 +560,28 @@ p code {
     }
 }
 
-@media screen and (min-width: 36em) and (min-height: 36em) {
+@media screen and (min-height: 36em) {
     .splash {
         min-height: 50%;
     }
+}
 
+@media screen and (min-width: 36em) and (min-height: 36em) {
     .nav {
         font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 40em) {
+    .integrations .integrations-desc {
+        width: 38%;
+    }
+    .integrations .integrations-list {
+        width: 62%;
+        padding-left: 1rem;
+    }
+    .integrations .integration:last-child {
+        margin-right: 0;
     }
 }
 
@@ -382,7 +590,8 @@ p code {
     h2 { font-size: 1.5rem; }
     h3 { font-size: 1.25rem; }
 
-    .l-wrap {
+    .l-wrap,
+    .l-wrap-wide {
         padding-left: 1rem;
         padding-right: 1rem;
     }
@@ -403,17 +612,45 @@ p code {
         margin-right: 0.5rem;
     }
 
+    .nav-menu {
+        font-size: 1.125rem;
+    }
+
     .tagline {
         font-size: 1.875rem;
-        margin: 4rem 0;
+        margin: 2rem 0 4rem;
+    }
+
+    .splash .brand {
+        margin-top: 2rem;
+    }
+    .splash .nav-menu {
+        margin-top: 1.1875rem;
     }
 
     .splash-cta {
         font-size: 1.25rem;
     }
 
-    .integrations-list-item {
-        margin: 0 1.5rem;
+    .integration {
+        margin: 0 1rem;
+    }
+
+    .features-list {
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+    .feature {
+        padding: 0 1rem;
+    }
+    .feature-ex {
+        flex-direction: row;
+    }
+    .feature-ex-transform {
+        margin: 0 1rem;
+        background: url("/img/arrow-right.svg") no-repeat;
+        background-position: center center;
+        background-size: contain;
     }
 
     .repos {

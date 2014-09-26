@@ -1,3 +1,5 @@
+{{setTitle "Dust"}}
+
 <section class="head">
     {{> nav}}
 </section>
@@ -5,16 +7,218 @@
 <section class="main docs l-wrap">
     <h1>Dust</h1>
 
-    <h2>{@formatDate}</h2>
+    <p>
+    The {{npmLink 'dust-helper-intl'}} library provides helpers that can be used to internationalize your dust templates.
+    </p>
+
+    <p>
+    The <a href="#formatDate"><code>{@formatDate}</code></a>, <a href="#formatTime"><code>{@formatTime}</code></a>, and <a href="#formatNumber"><code>{@formatNumber}</code></a> helpers will work out-of-the-box.
+    </p>
+
+    <p>
+    In order to use the <code>{@formatMessage}</code> helper you'll need to translate your strings into all the languages you wish to show.
+    These translations are provided in the <a href="http://userguide.icu-project.org/formatparse/messages">ICU formatted message</a> format, which is familiar to professional translators.
+    The message format also supports choosing different strings based on pluralization, gender, or other considerations.
+    See the <a href="{{pathTo 'guide'}}#formatting-translated-strings">Guide</a> for more details.
+    </p>
+
+
+    <h2 id="installation">Installation</h2>
+
+
+    <h3 id="install-browser">Browser</h3>
+    <ol>
+        <li>Install with <a href="http://bower.io/">bower</a>: <code>bower install dust-helper-intl</code></li>
+        <li>Load the scripts into your page.
+{{#code lang="html"}}
+<script src="dustjs-linkedin.js"></script>
+<script src="dust-helper-intl.js"></script>
+{{/code}}
+        </li>
+        <li>Register the helpers:
+{{#code lang="js"}}
+DustHelperIntl.register(dust);
+{{/code}}
+        </li>
+    </ol>
+
+
+    <h3 id="install-node">Node/CommonJS</h3>
+    <ol>
+        <li>You can install the helpers with npm: <code>npm install dust-helper-intl</code></li>
+        <li>Load in the module and register it:
+{{#code lang="js"}}
+var dust = require('dustjs-linkedin');
+global.Intl = global.Intl || require('intl');
+require('dust-helper-intl').register(dust);
+{{/code}}
+        </li>
+    </ol>
+
+    <p class="note">
+    <strong>NOTE:</strong>
+    Node (as of 0.10) doesn't provide the global <code>Intl</code> object (ECMA-402).
+    You'll need to provide a polyfill.
+    The {{npmLink 'intl'}} NPM package can provide this or you can use another.
+    </p>
+
+
+    <h2 id="context-requirements">Context Requirements</h2>
+    <p>
+    For dust-helper-intl, the internationalization details are passed to the helpers via the <code>intl</code> key in the context.
+    </p>
+
+
+    <h3 id="context-locales"><code>intl.locales</code></h3>
+    <p>
+    This location in the context should be set to an <a href="http://en.wikipedia.org/wiki/IETF_language_tag">IETF language tag</a> for the current language.
+    </p>
+
+    <p>
+    Example:
+    {{#code lang="js"}}
+    intl: {
+        locales = 'en-US'
+    }
+}
+{{/code}}
+    </p>
+
+
+    <h3 id="context-formats"><code>intl.formats</code></h3>
+    <p>
+    This location in the context can be used to set different preset formats for the handlers.
+    It is an object which contains keys named for each handler.
+    </p>
+
+    <p>
+    These formats are supported in the <a href="#formatDate"><code>{@formatDate}</code></a>, <a href="#formatTime"><code>{@formatTime}</code></a>, and <a href="#formatNumber"><code>{@formatNumber}</code></a> helpers via the <code>formatName</code> parameter.
+    </p>
+
+    <p>Example:</p>
+    {{#code lang="js"}}
+    context = {
+    intl: {
+        formats: {
+            // predefined formats for {@formatDate}
+            date: {
+                bill: { month: 'long' day: 'numeric' year: 'numeric'}
+            },
+
+            // predefined formats for {@formatTime}
+            time: {
+                hm: { hour: 'numeric', minute: 'numeric' }
+            },
+
+            // predefined formats for {@formatNumber}
+            number: {
+                eur: { style: 'currency', currency: 'EUR' },
+                usd: { style: 'currency', currency: 'USD' }
+            }
+        }
+    }
+}
+{{/code}}
+
+
+    <h3 id="context-messages"><code>intl.messages</code></h3>
+    <p>
+    This location in the context is used by <a href="#formatMessage"><code>{@formatMessage}</code></a>.
+    It is an object, each key being the name of a message, and each value being an <a href="http://userguide.icu-project.org/formatparse/messages">ICU formatted message</a>.
+    The formatted messages should be appropriate for the current language.
+    </p>
+
+    <p>
+    These messages can be accessed in the <a href="#formatMessage"><code>{@formatMessage}</code></a> helper via the <code>_key</code> parameter.
+    </p>
+
+    <p>Example:</p>
+    {{#code lang="js"}}
+context = {
+    intl: {
+        messages: {
+            photos: '{name} took {numPhotos, plural, =0 {no photos} =1 {one photo} other {# photos}} on {takenDate, date, long}.
+        }
+    }
+}
+{{/code}}
+
+
+    <h2 id="formatDate">{@formatDate}</h2>
+    <p>
+    This helper is used to present a date in a way appropriate for the current locale.
+    </p>
+
+    <h3 id="formatDate-parameters">Parameters</h3>
+    <dl>
+        <dt><code>val</code> (required)</dt>
+        <dd>
+            This is the value which will be formatted.
+            It will be passed to the <code>Date</code> constructor to create.
+        </dd>
+        <dd>
+            <span class="note"><strong>Note:</strong> If you pass a timestamp be sure that it is an integer, not a string.</span>
+        </dd>
+        <dt><code>formatName</code> (optional)</dt>
+        <dd>
+            This looks in the context in <code>intl.formats.date</code> for an object containing formatting options to pass to the <code>Intl.formatDateTime()</code> constructor.
+        </dd>
+        <dt>others (optional)</dt>
+        <dd>
+            All other parameters are passed to the <code>Intl.formatDateTime()</code> constructor as options and are used to configure how the date is displayed.
+            If the <code>formatName</code> parameter is also used, these parameters override those specified in the named format.
+        </dd>
+    </dl>
+    
     {{~> example examples.date}}
 
-    <h2>{@formatTime}</h2>
+
+    <h2 id="formatTime">{@formatTime}</h2>
+    <p>
+    This helper is used to present a time in a way appropriate for the current locale.
+    </p>
+
+    <p>
+    This helper is nearly identical to the <a href="#formatDate">{@formatDate}</a> helper, except the <code>formatName</code> parameter instead looks in <code>intl.formats.time</code> in the context.
+    </p>
+
+    <p>
+    See <a href="#formatDate">{@formatDate}</a> for details on how to use this helper as well.
+    </p>
+
     {{~> example examples.time}}
 
-    <h2>{@formatNumber}</h2>
+
+    <h2 id="formatNumber">{@formatNumber}</h2>
+    <p>
+    This helper is used to present a time in a way appropriate for the current locale.
+    It can be used for generic numbers (such as count, sum, or quatity) or for special numbers such as currency or percentage.
+    </p>
+
+    <h3 id="formatNumber-parameters">Parameters</h3>
+    <dl>
+        <dt><code>val</code> (required)</dt>
+        <dd>
+            This is the value which will be formatted.
+        </dd>
+        <dt><code>formatName</code> (optional)</dt>
+        <dd>
+            This looks in the context in <code>intl.formats.number</code> for an object containing formatting options to pass to the <code>Intl.formatNumber()</code> constructor.
+        </dd>
+        <dt>others (optional)</dt>
+        <dd>
+            All other parameters are passed to the <code>Intl.formatNumber()</code> constructor as options and are used to configure how the number is displayed.
+            If the <code>formatName</code> parameter is also used, these parameters override those specified in the named format.
+        </dd>
+    </dl>
+
     {{~> example examples.number}}
 
-    <h2>{@formatMessage}</h2>
+
+    <h2 id="formatMessage">{@formatMessage}</h2>
+    TODO
+
     {{~> example examples.message}}
+
 
 </section>

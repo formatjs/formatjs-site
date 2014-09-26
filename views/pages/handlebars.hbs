@@ -1,3 +1,5 @@
+{{setTitle "Handlebars"}}
+
 <section class="head">
     {{> nav}}
 </section>
@@ -5,11 +7,14 @@
 <section class="main docs l-wrap">
     <h1>Handlebars</h1>
 
+    <h2>\{{formatNumber}}</h2>
+    {{~> example examples.number}}
+
     <h2>\{{formatDate}}</h2>
     {{~> example examples.date}}
 
-    <h2>\{{formatNumber}}</h2>
-    {{~> example examples.number}}
+    <h2>\{{formatRelative}}</h2>
+    {{~> example examples.relative}}
 
     <h2>\{{formatMessage}}</h2>
     {{~> example examples.message}}

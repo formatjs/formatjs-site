@@ -2,5 +2,12 @@ photos: |
   {name} took {numPhotos, plural,
     =0 {no photos}
     =1 {one photo}
-    other {# photos}}
-  on {takenDate, date, long}.
+    other {# photos}
+  } on {takenDate, date, long}.
+
+comments: |
+  {numComments, plural,
+    =0 {no comments}
+    =1 {1 comment}
+    other {# comments}
+  }

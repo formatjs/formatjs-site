@@ -1,5 +1,9 @@
 <div class="nav">
-    <a class="brand-name" href="{{pathTo 'home'}}">{{brand}}</a>
+    <span class="brand">
+        <a class="brand-mark" href="{{pathTo 'home'}}">
+            <span class="visuallyhidden">{{brand}}</span>
+        </a>
+    </span>
 
     <menu class="nav-menu">
       {{#each menuItems}}

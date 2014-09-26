@@ -304,8 +304,8 @@ p code {
     flex-wrap: wrap;
 }
 .feature {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 .feature-ex {
     align-items: center;
@@ -315,8 +315,9 @@ p code {
     font-size: 1.125rem;
 }
 .feature-ex-transform {
-    height: 40px;
-    width: 40px;
+    height: 32px;
+    width: 32px;
+    opacity: 0.33;
 }
 .feature-ex-output {
     flex-direction: column;

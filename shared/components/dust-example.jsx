@@ -2,7 +2,7 @@
 /* global React */
 
 import ExampleMixin from '../mixins/example';
-import Code from './code';
+import CodeBlock from './code-block';
 import LocaleSelect from './locale-select';
 import DustOutput from './dust-output';
 
@@ -37,17 +37,23 @@ export default React.createClass({
                 <h3>Live Example</h3>
                 <div className="example-source">
                     <h4>Template</h4>
-                    <Code lang="html">{example.source.template}</Code>
+                    <CodeBlock lang="html">
+                        {example.source.template}
+                    </CodeBlock>
                 </div>
 
                 <div className="example-context">
                     <h4>Context</h4>
-                    <Code lang="javascript">{example.source.context}</Code>
+                    <CodeBlock lang="javascript">
+                        {example.source.context}
+                    </CodeBlock>
                 </div>
 
                 <div className="example-render">
                     <h4>Rendering</h4>
-                    <Code lang="javascript">{this.genderateRenderCode()}</Code>
+                    <CodeBlock lang="javascript">
+                        {this.genderateRenderCode()}
+                    </CodeBlock>
                 </div>
 
                 <div className="example-output">

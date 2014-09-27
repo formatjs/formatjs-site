@@ -60,9 +60,9 @@ export default React.createClass({
 
                 <div className="example-controls">
                     <LocaleSelect
-                        currentLocale={currentLocale}
                         availableLocales={this.props.intl.availableLocales}
-                        onLocaleChange={this.updateLocale} />
+                        value={currentLocale}
+                        onChange={this.updateLocale} />
                 </div>
             </div>
         );

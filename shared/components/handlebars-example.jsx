@@ -28,8 +28,9 @@ export default React.createClass({
 
     render: function () {
         var example       = this.props.example,
+            intl          = this.props.intl,
             currentLocale = this.state.currentLocale,
-            messages      = this.props.intl.messages[currentLocale];
+            messages      = intl.messages[currentLocale];
 
         return (
             <div id={example.id} className="example">
@@ -57,16 +58,15 @@ export default React.createClass({
                 <div className="example-output">
                     <HandlebarsOutput
                         locales={currentLocale}
-                        formats={this.props.intl.formats}
+                        formats={intl.formats}
                         messages={messages}
-
                         source={example.source.template}
                         context={example.context} />
                 </div>
 
                 <div className="example-controls">
                     <LocaleSelect
-                        availableLocales={this.props.intl.availableLocales}
+                        availableLocales={intl.availableLocales}
                         value={currentLocale}
                         onChange={this.updateLocale} />
                 </div>

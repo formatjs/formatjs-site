@@ -14,7 +14,7 @@ export default React.createClass({
             '/** @jsx React.DOM */',
             'React.renderComponent(',
             '    <Component locales={[\'' + this.state.currentLocale + '\']} ' +
-                            'formats={…} messages={…} />',
+                    'formats={…} messages={…} />',
             '    document.getElementById(\'example\')',
             ');'
         ].join('\n');

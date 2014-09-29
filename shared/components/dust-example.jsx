@@ -5,6 +5,7 @@ import ExampleMixin from '../mixins/example';
 import CodeBlock from './code-block';
 import LocaleSelect from './locale-select';
 import DustOutput from './dust-output';
+import {Tabs, Tab} from './tabs';
 
 export default React.createClass({
     displayName: 'DustExample',
@@ -34,45 +35,48 @@ export default React.createClass({
 
         return (
             <div id={example.id} className="example">
-                <h3>Live Example</h3>
                 <div className="example-source">
-                    <h4>Template</h4>
-                    <CodeBlock lang="html">
-                        {example.source.template}
-                    </CodeBlock>
-                </div>
+                    <Tabs>
+                        <Tab label="Template">
+                            <CodeBlock lang="html">
+                                {example.source.template}
+                            </CodeBlock>
+                        </Tab>
 
-                <div className="example-context">
-                    <h4>Context</h4>
-                    <CodeBlock lang="javascript">
-                        {example.source.context}
-                    </CodeBlock>
-                </div>
+                        <Tab label="Context">
+                            <CodeBlock lang="javascript">
+                                {example.source.context}
+                            </CodeBlock>
+                        </Tab>
 
-                <div className="example-render">
-                    <h4>Rendering</h4>
-                    <CodeBlock lang="javascript">
-                        {this.genderateRenderCode()}
-                    </CodeBlock>
+                        <Tab label="Render">
+                            <CodeBlock lang="javascript">
+                                {this.genderateRenderCode()}
+                            </CodeBlock>
+                        </Tab>
+                    </Tabs>
                 </div>
 
                 <div className="example-output">
-                    <h4>Results</h4>
+                    <h4 className="example-output-heading">Rendered</h4>
+
                     <DustOutput
                         exampleId={this.props.example.id}
                         locales={currentLocale}
                         formats={this.props.intl.formats}
                         messages={messages}
-
                         source={example.source.template}
                         context={example.context} />
-                </div>
 
-                <div className="example-controls">
-                    <LocaleSelect
-                        availableLocales={this.props.intl.availableLocales}
-                        value={currentLocale}
-                        onChange={this.updateLocale} />
+                    <div className="example-output-controls">
+                        <label>
+                            <span className="example-label">Locale:</span>
+                            <LocaleSelect
+                                availableLocales={this.props.intl.availableLocales}
+                                value={currentLocale}
+                                onChange={this.updateLocale} />
+                        </label>
+                    </div>
                 </div>
             </div>
         );

@@ -2,9 +2,10 @@
 /* global React */
 
 import ExampleMixin from '../mixins/example';
-import Code from './code';
+import CodeBlock from './code-block';
 import LocaleSelect from './locale-select';
 import HandlebarsOutput from './handlebars-output';
+import {Tabs, Tab} from './tabs';
 
 export default React.createClass({
     displayName: 'HandlebarsExample',
@@ -28,41 +29,53 @@ export default React.createClass({
 
     render: function () {
         var example       = this.props.example,
+            intl          = this.props.intl,
             currentLocale = this.state.currentLocale,
-            messages      = this.props.intl.messages[currentLocale];
+            messages      = intl.messages[currentLocale];
 
         return (
             <div id={example.id} className="example">
                 <div className="example-source">
-                    <h3 className="subheading">Template</h3>
-                    <Code lang="html">{example.source.template}</Code>
-                </div>
+                    <Tabs>
+                        <Tab label="Template">
+                            <CodeBlock lang="html">
+                                {example.source.template}
+                            </CodeBlock>
+                        </Tab>
 
-                <div className="example-context">
-                    <h3 className="subheading">Context</h3>
-                    <Code lang="javascript">{example.source.context}</Code>
-                </div>
+                        <Tab label="Context">
+                            <CodeBlock lang="javascript">
+                                {example.source.context}
+                            </CodeBlock>
+                        </Tab>
 
-                <div className="example-render">
-                    <h3 className="subheading">Rendering</h3>
-                    <Code lang="javascript">{this.genderateRenderCode()}</Code>
+                        <Tab label="Render">
+                            <CodeBlock lang="javascript">
+                                {this.genderateRenderCode()}
+                            </CodeBlock>
+                        </Tab>
+                    </Tabs>
                 </div>
 
                 <div className="example-output">
+                    <h4 className="example-output-heading">Rendered</h4>
+
                     <HandlebarsOutput
                         locales={currentLocale}
-                        formats={this.props.intl.formats}
+                        formats={intl.formats}
                         messages={messages}
-
                         source={example.source.template}
                         context={example.context} />
-                </div>
 
-                <div className="example-controls">
-                    <LocaleSelect
-                        currentLocale={currentLocale}
-                        availableLocales={this.props.intl.availableLocales}
-                        onLocaleChange={this.updateLocale} />
+                    <div className="example-output-controls">
+                        <label>
+                            <span className="example-label">Locale:</span>
+                            <LocaleSelect
+                                availableLocales={intl.availableLocales}
+                                value={currentLocale}
+                                onChange={this.updateLocale} />
+                        </label>
+                    </div>
                 </div>
             </div>
         );

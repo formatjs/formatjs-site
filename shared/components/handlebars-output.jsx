@@ -1,8 +1,14 @@
 /** @jsx React.DOM */
-/* global React, Handlebars */
+/* global React, ReactIntlMixin, Handlebars */
 
 export default React.createClass({
     displayName: 'HandlebarsOutput',
+    mixins     : [ReactIntlMixin],
+
+    propTypes: {
+        source : React.PropTypes.string.isRequired,
+        context: React.PropTypes.object.isRequired
+    },
 
     getInitialState: function () {
         return {

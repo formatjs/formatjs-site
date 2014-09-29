@@ -2,7 +2,12 @@
 /* global Rainbow, React */
 
 export default React.createClass({
-    displayName: 'Code',
+    displayName: 'CodeBlock',
+
+    propTypes: {
+        lang: React.PropTypes.string,
+        wrap: React.PropTypes.bool
+    },
 
     shouldComponentUpdate: function (nextProps) {
         // This prevents double syntax highlighting of unchanged content.

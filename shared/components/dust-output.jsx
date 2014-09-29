@@ -1,12 +1,17 @@
 /** @jsx React.DOM */
-/* global React, dust */
+/* global React, ReactIntlMixin, dust */
 
 export default React.createClass({
     displayName: 'DustOutput',
+    mixins     : [ReactIntlMixin],
+
+    propTypes: {
+        source : React.PropTypes.string.isRequired,
+        context: React.PropTypes.object.isRequired
+    },
 
     getInitialState: function () {
-        var tmpl;
-        tmpl = dust.compile(this.props.source, this.props.exampleId);
+        var tmpl = dust.compile(this.props.source, this.props.exampleId);
         dust.loadSource(tmpl);
         // The state that we have is the compiled template, but alas this is
         // passed through in a side channel (registered inside of dust).

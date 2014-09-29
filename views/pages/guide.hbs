@@ -10,14 +10,23 @@
 
 basic i18n principles
 
+    * what is internationallization
+        One additional section here (maybe the first) could be describing what "Internationalization", "Localization", and "Globalization" are.
+        The ECMA-402 spec. actually has a good overview of this that we could use as a guide for writing this sub-section of our Guide page.
+        http://www.ecma-international.org/ecma-402/1.0/index.html#sec-4.1
     * locale
         * represents the user's "locale" (language, as it's spoken in a region)
         * identifier: {language}-{region}
         * link to some official doc/page
     * translated strings
         * text at a certain spot on the page
-        * why not just translate templates? (do we need to address this _here_?)
+        * why not just translate templates?
+            I think what we want to stress is that the idea is to separate or extract the language-specific strings out of an app's UI.
+            This way the "software" is the same for all languages, and the language-specific stuff becomes variables the software uses at runtime.
+            (Or something to that effect.)
     * bundling translated strings
+        The app only contains the translated strings which are provided by the app, and that the app must provided translations for all the strings of each locale (that it wants to support).
+        Said another way, our library/ies won't automagically translate strings. (A few people are sometimes confused by this.)
         * each locale in a separate bundle
             * our #integrations assume a bundle of messages for a single (user's current) locale
             * client-side only needs to load the messages for the user's current locale
@@ -32,55 +41,61 @@ basic i18n principles
 
 patch runtime
 
+    * quick intro to and list of the Intl built-ins and link off to the MDN docs pages
+        * "here are the APIs we're expecting"
+        * mention ecma402 spec
     * which runtimes need patching
     * how to patch
         * aligned with industry best practices
-        * (yepnopejs?)
+        * yepnopejs, or polyfill service (polyfill.io)
     * intl.js polyfill
-        * (mention lack of Intl.Collator?)
         * loading locale data for intl.js
+        * mention lack of Intl.Collator
 
 
 runtime environments
-
-    * client-side
-        * loading the libraries
-        * determining the user's locale
-            * best:  user explicitly chooses, you save in user's profile
-            * `navigator.language || navigator.browserLanguage`
-        * patch Intl
-            * only needed for number, date, time formatting (is this true?)
-            * loading locale data (for user's current locale)
 
     * server-side
         * loading the libraries
         * patch Intl
         * determining the user's locale
-            * best:  user explicitly chooses, you save in user's profile
+            * best:  user explicitly chooses, you save in user's profile (in a DB)
             * `Accept-Language` HTTP request header
+                * need to match to a locale that your app supports
             * good NPM library(ies) to match against that
+                * https://www.npmjs.org/search?q=accept-language
+                * http://expressjs.com/4x/api.html#req.acceptsLanguages
+    * syncing server-side and client-side
+    * client-side
+        * loading the libraries
+        * determining the user's locale
+            * best:  use locale passed by your server
+            * client-site-only app best:  user explicitly chooses, you save in user's profile
+            * `navigator.language || navigator.browserLanguage`
+                * need to match to a locale that your app supports
+        * patch Intl
+            * loading locale data (for user's current locale)
 
 
 message format syntax
 
     * standard
-        * ICU
-        * proposed for ecmascript
+        * ICU (used in java, php, objective-c)
     * basic principals
-        * literals
-        * replacement syntax
-    * simple variable replacements
+        * text (or text element)
+        * argument
+    * simple argument
         * syntax
-    * formatted variable replacements ({x, number}, {x, date}, and {x, time})
+    * formatted arguments ({x, number}, {x, date}, and {x, time})
         * syntax
         * predefined options
             * for each type
         * creating your own options
-    * {select} replacement
+    * {select} format
         * syntax
         * matching rules
         * nesting
-    * {plural} replacement
+    * {plural} format
         * syntax very similar to {select}
         * pluralization groups (link to CLDR page)
         * offset

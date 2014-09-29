@@ -10,7 +10,7 @@
     --pink-alpha3  : rgba(208, 146, 247, 0.20);
     --pink-alpha2  : rgba(208, 146, 247, 0.15);
     --pink-alpha1  : rgba(208, 146, 247, 0.10);
-    --purple       : rgb(171, 87, 243);
+    --purple       : rgb(131, 57, 194);
     --purple-medium: rgb(94, 67, 112);
     --purple-dark  : rgb(103, 58, 131);
     --yellow-dark  : rgb(197, 166, 0);
@@ -42,6 +42,12 @@ a.pure-button:visited {
     filter: none;
     background-image: none;
     box-shadow: none;
+}
+.pure-button-primary
+a.pure-button-primary:link,
+a.pure-button-primary:visited {
+    color: var(--white);
+    background-color: var(--purple);
 }
 
 .visuallyhidden {
@@ -130,6 +136,14 @@ p code {
 .subheading {
     margin-top: 0;
     color: var(--gray);
+}
+
+.cta {
+    text-align: center;
+}
+.cta-button {
+    padding-left: 2em;
+    padding-right: 2em;
 }
 
 .tabs-tablist {
@@ -319,12 +333,10 @@ p code {
     margin-right: 0.375rem;
 }
 
-.splash-cta-button {
+.splash .cta-button {
     background-color: var(--pink-alpha3);
-    padding-left: 2em;
-    padding-right: 2em;
 }
-.splash-cta-button:hover {
+.splash .cta-button:hover {
     background-color: var(--pink-alpha2);
 }
 .standards-content {
@@ -475,6 +487,11 @@ p code {
         padding-right: 0.625rem;
     }
 
+    .cta {
+        font-size: 1.125rem;
+        margin: 4rem 0 2rem;
+    }
+
     .brand-mark {
         margin: 0.5rem;
         width: 2.1484rem;
@@ -511,10 +528,6 @@ p code {
     }
     .splash-example-output {
         font-size: 1.25rem;
-    }
-    .splash-cta {
-        font-size: 1.125rem;
-        margin: 4rem 0 2rem;
     }
 
     .standards-logo {
@@ -570,7 +583,7 @@ p code {
 }
 
 @media screen and (max-height: 20em) {
-    .splash-cta {
+    .splash .cta {
         margin-top: 2rem;
     }
 }
@@ -702,6 +715,10 @@ p code {
         padding-right: 1rem;
     }
 
+    .cta {
+        font-size: 1.25rem;
+    }
+
     .docs {
         font-size: 1.125rem;
     }
@@ -727,10 +744,6 @@ p code {
     }
     .splash .nav-menu {
         margin-top: 1.1875rem;
-    }
-
-    .splash-cta {
-        font-size: 1.25rem;
     }
 
     .tagline {

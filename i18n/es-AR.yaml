@@ -1,8 +1,8 @@
 photos: |
-  El {takenDate, date, long} {name} {numPhotos, plural,
+  El {takenDate, date, long}, {name} {numPhotos, plural,
     =0 {no}
     other {}
-  } tomó {numPhotos, plural,
+  } sacó {numPhotos, plural,
     =0 {ninguna foto.}
     =1 {una foto.}
     other {# fotos.}

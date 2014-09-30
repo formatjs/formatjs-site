@@ -14,7 +14,7 @@
     <h3 id="what-and-why">What Is Internationalization and Why Does It Matter</h3>
     <p>
         Internationalized software is software that is designed to support the languages and cultural customs of people throughout the world.
-        The Web reaches all parts of the World, and so web apps need to be internationalized in order to provide a great user experience for the most number of people.
+        The Web reaches all parts of the world, and so web apps need to be internationalized in order to provide a great user experience for the most number of people.
     </p>
 
     <p>
@@ -69,18 +69,18 @@
     <p>
         {{brand}} provides a mechanism for using these translations.
         This lets you write the core "software" of your application without special code for different languages.
-        The considerations for each locale are encapsulated in the translated strings and our libraries.
+        The considerations for each locale are encapsulated in your translated strings and our libraries.
     </p>
 
 
     <h3 id="bundling-translations">Bundling Translated Strings</h3>
     <p>
-        It is very common to organize your translations based primarily on locale.
+        It is very common to organize your translations primarily by locale.
         This especially becomes important when using translations in the browser, where you only need the translations for one locale, the user's current locale.
     </p>
 
     <p>
-        Our <a href="#integrations">template engine helpers</a> are designed to work with the translations for a single locale.
+        Our <a href="{{pathTo 'integrations'}}">template engine helpers</a> are designed to work with the translations for a single locale.
     </p>
 
     <p>
@@ -98,7 +98,7 @@
             Determine the user's locale, as described in <a href="#runtime-environments">Runtime Environments</a> below.
         </li>
         <li>
-            Setup one of {{brand}}&apos;s <a href="#integrations">template engine helpers</a> with the following data:
+            Setup one of {{brand}}'s <a href="{{pathTo 'integrations'}}">template engine helpers</a> with the following data:
             <ul>
                 <li>the user's current locale</li>
                 <li>translated strings for that locale</li>
@@ -112,43 +112,139 @@
 
 
     <h2 id="patch-runtime">Patching the Runtime for Internationalization Support</h2>
-<!--
-    * quick intro to and list of the Intl built-ins and link off to the MDN docs pages
-        * "here are the APIs we're expecting"
-        * mention ecma402 spec
-    * which runtimes need patching
-    * how to patch
-        * aligned with industry best practices
-        * yepnopejs, or polyfill service (polyfill.io)
-    * intl.js polyfill
-        * loading locale data for intl.js
-        * mention lack of Intl.Collator
--->
+    <p>
+        The {{brand}} libraries rely on the following <a href="http://www.ecma-international.org/ecma-402/1.0/index.html">ECMA 402</a> internationalization APIs:
+    </p>
+
+    <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">{{code "Intl.NumberFormat"}}</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">{{code "Intl.DateTimeFormat"}}</a></li>
+    </ul>
+
+    <p>
+        The {{code "Intl"}} API is available on all modern browsers except Safari.
+        It is not available on mobile browsers nor node.js.
+        See the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Browser_Compatibility">MDN documentation</a> for an up-to-date list of capable browsers.
+    </p>
+
+    <p>
+        If these APIs aren't present you'll need to patch (polyfill) your runtime to include them.
+    </p>
+
+
+    <h3 id="how-to-patch">How to Patch</h3>
+    <p>
+        Since some runtimes already have {{code "Intl"}}, ideally you'll only load a patch when needed.
+        You can do this using a conditional loader.
+    </p>
+
+    <p>
+        One conditional loader is <a href="http://yepnopejs.com/">yepnopejs</a>.
+        Here's an example of how to use it:
+    </p>
+
+{{#code lang="js"}}
+yepnope({
+    test : window.Intl,
+    nope : ['path/to/intl/polyfill'],
+    complete: function() {
+        ...the Intl API can be used here...
+    }
+});
+{{/code}}
+
+
+    <h3 id="intljs">Intl.js Polyfill</h3>
+    <p>
+        The <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a> library provides a polyfill for the {{code "Intl"}} API.
+        It will need a locale data file loaded for the locale of the current page.
+    </p>
+
+{{#code lang="html"}}
+<script src="path/to/intl/Intl.js"></script>
+<script src="path/to/intl/locale-data/jsonp/en.js"></script>
+...use the locale for the current user instead of "en".
+{{/code}}
+
+    <p>
+        In node.js the library contains data for all locales.
+    </p>
+
+{{#code lang="js"}}
+var Intl = require('intl');
+{{/code}}
+
+    <p class="note">
+        <strong>Note</strong> that the {{code "Intl.js"}} polyfill doesn't have the {{code "Intl.Collator"}} API.
+    </p>
 
 
     <h2 id="runtime-environments">Runtime Environments</h2>
-<!--
-    * server-side
-        * loading the libraries
-        * patch Intl
-        * determining the user's locale
-            * best:  user explicitly chooses, you save in user's profile (in a DB)
-            * `Accept-Language` HTTP request header
-                * need to match to a locale that your app supports
-            * good NPM library(ies) to match against that
-                * https://www.npmjs.org/search?q=accept-language
-                * http://expressjs.com/4x/api.html#req.acceptsLanguages
-    * syncing server-side and client-side
-    * client-side
-        * loading the libraries
-        * determining the user's locale
-            * best:  use locale passed by your server
-            * client-site-only app best:  user explicitly chooses, you save in user's profile
-            * `navigator.language || navigator.browserLanguage`
-                * need to match to a locale that your app supports
-        * patch Intl
-            * loading locale data (for user's current locale)
--->
+    <p>
+        Here is information on how to setup {{brand}} in different environments.
+    </p>
+
+
+    <h3 id="server-side">Server</h3>
+    <p>
+        In node.js our libraries are available as NPM packages.
+        Each of our <a href="{{pathTo "integrations"}}">template engine helpers</a> has details on how they are installed.
+    </p>
+
+    <p>
+        Node (as of 0.10) doesn't provide the global {{code "Intl"}} object.
+        You'll need to <a href="#how-to-patch">provide a polyfill</a> as described above.
+    </p>
+
+
+    <h4 id="user-locale-server">Determining the User's Locale</h4>
+    <p>
+        When a request comes in you'll need to determine the locale for the response.
+        Best practice is to provide the user an explicit way of choosing one of the locales your app supports
+        (and persisting that choice in a user profile database).
+    </p>
+
+    <p>
+        If you wish to programmatically infer the user's locale you can inspect the <a href="http://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Accept-Language">{{code "Accept-Language"}}</a> HTTP request header.
+        (This is part of HTTP <a href="http://en.wikipedia.org/wiki/Content_negotiation">content negotiation</a>.)
+        There are <a href="https://www.npmjs.org/search?q=accept-language">NPM modules</a> that can help with this, {{npmLink "accepts"}} and {{npmLink "negotiator"}} being two good choices.
+        As well, express has some content negotion <a href="http://expressjs.com/4x/api.html#req.acceptsLanguages">built in</a>.
+    </p>
+
+{{#code lang="js"}}
+var appLocales = ['de', 'en', 'fr'];
+var app = require('express')();
+app.get('/', function(req, res) {
+    var locale = req.acceptsLanguages(appLocales) || 'en';
+    ...customize the response to locale
+});
+{{/code}}
+
+
+    <h3 id="client-side">Client</h3>
+    <p>
+        Each of our <a href="{{pathTo "integrations"}}">template engine helpers</a> has details on how to load them into the browser.
+    </p>
+
+    <p>
+        If the browser doesn't support the {{code "Intl"}} API you'll need to <a href="#how-to-patch">provide a polyfill</a> as described above.
+        The polyfill you choose might require you to load a separate file for each locale.
+        In this caes you can dynamically load a single locale file based on the user's locale.
+    </p>
+
+
+    <h4 id="user-locale-client">Determining the User's Locale</h4>
+    <p>
+        When running internationalization code in the browser it is best if the locale used is the same as was used when the page was generated.
+        You can do this by having the server embed the chosen locale into the generate page.
+        This ensures that the user gets a consistent experience and that the UI doesn't suddenly "switch languages" on them.
+    </p>
+
+    <p>
+        If this isn't possible or if you have a single-page application which is served statically,
+        the best practice is to provide the user an explicit way to choose one of the locales your app supports.
+        If you wish to programmatically infer the user's locale you can match {{code "navigator.language || navigator.browserLanguage"}} against the locales your app supports.
+    </p>
 
 
     <h2 id="messageformat-syntax">Message Format Syntax</h2>

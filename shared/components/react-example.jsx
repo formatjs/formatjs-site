@@ -2,8 +2,9 @@
 /* global React */
 
 import ExampleMixin from '../mixins/example';
-import Code from './code';
+import CodeBlock from './code-block';
 import LocaleSelect from './locale-select';
+import {Tabs, Tab} from './tabs';
 
 export default React.createClass({
     displayName: 'ReactExample',
@@ -14,7 +15,7 @@ export default React.createClass({
             '/** @jsx React.DOM */',
             'React.renderComponent(',
             '    <Component locales={[\'' + this.state.currentLocale + '\']} ' +
-                            'formats={…} messages={…} />',
+                    'formats={…} messages={…} />',
             '    document.getElementById(\'example\')',
             ');'
         ].join('\n');
@@ -30,27 +31,40 @@ export default React.createClass({
         return (
             <div id={example.id} className="example">
                 <div className="example-source">
-                    <h3 className="subheading">Component</h3>
-                    <Code lang="js">{example.source.component}</Code>
-                </div>
+                    <Tabs>
+                        <Tab label="Component">
+                            <CodeBlock lang="js">
+                                {example.source.component}
+                            </CodeBlock>
+                        </Tab>
 
-                <div className="example-render">
-                    <h3 className="subheading">Rendering</h3>
-                    <Code lang="javascript">{this.genderateRenderCode()}</Code>
+                        <Tab label="Render">
+                            <CodeBlock lang="javascript">
+                                {this.genderateRenderCode()}
+                            </CodeBlock>
+                        </Tab>
+                    </Tabs>
                 </div>
 
                 <div className="example-output">
-                    <ExampleComponent
-                        locales={currentLocale}
-                        formats={this.props.intl.formats}
-                        messages={messages} />
-                </div>
+                    <h4 className="example-output-heading">Rendered</h4>
 
-                <div className="example-controls">
-                    <LocaleSelect
-                        currentLocale={currentLocale}
-                        availableLocales={this.props.intl.availableLocales}
-                        onLocaleChange={this.updateLocale} />
+                    <div className="react-output">
+                        <ExampleComponent
+                            locales={currentLocale}
+                            formats={this.props.intl.formats}
+                            messages={messages} />
+                    </div>
+
+                    <div className="example-output-controls">
+                        <label>
+                            <span className="example-label">Locale:</span>
+                            <LocaleSelect
+                                availableLocales={this.props.intl.availableLocales}
+                                value={currentLocale}
+                                onChange={this.updateLocale} />
+                        </label>
+                    </div>
                 </div>
             </div>
         );

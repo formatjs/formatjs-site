@@ -36,9 +36,9 @@ node_modules = moveFiles(node_modules, {
         'intl/Intl.min.js': 'vendor/intl/Intl.min.js',
         'intl/locale-data': 'vendor/intl/locale-data',
 
-        'dust-helper-intl/dist': 'vendor/dust-helper-intl',
-        'handlebars-intl/dist' : 'vendor/handlebars-intl',
-        'react-intl/dist'      : 'vendor/react-intl'
+        'dust-intl/dist'      : 'vendor/dust-intl',
+        'handlebars-intl/dist': 'vendor/handlebars-intl',
+        'react-intl/dist'     : 'vendor/react-intl'
     }
 });
 

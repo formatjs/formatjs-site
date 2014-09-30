@@ -61,9 +61,9 @@ export default React.createClass({
                         </span>
 
                         <LocaleSelect
-                            currentLocale={currentLocale}
                             availableLocales={this.props.availableLocales}
-                            onLocaleChange={this.updateLocale} />
+                            value={currentLocale}
+                            onChange={this.updateLocale} />
                     </label>
                 </form>
             </div>

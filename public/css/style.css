@@ -5,9 +5,13 @@
     --gainsboro    : rgb(220, 220, 220);
     --gray-light   : rgb(247, 247, 247);
     --white        : rgb(255, 255, 255);
-    --pink         : rgb(208, 146, 247);
-    --purple       : rgb(131, 57, 194);
-    --purple-medium: rgb(94, 67, 112);
+    --white-alpha  : rgba(255, 255, 255, 0.44);
+    --pink         : rgb(173, 104, 216); /* rgb(208, 146, 247);*/
+    --pink-alpha3 : rgba(208, 146, 247, 0.2);
+    --pink-alpha2 : rgba(208, 146, 247, 0.15);
+    --pink-alpha1 : rgba(208, 146, 247, 0.1);
+    --purple       : rgb(171, 87, 243); /*rgb(131, 57, 194);*/
+    --purple-medium: rgb(197, 166, 0); /* --dark-yellow possibility. was rgb(94, 67, 112);*/
     --purple-dark  : rgb(103, 58, 131);
 }
 
@@ -237,9 +241,11 @@ p code {
     text-align: center;
 }
 .splash a:link,
-.splash a:visited,
-.splash .tagline {
+.splash a:visited {
     color: var(--white);
+}
+.splash .tagline {
+    color: var(--white-alpha);
 }
 .splash .nav {
     justify-content: flex-end;
@@ -272,8 +278,9 @@ p code {
 }
 .splash-example-output {
     padding: 1rem;
-    border: 0.125rem solid var(--pink);
+    border: 0.1rem solid var(--pink-alpha2);
     border-radius: 0.5rem;
+    background-color: var(--pink-alpha1);
 }
 .splash-example-controls {
     display: flex;
@@ -290,13 +297,13 @@ p code {
 }
 
 .splash-cta-button {
-    color: var(--white);
-    background: transparent;
-    border: 1px solid var(--white);
+    background-color: var(--pink-alpha3);
     padding-left: 2em;
     padding-right: 2em;
 }
-
+.splash-cta-button:hover {
+    background-color: var(--pink-alpha2);
+}
 .standards-content {
     display: flex;
     flex-wrap: wrap;
@@ -368,6 +375,7 @@ p code {
 .feature-ex-input {
     background: transparent;
     font-size: 1.125rem;
+    width: 8rem;
 }
 .feature-ex-transform {
     height: 32px;
@@ -462,6 +470,7 @@ p code {
 
     .tagline {
         margin: 2rem 0;
+        line-height: 1.2em;
     }
 
     .splash .brand {
@@ -469,8 +478,9 @@ p code {
     }
     .splash .brand-mark {
         margin: 0 auto;
-        width: 12.3436rem;
-        height: 2rem;
+        width: 14rem;
+        min-width: 40%;
+        height: 4rem;
     }
 
     .splash-example-controls {
@@ -478,6 +488,9 @@ p code {
     }
     .splash-example-output {
         font-size: 1.25rem;
+    }
+    .feature-ex-input {
+        text-align: center;
     }
 
     .splash-cta {
@@ -684,14 +697,17 @@ p code {
 
     .tagline {
         font-size: 1.875rem;
-        margin: 2rem 0 4rem;
+        margin: 1rem 0 4rem;
     }
 
     .splash .brand {
-        margin-top: 2rem;
+        margin-top: 2.9rem;
     }
     .splash .nav-menu {
         margin-top: 1.1875rem;
+    }
+    .feature-ex-input {
+        text-align: left;
     }
 
     .splash-cta {

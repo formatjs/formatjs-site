@@ -102,7 +102,7 @@
             <ul>
                 <li>the user's current locale</li>
                 <li>translated strings for that locale</li>
-                <li>optionally, any <a href="#TODO">custom formats</a></li>
+                <li>optionally, any <a href="#messageformat-custom-formats">custom formats</a></li>
             </ul>
         </li>
         <li>
@@ -175,7 +175,7 @@ var Intl = require('intl');
 {{/code}}
 
     <p class="note">
-        <strong>Note</strong> that the {{code "Intl.js"}} polyfill doesn't have the {{code "Intl.Collator"}} API.
+        <strong>Note</strong> that the {{code "Intl.js"}} polyfill does not have the {{code "Intl.Collator"}} API.
     </p>
 
 
@@ -188,7 +188,7 @@ var Intl = require('intl');
     <h3 id="server-side">Server</h3>
     <p>
         In node.js our libraries are available as NPM packages.
-        Each of our <a href="{{pathTo "integrations"}}">template engine helpers</a> has details on how they are installed.
+        Each of our <a href="{{pathTo 'integrations'}}">template engine helpers</a> has details on how they are installed.
     </p>
 
     <p>
@@ -223,7 +223,7 @@ app.get('/', function(req, res) {
 
     <h3 id="client-side">Client</h3>
     <p>
-        Each of our <a href="{{pathTo "integrations"}}">template engine helpers</a> has details on how to load them into the browser.
+        Each of our <a href="{{pathTo 'integrations'}}">template engine helpers</a> has details on how to load them into the browser.
     </p>
 
     <p>
@@ -248,29 +248,260 @@ app.get('/', function(req, res) {
 
 
     <h2 id="messageformat-syntax">Message Format Syntax</h2>
+    <p>
+        If you are translating text you'll need a way for your translators to express the subtleties of spelling and grammar inherent in each language.
+        We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU message format</a> which is also used in 
+        <a href="http://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">java</a> and
+        <a href="http://php.net/manual/en/class.messageformatter.php">php</a>.
+    </p>
+
+    <p>
+        The {{npmLink "intl-messageformat"}} library takes the given message format and input data and creates an appropriately formatted string.
+        We've integrated it into the <a href="{{pathTo 'integrations'}}">template engine helpers</a> which we provide.
+    </p>
+
+
+    <h3 id="messageformat-basic-principals">Basic Principals</h3>
+    <p>
+        The simplest transform for the message format is a literal string.
+    </p>
+
+{{#code lang="js"}}
+var IntlMessageFormat = require('intl-messageformat');
+var locale = 'en';
+var message = 'Hello everyone';
+var formatter = new IntlMessageFormat(message, locale);
+var data = {};
+formatter.format(data);
+// "Hello everyone"
+{{/code}}
+
+    <p>
+        All other transforms are done using replacements called "arguments".
+        They are enclosed in curly braces ({{code "{"}} and {{code "}"}}) and refer to an value in the input data.
+    </p>
+
+
+    <h3 id="messageformat-simple-argument">Simple Argument</h3>
+    <p>
+        You can use a <code>{<var>key</var>}</code> argument for placing a value into the message.
+        The <var>key</var> is looked up in the input data.
+    </p>
+
+{{#code lang="js"}}
+var IntlMessageFormat = require('intl-messageformat');
+var locale = 'en';
+var message = 'Hello {who}';
+var formatter = new IntlMessageFormat(message, locale);
+var data = {
+    who: 'everyone'
+};
+formatter.format(data);
+// "Hello everyone"
+{{/code}}
+
+
+    <h3 id="messageformat-formatted-argument">Formatted Argument</h3>
+    <p>
+        Values can also be formatted based on their type.
+        You use a <code>{<var>key</var>, <var>type</var>, <var>format</var>}</code> argument to do that.
+    </p>
+
+    <p>
+        The elements of the argument are:
+    </p>
+
+    <ul>
+        <li>
+            <code><var>key</var></code> is where in the input data to find the data
+        </li>
+        <li>
+            <code><var>type</var></code> is how to interpret the value (see below)
+        </li>
+        <li>
+            <code><var>format</var></code> is optional, and is a further refinement on how to display the type
+        </li>
+    </ul>
+
+{{#code lang="js"}}
+var IntlMessageFormat = require('intl-messageformat');
+var locale = 'en';
+var message = 'I have {numCats, number} cats.';
+var formatter = new IntlMessageFormat(message, locale);
+var data = {
+    numCats: 3000
+};
+formatter.format(data);
+// "I have 3,000 cats."
+{{/code}}
+
+
+    <h4 id="messageformat-number-type">{{code "number"}} type</h4>
+    <p>
+        This type is used to format numbers in a way that is sensitive to the locale.
+        It understands the following values for the optional <code><var>format</var></code> element of the argument:
+    </p>
+
+    <ul>
+        <li>
+            <code>percent</code> is used to format values which are percentages
+        </li>
+    </ul>
+
+{{#code lang="js"}}
+var IntlMessageFormat = require('intl-messageformat');
+var locale = 'en';
+var message =
+    'I have {numCats, number} cats.' +
+    ' Almost {pctBlack, number, percent} of them are black.';
+var formatter = new IntlMessageFormat(message, locale);
+var data = {
+    numCats: 3000,
+    pctBlack: 0.32123
+};
+formatter.format(data);
+// "I have 3,000 cats. Almost 32% of them are black."
+{{/code}}
+
+    <p>
+        Internally it uses the {{code "Intl.NumberFormat"}} API.
+        You can <a href="#messageformat-custom-formats">define custom values</a> for the <code><var>format</var></code> element, which are passed to the {{code "Intl.NumberFormat"}} constructor.
+    </p>
+
+
+    <h4 id="messageformat-date-type">{{code "date"}} type</h4>
+    <p>
+        This type is used to format dates in a way that is sensitive to the locale.
+        It understands the following values for the optional <code><var>format</var></code> element of the argument:
+    </p>
+
+    <ul>
+        <li>
+            <code>short</code> is used to format dates in the shortest possible way
+        </li>
+        <li>
+            <code>medium</code> is used to format dates with short textual representation of the month
+        </li>
+        <li>
+            <code>long</code> is used to format dates with long textual representation of the month
+        </li>
+        <li>
+            <code>full</code> is used to format dates with the most detail
+        </li>
+    </ul>
+
+{{#code lang="js"}}
+var IntlMessageFormat = require('intl-messageformat');
+var locale = 'en';
+var message = 'Sale begins {start, date, medium}';
+var formatter = new IntlMessageFormat(message, locale);
+var data = {
+    start: new Date()
+};
+formatter.format(data);
+// "Sale begins October 1, 2014"
+{{/code}}
+
+    <p>
+        Internally it uses the {{code "Intl.DateTimeFormat"}} API.
+        You can <a href="#messageformat-custom-formats">define custom values</a> for the <code><var>format</var></code> element, which are passed to the {{code "Intl.DateTimeFormat"}} constructor.
+    </p>
+
+
+    <h4 id="messageformat-time-type">{{code "time"}} type</h4>
+    <p>
+        This type is used to format times in a way that is sensitive to the locale.
+        It understands the following values for the optional <code><var>format</var></code> element of the argument:
+    </p>
+
+    <ul>
+        <li>
+            <code>short</code> is used to format times with hours and minutes
+        </li>
+        <li>
+            <code>medium</code> is used to format times with hours, minutes, and seconds
+        </li>
+        <li>
+            <code>long</code> is used to format times with hours, minutes, seconds, and timezone
+        </li>
+        <li>
+            <code>full</code> is the same as <code>long</code>
+        </li>
+    </ul>
+
+{{#code lang="js"}}
+var IntlMessageFormat = require('intl-messageformat');
+var locale = 'en';
+var message = 'Coupon expires at {expires, time, short}';
+var formatter = new IntlMessageFormat(message, locale);
+var data = {
+    expires: new Date()
+};
+formatter.format(data);
+// "Coupon expires at 11:09 AM"
+{{/code}}
+
+    <p>
+        Internally it uses the {{code "Intl.DateTimeFormat"}} API.
+        You can <a href="#messageformat-custom-formats">define custom values</a> for the <code><var>format</var></code> element, which are passed to the {{code "Intl.DateTimeFormat"}} constructor.
+    </p>
+
+
+    <h4 id="messageformat-custom-formats">Defining Custom Formats</h4>
+    <p>
+        The 
+        <code>{<var>key</var>, number, <var>format</var>}</code>,
+        <code>{<var>key</var>, date, <var>format</var>}</code>, and
+        <code>{<var>key</var>, time, <var>format</var>}</code>
+        arguments come with predefined values for the <code><var>format</var></code> element, but you can define your own.
+        You do this by passing a simple javascript object to each of the <a href="{{pathTo 'integrations'}}">template engine helpers</a>, in a way that is distinct for each helper.
+    </p>
+
+    <p>
+        The key of the object is the <code><var>type</var></code>, and the value is a simple javascript object of formats for that type.
+        These format options are passed to the <code><var>options</var></code> argument of the associated constructor.
+    </p>
+
+    <p>
+        For example, if you want to define a new <code>usd</code> (US dollars) format for numbers, you could do the following:
+    </p>
+{{#code lang="js"}}
+var IntlMessageFormat = require('intl-messageformat');
+var locale = 'en';
+var message = 'Your total is {total, number, usd}';
+var formats = {
+    number: {
+        usd: { style: 'currency', currency: 'USD' }
+    }
+};
+var formatter = new IntlMessageFormat(message, locale, formats);
+var data = {
+    total: 32.1234
+};
+formatter.format(data);
+// "Your total is $32.12"
+{{/code}}
+
+
+    <h3 id="messageformat-select-format">{{code "{select}"}} Format</h3>
 <!--
-    * standard
-        * ICU (used in java, php, objective-c)
-    * basic principals
-        * text (or text element)
-        * argument
-    * simple argument
-        * syntax
-    * formatted arguments ({x, number}, {x, date}, and {x, time})
-        * syntax
-        * predefined options
-            * for each type
-        * creating your own options
-    * {select} format
-        * syntax
-        * matching rules
-        * nesting
-    * {plural} format
-        * syntax very similar to {select}
-        * pluralization groups (link to CLDR page)
-        * offset
-        * specific value matches ('=43')
+    * syntax
+    * matching rules
+    * nesting
 -->
+    <p>
+    </p>
+
+
+    <h3 id="messageformat-plural-format">{{code "{plural}"}} Format</h3>
+<!--
+    * syntax very similar to {select}
+    * pluralization groups (link to CLDR page)
+    * specific value matches ('=43')
+    * offset
+-->
+    <p>
+    </p>
 
 
 </section>

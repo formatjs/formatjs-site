@@ -11,7 +11,7 @@
     <h2 id="principles">Basic Internationalization Principles</h2>
 
 
-    <h3 id="what-and-why">What Is Internationalization and Why Does It Matter</h3>
+    <h3 id="what-and-why">What Is Internationalization and Why Does It Matter?</h3>
     <p>
         Internationalized software is software that is designed to support the languages and cultural customs of people throughout the world.
         The Web reaches all parts of the world, and so web apps need to be internationalized in order to provide a great user experience for the most number of people.
@@ -24,7 +24,7 @@
     </p>
 
     <p>
-        The <a href="http://www.ecma-international.org/ecma-402/1.0/index.html#sec-4.1">ECMA-402 javascript internalization specification</a> has an excellent overview.
+        The <a href="http://www.ecma-international.org/ecma-402/1.0/index.html#sec-4.1">ECMA-402 JavaScript internalization specification</a> has an excellent overview.
     </p>
 
 
@@ -42,7 +42,7 @@
     </p>
 
     <p>
-        Typically webapps are localized to just the language or language-region combination.
+        Typically web apps are localized to just the language or language-region combination.
         Examples of such locale codes are...
         <ul>
             <li>{{code "en"}} for English</li>
@@ -61,9 +61,9 @@
 
     <h3 id="translating-strings">Translating Strings</h3>
     <p>
-        You likely have some text in your application that is in a natural language such as English or Chinese.
+        You likely have some text in your application that is in a natural language such as English or Japanese.
         In order to support other locales you'll need to translate these strings.
-        You'll need to translate all strings for all locales you wish to support.
+        You'll need to translate all strings that will be displayed to the user for all locales you wish to support.
     </p>
 
     <p>
@@ -72,7 +72,7 @@
         The considerations for each locale are encapsulated in your translated strings and our libraries.
     </p>
 
-{{#code lang="js"}}
+{{#code "js"}}
 var messages = {
     en: {
         GREETING: 'Hello {name}'
@@ -84,9 +84,9 @@ var messages = {
 {{/code}}
 
     <p>
-        We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU message format</a> which is also used in 
-        <a href="http://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">java</a> and
-        <a href="http://php.net/manual/en/class.messageformatter.php">php</a>.
+        We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax which is also used in 
+        <a href="http://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">Java</a> and
+        <a href="http://php.net/manual/en/class.messageformatter.php">PHP</a>.
     </p>
 
 
@@ -97,7 +97,7 @@ var messages = {
     </p>
 
     <p>
-        Our <a href="{{pathTo 'integrations'}}">template engine helpers</a> are designed to work with the translations for a single locale.
+        Our <a href="{{pathTo 'integrations'}}">template and component library integrations</a> are designed to work with the translations for a single locale.
     </p>
 
     <p>
@@ -115,7 +115,7 @@ var messages = {
             Determine the user's locale, as described in <a href="#runtime-environments">Runtime Environments</a> below.
         </li>
         <li>
-            Setup one of {{brand}}'s <a href="{{pathTo 'integrations'}}">template engine helpers</a> with the following data:
+            Setup one of {{brand}}'s <a href="{{pathTo 'integrations'}}">integrations</a> with the following data:
             <ul>
                 <li>the user's current locale</li>
                 <li>translated strings for that locale</li>
@@ -139,13 +139,13 @@ var messages = {
     </ul>
 
     <p>
-        The {{code "Intl"}} API is available on all modern browsers except Safari.
-        It is not available on mobile browsers, older browsers, or node.js.
-        See the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Browser_Compatibility">MDN documentation</a> for an up-to-date list of capable browsers.
+        The {{code "Intl"}} APIs are currently available on all modern browsers except Safari.
+        It is not available on mobile browsers, older browsers, or Node.js.
+        See the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Browser_Compatibility">Mozilla Developer Network documentation</a> for an up-to-date list of capable browsers.
     </p>
 
     <p>
-        If these APIs aren't present you'll need to patch (polyfill) your runtime to include them.
+        If these APIs aren't present you'll need to patch (polyfill) the runtime to include them.
     </p>
 
 
@@ -160,7 +160,7 @@ var messages = {
         Here's an overview of how to use it:
     </p>
 
-{{#code lang="js"}}
+{{#code "js"}}
 yepnope({
     test : window.Intl,
     nope : ['path/to/intl/polyfill'],
@@ -170,29 +170,34 @@ yepnope({
 });
 {{/code}}
 
+    <p id="note">
+        <strong>Note</strong> that our <a href="{{pathTo 'integrations'}}">integrations</a> require that the {{code "window.Intl"}} exist before they are loaded.
+    </p>
+
 
     <h3 id="intljs">Intl.js Polyfill</h3>
     <p>
-        The <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a> library provides a polyfill for the {{code "Intl"}} API.
+        The <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a> library, developed by Andy Earnshaw, provides a polyfill for the {{code "Intl"}} API.
         It will need a locale data file loaded for the locale of the current page.
     </p>
 
-{{#code lang="html"}}
+{{#code "html"}}
 <script src="path/to/intl/Intl.js"></script>
 <script src="path/to/intl/locale-data/jsonp/en.js"></script>
 ...use the locale for the current user, instead of hard-coding to "en"
 {{/code}}
 
     <p>
-        In node.js, the library contains data for all locales.
+        In Node.js, the Intl.js library contains data for all locales.
     </p>
 
-{{#code lang="js"}}
+{{#code "js"}}
 var Intl = require('intl');
 {{/code}}
 
     <p class="note">
         <strong>Note</strong> that the {{code "Intl.js"}} polyfill does not have the {{code "Intl.Collator"}} API.
+        The size of the locale data required to support the API is not practical to load in a client.
     </p>
 
 
@@ -204,13 +209,14 @@ var Intl = require('intl');
 
     <h3 id="server-side">Server</h3>
     <p>
-        In node.js our libraries are available as NPM packages.
-        Each of our <a href="{{pathTo 'integrations'}}">template engine helpers</a> has details on how they are installed.
+        In Node.js our libraries are available as npm packages.
+        Each of our <a href="{{pathTo 'integrations'}}">integrations</a> has details on how they are installed.
     </p>
 
     <p>
         Node (as of 0.10) doesn't provide the global {{code "Intl"}} object.
         You'll need to <a href="#how-to-patch">provide a polyfill</a> as described above.
+        Node 0.12 will support the global {{code "Intl"}} API via a runtime flag.
     </p>
 
 
@@ -228,7 +234,7 @@ var Intl = require('intl');
         As well, express has some content negotiation <a href="http://expressjs.com/4x/api.html#req.acceptsLanguages">built in</a>.
     </p>
 
-{{#code lang="js"}}
+{{#code "js"}}
 var appLocales = ['de', 'en', 'fr'];
 var app = require('express')();
 app.get('/', function(req, res) {
@@ -240,7 +246,7 @@ app.get('/', function(req, res) {
 
     <h3 id="client-side">Client</h3>
     <p>
-        Each of our <a href="{{pathTo 'integrations'}}">template engine helpers</a> has details on how to load them into the browser.
+        Each of our <a href="{{pathTo 'integrations'}}">integrations</a> has details on how to load them into the browser.
     </p>
 
     <p>
@@ -252,49 +258,55 @@ app.get('/', function(req, res) {
 
     <h4 id="user-locale-client">Determining the User's Locale</h4>
     <p>
-        When running internationalization code in the browser it is best if the locale used is the same as was used when the page was generated on the server.
+        <strong>When running internationalization code in the browser it is best if the locale used is the same as was used when the page was generated on the server.</strong>
         You can do this by having the server embed the chosen locale into the generate page.
         This ensures that the user gets a consistent experience and that the UI doesn't suddenly "switch languages" on them.
     </p>
 
     <p>
         If this isn't possible or if you have an application which is served statically, the best practice is to provide the user an explicit way to choose one of the locales your app supports.
-        If you wish to programmatically infer the user's locale you can match {{code "navigator.language || navigator.browserLanguage"}} against the locales your app supports.
+        If you wish to programmatically infer the user's locale you can match the following against the locales your app supports.
     </p>
 
+{{#code "js"}}
+navigator.language || navigator.browserLanguage
+{{/code}}
 
-    <h2 id="messageformat-syntax">Message Format Syntax</h2>
+
+    <h2>Template and Component Library Integrations</h3>
+    <p>
+        We've integrated internationalization support into a few common template and component libraries.
+    </p>
+
+{{> integrations-list}}
+
+
+    <h2 id="messageformat-syntax">Message Syntax</h2>
     <p>
         If you are translating text you'll need a way for your translators to express the subtleties of spelling, grammar, and conjugation inherent in each language.
-        We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU message format</a> which is also used in 
-        <a href="http://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">java</a> and
-        <a href="http://php.net/manual/en/class.messageformatter.php">php</a>.
+        We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax which is also used in 
+        <a href="http://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">Java</a> and
+        <a href="http://php.net/manual/en/class.messageformatter.php">PHP</a>.
     </p>
 
     <p>
-        The {{npmLink "intl-messageformat"}} library takes the message format and input data and creates an appropriately formatted string.
-        We've integrated it into the <a href="{{pathTo 'integrations'}}">template engine helpers</a> which we provide.
+        The {{npmLink "intl-messageformat"}} library takes the message and input data and creates an appropriately formatted string.
+        This feature is included with all of the <a>integrations</a> we provide.
     </p>
 
 
     <h3 id="messageformat-basic-principles">Basic Principles</h3>
     <p>
-        The simplest transform for the message format is a literal string.
+        The simplest transform for the message is a literal string.
     </p>
 
-{{#code lang="js"}}
-var IntlMessageFormat = require('intl-messageformat');
-var locale = 'en';
-var message = 'Hello everyone';
-var formatter = new IntlMessageFormat(message, locale);
-var data = {};
-formatter.format(data);
-// "Hello everyone"
+{{#code "generic"}}
+Hello everyone
 {{/code}}
 
     <p>
         All other transforms are done using replacements called "arguments".
-        They are enclosed in curly braces ({{code "{"}} and {{code "}"}}) and refer to an value in the input data.
+        They are enclosed in curly braces ({{code "{"}} and {{code "}"}}) and refer to a value in the input data.
     </p>
 
 
@@ -304,16 +316,8 @@ formatter.format(data);
         The <var>key</var> is looked up in the input data.
     </p>
 
-{{#code lang="js"}}
-var IntlMessageFormat = require('intl-messageformat');
-var locale = 'en';
-var message = 'Hello {who}';
-var formatter = new IntlMessageFormat(message, locale);
-var data = {
-    who: 'everyone'
-};
-formatter.format(data);
-// "Hello everyone"
+{{#code "generic"}}
+Hello {who}
 {{/code}}
 
 
@@ -339,16 +343,8 @@ formatter.format(data);
         </li>
     </ul>
 
-{{#code lang="js"}}
-var IntlMessageFormat = require('intl-messageformat');
-var locale = 'en';
-var message = 'I have {numCats, number} cats.';
-var formatter = new IntlMessageFormat(message, locale);
-var data = {
-    numCats: 3000
-};
-formatter.format(data);
-// "I have 3,000 cats."
+{{#code "generic"}}
+I have {numCats, number} cats.
 {{/code}}
 
 
@@ -364,19 +360,9 @@ formatter.format(data);
         </li>
     </ul>
 
-{{#code lang="js"}}
-var IntlMessageFormat = require('intl-messageformat');
-var locale = 'en';
-var message =
-    'I have {numCats, number} cats.' +
-    ' Almost {pctBlack, number, percent} of them are black.';
-var formatter = new IntlMessageFormat(message, locale);
-var data = {
-    numCats: 3000,
-    pctBlack: 0.32123
-};
-formatter.format(data);
-// "I have 3,000 cats. Almost 32% of them are black."
+{{#code "generic"}}
+I have {numCats, number} cats.
+Almost {pctBlack, number, percent} of them are black.
 {{/code}}
 
     <p>
@@ -406,16 +392,8 @@ formatter.format(data);
         </li>
     </ul>
 
-{{#code lang="js"}}
-var IntlMessageFormat = require('intl-messageformat');
-var locale = 'en';
-var message = 'Sale begins {start, date, medium}';
-var formatter = new IntlMessageFormat(message, locale);
-var data = {
-    start: new Date()
-};
-formatter.format(data);
-// "Sale begins Oct 1, 2014"
+{{#code "generic"}}
+Sale begins {start, date, medium}
 {{/code}}
 
     <p>
@@ -445,16 +423,8 @@ formatter.format(data);
         </li>
     </ul>
 
-{{#code lang="js"}}
-var IntlMessageFormat = require('intl-messageformat');
-var locale = 'en';
-var message = 'Coupon expires at {expires, time, short}';
-var formatter = new IntlMessageFormat(message, locale);
-var data = {
-    expires: new Date()
-};
-formatter.format(data);
-// "Coupon expires at 11:09 AM"
+{{#code "generic"}}
+Coupon expires at {expires, time, short}
 {{/code}}
 
     <p>
@@ -470,7 +440,7 @@ formatter.format(data);
         <code>{<var>key</var>, date, <var>format</var>}</code>, and
         <code>{<var>key</var>, time, <var>format</var>}</code>
         arguments come with predefined values for the <code><var>format</var></code> element, but you can define your own.
-        You do this by passing a simple javascript object to each of the <a href="{{pathTo 'integrations'}}">template engine helpers</a>, in a way that is distinct for each helper.
+        You do this by passing a simple javascript object to each of the <a href="{{pathTo 'integrations'}}">integrations</a>, in a way that is distinct for each integration.
     </p>
 
     <p>
@@ -481,21 +451,17 @@ formatter.format(data);
     <p>
         For example, if you want to define a new <code>usd</code> (US dollars) format for numbers, you could do the following:
     </p>
-{{#code lang="js"}}
-var IntlMessageFormat = require('intl-messageformat');
-var locale = 'en';
-var message = 'Your total is {total, number, usd}';
-var formats = {
+
+{{#code "js"}}
+formats = {
     number: {
         usd: { style: 'currency', currency: 'USD' }
     }
 };
-var formatter = new IntlMessageFormat(message, locale, formats);
-var data = {
-    total: 32.12
-};
-formatter.format(data);
-// "Your total is $32.12"
+{{/code}}
+
+{{#code "generic"}}
+Your total is {total, number, usd}
 {{/code}}
 
 
@@ -516,7 +482,7 @@ formatter.format(data);
     </p>
 
     <p>
-        <code><var>output</var></code> is itself a message format, so it can be a literal string or also have more arguments nested inside of it.
+        <code><var>output</var></code> is itself a message, so it can be a literal string or also have more arguments nested inside of it.
     </p>
 
     <p>
@@ -524,36 +490,23 @@ formatter.format(data);
         (This is similar to the <code>default</code> case of the <code>switch</code> found in some programming languages.)
     </p>
 
-{{#code lang="js"}}
-var IntlMessageFormat = require('intl-messageformat');
-var locale = 'en';
-var message = 
-    '{gender, select, male {He} female {She} other {They} }' +
-    ' will respond shortly.';
-var formatter = new IntlMessageFormat(message, locale);
-var data = {
-    gender: 'male'
-};
-formatter.format(data);
-// "He will respond shortly."
+{{#code "generic"}}
+{gender, select,
+    male {He}
+    female {She}
+    other {They}
+} will respond shortly.
 {{/code}}
 
     <p>
         Here's an example of nested arguments.
     </p>
 
-{{#code lang="js"}}
-var IntlMessageFormat = require('intl-messageformat');
-var locale = 'en';
-var message = 
-    '{taxableArea, select,' +
-    ' yes{An additional {taxRate, number, percent} tax will be collected}' +
-    ' other{No taxes apply.}}';
-var formatter = new IntlMessageFormat(message, locale);
-formatter.format({taxableArea: 'yes', taxRate: 0.12});
-// "An additional 12% tax will be collected."
-formatter.format({taxableArea: 'no'});
-// "No taxes apply."
+{{#code "generic"}}
+{taxableArea, select,
+    yes{An additional {taxRate, number, percent} tax will be collected.}
+    other{No taxes apply.}
+}
 {{/code}}
 
 
@@ -601,51 +554,37 @@ formatter.format({taxableArea: 'no'});
             This category is used if the value doesn't match one of the other plural categories.
             <strong>Note</strong> that this is used for "plural" for languages (such as English) that have a simple "singular" versus "plural" dichotomy.
         </dd>
+        <dt><code>=<var>value</var></code></dt>
+        <dd>
+            This is used to match a specific value regardless of the plural categories of the current locale.
+        </dd>
     </dl>
 
-{{#code lang="js"}}
-var IntlMessageFormat = require('intl-messageformat');
-var locale = 'en';
-var message = 'Cart: {itemCount} {itemCount, plural, one {item} other {items}}';
-var data = {
-    itemCount: 3
-};
-var formatter = new IntlMessageFormat(message, locale);
-formatter.format(data);
-// "Cart: 3 items"
+{{#code "generic"}}
+Cart: {itemCount} {itemCount, plural,
+    one {item}
+    other {items}
+}
 {{/code}}
 
-    <p>
-        In addition to the plural categories, the <code><var>match</var></code> can match a specific value regardless of the plural categories of the current locale.
-        That is done using the <code>=<var>value</var></code> syntax.
-    </p>
-
-{{#code lang="js"}}
-var IntlMessageFormat = require('intl-messageformat');
-var locale = 'en';
-var message = 'You have {itemCount, plural, =0 {no items} one {1 item} other { {itemCount} items}}.';
-var data = {
-    itemCount: 0
-};
-var formatter = new IntlMessageFormat(message, locale);
-formatter.format(data);
-// "You have no items."
+{{#code "generic"}}
+You have {itemCount, plural,
+    =0 {no items}
+    one {1 item}
+    other \{{itemCount} items}
+}.
 {{/code}}
 
     <p>
         In the <code><var>output</var></code> of the match, the <code>#</code> special token can be used as a placeholder for the value.
     </p>
 
-{{#code lang="js"}}
-var IntlMessageFormat = require('intl-messageformat');
-var locale = 'en';
-var message = 'You have {itemCount, plural, =0 {no items} one {1 item} other {# items}}.';
-var data = {
-    itemCount: 0
-};
-var formatter = new IntlMessageFormat(message, locale);
-formatter.format(data);
-// "You have no items."
+{{#code "generic"}}
+You have {itemCount, plural,
+    =0 {no items}
+    one {1 item}
+    other {# items}
+}.
 {{/code}}
 
 

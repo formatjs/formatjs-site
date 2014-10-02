@@ -1,13 +1,19 @@
 :root {
     --black        : rgb(65, 57, 70);
     --gray         : rgb(95, 90, 99);
-    --gray-medium  : rgb(100, 100, 100);
+    --gray-medium  : rgb(150, 150, 150);
+    --gainsboro    : rgb(220, 220, 220);
     --gray-light   : rgb(247, 247, 247);
     --white        : rgb(255, 255, 255);
-    --pink         : rgb(208, 146, 247);
-    --purple       : rgb(131, 57, 194);
+    --white-alpha  : rgba(255, 255, 255, 0.44);
+    --pink         : rgb(173, 104, 216);
+    --pink-alpha3  : rgba(208, 146, 247, 0.20);
+    --pink-alpha2  : rgba(208, 146, 247, 0.15);
+    --pink-alpha1  : rgba(208, 146, 247, 0.10);
+    --purple       : rgb(171, 87, 243);
     --purple-medium: rgb(94, 67, 112);
     --purple-dark  : rgb(103, 58, 131);
+    --yellow-dark  : rgb(197, 166, 0);
 }
 
 pre .comment {
@@ -17,7 +23,7 @@ pre .comment {
 pre .tag,
 pre .tag-name,
 pre .support.tag-name {
-    color: var(--gray-medium);
+    color: var(--gray);
 }
 
 pre .keyword,

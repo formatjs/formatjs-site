@@ -421,6 +421,16 @@ p code {
     background-color: var(--gray-light);
 }
 
+.foot .first {
+    width: 20%;
+    margin-left: 0.625rem;
+}
+
+.foot .last {
+    width: 20%;
+    margin-right: 0.625rem;
+}
+
 .legal {
     display: flex;
     justify-content: space-between;

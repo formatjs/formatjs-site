@@ -193,7 +193,9 @@ yepnope({
     </p>
 
 {{#code "js"}}
-var Intl = require('intl');
+if (!global.Intl) {
+    global.Intl = require('intl');
+}
 {{/code}}
 
     <p class="note">

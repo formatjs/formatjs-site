@@ -72,6 +72,23 @@
         The considerations for each locale are encapsulated in your translated strings and our libraries.
     </p>
 
+{{#code lang="js"}}
+var messages = {
+    en: {
+        GREETING: 'Hello {name}'
+    },
+    fr: {
+        GREETING: 'Bonjour {name}'
+    }
+};
+{{/code}}
+
+    <p>
+        We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU message format</a> which is also used in 
+        <a href="http://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">java</a> and
+        <a href="http://php.net/manual/en/class.messageformatter.php">php</a>.
+    </p>
+
 
     <h3 id="bundling-translations">Bundling Translated Strings</h3>
     <p>
@@ -84,7 +101,7 @@
     </p>
 
     <p>
-        (Translations can be further subdivided if your app is very complex, such as by page or section of the site.)
+        (If your app is very complex you can further subdivide your translations, such as by page or section of the site.)
     </p>
 
 
@@ -123,7 +140,7 @@
 
     <p>
         The {{code "Intl"}} API is available on all modern browsers except Safari.
-        It is not available on mobile browsers nor node.js.
+        It is not available on mobile browsers, older browsers, or node.js.
         See the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Browser_Compatibility">MDN documentation</a> for an up-to-date list of capable browsers.
     </p>
 
@@ -140,7 +157,7 @@
 
     <p>
         One conditional loader is <a href="http://yepnopejs.com/">yepnopejs</a>.
-        Here's an example of how to use it:
+        Here's an overview of how to use it:
     </p>
 
 {{#code lang="js"}}
@@ -163,11 +180,11 @@ yepnope({
 {{#code lang="html"}}
 <script src="path/to/intl/Intl.js"></script>
 <script src="path/to/intl/locale-data/jsonp/en.js"></script>
-...use the locale for the current user instead of "en".
+...use the locale for the current user, instead of hard-coding to "en"
 {{/code}}
 
     <p>
-        In node.js the library contains data for all locales.
+        In node.js, the library contains data for all locales.
     </p>
 
 {{#code lang="js"}}
@@ -229,34 +246,33 @@ app.get('/', function(req, res) {
     <p>
         If the browser doesn't support the {{code "Intl"}} API you'll need to <a href="#how-to-patch">provide a polyfill</a> as described above.
         The polyfill you choose might require you to load a separate file for each locale.
-        In this caes you can dynamically load a single locale file based on the user's locale.
+        In this caes you can dynamically load a single locale file for the user's locale.
     </p>
 
 
     <h4 id="user-locale-client">Determining the User's Locale</h4>
     <p>
-        When running internationalization code in the browser it is best if the locale used is the same as was used when the page was generated.
+        When running internationalization code in the browser it is best if the locale used is the same as was used when the page was generated on the server.
         You can do this by having the server embed the chosen locale into the generate page.
         This ensures that the user gets a consistent experience and that the UI doesn't suddenly "switch languages" on them.
     </p>
 
     <p>
-        If this isn't possible or if you have a single-page application which is served statically,
-        the best practice is to provide the user an explicit way to choose one of the locales your app supports.
+        If this isn't possible or if you have an application which is served statically, the best practice is to provide the user an explicit way to choose one of the locales your app supports.
         If you wish to programmatically infer the user's locale you can match {{code "navigator.language || navigator.browserLanguage"}} against the locales your app supports.
     </p>
 
 
     <h2 id="messageformat-syntax">Message Format Syntax</h2>
     <p>
-        If you are translating text you'll need a way for your translators to express the subtleties of spelling and grammar inherent in each language.
+        If you are translating text you'll need a way for your translators to express the subtleties of spelling, grammar, and conjugation inherent in each language.
         We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU message format</a> which is also used in 
         <a href="http://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">java</a> and
         <a href="http://php.net/manual/en/class.messageformatter.php">php</a>.
     </p>
 
     <p>
-        The {{npmLink "intl-messageformat"}} library takes the given message format and input data and creates an appropriately formatted string.
+        The {{npmLink "intl-messageformat"}} library takes the message format and input data and creates an appropriately formatted string.
         We've integrated it into the <a href="{{pathTo 'integrations'}}">template engine helpers</a> which we provide.
     </p>
 
@@ -319,7 +335,7 @@ formatter.format(data);
             <code><var>type</var></code> is how to interpret the value (see below)
         </li>
         <li>
-            <code><var>format</var></code> is optional, and is a further refinement on how to display the type
+            <code><var>format</var></code> is optional, and is a further refinement on how to display that type of data
         </li>
     </ul>
 
@@ -399,7 +415,7 @@ var data = {
     start: new Date()
 };
 formatter.format(data);
-// "Sale begins October 1, 2014"
+// "Sale begins Oct 1, 2014"
 {{/code}}
 
     <p>
@@ -476,7 +492,7 @@ var formats = {
 };
 var formatter = new IntlMessageFormat(message, locale, formats);
 var data = {
-    total: 32.1234
+    total: 32.12
 };
 formatter.format(data);
 // "Your total is $32.12"
@@ -484,13 +500,61 @@ formatter.format(data);
 
 
     <h3 id="messageformat-select-format">{{code "{select}"}} Format</h3>
-<!--
-    * syntax
-    * matching rules
-    * nesting
--->
     <p>
+        The <code>{<var>key</var>, select, <var>matches</var>}</code> is used to choose output by matching a value to one of many choices.
+        (It is similar to the <code>switch</code> statement available in other programming languages.)
+        The <code><var>key</var></code> is looked up in the input data.
+        The corresponding value is matched to one of <code><var>matches</var></code> and the corresponding output is returned.
+        The <code><var>matches</var></code> is a space-separated list of matches.
     </p>
+
+    <p>
+        The format of a match is <code><var>match</var> {<var>output</var>}</code>.
+        (A match is similar to the <code>case</code> statement of the <code>switch</code> statement found in other programming languages.)
+        The <code><var>match</var></code> is a literal value.
+        If it is the same as the value for <code><var>key</var></code> then the corresponding <code><var>output</var></code> will be used.
+    </p>
+
+    <p>
+        <code><var>output</var></code> is itself a message format, so it can be a literal string or also have more arguments nested inside of it.
+    </p>
+
+    <p>
+        The <code>other</code> match is special and is used if nothing else matches.
+        (This is similar to the <code>default</code> case of the <code>switch</code> statement found in other programming languages.)
+    </p>
+
+{{#code lang="js"}}
+var IntlMessageFormat = require('intl-messageformat');
+var locale = 'en';
+var message = 
+    '{gender, select, male {He} female {She} other {They} }' +
+    ' will respond shortly.';
+var formatter = new IntlMessageFormat(message, locale);
+var data = {
+    gender: 'male'
+};
+formatter.format(data);
+// "He will respond shortly."
+{{/code}}
+
+    <p>
+        Here's an example of nested arguments.
+    </p>
+
+{{#code lang="js"}}
+var IntlMessageFormat = require('intl-messageformat');
+var locale = 'en';
+var message = 
+    '{taxableArea, select,' +
+    ' yes{An additional {taxRate, number, percent} tax will be collected}' +
+    ' other{No taxes apply.}}';
+var formatter = new IntlMessageFormat(message, locale);
+formatter.format({taxableArea: 'yes', taxRate: 0.12});
+// "An additional 12% tax will be collected."
+formatter.format({taxableArea: 'no'});
+// "No taxes apply."
+{{/code}}
 
 
     <h3 id="messageformat-plural-format">{{code "{plural}"}} Format</h3>

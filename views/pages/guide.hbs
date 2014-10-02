@@ -502,7 +502,7 @@ formatter.format(data);
     <h3 id="messageformat-select-format">{{code "{select}"}} Format</h3>
     <p>
         The <code>{<var>key</var>, select, <var>matches</var>}</code> is used to choose output by matching a value to one of many choices.
-        (It is similar to the <code>switch</code> statement available in other programming languages.)
+        (It is similar to the <code>switch</code> statement available in some programming languages.)
         The <code><var>key</var></code> is looked up in the input data.
         The corresponding value is matched to one of <code><var>matches</var></code> and the corresponding output is returned.
         The <code><var>matches</var></code> is a space-separated list of matches.
@@ -510,7 +510,7 @@ formatter.format(data);
 
     <p>
         The format of a match is <code><var>match</var> {<var>output</var>}</code>.
-        (A match is similar to the <code>case</code> statement of the <code>switch</code> statement found in other programming languages.)
+        (A match is similar to the <code>case</code> statement of the <code>switch</code> found in some programming languages.)
         The <code><var>match</var></code> is a literal value.
         If it is the same as the value for <code><var>key</var></code> then the corresponding <code><var>output</var></code> will be used.
     </p>
@@ -521,7 +521,7 @@ formatter.format(data);
 
     <p>
         The <code>other</code> match is special and is used if nothing else matches.
-        (This is similar to the <code>default</code> case of the <code>switch</code> statement found in other programming languages.)
+        (This is similar to the <code>default</code> case of the <code>switch</code> found in some programming languages.)
     </p>
 
 {{#code lang="js"}}
@@ -558,14 +558,95 @@ formatter.format({taxableArea: 'no'});
 
 
     <h3 id="messageformat-plural-format">{{code "{plural}"}} Format</h3>
-<!--
-    * syntax very similar to {select}
-    * pluralization groups (link to CLDR page)
-    * specific value matches ('=43')
-    * offset
--->
     <p>
+        The <code>{<var>key</var>, plural, <var>matches</var>}</code> is used to choose output based on the pluralization rules of the current locale.
+        It is very similar to the <a rhef="messageformat-select-format">{{code "{select}"}} format above</a>
+        except that the value is expected to be a number and is mapped to a <a href="http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html">plural category</a>.
     </p>
+
+    <p>
+        The <code><var>match</var></code> is a literal value and is matched to one of these plural categories.
+        Not all languages use all plural categories.
+    </p>
+
+    <dl>
+        <dt><code>zero</code></dt>
+        <dd>
+            This category is used for languages that have grammar specialized specifically for zero number of items.
+            (Examples are Arabic and Latvian.)
+        </dd>
+        <dt><code>one</code></dt>
+        <dd>
+            This category is used for languages that have grammar specialized specifically for one item.
+            Many languages, but not all, use this plural category.
+            (Many popular asian languages, such as Chinese and Japanese, do not use this category.)
+        </dd>
+        <dt><code>two</code></dt>
+        <dd>
+            This category is used for languages that have grammar specialized specifically for two item.
+            (Examples are Arabic and Welsh.)
+        </dd>
+        <dt><code>few</code></dt>
+        <dd>
+            This category is used for languages that have grammar specialized specifically for a small number of items.
+            For some languages this is used for 2-4 items, for some 3-10 items, and other languages have even more complex rules.
+        </dd>
+        <dt><code>many</code></dt>
+        <dd>
+            This category is used for languages that have grammar specialized specifically for a larger number of items.
+            (Examples are Arabic, Polish, and Russian.)
+        </dd>
+        <dt><code>other</code></dt>
+        <dd>
+            This category is used if the value doesn't match one of the other plural categories.
+            <strong>Note</strong> that this is used for "plural" for languages (such as English) that have a simple "singular" versus "plural" dichotomy.
+        </dd>
+    </dl>
+
+{{#code lang="js"}}
+var IntlMessageFormat = require('intl-messageformat');
+var locale = 'en';
+var message = 'Cart: {itemCount} {itemCount, plural, one {item} other {items}}';
+var data = {
+    itemCount: 3
+};
+var formatter = new IntlMessageFormat(message, locale);
+formatter.format(data);
+// "Cart: 3 items"
+{{/code}}
+
+    <p>
+        In addition to the plural categories, the <code><var>match</var></code> can match a specific value regardless of the plural categories of the current locale.
+        That is done using the <code>=<var>value</var></code> syntax.
+    </p>
+
+{{#code lang="js"}}
+var IntlMessageFormat = require('intl-messageformat');
+var locale = 'en';
+var message = 'You have {itemCount, plural, =0 {no items} one {1 item} other { {itemCount} items}}.';
+var data = {
+    itemCount: 0
+};
+var formatter = new IntlMessageFormat(message, locale);
+formatter.format(data);
+// "You have no items."
+{{/code}}
+
+    <p>
+        In the <code><var>output</var></code> of the match, the <code>#</code> special token can be used as a placeholder for the value.
+    </p>
+
+{{#code lang="js"}}
+var IntlMessageFormat = require('intl-messageformat');
+var locale = 'en';
+var message = 'You have {itemCount, plural, =0 {no items} one {1 item} other {# items}}.';
+var data = {
+    itemCount: 0
+};
+var formatter = new IntlMessageFormat(message, locale);
+formatter.format(data);
+// "You have no items."
+{{/code}}
 
 
 </section>

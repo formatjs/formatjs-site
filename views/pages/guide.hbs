@@ -8,7 +8,7 @@
     <h1>Guide</h1>
 
 
-    <h2 id="principals">Basic Internationalization Principals</h2>
+    <h2 id="principles">Basic Internationalization Principles</h2>
 
 
     <h3 id="what-and-why">What Is Internationalization and Why Does It Matter</h3>
@@ -46,11 +46,11 @@
         Examples of such locale codes are...
         <ul>
             <li>{{code "en"}} for English</li>
-            <li>{{code "en-US"}} English as spoken in the United States</li>
-            <li>{{code "en-GB"}} English as spoken in the United Kingdom</li>
+            <li>{{code "en-US"}} for English as spoken in the United States</li>
+            <li>{{code "en-GB"}} for English as spoken in the United Kingdom</li>
             <li>{{code "es-AR"}} for Spanish as spoken in Argentina</li>
             <li>{{code "ar-001"}} for Arabic as spoken throughout the world</li>
-            <li>{{code "ar-AE"}} for Arabic as spoken in United Arab Emerates</li>
+            <li>{{code "ar-AE"}} for Arabic as spoken in United Arab Emirates</li>
         </ul>
     </p>
 
@@ -225,7 +225,7 @@ var Intl = require('intl');
         If you wish to programmatically infer the user's locale you can inspect the <a href="http://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Accept-Language">{{code "Accept-Language"}}</a> HTTP request header.
         (This is part of HTTP <a href="http://en.wikipedia.org/wiki/Content_negotiation">content negotiation</a>.)
         There are <a href="https://www.npmjs.org/search?q=accept-language">NPM modules</a> that can help with this, {{npmLink "accepts"}} and {{npmLink "negotiator"}} being two good choices.
-        As well, express has some content negotion <a href="http://expressjs.com/4x/api.html#req.acceptsLanguages">built in</a>.
+        As well, express has some content negotiation <a href="http://expressjs.com/4x/api.html#req.acceptsLanguages">built in</a>.
     </p>
 
 {{#code lang="js"}}
@@ -246,7 +246,7 @@ app.get('/', function(req, res) {
     <p>
         If the browser doesn't support the {{code "Intl"}} API you'll need to <a href="#how-to-patch">provide a polyfill</a> as described above.
         The polyfill you choose might require you to load a separate file for each locale.
-        In this caes you can dynamically load a single locale file for the user's locale.
+        In this case you can dynamically load a single locale file for the user's locale.
     </p>
 
 
@@ -277,7 +277,7 @@ app.get('/', function(req, res) {
     </p>
 
 
-    <h3 id="messageformat-basic-principals">Basic Principals</h3>
+    <h3 id="messageformat-basic-principles">Basic Principles</h3>
     <p>
         The simplest transform for the message format is a literal string.
     </p>

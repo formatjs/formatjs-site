@@ -384,9 +384,11 @@ p code {
 }
 .feature-ex-output {
     flex-direction: column;
-}
-.feature-ex-output {
     font-size: 1.25rem;
+}
+.feature-ex-output,
+.feature-ex-output a:link,
+.feature-ex-output a:visited {
     color: var(--yellow-dark);
 }
 .feature-ex-locale {

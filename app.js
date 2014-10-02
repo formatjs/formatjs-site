@@ -105,8 +105,8 @@ app.getPathTo = function (routeName, context) {
 // -- Locals -------------------------------------------------------------------
 
 Object.assign(app.locals, {
-    brand      : app.get('name'),
-    description: 'Internationalize your web apps on the client and server in JavaScript.',
+    brand  : app.get('name'),
+    tagline: 'Internationalize your web apps on the client & server.',
 
     min: app.get('env') === 'production' ? '.min' : '',
 

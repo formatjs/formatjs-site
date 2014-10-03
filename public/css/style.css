@@ -480,11 +480,15 @@ p code {
 }
 
 .note {
-    padding: 0.4em;
-    background-color: #FFC;
-    border: 1px solid #CC8;
+    padding: 0.4em 0.8em;
+    background-color: #FFFFEA;
+    border-radius: 0.2em;
+    border: 1px solid #E9E9D5;
 }
-
+.note pre,
+.note code {
+    background-color: rgb(245, 245, 199);
+}
 .foot {
     margin-top: 4rem;
     font-size: 0.875rem;

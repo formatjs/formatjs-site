@@ -71,11 +71,12 @@ npm install intl dust-intl
         </li>
         <li>Load in the module and register it:
 {{#code "js"}}
-var dust = require('dustjs-linkedin');
 if (global.Intl) {
     global.Intl = require('intl'); // use polyfill for ECMA-402
 }
-require('dust-intl').registerWith(dust);
+var dust = require('dustjs-linkedin');
+var DustIntl = require('dust-intl');
+DustIntl.registerWith(dust);
 {{/code}}
         </li>
     </ol>

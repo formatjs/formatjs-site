@@ -10,3 +10,7 @@
     <b>{@formatRelative val=meetingDate/}</b> <i>(rounded)</i><br>
     <b>{@formatRelative val=meetingDate units="minute"/}</b> <i>(in minutes)</i>
 </p>
+<p>
+    <b>{@formatRelative val=past/}</b><br>
+    <b>{@formatRelative val=future/}</b>
+</p>

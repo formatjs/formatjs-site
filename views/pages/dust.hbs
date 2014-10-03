@@ -32,20 +32,25 @@
     <h3 id="install-browser">Browser</h3>
     <ol>
         <li>
-            Install with <a href="http://bower.io/">bower</a>: <code>bower install dust-intl</code> or download directly from:
+            Install with <a href="http://bower.io/">bower</a>:
+{{#code "js"}}
+bower install dust-intl
+{{/code}} or download directly from:
+
             <ul>
                 <li><a href="{{cdnLink 'dust-intl/dist/dust-intl.min.js'}}">dust-intl.min.js ({{size "dust-intl/dist/dust-intl.min.js"}} gz)</a></li>
                 <li><a href="{{cdnLink 'dust-intl/dist/dust-intl-with-locales.min.js'}}">dust-intl-with-locales.min.js ({{size "dust-intl/dist/dust-intl-with-locales.min.js"}} gz)</a></li>
             </ul>
+
         </li>
         <li>Load the scripts into your page.
-{{#code lang="html"}}
+{{#code "html"}}
 <script src="dustjs-linkedin/dust-full.min.js"></script>
 <script src="dust-intl/dust-intl.min.js"></script>
 {{/code}}
         </li>
         <li>Register the helpers:
-{{#code lang="js"}}
+{{#code "js"}}
 DustIntl.registerWith(dust);
 {{/code}}
         </li>
@@ -59,9 +64,13 @@ DustIntl.registerWith(dust);
 
     <h3 id="install-node">Node/CommonJS</h3>
     <ol>
-        <li>You can install the helpers with npm: <code>npm install intl dust-intl</code></li>
+        <li>You can install the helpers with npm:
+{{#code "js"}}
+npm install intl dust-intl
+{{/code}}
+        </li>
         <li>Load in the module and register it:
-{{#code lang="js"}}
+{{#code "js"}}
 var dust = require('dustjs-linkedin');
 if (global.Intl) {
     global.Intl = require('intl'); // use polyfill for ECMA-402
@@ -91,7 +100,7 @@ require('dust-intl').registerWith(dust);
 
     <p>
     Example:
-{{#code lang="js"}}
+{{#code "js"}}
 context = {
     intl: {
         locales = 'en-US'
@@ -112,7 +121,7 @@ context = {
     </p>
 
     <p>Example:</p>
-    {{#code lang="js"}}
+    {{#code "js"}}
     context = {
     intl: {
         formats: {
@@ -149,11 +158,11 @@ context = {
     </p>
 
     <p>Example:</p>
-    {{#code lang="js"}}
+    {{#code "js"}}
 context = {
     intl: {
         messages: {
-            photos: '{name} took {numPhotos, plural, =0 {no photos} =1 {one photo} other {# photos}} on {takenDate, date, long}.'
+            photos: '...'
         }
     }
 }
@@ -263,7 +272,5 @@ context = {
     <p>
         This is a block helper that can be used to create a new intl data scope. This is useful when you need to render part of the page in a particular locale, or need to supply the i18n data to Dust via the template context.
     </p>
-
-    TODO: example...
 
 </section>

@@ -351,14 +351,14 @@ p code {
 }
 
 .layers {
-    margin: 1rem 0;
+    margin: 1.45rem 0;
 }
 .layer {
     display: flex;
     justify-content: center;
     align-content: center;
-    margin: 0.25rem 0;
-    padding: 0.5rem;
+    margin: 0;
+    padding: 0.9rem 0.3rem;
     font-size: 0.875rem;
     color: var(--black);
     text-transform: uppercase;
@@ -667,6 +667,7 @@ p code {
         width: 38%;
         order: 1;
         padding-right: 1rem;
+        margin: 1.45rem 0;
     }
 
     .standards-desc {
@@ -800,6 +801,7 @@ p code {
 
     .layers {
         padding-right: 2rem;
+        margin: 1.6rem 0;
     }
 
     .integration {

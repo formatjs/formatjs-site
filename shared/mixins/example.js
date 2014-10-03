@@ -13,7 +13,6 @@ export default {
                 component: React.PropTypes.string
             }),
 
-            context     : React.PropTypes.object,
             getComponent: React.PropTypes.func
         }),
 
@@ -29,6 +28,18 @@ export default {
         return {
             currentLocale: this.props.intl.locales[0]
         };
+    },
+
+    evalContext: function (contextSource) {
+        if (contextSource) {
+            // Why? Oh! Why!?
+            // Ah yes, because we're normalizing template engines
+            /*jslint evil: true*/
+            return (new Function(contextSource + '\nreturn context;'))();
+            /*jslint evil: false*/
+        }
+
+        return {};
     },
 
     updateLocale: function (newLocale) {

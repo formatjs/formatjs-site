@@ -158,7 +158,8 @@ p code {
     border-bottom: 1px solid var(--gainsboro);
 }
 .tabs-tab {
-    margin: 0 1rem -1px;
+    margin-top: 0;
+    margin-bottom: -1px;
     padding: 0.25rem 0rem;
     text-transform: uppercase;
     color: var(--black);
@@ -520,6 +521,12 @@ p code {
         padding-right: 0.625rem;
     }
 
+    .tabs-tab {
+        font-size: 0.875rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
     .cta {
         font-size: 1.125rem;
         margin: 4rem 0 2rem;
@@ -624,6 +631,11 @@ p code {
 }
 
 @media screen and (min-width: 30em) {
+    .tabs-tab {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
     .brand-mark {
         width: 9.2578rem;
         height: 2.5rem;
@@ -753,6 +765,9 @@ p code {
     .tabs-tablist {
         padding-left: 0;
         padding-right: 0;
+    }
+    .tabs-tab {
+        font-size: 1rem;
     }
 
     .code,

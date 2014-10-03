@@ -29,13 +29,13 @@ export default React.createClass({
         var ExampleComponent = example.getComponent();
 
         var tabs = [
-            <Tab label="Component">
+            <Tab label="Component" key="component">
                 <CodeBlock lang="js">
                     {example.source.component}
                 </CodeBlock>
             </Tab>,
 
-            <Tab label="Render">
+            <Tab label="Render" key="render">
                 <CodeBlock lang="javascript">
                     {this.genderateRenderCode()}
                 </CodeBlock>
@@ -43,11 +43,11 @@ export default React.createClass({
         ];
 
         // Insert a "Message" tab if the example uses an i18n message.
-        if (example.messageId) {
+        if (example.meta.messageId) {
             tabs.splice(1, 0,
                 <Tab label="Message" key="message">
                     <CodeBlock>
-                        {messages[example.messageId]}
+                        {messages[example.meta.messageId]}
                     </CodeBlock>
                 </Tab>
             );

@@ -54,11 +54,11 @@ export default React.createClass({
         ];
 
         // Insert a "Message" tab if the example uses an i18n message.
-        if (example.messageId) {
+        if (example.meta.messageId) {
             tabs.splice(1, 0,
                 <Tab label="Message" key="message">
                     <CodeBlock>
-                        {messages[example.messageId]}
+                        {messages[example.meta.messageId]}
                     </CodeBlock>
                 </Tab>
             );
@@ -81,7 +81,7 @@ export default React.createClass({
                         formats={this.props.intl.formats}
                         messages={messages}
                         source={example.source.template}
-                        context={example.context} />
+                        context={this.evalContext(example.source.context)} />
 
                     <div className="example-output-controls">
                         <label>

@@ -416,19 +416,11 @@ p code {
 }
 .foot {
     margin-top: 4rem;
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
     font-size: 0.875rem;
     border-top: 1px solid var(--gainsboro);
     background-color: var(--gray-light);
-}
-
-.foot .first {
-    width: 20%;
-    margin-left: 0.625rem;
-}
-
-.foot .last {
-    width: 20%;
-    margin-right: 0.625rem;
 }
 
 .legal {

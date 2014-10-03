@@ -28,21 +28,36 @@ export default React.createClass({
 
         var ExampleComponent = example.getComponent();
 
+        var tabs = [
+            <Tab label="Component">
+                <CodeBlock lang="js">
+                    {example.source.component}
+                </CodeBlock>
+            </Tab>,
+
+            <Tab label="Render">
+                <CodeBlock lang="javascript">
+                    {this.genderateRenderCode()}
+                </CodeBlock>
+            </Tab>
+        ];
+
+        // Insert a "Message" tab if the example uses an i18n message.
+        if (example.messageId) {
+            tabs.splice(1, 0,
+                <Tab label="Message" key="message">
+                    <CodeBlock>
+                        {messages[example.messageId]}
+                    </CodeBlock>
+                </Tab>
+            );
+        }
+
         return (
             <div id={example.id} className="example">
                 <div className="example-source">
                     <Tabs>
-                        <Tab label="Component">
-                            <CodeBlock lang="js">
-                                {example.source.component}
-                            </CodeBlock>
-                        </Tab>
-
-                        <Tab label="Render">
-                            <CodeBlock lang="javascript">
-                                {this.genderateRenderCode()}
-                            </CodeBlock>
-                        </Tab>
+                        {tabs}
                     </Tabs>
                 </div>
 

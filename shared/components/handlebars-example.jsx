@@ -28,32 +28,47 @@ export default React.createClass({
     },
 
     render: function () {
-        var example       = this.props.example,
-            intl          = this.props.intl,
-            currentLocale = this.state.currentLocale,
-            messages      = intl.messages[currentLocale];
+        var example       = this.props.example;
+        var intl          = this.props.intl;
+        var currentLocale = this.state.currentLocale;
+        var messages      = intl.messages[currentLocale];
+
+        var tabs = [
+            <Tab label="Template" key="template">
+                <CodeBlock lang="html">
+                    {example.source.template}
+                </CodeBlock>
+            </Tab>,
+
+            <Tab label="Context" key="context">
+                <CodeBlock lang="javascript">
+                    {example.source.context}
+                </CodeBlock>
+            </Tab>,
+
+            <Tab label="Render" key="render">
+                <CodeBlock lang="javascript">
+                    {this.genderateRenderCode()}
+                </CodeBlock>
+            </Tab>
+        ];
+
+        // Insert a "Message" tab if the example uses an i18n message.
+        if (example.messageId) {
+            tabs.splice(1, 0,
+                <Tab label="Message" key="message">
+                    <CodeBlock>
+                        {messages[example.messageId]}
+                    </CodeBlock>
+                </Tab>
+            );
+        }
 
         return (
             <div id={example.id} className="example">
                 <div className="example-source">
                     <Tabs>
-                        <Tab label="Template">
-                            <CodeBlock lang="html">
-                                {example.source.template}
-                            </CodeBlock>
-                        </Tab>
-
-                        <Tab label="Context">
-                            <CodeBlock lang="javascript">
-                                {example.source.context}
-                            </CodeBlock>
-                        </Tab>
-
-                        <Tab label="Render">
-                            <CodeBlock lang="javascript">
-                                {this.genderateRenderCode()}
-                            </CodeBlock>
-                        </Tab>
+                        {tabs}
                     </Tabs>
                 </div>
 

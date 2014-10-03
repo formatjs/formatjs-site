@@ -13,6 +13,7 @@
     --purple       : rgb(131, 57, 194);
     --purple-medium: rgb(94, 67, 112);
     --purple-dark  : rgb(103, 58, 131);
+    --yellow-js    : rgb(247, 223, 30);
     --yellow-dark  : rgb(197, 166, 0);
 }
 
@@ -144,6 +145,10 @@ p code {
 .cta-button {
     padding-left: 2em;
     padding-right: 2em;
+}
+
+.more:after {
+    content: "›"
 }
 
 .tabs-tablist {
@@ -300,6 +305,12 @@ p code {
 .splash .nav-menu {
     margin-top: 1.25rem;
 }
+.splash .cta-button {
+    background-color: var(--pink-alpha3);
+}
+.splash .cta-button:hover {
+    background-color: var(--pink-alpha2);
+}
 
 .splash-example-container {
     max-width: 40rem;
@@ -333,16 +344,39 @@ p code {
     margin-right: 0.375rem;
 }
 
-.splash .cta-button {
-    background-color: var(--pink-alpha3);
-}
-.splash .cta-button:hover {
-    background-color: var(--pink-alpha2);
-}
+.about-content,
 .standards-content {
     display: flex;
     flex-wrap: wrap;
 }
+
+.layers {
+    margin: 1rem 0;
+}
+.layer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 0.25rem 0;
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--black);
+    text-transform: uppercase;
+}
+.layer-integrations {
+    color: var(--white-alpha);
+    background: var(--purple-dark);
+}
+.layer-core {
+    color: var(--white-alpha);
+    background: var(--purple);
+}
+.layer-standards {
+    color: var(--yellow-dark);
+    background: var(--yellow-js);
+}
+
 .standards-logo {
     margin-left: auto;
     margin-right: auto;
@@ -380,7 +414,7 @@ p code {
 }
 .integration-name {
     order: 2;
-    margin: 0.5rem 0 0;
+    margin: 0.125rem 0 0;
 }
 .integration-brand {
     order: 1;
@@ -530,9 +564,11 @@ p code {
         font-size: 1.25rem;
     }
 
+    .layers,
     .standards-logo {
         width: 100%;
     }
+
     .standards-logo img {
         max-width: 80px;
         max-height: 80px;
@@ -624,6 +660,16 @@ p code {
 }
 
 @media screen and (min-width: 35.5em) {
+    .about-desc {
+        width: 62%;
+        order: 2;
+    }
+    .layers {
+        width: 38%;
+        order: 1;
+        padding-right: 1rem;
+    }
+
     .standards-desc {
         width: 62%;
     }
@@ -675,13 +721,15 @@ p code {
     }
 }
 
-@media screen and (min-width: 40em) {
+@media screen and (min-width: 44em) {
     .integrations .integrations-desc {
         width: 38%;
+        order: 1;
     }
     .integrations .integrations-list {
         width: 62%;
         padding-left: 1rem;
+        order: 2;
     }
     .integrations .integration:last-child {
         margin-right: 0;
@@ -749,6 +797,10 @@ p code {
     .tagline {
         font-size: 1.875rem;
         margin-bottom: 4rem;
+    }
+
+    .layers {
+        padding-right: 2rem;
     }
 
     .integration {

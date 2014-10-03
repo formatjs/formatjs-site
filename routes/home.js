@@ -3,7 +3,8 @@
 var renderComponent = require('../lib/component').render;
 
 module.exports = function (route) {
-    route.name = 'home';
+    route.name  = 'home';
+    route.label = 'Home';
 
     route.get(function (req, res) {
         var splashExample = {

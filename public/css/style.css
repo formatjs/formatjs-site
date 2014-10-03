@@ -206,7 +206,6 @@ p code {
 .nav {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     align-items: center;
     text-transform: uppercase;
 }
@@ -219,11 +218,9 @@ p code {
 }
 
 .nav-menu {
-    margin: 0.625rem 0 0;
     padding: 0;
     list-style: none;
     display: flex;
-    font-weight: 300;
 }
 .nav-menu a {
     padding: 0.5rem;
@@ -233,6 +230,23 @@ p code {
 }
 .nav-menu-item:last-child {
     margin-right: 0;
+}
+
+.head .nav,
+.splash .nav {
+    justify-content: space-between;
+    font-weight: 300;
+}
+.head .nav-menu,
+.splash .nav-menu {
+    margin: 0.625rem 0 0;
+}
+
+.foot .nav {
+    justify-content: center;
+}
+.foot .nav-menu {
+    margin-bottom: 0;
 }
 
 .splash {
@@ -416,21 +430,12 @@ p code {
     background-color: #FFC;
     border: 1px solid #CC8;
 }
+
 .foot {
     margin-top: 4rem;
     font-size: 0.875rem;
     border-top: 1px solid var(--gainsboro);
     background-color: var(--gray-light);
-}
-
-.foot .first {
-    width: 20%;
-    margin-left: 0.625rem;
-}
-
-.foot .last {
-    width: 20%;
-    margin-right: 0.625rem;
 }
 
 .legal {
@@ -462,14 +467,6 @@ p code {
         padding-right: 0.625rem;
     }
 
-    .splash {
-        padding-bottom: 2rem;
-    }
-
-    .nav {
-        margin: 0 0.125rem 1rem;
-    }
-
     .brand-mark {
         margin: 0.5rem;
         width: 2.1484rem;
@@ -480,6 +477,19 @@ p code {
         background-position: center;
     }
 
+    .tagline {
+        margin: 1rem 0 2rem;
+        line-height: 1.2;
+    }
+
+    .head .nav,
+    .splash .nav {
+        margin: 0 0.125rem 1rem;
+    }
+
+    .splash {
+        padding-bottom: 2rem;
+    }
     .splash .brand {
         margin: 2rem 0 0;
     }
@@ -488,19 +498,12 @@ p code {
         width: 12.3436rem;
         height: 2rem;
     }
-
-    .tagline {
-        margin: 1rem 0 2rem;
-        line-height: 1.2;
-    }
-
     .splash-example-controls {
         justify-content: space-between;
     }
     .splash-example-output {
         font-size: 1.25rem;
     }
-
     .splash-cta {
         font-size: 1.125rem;
         margin: 4rem 0 2rem;
@@ -645,7 +648,8 @@ p code {
 }
 
 @media screen and (min-width: 36em) and (min-height: 36em) {
-    .nav {
+    .head .nav,
+    .splash .nav {
         font-size: 1rem;
     }
 }
@@ -694,12 +698,15 @@ p code {
         font-size: 1.125rem;
     }
 
-    .nav {
+    .head .nav,
+    .splash .nav,
+    .foot .nav {
         margin-left: 0.5rem;
         margin-right: 0.5rem;
     }
 
-    .nav-menu {
+    .head .nav-menu,
+    .splash .nav-menu {
         font-size: 1.125rem;
     }
 

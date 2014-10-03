@@ -87,20 +87,20 @@ routes.handlebars(route('/handlebars/'));
 routes.react(route('/react/'));
 routes.dust(route('/dust/'));
 
-app.getPathTo = function (routeName, context) {
-    var path;
-
-    router.stack.some(function (layer) {
-        if (layer.route && layer.route.name === routeName) {
-            path = layer.route.path;
-        }
+app.getRoute = function (routeName) {
+    var layer = router.stack.find(function (layer) {
+        return layer.route && layer.route.name === routeName;
     });
 
-    if (!path) {
-        throw new ReferenceError('No route named: ' + routeName);
+    if (!layer) {
+        throw new Error('No route name: ' + routeName);
     }
 
-    return reverend(path, context);
+    return layer.route;
+};
+
+app.getPathTo = function (routeName, context) {
+    return reverend(app.getRoute(routeName).path, context);
 };
 
 // -- Locals -------------------------------------------------------------------
@@ -111,16 +111,8 @@ Object.assign(app.locals, {
 
     min: app.get('env') === 'production' ? '.min' : '',
 
-    menuItems: router.stack
-        .filter(function (layer) {
-            return layer.route && layer.route.menu;
-        })
-        .map(function (layer) {
-            return {
-                name : layer.route.name,
-                label: layer.route.menu
-            };
-        }),
+    menuItems    : ['guide', 'integrations', 'github'].map(app.getRoute),
+    footMenuItems: ['home', 'about', 'guide', 'integrations', 'github'].map(app.getRoute),
 
     helpers: {
         pathTo: function (name, options) {

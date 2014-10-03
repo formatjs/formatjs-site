@@ -9,18 +9,9 @@ var autoprefixer     = require('autoprefixer-core'),
     postcss          = require('./broccoli/postcss'),
     unwatchedTree    = require('broccoli-unwatched-tree');
 
-var bower_components = unwatchedTree('bower_components/'),
-    node_modules     = unwatchedTree('node_modules/'),
+var node_modules     = unwatchedTree('node_modules/'),
     shared           = 'shared/',
     pub              = 'public/';
-
-bower_components = moveFiles(bower_components, {
-    files: {
-        'rainbow/js/rainbow.js'    : 'vendor/rainbow/rainbow.js',
-        'rainbow/js/rainbow.min.js': 'vendor/rainbow/rainbow.min.js',
-        'rainbow/js/language'      : 'vendor/rainbow/language'
-    }
-});
 
 node_modules = moveFiles(node_modules, {
     files: {
@@ -38,7 +29,11 @@ node_modules = moveFiles(node_modules, {
 
         'dust-intl/dist'      : 'vendor/dust-intl',
         'handlebars-intl/dist': 'vendor/handlebars-intl',
-        'react-intl/dist'     : 'vendor/react-intl'
+        'react-intl/dist'     : 'vendor/react-intl',
+
+        'Rainbow/js/rainbow.js'    : 'vendor/rainbow/rainbow.js',
+        'Rainbow/js/rainbow.min.js': 'vendor/rainbow/rainbow.min.js',
+        'Rainbow/js/language'      : 'vendor/rainbow/language'
     }
 });
 
@@ -64,7 +59,7 @@ var client = compileModules(mergeTrees([shared, pub]), {
     output     : 'js/app.js'
 });
 
-client = moveFiles(mergeTrees([bower_components, node_modules, client]), {
+client = moveFiles(mergeTrees([node_modules, client]), {
     files: {'/': 'client'}
 });
 

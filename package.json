@@ -52,6 +52,7 @@
     "Rainbow": "ccampbell/rainbow#c2f5b0a3fa"
   },
   "scripts": {
+    "postinstall": "grunt",
     "test": "mocha tests/*",
     "start": "node server.js"
   },

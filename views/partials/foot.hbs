@@ -1,8 +1,18 @@
 <section class="foot">
+    <div class="nav">
+        <menu class="nav-menu">
+          {{#each footMenuItems}}
+            <li class="nav-menu-item">
+                <a href="{{pathTo name}}">{{label}}</a>
+            </li>
+          {{/each}}
+        </menu>
+    </div>
+
     <div class="legal">
         <div class="legal-license l-wrap">
             <p>
-                All code on this site is licensed under the <span class="legal-clause"><a href="https://github.com/yahoo/formatjs-site/blob/master/LICENSE.md">Yahoo BSD License</a></span>, unless otherwise stated.
+                All code on this site is licensed under the <span class="legal-clause"><a href="https://github.com/yahoo/formatjs-site/blob/master/LICENSE.md">Yahoo BSD License</a></span>, <span class="legal-clause">unless otherwise stated.</span>
             </p>
         </div>
 

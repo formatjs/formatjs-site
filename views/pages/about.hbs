@@ -1,5 +1,5 @@
 {{setTitle "About"}}
-{{setDescription "About this site."}}
+{{setDescription "Authorship, credits, and security info from " brand " the libraries, and this website."}}
 
 <section class="head">
     {{> nav}}
@@ -11,37 +11,41 @@
     <h2>Authorship</h2>
 
     <p>
-        {{brand}} was created by the Yahoo Presentation Technologies (YPT) team, with special thanks to <a href="http://norbertlindenberg.com">Norbert Lindenberg</a> and <a href="https://github.com/andyearnshaw">Andy Ernshaw</a>.
+        {{brand}} was created by the Yahoo Presentation Technologies (YPT) team, with special thanks to <a href="https://github.com/andyearnshaw">Andy Ernshaw</a> and <a href="http://norbertlindenberg.com">Norbert Lindenberg</a>.
     </p>
 
-    <h2>Standards</h2>
+    <h2>Industry Standards</h2>
 
     <p>
-        {{brand}} uses the message syntax used by professional translators, and is aligned with the following standards:
+        {{brand}} builds on the <a href="http://www.ecma-international.org/ecma-402/1.0/">ECMAScript Internationalization API</a> (ECMA-402), uses locale data from the <a href="http://cldr.unicode.org/">CLDR</a>, works with the industry standard <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message syntax</a> used by professional translators.
     </p>
-
-    <ul>
-        <li><a href="http://www.ecma-international.org/ecma-402/1.0/">ECMAScript Internationalization API</a> (ECMA-402)</li>
-        <li><a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a></li>
-        <li><a href="http://cldr.unicode.org/">CLDR</a></li>
-    </ul>
 
     <h2>Credits</h2>
 
+    {{brand}}, the libraries and website, build on the work of others:
+
     <ul>
-        <li><a href="https://unsplash.com">Splash image on homepage</a> was created by <a href="https://twitter.com/alexgindin">Alex Gindin</a></li>
-        <li><a href="http://handlebarsjs.com/">Handlebars</a> logo: Tilde, Inc.</li>
-        <li><a href="https://facebook.github.io/react/">React</a> logo: Facebook, Inc.</li>
-        <li><a href="http://linkedin.github.io/dustjs/">Dust</a>: LinkedIn, plus original creator</li>
-        <li>Arrow Icons
-            <ul>
-                <li>Right arrow: Yaroslav Samoilov from <a href="http://thenounproject.com/">The Noun Project</a></li>
-                <li>Down arrow: Yaroslav Samoilov from <a href="http://thenounproject.com/">The Noun Project</a></li>
-            </ul>
+        <li>
+            <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a> Polyfill by <a href="https://github.com/andyearnshaw">Andy Earnshaw</a>
         </li>
-        <li><a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a> Polyfill: Andy Earnshaw</li>
-        <li><a href="https://github.com/papandreou/node-cldr">CLDR</a> data credits: CLDR project and creator of cldr npm package</li>
-        <li>Intl MessageFormat Parser: derived from <a href="https://github.com/SlexAxton/messageformat.js">Alex Sexton's work</a> (see project's LICENSE for details)</li>
+        <li>
+            CLDR data compiled from <a href="https://github.com/papandreou/node-cldr">{{code "cldr"}} npm package</a> by <a href="https://github.com/papandreou">Andreas Lind</a>
+        </li>
+        <li>
+            Intl MessageFormat Parser derived from <a href="https://github.com/SlexAxton">Alex Sexton's</a> <a href="https://github.com/SlexAxton/messageformat.js">messageformat.js</a> work
+        </li>
+        <li>
+            Splash image on homepage is from <a href="https://unsplash.com">Unsplash</a>, created by <a href="https://twitter.com/alexgindin">Alex Gindin</a>
+        </li>
+        <li>
+            <a href="http://handlebarsjs.com/">Handlebars</a> logo by <a href="http://www.tilde.io/">Tilde Inc.</a>
+        </li>
+        <li>
+            <a href="https://facebook.github.io/react/">React</a> logo by <a href="https://www.facebook.com/">Facebook, Inc.</a>
+        </li>
+        <li>
+            <a href="http://thenounproject.com/term/arrow/57623/">Right Arrow</a> and <a href="http://thenounproject.com/term/arrow/57626/">Down Arrow</a> icons by <a href="http://thenounproject.com/Yaosamo/">Yaroslav Samoilov</a> from <a href="http://thenounproject.com/">The Noun Project</a>
+        </li>
     </ul>
 
     <h2>Security</h2>

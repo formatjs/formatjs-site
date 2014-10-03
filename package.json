@@ -49,7 +49,7 @@
     "postcss-custom-properties": "^0.4.0",
     "rimraf": "^2.2.8",
     "xunit-file": "^0.0.5",
-    "Rainbow": "ccampbell/rainbow"
+    "Rainbow": "ccampbell/rainbow#c2f5b0a3fa"
   },
   "scripts": {
     "test": "mocha tests/*",

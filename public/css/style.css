@@ -225,12 +225,6 @@ p code {
 .nav-menu a {
     padding: 0.5rem;
 }
-.nav-menu-item:first-child {
-    margin-left: 0;
-}
-.nav-menu-item:last-child {
-    margin-right: 0;
-}
 
 .head .nav,
 .splash .nav {
@@ -241,12 +235,26 @@ p code {
 .splash .nav-menu {
     margin: 0.625rem 0 0;
 }
+.head .nav-menu-item:first-child,
+.splash .nav-menu-item:first-child {
+    margin-left: 0;
+}
+.head .nav-menu-item:last-child,
+.splash .nav-menu-item:last-child {
+    margin-right: 0;
+}
 
 .foot .nav {
     justify-content: center;
 }
 .foot .nav-menu {
     margin-bottom: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.foot .nav-menu-item {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
 }
 
 .splash {

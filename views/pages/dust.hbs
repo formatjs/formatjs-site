@@ -9,31 +9,34 @@
     <h1>Dust</h1>
 
     <p>
-    The {{npmLink 'dust-intl'}} library provides helpers that can be used to internationalize your dust templates.
+    The {{npmLink 'dust-intl'}} library provides helpers that can be used to internationalize your dust templates. These helpers are:
     </p>
+
+    <ul>
+        <a href="#formatDate"><code>{@formatDate}</code></a> to format a date value
+        <a href="#formatTime"><code>{@formatTime}</code></a> to format a date value with time formats
+        <a href="#formatRelative"><code>{@formatRelative}</code></a> to format a date relative to now; e.g. "3 hours ago"
+        <a href="#formatNumber"><code>{@formatNumber}</code></a> to format a numeric value
+        <a href="#formatMessage"><code>{@formatMessage}</code></a> to format a complex message
+    </ul>
 
     <p>
-    The <a href="#formatDate"><code>{@formatDate}</code></a>, <a href="#formatTime"><code>{@formatTime}</code></a>, and <a href="#formatNumber"><code>{@formatNumber}</code></a> helpers will work out-of-the-box.
+        There is one more block helper called <a href="#intl"><code>{@intl}</code></a> that can be used to create
+        a new intl data scope. This is useful when you need to render part of the page in a particular
+        locale, or need to supply the i18n data to Dust via the template context.
     </p>
-
-    <p>
-    In order to use the <a href="#formatMessage"><code>{@formatMessage}</code></a> helper you'll need to translate your strings into all the languages you wish to show.
-    These translations are provided in the <a href="http://userguide.icu-project.org/formatparse/messages">ICU formatted message</a> format, which is familiar to professional translators.
-    The message format also supports choosing different strings based on pluralization, gender, or other considerations.
-    See the <a href="{{pathTo 'guide'}}#messageformat-syntax">Guide</a> for more details.
-    </p>
-
 
     <h2 id="installation">Installation</h2>
 
 
     <h3 id="install-browser">Browser</h3>
     <ol>
-        <li>Install with <a href="http://bower.io/">bower</a>: <code>bower install dust-intl</code></li>
+        <li>Install with <a href="http://bower.io/">bower</a>: <code>bower install dust-intl</code> or
+        download <a href="https://raw.githubusercontent.com/yahoo/dust-intl/master/dist/dust-intl.min.js">dust-intl.min.js (7.4k gz)</a> or <a href="https://raw.githubusercontent.com/yahoo/dust-intl/master/dist/dust-intl-with-locales.min.js">dust-intl-with-locales.min.js (33.8k gz)</a>.</li>
         <li>Load the scripts into your page.
 {{#code lang="html"}}
-<script src="dustjs-linkedin.js"></script>
-<script src="dust-intl.js"></script>
+<script src="dustjs-linkedin/dust-full.min.js"></script>
+<script src="dust-intl/dust-intl.min.js"></script>
 {{/code}}
         </li>
         <li>Register the helpers:
@@ -43,14 +46,15 @@ DustIntl.registerWith(dust);
         </li>
     </ol>
 
-
     <h3 id="install-node">Node/CommonJS</h3>
     <ol>
-        <li>You can install the helpers with npm: <code>npm install dust-intl</code></li>
+        <li>You can install the helpers with npm: <code>npm install intl dust-intl</code></li>
         <li>Load in the module and register it:
 {{#code lang="js"}}
 var dust = require('dustjs-linkedin');
-global.Intl = global.Intl || require('intl');
+if (global.Intl) {
+    global.Intl = require('intl'); // use polyfill for ECMA-402
+}
 require('dust-intl').registerWith(dust);
 {{/code}}
         </li>
@@ -59,8 +63,8 @@ require('dust-intl').registerWith(dust);
     <p class="note">
     <strong>NOTE:</strong>
     Node (as of 0.10) doesn't provide the global <code>Intl</code> object (ECMA-402).
-    You'll need to provide a polyfill.
-    The {{npmLink 'intl'}} NPM package can provide this or you can use another.
+    You'll need to provide a polyfill. We recommend the use of {{npmLink 'intl'}} NPM package
+    as described in the example above.
     </p>
 
 
@@ -126,7 +130,7 @@ require('dust-intl').registerWith(dust);
     <p>
     This location in the context is used by <a href="#formatMessage"><code>{@formatMessage}</code></a>.
     It is an object, each key being the name of a message, and each value being an <a href="http://userguide.icu-project.org/formatparse/messages">ICU formatted message</a>.
-    The formatted messages should be appropriate for the current language.
+    The formatted messages should be appropriate for the user's current locale.
     </p>
 
     <p>
@@ -220,7 +224,15 @@ context = {
 
 
     <h2 id="formatMessage">{@formatMessage}</h2>
+
     TODO
+
+    <p>
+    In order to use the <a href="#formatMessage"><code>{@formatMessage}</code></a> helper you'll need to translate your strings into all the languages you wish to show.
+    These translations are provided in the <a href="http://userguide.icu-project.org/formatparse/messages">ICU formatted message</a> format, which is familiar to professional translators.
+    The message format also supports choosing different strings based on pluralization, gender, or other considerations.
+    See the <a href="{{pathTo 'guide'}}#messageformat-syntax">Guide</a> for more details.
+    </p>
 
     <h3>Live Example</h3>
     {{~> example examples.message}}

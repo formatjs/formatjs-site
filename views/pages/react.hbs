@@ -8,15 +8,105 @@
 <section class="main docs l-wrap">
     <h1>React</h1>
 
-    <h2>Format Numbers</h2>
+    <p>
+    The {{npmLink 'react-intl'}} library provides helpers that can be used to internationalize your react components. These helpers are:
+    </p>
+
+    <ul>
+        <li><a href="#formatDate"><code>formatDate()</code></a> to format a date value</li>
+        <li><a href="#formatTime"><code>formatTime()</code></a> to format a date value with time formats</li>
+        <li><a href="#formatRelative"><code>formatRelative()</code></a> to format a date relative to now; e.g. "3 hours ago"</li>
+        <li><a href="#formatNumber"><code>formatNumber()</code></a> to format a numeric value</li>
+        <li><a href="#formatMessage"><code>formatMessage()</code></a> to format a complex message</li>
+    </ul>
+
+    <p>
+        There is one more method called <a href="#intl"><code>getIntlMessage()</code></a> that can be used to
+        lookup for a message by key.
+    </p>
+
+    <h2 id="installation">Installation</h2>
+
+
+    <h3 id="install-browser">Browser</h3>
+    <ol>
+        <li>
+            Install with <a href="http://bower.io/">bower</a>:
+{{#code "js"}}
+bower install react-intl
+{{/code}} or download directly from:
+
+            <ul>
+                <li><a href="{{cdnLink 'react-intl/dist/react-intl.min.js'}}">react-intl.min.js ({{size "react-intl/dist/react-intl.min.js"}} gz)</a></li>
+                <li><a href="{{cdnLink 'react-intl/dist/react-intl-with-locales.min.js'}}">react-intl-with-locales.min.js ({{size "react-intl/dist/react-intl-with-locales.min.js"}} gz)</a></li>
+            </ul>
+
+        </li>
+        <li>Load the scripts into your page.
+{{#code "html"}}
+<script src="react/react.min.js"></script>
+<script src="react-intl/react-intl.min.js"></script>
+{{/code}}
+        </li>
+        <li>Use ReactIntlMixin in a React component:
+{{#code "js"}}
+var MyComponent = React.createClass({
+    mixins: [ReactIntlMixin],
+    render: function () {...}
+});
+{{/code}}
+        </li>
+    </ol>
+    <p class="note">
+    <strong>NOTE:</strong>
+    Older browsers and Safari do not provide the global {{code "Intl"}} object (ECMA-402).
+    Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch the browser</a> using a polyfill.
+    </p>
+
+
+    <h3 id="install-node">Node/CommonJS</h3>
+    <ol>
+        <li>You can install the helpers with npm:
+{{#code "js"}}
+npm install intl react-intl
+{{/code}}
+        </li>
+        <li>Load in the module and register it:
+{{#code "js"}}
+if (global.Intl) {
+    global.Intl = require('intl'); // use polyfill for ECMA-402
+}
+var React = require('react');
+var ReactIntlMixin = require('react-intl');
+{{/code}}
+</li>
+        <li>Use ReactIntlMixin in a React component:
+{{#code "js"}}
+var MyComponent = React.createClass({
+    mixins: [ReactIntlMixin],
+    render: function () {...}
+});
+{{/code}}
+        </li>
+    </ol>
+
+    <p class="note">
+    <strong>NOTE:</strong>
+    Node (as of 0.10) doesn't provide the global <code>Intl</code> object (ECMA-402).
+    Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch the browser</a> using a polyfill.
+    </p>
+
+
+    <h2>formatNumber()</h2>
     {{~> example examples.number}}
 
-    <h2>Format Dates</h2>
+    <h2>formatDate()</h2>
     {{~> example examples.date}}
 
-    <h2>Format Relative</h2>
+    <h2>formatRelative()</h2>
     {{~> example examples.relative}}
 
-    <h2>Format Message</h2>
+    <h2>formatMessage()</h2>
     {{~> example examples.message}}
+
 </section>

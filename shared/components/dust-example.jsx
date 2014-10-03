@@ -33,27 +33,42 @@ export default React.createClass({
             currentLocale = this.state.currentLocale,
             messages      = this.props.intl.messages[currentLocale];
 
+        var tabs = [
+            <Tab label="Template" key="template">
+                <CodeBlock lang="html">
+                    {example.source.template}
+                </CodeBlock>
+            </Tab>,
+
+            <Tab label="Context" key="context">
+                <CodeBlock lang="javascript">
+                    {example.source.context}
+                </CodeBlock>
+            </Tab>,
+
+            <Tab label="Render" key="render">
+                <CodeBlock lang="javascript">
+                    {this.genderateRenderCode()}
+                </CodeBlock>
+            </Tab>
+        ];
+
+        // Insert a "Message" tab if the example uses an i18n message.
+        if (example.messageId) {
+            tabs.splice(1, 0,
+                <Tab label="Message" key="message">
+                    <CodeBlock>
+                        {messages[example.messageId]}
+                    </CodeBlock>
+                </Tab>
+            );
+        }
+
         return (
             <div id={example.id} className="example">
                 <div className="example-source">
                     <Tabs>
-                        <Tab label="Template">
-                            <CodeBlock lang="html">
-                                {example.source.template}
-                            </CodeBlock>
-                        </Tab>
-
-                        <Tab label="Context">
-                            <CodeBlock lang="javascript">
-                                {example.source.context}
-                            </CodeBlock>
-                        </Tab>
-
-                        <Tab label="Render">
-                            <CodeBlock lang="javascript">
-                                {this.genderateRenderCode()}
-                            </CodeBlock>
-                        </Tab>
+                        {tabs}
                     </Tabs>
                 </div>
 

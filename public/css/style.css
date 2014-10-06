@@ -201,10 +201,11 @@ p code {
 }
 .example-output-enter {
     opacity: 0.01;
-    transition: opacity 0.5s ease-in;
+
 }
 .example-output-enter-active {
     opacity: 1;
+    transition: opacity 0.5s ease-in;
 }
 
 .example .handlebars-output,

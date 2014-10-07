@@ -108,6 +108,41 @@ var MyComponent = React.createClass({
     Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch the browser</a> using a polyfill.
     </p>
 
+    <h2 id="">The "formats" component property</h2>
+
+    <p>
+    The ReactIntl mixin allows you to define named configuration options that you can reuse within the entire application or within a component subtree. The following example illustrates how these custom formats work.
+    </p>
+
+{{#code "js"}}
+var MyContainer = React.createClass({
+    mixins: [ReactIntlMixin],
+    getDefaultProps: function () {
+        return {
+            formats: {
+                date: {
+                    timeStyle: {
+                        hour: 'numeric',
+                        minute: 'numeric'
+                    }
+                },
+                number: {
+                    percentStyle: {
+                        style: 'percent'
+                    }
+                }
+            }
+        };
+    },
+
+    render: function () {
+        return <div>
+            <p>A: {this.formatDate(1390518044403, 'timeStyle')}</p>
+            <p>B: {this.formatNumber(400, 'percentStyle')}</p>
+        </div>;
+    }
+});
+{{/code}}
 
     <h2 id="formatNumber">formatNumber(number[, options])</h2>
     <p>

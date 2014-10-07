@@ -73,7 +73,7 @@ npm install intl react-intl
         </li>
         <li>Load in the module and register it:
 {{#code "js"}}
-if (global.Intl) {
+if (!global.Intl) {
     global.Intl = require('intl'); // use polyfill for ECMA-402
 }
 var React = require('react');

@@ -44,7 +44,7 @@ a.pure-button:visited {
     background-image: none;
     box-shadow: none;
 }
-.pure-button-primary
+.pure-button-primary,
 a.pure-button-primary:link,
 a.pure-button-primary:visited {
     color: var(--white);
@@ -201,7 +201,6 @@ p code {
 }
 .example-output-enter {
     opacity: 0.01;
-
 }
 .example-output-enter-active {
     opacity: 1;

@@ -15,6 +15,9 @@
     --purple-dark  : rgb(103, 58, 131);
     --yellow-js    : rgb(247, 223, 30);
     --yellow-dark  : rgb(197, 166, 0);
+
+    --main-font: "Open Sans", sans-serif;
+    --code-font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
 *,
@@ -25,7 +28,7 @@
 
 html, button, input, select, textarea,
 .pure-g [class *= "pure-u"] {
-    font-family: "Open Sans", sans-serif;
+    font-family: var(--main-font);
 }
 
 .pure-button {
@@ -83,6 +86,10 @@ h1 {
     font-weight: 300;
 }
 
+.tagline {
+    line-height: 1.2;
+}
+
 a:link,
 a:visited {
     color: var(--purple);
@@ -91,7 +98,7 @@ a:visited {
 
 pre,
 code {
-    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-family: var(--code-font);
     color: var(--black);
     background: var(--gray-light);
 }
@@ -479,6 +486,43 @@ p code {
     margin-top: 0.5rem;
 }
 
+.intro {
+    text-align: center;
+}
+.intro-package {
+    display: flex;
+    flex-direction: column;
+}
+.intro-package-name {
+    order: 2;
+}
+.intro-package-mark {
+    display: block;
+    margin: 0 auto;
+    order: 1;
+}
+.intro .tagline {
+    color: var(--gray-medium);
+    font-weight: 300;
+}
+
+.package-meta {
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    color: var(--gray-medium);
+}
+.package-meta > * {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+.package-meta b {
+    font-weight: 400;
+    color: var(--black);
+}
+
 .note {
     padding: 0.4em 0.8em;
     background-color: #FFFFEA;
@@ -489,6 +533,7 @@ p code {
 .note code {
     background-color: rgb(245, 245, 199);
 }
+
 .foot {
     margin-top: 4rem;
     font-size: 0.875rem;
@@ -548,7 +593,6 @@ p code {
 
     .tagline {
         margin: 1rem 0 2rem;
-        line-height: 1.2;
     }
 
     .head .nav,
@@ -610,6 +654,25 @@ p code {
 
     .repo {
         width: 100%;
+    }
+
+    .intro {
+        padding-bottom: 2rem;
+    }
+    .intro-package-mark {
+        margin-top: 0.25rem;
+        margin-bottom: 0.25rem;
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+    .package-meta-download {
+        font-size: 0.875rem;
+    }
+    .package-install .code {
+        font-size: 1rem;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .legal {
@@ -854,6 +917,20 @@ p code {
         padding: 0 1rem;
     }
     .repo-description {
+        font-size: 1rem;
+    }
+
+    .intro-package-mark {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        max-width: 128px;
+        max-height: 128px;
+    }
+
+    .package-install .code {
+        font-size: 1.125rem;
+    }
+    .package-meta-download {
         font-size: 1rem;
     }
 }

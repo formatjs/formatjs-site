@@ -24,6 +24,9 @@
 </section>
 
 <section class="main docs l-wrap">
+
+    <h2>Helpers</h2>
+
     <ul>
         <li><a href="#formatDate"><code>\{{formatDate}}</code></a> to format a date value</li>
         <li><a href="#formatTime"><code>\{{formatTime}}</code></a> to format a date value with time formats</li>
@@ -143,8 +146,7 @@ var html = template(context, {
 
 
 
-    <a name="formatNumber"></a>
-    <h2>Format numbers with separators</h2>
+    <h2 id="formatNumber">Format numbers with separators</h2>
 
     <p>
     <code>\{{formatNumber}}</code> helper is used to present a number in a way appropriate for the current locale. It formats numbers using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">Intl.NumberFormat</a>, and returns the formatted string value.
@@ -156,7 +158,7 @@ var html = template(context, {
 
 {{#code "hbs"}}
 <ul>
-    <li>\{{formatNumber price "curr"}}</li>
+    <li>\{{formatNumber price "coinage"}}</li>
 </ul>
 {{/code}}
 
@@ -167,7 +169,7 @@ var intlData = {
     locales : 'en-US',
     formats : {
         number: {
-            curr: {
+            coinage: {
                 style: 'currency',
                 currency: 'USD'
             }
@@ -181,8 +183,7 @@ var html = template(context, {
 
 
 
-    <a name="formatDate"></a>
-    <h2>Format dates and times correctly</h2>
+    <h2 id="formatDate">Format dates and times correctly</h2>
 
     <p>
     <code>\{{formatDate}}</code> helper is used to present a date in a way appropriate for the current locale. It formats dates using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.DateTimeFormat</a>, and returns the formatted string value.
@@ -217,13 +218,11 @@ var html = template(context, {
 {{/code}}
 
 
-    <a name="formatTime"></a>
-    <p><code>\{{formatTime}}</code> is just like the <code>\{{formatDate}}</code> helper, except it will reference any string-named `format` from <code>data.intl.formats.time</code>.</p>
+    <p id="formatTime"><code>\{{formatTime}}</code> is just like the <code>\{{formatDate}}</code> helper, except it will reference any string-named `format` from <code>data.intl.formats.time</code>.</p>
 
 
 
-    <a name="formatRelative"></a>
-    <h2>Format dates relative to "now"</h2>
+    <h2 id="formatRelative">Format dates relative to "now"</h2>
 
     <p>
     <code>\{{formatRelative}}</code> helper is used to present a relative time in a way appropriate for the current locale. It formats the relative time following the rules from <a href="http://cldr.unicode.org/">Unicode CLDR</a>, and returns the formatted string value.
@@ -231,15 +230,15 @@ var html = template(context, {
 
     {{~> example examples.relative}}
 
-    <p>As you can see in the example, you can use <code>units</code> and <code>style</code> to control how the relative time will be formatted.</p>
+    <p>By default, the relative time is computed to the best fit unit, but you can explicitly choose <code>units</code> to be displayed in <code>"second"</code>, <code>"minute"</code>, <code>"hour"</code>, <code>"day"</code>, <code>"month"</code> or <code>"year"</code>.</p>
 
-    <p>By default, the relative time is computed to the best fit unit, but you can explicitly choose <code>units</code> to be displayed in <code>"second"</code>, <code>"minute"</code>, <code>"hour"</code>, <code>"day"</code>, <code>"month"</code> or <code>"year"</code>. For example, if you use <code>units="day"</code>, the output will be "70 days ago" instead of "2 months ago".</p>
+    {{~> example examples.relativeUnits}}
 
-    <p><code>style</code> provide another level of customization, the relative time is computed as <code>"best fit"</code>, which means that instead of "1 day ago", it will display "yesterday", or "in 1 year" will be "next year", etc. But you can choose to use <code>style="numeric"</code>. As a result, the output will be "1 day ago" instead of "yesterday".
+    <p><code>style</code> provide another level of customization, the relative time is computed as <code>"best fit"</code>, which means that instead of "1 day ago", it will display "yesterday", or "in 1 year" will be "next year", etc. But you can choose to use <code>style="numeric"</code>.
 
+    {{~> example examples.relativeStyle}}
 
-    <a name="formatMessage"></a>
-    <h2>Pluralize labels in strings</h2>
+    <h2 id="formatMessage">Pluralize labels in strings</h2>
 
     <p>
     In order to use the <code>\{{formatMessage}}</code> helper you'll need to translate your strings into all the languages you wish to show.

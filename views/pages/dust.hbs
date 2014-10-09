@@ -24,6 +24,20 @@
 </section>
 
 <section class="main docs l-wrap">
+
+
+    <h2>Features</h2>
+
+    <ul>
+        <li>Formats <strong>numbers</strong>, <strong>dates</strong>, and <strong>times</strong> including those in complex messages.</li>
+        <li>Formats <strong>relative times</strong> (e.g., "3 hours ago").</li>
+        <li>Formats complex messages including <strong>plural</strong> and <strong>select</strong> arguments using <a href="{{pathTo 'guide'}}#messageformat-syntax">ICU Message syntax</a>.</li>
+        <li>Supports custom formatters for <strong>numbers</strong>, <strong>dates</strong>, and <strong>times</strong>.</li>
+    </ul>
+
+
+    <h2>Helpers</h2>
+
     <ul>
         <li><a href="#formatDate"><code>{@formatDate}</code></a> to format a date value</li>
         <li><a href="#formatTime"><code>{@formatTime}</code></a> to format a date value with time formats</li>
@@ -35,69 +49,218 @@
     <p>
         There is one more block helper called <a href="#intl"><code>{@intl}</code></a> that can be used to create
         a new intl data scope. This is useful when you need to render part of the page in a particular
-        locale, or need to supply the i18n data to Dust via the template context.
+        locale, or need to supply the i18n data to <a href="http://linkedin.github.io/dustjs/">Dust</a> via a different part of the template context.
     </p>
+
+
+    <h2>How It Works</h2>
+
+    <p><strong>Template Source:</strong></p>
+
+{{#code "dust"}}
+<b>Price:</b> {@formatNumber val=price style="currency" currency="USD"/}
+{{/code}}
+
+    <p><strong>Render Template:</strong></p>
+
+{{#code "js"}}
+var context = {
+    intl: {
+        locales: 'en-US'
+    },
+    price: 1000
+};
+
+dust.renderSource(template, context, function(error, html) {
+    // rendered html available here
+});
+{{/code}}
+
+    <p><strong>Output:</strong></p>
+
+{{#code "html"}}
+<b>Price:</b> $1,000.00
+{{/code}}
+
 
     <h2 id="installation">Installation</h2>
 
 
     <h3 id="install-browser">Browser</h3>
-    <ol>
-        <li>
-            Install with <a href="http://bower.io/">bower</a>:
-{{#code "js"}}
-bower install dust-intl
-{{/code}} or download directly from:
 
-            <ul>
-                <li><a href="{{cdnUrl 'dust-intl/dist/dust-intl.min.js'}}">dust-intl.min.js ({{size "dust-intl/dist/dust-intl.min.js"}} gz)</a></li>
-                <li><a href="{{cdnUrl 'dust-intl/dist/dust-intl-with-locales.min.js'}}">dust-intl-with-locales.min.js ({{size "dust-intl/dist/dust-intl-with-locales.min.js"}} gz)</a></li>
-            </ul>
-
-        </li>
-        <li>Load the scripts into your page.
+    <h4>1. Load the Scripts into Your Page</h4>
 {{#code "html"}}
 <script src="dustjs-linkedin/dust-full.min.js"></script>
 <script src="dust-intl/dust-intl.min.js"></script>
 {{/code}}
-        </li>
-        <li>Register the helpers:
+
+    <h4>2. Register the helpers</h4>
 {{#code "js"}}
 DustIntl.registerWith(dust);
 {{/code}}
-        </li>
-    </ol>
+
     <p class="note">
     <strong>NOTE:</strong>
     Older browsers and Safari do not provide the global {{code "Intl"}} object (ECMA-402).
-    Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch the browser</a> using a polyfill.
+    Read more on <a href="{{pathTo 'guide'}}#patch-runtime">how to patch the browser</a> using a polyfill.
     </p>
 
 
     <h3 id="install-node">Node/CommonJS</h3>
-    <ol>
-        <li>You can install the helpers with npm:
+
+    <h4>1. Install the Helpers with NPM</h4>
 {{#code "js"}}
 npm install intl dust-intl
 {{/code}}
-        </li>
-        <li>Load in the module and register it:
+
+    <h4>2. Load in the Module and Register It</h4>
 {{#code "js"}}
-if (global.Intl) {
+if (!global.Intl) {
     global.Intl = require('intl'); // use polyfill for ECMA-402
 }
 var dust = require('dustjs-linkedin');
 var DustIntl = require('dust-intl');
 DustIntl.registerWith(dust);
 {{/code}}
-        </li>
-    </ol>
 
     <p class="note">
     <strong>NOTE:</strong>
     Node (as of 0.10) doesn't provide the global <code>Intl</code> object (ECMA-402).
-    Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch the browser</a> using a polyfill.
+    Read more on <a href="{{pathTo 'guide'}}#patch-runtime">how to patch node</a> using a polyfill.
     </p>
+
+
+    <h2 id="formatNumber">Format Numbers with Separators</h2>
+
+    <p>
+        The <code>{@formatNumber}</code> helper is used to present a number in a way appropriate for the current locale.
+        It formats numbers using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">Intl.NumberFormat</a> and returns the formatted string value.
+    </p>
+
+    {{~> example examples.number}}
+
+    <p>
+        Passing the formatting options (e.g.: <code>style="currency" currency="USD"</code>) in every call to <code>{@formatNumber}</code> in your templates can be a burden in a large code base, or simply because you use a different currency value per locale.
+        In that case you can use <a href="#context-formats"><code>context.intl.formats.number</code></a> to define custom number formatters.
+        The previous example can be rewritten as:
+    </p>
+
+{{#code "dust"}}
+<ul>
+    <li>{@formatNumber val=price formatName="usd"/}</li>
+</ul>
+{{/code}}
+
+    <p>
+        where <code>"usd"</code> is the key to a custom number format passed in the context when rendering the template:
+    </p>
+
+{{#code "js"}}
+var context = {
+    intl: {
+        locales: 'en-US',
+        formats : {
+            number: {
+                usd: {
+                    style: 'currency',
+                    currency: 'USD'
+                }
+            }
+        }
+    },
+    price: 1000
+};
+
+dust.renderSource(template, context, function(error, html) {
+    // rendered html available here
+});
+{{/code}}
+
+
+    <h2 id="formatDate">Format Dates and Times Correctly</h2>
+
+    <p>
+        The <code>{@formatDate}</code> helper is used to present a date in a way appropriate for the current locale.
+        It formats dates using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.DateTimeFormat</a> and returns the formatted string value.
+    </p>
+
+    {{~> example examples.date}}
+
+    <p>
+        Passing the formatting options (e.g.: <code>day="numeric" month="long" year="numeric"</code>) in every call to <code>{@formatDate}</code> in your templates can be a burden in a large code base, or simply because you want to use different options for different locales.
+        In that case you can use <a href="#context-formats"><code>context.intl.formats.date</code></a> to define custom date formatters.
+        The previous example can be rewritten as:
+    </p>
+
+{{#code "dust"}}
+<p>{@formatDate val=date formatName="short"/}</p>
+{{/code}}
+
+    <p>
+        where <code>"short"</code> is the key to a custom date format passed in the context when rendering the template:
+    </p>
+
+{{#code "js"}}
+var context = {
+    intl: {
+        locales: 'en-US',
+        formats : {
+            date: {
+                short: {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                }
+            }
+        }
+    },
+    date: new Date()
+};
+
+dust.renderSource(template, context, function(error, html) {
+    // rendered html available here
+});
+{{/code}}
+
+    <p id="formatTime">
+        The <code>{@formatTime}</code> is just like the <code>{@formatDate}</code> helper except it will reference any custom formats from <code>context.intl.formats.time</code>.
+    </p>
+
+
+    <h2 id="formatRelative">Format Dates Relative to "Now"</h2>
+
+    <p>
+        The <code>{@formatRelative}</code> helper is used to present a relative time in a way appropriate for the current locale.
+        It formats the relative time following the rules from <a href="http://cldr.unicode.org/">Unicode CLDR</a> and returns the formatted string value.
+    </p>
+
+    {{~> example examples.relative}}
+
+    <p>
+        By default, the relative time is computed to the best fit, but you can explicitly choose <code>units</code> to be displayed in <code>"second"</code>, <code>"minute"</code>, <code>"hour"</code>, <code>"day"</code>, <code>"month"</code> or <code>"year"</code>.
+    </p>
+
+    {{~> example examples.relativeUnits}}
+
+    <p>
+        By default relative time will use locale-specific shorthand for certain relative times.
+        For example, "1 day ago" will displayed as <code>yesterday</code>, "in 1 year" will be displayed as <code>next year</code>, etc.
+        You can use <code>style="numeric"</code> to show numeric values always.
+    </p>
+
+    {{~> example examples.relativeStyle}}
+
+
+    <h2 id="formatMessage">Format Labels in the Template</h2>
+
+    <p>
+        The <code>{@formatMessage}</code> helper is used to display messages that have been translated for the user's locale.
+        In order to use it you'll need to translate your strings into all the languages you wish to show.
+        These translations are provided in the <a href="{{pathTo 'guide'}}#messageformat-syntax">ICU Message</a> syntax, which is familiar to professional translators.
+        The message format also supports choosing different strings based on pluralization, gender, or other considerations.
+    </p>
+
+    {{~> example examples.message}}
 
 
     <h2 id="context-requirements">Context Requirements</h2>
@@ -130,7 +293,7 @@ context = {
     </p>
 
     <p>
-    These formats are supported in the <a href="#formatDate"><code>{@formatDate}</code></a>, <a href="#formatTime"><code>{@formatTime}</code></a>, and <a href="#formatNumber"><code>{@formatNumber}</code></a> helpers via the <code>formatName</code> parameter.
+        These formats are supported in the <a href="#formatDate"><code>{@formatDate}</code></a>, <a href="#formatTime"><code>{@formatTime}</code></a>, and <a href="#formatNumber"><code>{@formatNumber}</code></a> helpers via the <code>formatName</code> parameter.
     </p>
 
     <p>Example:</p>
@@ -181,109 +344,5 @@ context = {
 }
 {{/code}}
 
-
-    <h2 id="formatDate">{@formatDate}</h2>
-    <p>
-    This helper is used to present a date in a way appropriate for the current locale.
-    </p>
-
-    <h3 id="formatDate-parameters">Parameters</h3>
-    <dl>
-        <dt><code>val</code> (required)</dt>
-        <dd>
-            This is the value which will be formatted.
-            It will be passed to the <code>Date</code> constructor to create.
-        </dd>
-        <dd>
-            <span class="note"><strong>Note:</strong> If you pass a timestamp be sure that it is an integer, not a string.</span>
-        </dd>
-        <dt><code>formatName</code> (optional)</dt>
-        <dd>
-            This looks in the context in <code>intl.formats.date</code> for an object containing formatting options to pass to the <code>Intl.DateTimeFormat()</code> constructor.
-        </dd>
-        <dt>others (optional)</dt>
-        <dd>
-            All other parameters are passed to the <code>Intl.DateTimeFormat()</code> constructor as options and are used to configure how the date is displayed.
-            If the <code>formatName</code> parameter is also used, these parameters override those specified in the named format.
-        </dd>
-    </dl>
-
-    <h3>Live Example</h3>
-    {{~> example examples.date}}
-
-
-    <h2 id="formatTime">{@formatTime}</h2>
-    <p>
-    This helper is used to present a time in a way appropriate for the current locale.
-    </p>
-
-    <p>
-    This helper is nearly identical to the <a href="#formatDate">{@formatDate}</a> helper, except the <code>formatName</code> parameter instead looks in <code>intl.formats.time</code> in the context.
-    </p>
-
-    <p>
-    See <a href="#formatDate">{@formatDate}</a> for details on how to use this helper as well.
-    </p>
-
-    <h3>Live Example</h3>
-    {{~> example examples.time}}
-
-
-    <h2 id="formatRelative">{@formatRelative}</h2>
-
-    <p>
-    This helper is used to present a relative time, also called timeago.
-    </p>
-
-    <h3>Live Example</h3>
-    {{~> example examples.relative}}
-
-
-    <h2 id="formatNumber">{@formatNumber}</h2>
-    <p>
-    This helper is used to present a time in a way appropriate for the current locale.
-    It can be used for generic numbers (such as count, sum, or quantity) or for special numbers such as currency or percentage.
-    </p>
-
-    <h3 id="formatNumber-parameters">Parameters</h3>
-    <dl>
-        <dt><code>val</code> (required)</dt>
-        <dd>
-            This is the value which will be formatted.
-        </dd>
-        <dt><code>formatName</code> (optional)</dt>
-        <dd>
-            This looks in the context in <code>intl.formats.number</code> for an object containing formatting options to pass to the <code>Intl.NumberFormat()</code> constructor.
-        </dd>
-        <dt>others (optional)</dt>
-        <dd>
-            All other parameters are passed to the <code>Intl.NumberFormat()</code> constructor as options and are used to configure how the number is displayed.
-            If the <code>formatName</code> parameter is also used, these parameters override those specified in the named format.
-        </dd>
-    </dl>
-
-    <h3>Live Example</h3>
-    {{~> example examples.number}}
-
-
-    <h2 id="formatMessage">{@formatMessage}</h2>
-
-    <p>
-    In order to use the <a href="#formatMessage"><code>{@formatMessage}</code></a> helper you'll need to translate your strings into all the languages you wish to show.
-    These translations are provided in the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax, which is familiar to professional translators.
-    The message format also supports choosing different strings based on pluralization, gender, or other considerations.
-    See the <a href="{{pathTo 'guide'}}#messageformat-syntax">Guide</a> for more details on how to
-    write those messages.
-    </p>
-
-    <h3>Live Example</h3>
-    {{~> example examples.message}}
-
-
-    <h2 id="intl">{@intl}</h2>
-
-    <p>
-        This is a block helper that can be used to create a new intl data scope. This is useful when you need to render part of the page in a particular locale, or need to supply the i18n data to Dust via the template context.
-    </p>
 
 </section>

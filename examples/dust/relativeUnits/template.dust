@@ -1,0 +1,8 @@
+<p>
+    <b>{@formatRelative val=postDate/}</b> <i>(best fit)</i><br>
+    <b>{@formatRelative val=postDate units="minute"/}</b> <i>(in minutes)</i>
+</p>
+<p>
+    <b>{@formatRelative val=lastTrip/}</b> <i>(best fit)</i><br>
+    <b>{@formatRelative val=lastTrip units="day"/}</b> <i>(in days)</i>
+</p>

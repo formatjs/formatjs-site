@@ -53,6 +53,36 @@
     </p>
 
 
+    <h2>How It Works</h2>
+
+    <p><strong>Template Source:</strong></p>
+
+{{#code "dust"}}
+<b>Price:</b> {@formatNumber val=price style="currency" currency="USD"/}
+{{/code}}
+
+    <p><strong>Render Template:</strong></p>
+
+{{#code "js"}}
+var context = {
+    intl: {
+        locales: 'en-US'
+    },
+    price: 1000
+};
+
+dust.renderSource(template, context, function(error, html) {
+    // rendered html available here
+});
+{{/code}}
+
+    <p><strong>Output:</strong></p>
+
+{{#code "html"}}
+<b>Price:</b> $1,000.00
+{{/code}}
+
+
     <h2 id="installation">Installation</h2>
 
 
@@ -113,37 +143,6 @@ DustIntl.registerWith(dust);
     Node (as of 0.10) doesn't provide the global <code>Intl</code> object (ECMA-402).
     Read more on <a href="{{pathTo 'guide'}}#patch-runtime">how to patch node</a> using a polyfill.
     </p>
-
-
-    <h2>How It Works</h2>
-
-    <p><strong>Template Source:</strong></p>
-
-{{#code "dust"}}
-<b>Price:</b> {@formatNumber val=price style="currency" currency="USD"/}
-{{/code}}
-
-    <p><strong>Render Template:</strong></p>
-
-{{#code "js"}}
-var context = {
-    intl: {
-        locales: 'en-US'
-    },
-    price: 1000
-};
-
-dust.renderSource(template, context, function(error, html) {
-    // rendered html available here
-});
-{{/code}}
-
-    <p><strong>Output:</strong></p>
-
-{{#code "html"}}
-<b>Price:</b> $1,000.00
-{{/code}}
-
 
 
     <h2 id="formatNumber">Format Numbers with Separators</h2>

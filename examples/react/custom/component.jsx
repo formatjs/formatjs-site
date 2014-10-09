@@ -1,29 +1,19 @@
 /** @jsx React.DOM */
 var Component = React.createClass({
     mixins: [ReactIntlMixin],
-    getDefaultProps: function () {
-        return {
-            formats: {
-                date: {
-                    timeStyle: {
-                        hour: 'numeric',
-                        minute: 'numeric'
-                    }
-                },
-                number: {
-                    percentStyle: {
-                        style: 'percent'
-                    }
-                }
-            }
-        };
-    },
 
     render: function () {
+        var A = 1390518044403;
+        var B = new Date();
+        var C = 1400.34;
+        var D = Date.now() - (1000 * 60 * 60 * 24);
+
         return (
             <div>
-                <p>A: {this.formatDate(1390518044403, 'timeStyle')}</p>
-                <p>B: {this.formatNumber(400, 'percentStyle')}</p>
+                <p>A: {this.formatDate(A,     'short')}</p>
+                <p>B: {this.formatTime(B,     'hhmm')}</p>
+                <p>C: {this.formatNumber(C,   'coinage')}</p>
+                <p>D: {this.formatRelative(D, 'exact')}</p>
             </div>
         );
     }

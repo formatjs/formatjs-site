@@ -1,0 +1,7 @@
+formats:
+    number:
+        coinage:
+            style: currency
+            currency: USD
+        percentage:
+            style: percent

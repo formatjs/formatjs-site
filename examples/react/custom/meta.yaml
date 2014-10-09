@@ -1,0 +1,20 @@
+formats:
+    date:
+        short:
+            day: numeric
+            month: long
+            year: numeric
+
+    time:
+        hhmm:
+            hour: numeric
+            minute: numeric
+
+    number:
+        coinage:
+            style: currency
+            currency: USD
+
+    relative:
+        exact:
+            style: numeric

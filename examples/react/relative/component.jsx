@@ -9,18 +9,9 @@ var Component = React.createClass({
 
         return (
             <div>
-                <p>
-                    <b>{this.formatRelative(postDate)}</b> <i>(best fit)</i><br/>
-                    <b>{this.formatRelative(postDate, {style: 'numeric'})}</b> <i>(numeric)</i>
-                </p>
-                <p>
-                    <b>{this.formatRelative(commentDate)}</b> <i>(default)</i><br/>
-                    <b>{this.formatRelative(commentDate, {units: 'minute'})}</b> <i>(in minutes)</i>
-                </p>
-                <p>
-                    <b>{this.formatRelative(meetingDate)}</b> <i>(rounded)</i><br/>
-                    <b>{this.formatRelative(meetingDate, {units: 'minute'})}</b> <i>(in minutes)</i>
-                </p>
+                <b>{this.formatRelative(postDate)}</b><br/>
+                <b>{this.formatRelative(commentDate)}</b><br/>
+                <b>{this.formatRelative(meetingDate)}</b>
             </div>
         );
     }

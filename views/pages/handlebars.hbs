@@ -129,6 +129,9 @@ var html = template(context, {
         <li>Supports custom formatters for <strong>numbers</strong> and <strong>dates/times</strong>.</li>
     </ul>
 
+
+
+    <a name="formatNumber"></a>
     <h2>Format numbers with separators</h2>
 
     <p>
@@ -164,6 +167,9 @@ var html = template(context, {
 });
 {{/code}}
 
+
+
+    <a name="formatDate"></a>
     <h2>Format dates and times correctly</h2>
 
     <p>
@@ -198,8 +204,13 @@ var html = template(context, {
 });
 {{/code}}
 
+
+    <a name="formatTime"></a>
     <p><code>\{{formatTime}}</code> is just like the <code>\{{formatDate}}</code> helper, except it will reference any string-named `format` from <code>data.intl.formats.time</code>.</p>
 
+
+
+    <a name="formatRelative"></a>
     <h2>Format dates relative to "now"</h2>
 
     <p>
@@ -214,6 +225,8 @@ var html = template(context, {
 
     <p><code>style</code> provide another level of customization, the relative time is computed as <code>"best fit"</code>, which means that instead of "1 day ago", it will display "yesterday", or "in 1 year" will be "next year", etc. But you can choose to use <code>style="numeric"</code>. As a result, the output will be "1 day ago" instead of "yesterday".
 
+
+    <a name="formatMessage"></a>
     <h2>Pluralize labels in strings</h2>
 
     <p>

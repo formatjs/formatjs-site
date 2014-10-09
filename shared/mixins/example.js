@@ -6,22 +6,24 @@ export default {
             id  : React.PropTypes.string.isRequired,
             name: React.PropTypes.string.isRequired,
             type: React.PropTypes.string.isRequired,
+            meta: React.PropTypes.object.isRequired,
 
             source: React.PropTypes.shape({
                 template : React.PropTypes.string,
                 context  : React.PropTypes.string,
                 component: React.PropTypes.string
-            }),
+            }).isRequired,
 
+            // Optional.
             getComponent: React.PropTypes.func
-        }),
+        }).isRequired,
 
         intl: React.PropTypes.shape({
             availableLocales: React.PropTypes.array.isRequired,
 
             locales : React.PropTypes.array.isRequired,
             messages: React.PropTypes.object.isRequired
-        })
+        }).isRequired
     },
 
     getInitialState: function () {
@@ -47,12 +49,23 @@ export default {
     },
 
     generateIntlDataCode: function () {
-        return [
-            'var intlData = {',
-            '    locales : \'' + this.state.currentLocale + '\',',
-            '    formats : {…},',
-            '    messages: {…}',
-            '};'
-        ].join('\n');
+        var currentLocale = this.state.currentLocale;
+        var formats       = this.props.example.meta.formats || {};
+        var messages      = this.props.intl.messages[currentLocale];
+        var messageId     = this.props.example.meta.messageId;
+        var message       = messages[messageId];
+
+        messages = {};
+        if (message) {
+            messages[messageId] = message;
+        }
+
+        var intlData = {
+            locales : currentLocale,
+            formats : formats,
+            messages: messages
+        };
+
+        return 'var intlData = ' + JSON.stringify(intlData, null, 4) + ';';
     }
 };

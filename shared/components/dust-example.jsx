@@ -15,7 +15,7 @@ export default React.createClass({
         renderCode: [
             'context.intl = intlData;',
             'dust.render(template, context, function(err, html) {',
-            '    ...put `html` into the DOM or use it otherwise...',
+            '    // Put `html` into the DOM or use it otherwise...',
             '});'
         ].join('\n')
     },
@@ -78,7 +78,7 @@ export default React.createClass({
                     <DustOutput
                         exampleId={this.props.example.id}
                         locales={currentLocale}
-                        formats={this.props.intl.formats}
+                        formats={example.meta.formats}
                         messages={messages}
                         source={example.source.template}
                         context={this.evalContext(example.source.context)} />

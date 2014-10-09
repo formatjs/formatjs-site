@@ -77,7 +77,7 @@ export default React.createClass({
 
                     <HandlebarsOutput
                         locales={currentLocale}
-                        formats={intl.formats}
+                        formats={example.meta.formats}
                         messages={messages}
                         source={example.source.template}
                         context={this.evalContext(example.source.context)} />

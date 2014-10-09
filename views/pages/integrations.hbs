@@ -1,74 +1,76 @@
 {{setTitle "Integrations"}}
 {{setDescription "Overview of integrations layer with common template and component libraries."}}
 
-<section class="head">
+<header class="head">
     {{> nav}}
-</section>
+</header>
 
-<section class="main docs l-wrap">
-    <h1>Integrations</h1>
-    <h2 class="subheading">Start using {{brand}} via one of our integrations:</h2>
+<main>
+    <section class="docs l-wrap">
+        <h1>Integrations</h1>
+        <h2 class="subheading">Start using {{brand}} via one of our integrations:</h2>
 
-    {{> integrations-list}}
+        {{> integrations-list}}
 
-    <p>
-        {{brand}} has integrations with common template and component libraries, since that's the place where developers need to format numbers, dates, and string messages for their web app UIs.
-    </p>
+        <p>
+            {{brand}} has integrations with common template and component libraries, since that's the place where developers need to format numbers, dates, and string messages for their web app UIs.
+        </p>
 
-    <h2>Using {{brand}} Anywhere</h2>
+        <h2>Using {{brand}} Anywhere</h2>
 
-    <p>
-        If your web project isn't using one of the template/component engines with which we have integrations, <b>don't worry; there's also the <a href="{{pathTo 'github'}}#core">core Intl libraries with JavaScript APIs</a>.</b>
-    </p>
+        <p>
+            If your web project isn't using one of the template/component engines with which we have integrations, <b>don't worry; there's also the <a href="{{pathTo 'github'}}#core">core Intl libraries with JavaScript APIs</a>.</b>
+        </p>
 
-    <h3>Core JavaScript Intl Libraries</h3>
+        <h3>Core JavaScript Intl Libraries</h3>
 
-    <p>
-        All of the {{brand}} integrations build and depend on our <a href="{{pathTo 'github'}}#core">core JavaScript Intl libraries</a>. This modular approach allows for maximum code reuse, <i>and</i> the ability to use these core Intl APIs directly or build new integrations.
-    </p>
+        <p>
+            All of the {{brand}} integrations build and depend on our <a href="{{pathTo 'github'}}#core">core JavaScript Intl libraries</a>. This modular approach allows for maximum code reuse, <i>and</i> the ability to use these core Intl APIs directly or build new integrations.
+        </p>
 
-    <h2>Building an Integration</h2>
+        <h2>Building an Integration</h2>
 
-    <p>
-        <b>We're interested in integrations with other popular template/component libraries.</b> At Yahoo, teams use Handlebars, React, and Dust, which is why {{brand}} has integrations for these libraries. If you've built or are interested in building a {{brand}} integration with another library, feel free to reach out to us!
-    </p>
+        <p>
+            <b>We're interested in integrations with other popular template/component libraries.</b> At Yahoo, teams use Handlebars, React, and Dust, which is why {{brand}} has integrations for these libraries. If you've built or are interested in building a {{brand}} integration with another library, feel free to reach out to us!
+        </p>
 
-    <p>
-        The <a href="{{pathTo 'github'}}#integrations">existing {{brand}} integrations</a> are great models for building a new integration. All of them leverage the same dependencies and build process to create a library that runs on the server and client.
-    </p>
+        <p>
+            The <a href="{{pathTo 'github'}}#integrations">existing {{brand}} integrations</a> are great models for building a new integration. All of them leverage the same dependencies and build process to create a library that runs on the server and client.
+        </p>
 
-    <h3>Principals Behind Integrations</h3>
+        <h3>Principals Behind Integrations</h3>
 
-    <ul>
-        <li>
-            <p>
-                The integration library should run everywhere the template/component library runs (e.g. Node.js and the browser).
-            </p>
-        </li>
-        <li>
-            <p>
-                Author library as ES6 Modules, compiled to CommonJS for Node.js, and a single, bundled file <i>with all of its dependencies</i> for the browser. We use the <a href="https://github.com/esnext/es6-module-transpiler">ES6 Module Transpiler</a>.
-            </p>
-        </li>
-        <li>
-            <p>
-                Build on and use the built-in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">{{code "Intl"}} JavaScript APIs</a>.
-            </p>
-        </li>
-        <li>
-            <p>
-                Aggressively cache and reuse format instances using the <a href="https://github.com/yahoo/intl-format-cache">Intl Format Cache</a> package.
-            </p>
-        </li>
-        <li>
-            <p>
-                Propagate Intl data through template/component hierarchy to avoid placing burden on user.
-            </p>
-        </li>
-        <li>
-            <p>
-                Publish integration library on npm and Bower.
-            </p>
-        </li>
-    </ul>
-</section>
+        <ul>
+            <li>
+                <p>
+                    The integration library should run everywhere the template/component library runs (e.g. Node.js and the browser).
+                </p>
+            </li>
+            <li>
+                <p>
+                    Author library as ES6 Modules, compiled to CommonJS for Node.js, and a single, bundled file <i>with all of its dependencies</i> for the browser. We use the <a href="https://github.com/esnext/es6-module-transpiler">ES6 Module Transpiler</a>.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Build on and use the built-in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl">{{code "Intl"}} JavaScript APIs</a>.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Aggressively cache and reuse format instances using the <a href="https://github.com/yahoo/intl-format-cache">Intl Format Cache</a> package.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Propagate Intl data through template/component hierarchy to avoid placing burden on user.
+                </p>
+            </li>
+            <li>
+                <p>
+                    Publish integration library on npm and Bower.
+                </p>
+            </li>
+        </ul>
+    </section>
+</main>

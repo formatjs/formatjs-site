@@ -8,7 +8,8 @@ module.exports = function (route) {
     route.name = 'handlebars';
 
     route.get(function (req, res, next) {
-        res.locals.package = pkgMeta;
+        res.locals.activeMenuItem = route.name;
+        res.locals.package        = pkgMeta;
 
         getExamples('handlebars', {
             cache: req.app.get('view cache')

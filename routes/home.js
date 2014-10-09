@@ -20,6 +20,8 @@ module.exports = function (route) {
         res.expose(splashExample, 'examples.splash');
 
         res.render('home', {
+            activeMenuItem: route.name,
+
             examples: {
                 splash: renderComponent('splash-example',
                     Object.assign({}, res.intl, splashExample)

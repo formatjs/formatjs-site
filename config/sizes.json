@@ -4,12 +4,12 @@
         "kbs": 9.8
     },
     "react-intl/dist/react-intl-with-locales.min.js": {
-        "bytes": 33692,
-        "kbs": 32.9
+        "bytes": 36068,
+        "kbs": 35.2
     },
     "react-intl/dist/react-intl.min.js": {
-        "bytes": 6716,
-        "kbs": 6.6
+        "bytes": 6818,
+        "kbs": 6.7
     },
     "dust-intl/dist/dust-intl-with-locales.min.js": {
         "bytes": 34064,
@@ -20,11 +20,11 @@
         "kbs": 6.9
     },
     "handlebars-intl/dist/handlebars-intl-with-locales.min.js": {
-        "bytes": 34083,
-        "kbs": 33.3
+        "bytes": 36474,
+        "kbs": 35.6
     },
     "handlebars-intl/dist/handlebars-intl.min.js": {
-        "bytes": 7097,
-        "kbs": 6.9
+        "bytes": 7211,
+        "kbs": 7
     }
 }

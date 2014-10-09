@@ -38,8 +38,10 @@ module.exports = function (grunt) {
                     };
                 });
 
+                var output = JSON.stringify(result, null, 4) + '\n';
+
                 // Write joined contents to destination filepath.
-                grunt.file.write(file.dest, JSON.stringify(result, null, 4));
+                grunt.file.write(file.dest, output);
                 // Print a success message.
                 grunt.log.writeln('File "' + file.dest + '" created.');
 

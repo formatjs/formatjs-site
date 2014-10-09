@@ -5,13 +5,25 @@
     {{> nav}}
 </section>
 
+<section class="intro">
+    <div class="l-wrap">
+        <h1 class="intro-package">
+            <span class="intro-package-name">
+                React Intl
+            </span>
+            <img class="intro-package-mark" alt="React logo" src="/img/react.svg">
+        </h1>
+
+        <h2 class="tagline">{{package.description}}</h2>
+
+        {{> integrations/package-meta}}
+
+    </div>
+
+    {{> integrations/package-install}}
+</section>
+
 <section class="main docs l-wrap">
-    <h1>React</h1>
-
-    <p>
-    The {{npmLink 'react-intl'}} library provides helpers that can be used to internationalize your react components. These helpers are:
-    </p>
-
     <ul>
         <li><a href="#formatDate"><code>formatDate()</code></a> to format a date value</li>
         <li><a href="#formatTime"><code>formatTime()</code></a> to format a date value with time formats</li>
@@ -37,8 +49,8 @@ bower install react-intl
 {{/code}} or download directly from:
 
             <ul>
-                <li><a href="{{cdnLink 'react-intl/dist/react-intl.min.js'}}">react-intl.min.js ({{size "react-intl/dist/react-intl.min.js"}} gz)</a></li>
-                <li><a href="{{cdnLink 'react-intl/dist/react-intl-with-locales.min.js'}}">react-intl-with-locales.min.js ({{size "react-intl/dist/react-intl-with-locales.min.js"}} gz)</a></li>
+                <li><a href="{{cdnUrl 'react-intl/dist/react-intl.min.js'}}">react-intl.min.js ({{size "react-intl/dist/react-intl.min.js"}} gz)</a></li>
+                <li><a href="{{cdnUrl 'react-intl/dist/react-intl-with-locales.min.js'}}">react-intl-with-locales.min.js ({{size "react-intl/dist/react-intl-with-locales.min.js"}} gz)</a></li>
             </ul>
 
         </li>

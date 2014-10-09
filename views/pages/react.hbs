@@ -152,11 +152,11 @@ var MyComponent = React.createClass({
 
     {{~> example examples.number}}
 
-    <p>Passing formatting options (e.g.: <code>{style: 'currency', currency: 'USD'}</code>) in every call to <code>\{{formatNumber}}</code> in your components can become a problem in large code bases, or simply because you use different currency value per locale. Instead, you can provide a component property called <code>formats</code> to simplify that.</p>
+    <p>Passing formatting options (e.g.: <code>{style: 'currency', currency: 'USD'}</code>) in every call to <code>this.formatNumber()</code> in your components can become a problem in large code bases, or simply because you use different currency value per locale. Instead, you can provide a component property called <code>formats</code> to simplify that.</p>
 
     {{~> example examples.numberCustom}}
 
-    <p>In the example above, <code>'coinage'</code> and <code>'percentage'</code> are keys to custom number formats defined in <code>formats.number</code> component property. Check the <strong>RENDER</strong> tab to see the details.</p>
+    <p>In the example above, <code>'USD'</code> and <code>'percentage'</code> are keys to custom number formats defined in <code>formats.number</code> component property. Check the <strong>RENDER</strong> tab to see the details.</p>
 
     <p>See <a href="#custom-formats">the custom formats section</a> for more information.</p>
 
@@ -224,11 +224,11 @@ var MyComponent = React.createClass({
 
     {{~> example examples.message}}
 
-    <p>In the example above, <code>var message = this.getIntlMessage('photos');</code> will return a messsage provided thru <code>this.props.messages.photos</code>, but it provides descriptive error messages when accessing a property that is <code>undefined</code>. Check the <strong>RENDER</strong> tab to see the details.</p>
+    <p>In the example above, <code>var message = this.getIntlMessage('photos');</code> will return a message provided thru <code>this.props.messages.photos</code>, but it provides descriptive error messages when accessing a property that is <code>undefined</code>. Check the <strong>RENDER</strong> tab to see the details.</p>
 
     <p>You can provide <code>messages</code> property at the application level when rendering the top level component, and those <strong>messages</strong> &mdash; just like <strong>locales</strong> &mdash; will be propagated to any component using <code>ReactIntlMixin</code>.</p>
 
-    <p>Additionally, if you are using <code>{value, number}</code> or <code>{value, date}</code> or <code>{value, time}</code> within a message to format <strong>dates</strong>, <strong>times</strong> and <strong>numbers</strong>, you will not be able to specify formatting options. In that case, you can leverage <a href="#custom-formats">custom formatters</a> as described below, and specify which custom formatter to use in your messages in a form of strings, e.g: <code>{value, number, "coinage"}</code> and <code>{value, date, "short"}</code> and <code>{value, time, "long"}</code>.</p>
+    <p>Additionally, if you are using <code>{value, number}</code> or <code>{value, date}</code> or <code>{value, time}</code> within a message to format <strong>dates</strong>, <strong>times</strong> and <strong>numbers</strong>, you will not be able to specify formatting options. In that case, you can leverage <a href="#custom-formats">custom formatters</a> as described below, and specify which custom formatter to use in your messages in a form of strings, e.g: <code>{value, number, "USD"}</code> and <code>{value, date, "short"}</code> and <code>{value, time, "long"}</code>.</p>
 
 
     <h2 id="custom-formats">Writing your own custom formats</h2>
@@ -239,7 +239,7 @@ var MyComponent = React.createClass({
 
     {{~> example examples.custom}}
 
-    <p>In the example above, <code>'short'</code>, <code>'exact'</code>, <code>'hhmm'</code> and <code>'coinage'</code> are the keys to custom  formats defined in <code>formats</code> component property. Check the <strong>RENDER</strong> tab to see the details.</p>
+    <p>In the example above, <code>'short'</code>, <code>'exact'</code>, <code>'hhmm'</code> and <code>'USD'</code> are the keys to custom  formats defined in <code>formats</code> component property. Check the <strong>RENDER</strong> tab to see the details.</p>
 
     <p>You can provide <code>formats</code> property at the application level when rendering the top level component, and <strong>formats</strong> &mdash; just like <strong>messages</strong> and <strong>locales</strong> &mdash; will be propagated to any component using <code>ReactIntlMixin</code>.</p>
 

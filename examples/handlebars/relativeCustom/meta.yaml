@@ -1,0 +1,4 @@
+formats:
+    relative:
+        exact:
+            style: numeric

@@ -504,6 +504,7 @@ p code {
 .intro .tagline {
     color: var(--gray-medium);
     font-weight: 300;
+    margin-top: -0.5rem;
 }
 
 .package-meta {
@@ -663,6 +664,9 @@ p code {
         margin-bottom: 0.25rem;
         max-width: 80px;
         max-height: 80px;
+    }
+    .intro-package-name {
+        font-size: 2rem;
     }
 
     .package-meta-download {
@@ -923,6 +927,9 @@ p code {
         margin-bottom: 0.5rem;
         max-width: 128px;
         max-height: 128px;
+    }
+    .intro-package-name {
+        font-size: 2.6rem;
     }
 
     .package-install .code {

@@ -83,19 +83,20 @@ var html = template(context, {
     <h2 id="usage">Usage</h2>
 
     <h3 id="install-browser">Browser</h3>
-    <ol>
-        <li>Load the scripts into your page.
+
+    <h4>Load the scripts into your page</h4>
+
 {{#code "html"}}
 <script src="handlebars/handlebars.min.js"></script>
 <script src="handlebars-intl/handlebars-intl.min.js"></script>
 {{/code}}
-        </li>
-        <li>Register the helpers:
+
+    <h4>Register the helpers</h4>
+
 {{#code "js"}}
 HandlebarsIntl.registerWith(Handlebars);
 {{/code}}
-        </li>
-    </ol>
+
     <p class="note">
     <strong>NOTE:</strong>
     Older browsers and Safari do not provide the global {{code "Intl"}} object (ECMA-402).
@@ -104,23 +105,22 @@ HandlebarsIntl.registerWith(Handlebars);
 
 
     <h3 id="install-node">Node/CommonJS</h3>
-    <ol>
-        <li>Require the module:
+
+    <h4>Require the module</h4>
+
 {{#code "js"}}
 if (!global.Intl) {
     global.Intl = require('intl'); // install and use polyfill for ECMA-402
 }
 var Handlebars = require('handlebars');
 var HandlebarsIntl = require('handlebars-intl');
-HandlebarsIntl.registerWith(Handlebars);
 {{/code}}
-        </li>
-        <li>Register the helpers:
+
+    <h4>Register the helpers</h4>
+
 {{#code "js"}}
 HandlebarsIntl.registerWith(Handlebars);
 {{/code}}
-        </li>
-    </ol>
 
     <p class="note">
     <strong>NOTE:</strong>

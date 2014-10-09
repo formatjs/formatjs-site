@@ -1,0 +1,8 @@
+<p>
+    <b>{@formatRelative val=postDate/}</b> <i>(best fit)</i><br>
+    <b>{@formatRelative val=postDate style="numeric"/}</b> <i>(numeric)</i>
+</p>
+<p>
+    <b>{@formatRelative val=lastTrip/}</b> <i>(best fit)</i><br>
+    <b>{@formatRelative val=lastTrip style="numeric"/}</b> <i>(numeric)</i>
+</p>

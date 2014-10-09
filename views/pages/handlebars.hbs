@@ -235,13 +235,13 @@ var html = template(context, {
 
     <p>Additionally, if the message string contains HTML code, you can use <code>\{{formatHTMLMessage}}</code>, which has the exact same API but will not escape the formatted message. Remember to sanitize every value you pass into the helper to prevent XSS injections.</p>
 
-    <h2 id="intlGet">Message resolution by key</h2>
+    <h2 id="intlGet">Message Lookup by Path</h2>
 
     <p><code>(intlGet)</code> is an utility helper for accessing and returning the value the properties from the i18n data supplied to Handlebars via a string namespace.</p>
 
     <p>In the example above, we use <code>(intlGet "messages.photos")</code> as a subexpression to delegate the lookup process for <code>"message.photos"</code>. It is equivalent to the value from <code>@data.intl.messages.photos</code>, but it provides descriptive error messages when accessing a property that is <code>undefined</code>, unlike Handlebars built-in data channel access syntax <code>@</code>.</p>
 
-    <h2 id="intl">Pluralize labels in strings</h2>
+    <h2 id="intl">Create Intl Lambda</h2>
 
     <p><code>\{{#intl}}</code> is a block helper that can be used to create a new intl data scope by updating the i18n data supplied to Handlebars within the block. This is useful when you need to render part of the page in a particular locale, or need to supply the i18n data to Handlebars via the template context — some Handlebars integrations might not support supplying options.data.intl when rendering. You can also use it to have different sections of the page rendered with different locales.</p>
 

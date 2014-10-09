@@ -65,15 +65,17 @@ a.pure-button-primary:visited {
     width: 1px;
 }
 
-html,
-body {
-    height: 100%;
-}
-
 body {
     min-width: 320px;
     line-height: 1.625;
     color: var(--gray);
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -492,6 +494,7 @@ p code {
 .intro-package {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 .intro-package-name {
     order: 2;
@@ -597,7 +600,7 @@ p code {
 
     .head .nav,
     .splash .nav {
-        margin: 0 0.125rem 1rem;
+        margin: 0 0.125rem;
     }
 
     .splash {
@@ -686,7 +689,7 @@ p code {
 
 @media screen and (min-height: 0) {
     .splash {
-        min-height: 100%;
+        min-height: 100vh;
     }
 }
 
@@ -788,7 +791,7 @@ p code {
 
 @media screen and (min-height: 36em) {
     .splash {
-        min-height: 50%;
+        min-height: 50vh;
     }
 }
 

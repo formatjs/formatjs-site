@@ -16,8 +16,8 @@
     --yellow-js    : rgb(247, 223, 30);
     --yellow-dark  : rgb(197, 166, 0);
 
-    --main-font: "Open Sans", sans-serif;
-    --code-font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    --font-main: "Open Sans", sans-serif;
+    --font-code: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
 *,
@@ -28,7 +28,7 @@
 
 html, button, input, select, textarea,
 .pure-g [class *= "pure-u"] {
-    font-family: var(--main-font);
+    font-family: var(--font-main);
 }
 
 .pure-button {
@@ -98,7 +98,7 @@ a:visited {
 
 pre,
 code {
-    font-family: var(--code-font);
+    font-family: var(--font-code);
     color: var(--black);
     background: var(--gray-light);
 }
@@ -250,7 +250,7 @@ p code {
     display: flex;
 }
 .nav-menu a {
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem;
 }
 
 .head .nav,
@@ -270,6 +270,14 @@ p code {
 .splash .nav-menu-item:last-child {
     margin-right: 0;
 }
+.head .nav-menu-item:hover span,
+.splash .nav-menu-item:hover span {
+    border-bottom: 3px solid var(--white-alpha);
+}
+.head .nav-menu-item.is-active span,
+.splash .nav-menu-item.is-active span {
+    border-bottom: 3px solid var(--pink);
+}
 
 .foot .nav {
     justify-content: center;
@@ -282,6 +290,12 @@ p code {
 .foot .nav-menu-item {
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
+}
+.foot .nav-menu-item:hover span {
+    border-bottom: 2px solid var(--gainsboro);
+}
+.foot .nav-menu-item.is-active span {
+    border-bottom: 2px solid var(--pink);
 }
 
 .splash {

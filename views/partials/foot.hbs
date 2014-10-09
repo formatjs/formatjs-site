@@ -3,7 +3,7 @@
         <menu class="nav-menu">
           {{#each footMenuItems}}
             <li class="nav-menu-item {{#if (isEqual name ../activeMenuItem)}}is-active{{/if}}">
-                <a href="{{pathTo name}}">{{label}}</a>
+                <a href="{{pathTo name}}"><span>{{label}}</span></a>
             </li>
           {{/each}}
         </menu>

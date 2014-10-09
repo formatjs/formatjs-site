@@ -84,14 +84,14 @@ var html = template(context, {
 
     <h3 id="install-browser">Browser</h3>
 
-    <h4>Load the scripts into your page</h4>
+    <h4>1. Load the scripts into your page</h4>
 
 {{#code "html"}}
 <script src="handlebars/handlebars.min.js"></script>
 <script src="handlebars-intl/handlebars-intl.min.js"></script>
 {{/code}}
 
-    <h4>Register the helpers</h4>
+    <h4>2. Register the helpers</h4>
 
 {{#code "js"}}
 HandlebarsIntl.registerWith(Handlebars);
@@ -106,7 +106,7 @@ HandlebarsIntl.registerWith(Handlebars);
 
     <h3 id="install-node">Node/CommonJS</h3>
 
-    <h4>Require the module</h4>
+    <h4>1. Require the module</h4>
 
 {{#code "js"}}
 if (!global.Intl) {
@@ -116,7 +116,7 @@ var Handlebars = require('handlebars');
 var HandlebarsIntl = require('handlebars-intl');
 {{/code}}
 
-    <h4>Register the helpers</h4>
+    <h4>2. Register the helpers</h4>
 
 {{#code "js"}}
 HandlebarsIntl.registerWith(Handlebars);

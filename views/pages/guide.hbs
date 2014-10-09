@@ -1,77 +1,78 @@
 {{setTitle "Guide"}}
 {{setDescription "General information on getting started internationalization web apps client and server in JavaScript."}}
 
-<section class="head">
+<header class="head">
     {{> nav}}
-</section>
+</header>
 
-<section class="main docs l-wrap">
-    <h1>Guide</h1>
-
-
-    <h2 id="principles">Basic Internationalization Principles</h2>
+<main>
+    <section class="docs l-wrap">
+        <h1>Guide</h1>
 
 
-    <h3 id="what-and-why">What Is Internationalization and Why Does It Matter?</h3>
-    <p>
-        Internationalized software is software that is designed to support the languages and cultural customs of people throughout the world.
-        The Web reaches all parts of the world, and so web apps need to be internationalized in order to provide a great user experience for the most number of people.
-    </p>
-
-    <p>
-        Localization of software is adapting the software for a specific language and culture.
-        This involves translating text messages into the user's language and presenting data in a format consistent with the user's expectations.
-        An app is typically localized for a small set of <a href="#locales">locales</a>.
-    </p>
-
-    <p>
-        The <a href="http://www.ecma-international.org/ecma-402/1.0/index.html#sec-4.1">ECMA-402 JavaScript internalization specification</a> has an excellent overview.
-    </p>
+        <h2 id="principles">Basic Internationalization Principles</h2>
 
 
-    <h3 id="locales">Locales: Language and Region</h3>
-    <p>
-        A "locale" is the language a user speaks and the cultural expectations for a region.
-        It is represented using a "locale code" defined in <a href="http://tools.ietf.org/html/bcp47">BCP 47</a>.
-    </p>
+        <h3 id="what-and-why">What Is Internationalization and Why Does It Matter?</h3>
+        <p>
+            Internationalized software is software that is designed to support the languages and cultural customs of people throughout the world.
+            The Web reaches all parts of the world, and so web apps need to be internationalized in order to provide a great user experience for the most number of people.
+        </p>
 
-    <p>
-        This code is comprised of several parts separated by hyphens ({{code "-"}}).
-        The first part is a short string representing the language.
-        The second, optional, part is a short string representing the region.
-        In addition, various extensions and variants can be specified.
-    </p>
+        <p>
+            Localization of software is adapting the software for a specific language and culture.
+            This involves translating text messages into the user's language and presenting data in a format consistent with the user's expectations.
+            An app is typically localized for a small set of <a href="#locales">locales</a>.
+        </p>
 
-    <p>
-        Typically web apps are localized to just the language or language-region combination.
-        Examples of such locale codes are...
-        <ul>
-            <li>{{code "en"}} for English</li>
-            <li>{{code "en-US"}} for English as spoken in the United States</li>
-            <li>{{code "en-GB"}} for English as spoken in the United Kingdom</li>
-            <li>{{code "es-AR"}} for Spanish as spoken in Argentina</li>
-            <li>{{code "ar-001"}} for Arabic as spoken throughout the world</li>
-            <li>{{code "ar-AE"}} for Arabic as spoken in United Arab Emirates</li>
-        </ul>
-    </p>
-
-    <p>
-        Most internationalized apps only support a small list of locales.
-    </p>
+        <p>
+            The <a href="http://www.ecma-international.org/ecma-402/1.0/index.html#sec-4.1">ECMA-402 JavaScript internalization specification</a> has an excellent overview.
+        </p>
 
 
-    <h3 id="translating-strings">Translating Strings</h3>
-    <p>
-        You likely have some text in your application that is in a natural language such as English or Japanese.
-        In order to support other locales you'll need to translate these strings.
-        You'll need to translate all strings that will be displayed to the user for all locales you wish to support.
-    </p>
+        <h3 id="locales">Locales: Language and Region</h3>
+        <p>
+            A "locale" is the language a user speaks and the cultural expectations for a region.
+            It is represented using a "locale code" defined in <a href="http://tools.ietf.org/html/bcp47">BCP 47</a>.
+        </p>
 
-    <p>
-        {{brand}} provides a mechanism for using these translations.
-        This lets you write the core "software" of your application without special code for different languages.
-        The considerations for each locale are encapsulated in your translated strings and our libraries.
-    </p>
+        <p>
+            This code is comprised of several parts separated by hyphens ({{code "-"}}).
+            The first part is a short string representing the language.
+            The second, optional, part is a short string representing the region.
+            In addition, various extensions and variants can be specified.
+        </p>
+
+        <p>
+            Typically web apps are localized to just the language or language-region combination.
+            Examples of such locale codes are...
+            <ul>
+                <li>{{code "en"}} for English</li>
+                <li>{{code "en-US"}} for English as spoken in the United States</li>
+                <li>{{code "en-GB"}} for English as spoken in the United Kingdom</li>
+                <li>{{code "es-AR"}} for Spanish as spoken in Argentina</li>
+                <li>{{code "ar-001"}} for Arabic as spoken throughout the world</li>
+                <li>{{code "ar-AE"}} for Arabic as spoken in United Arab Emirates</li>
+            </ul>
+        </p>
+
+        <p>
+            Most internationalized apps only support a small list of locales.
+        </p>
+
+
+        <h3 id="translating-strings">Translating Strings</h3>
+        <p>
+            You likely have some text in your application that is in a natural language such as English or Japanese.
+            In order to support other locales you'll need to translate these strings.
+            You'll need to translate all strings that will be displayed to the user for all locales you wish to support.
+        </p>
+
+        <p>
+            {{brand}} provides a mechanism for using these translations.
+            This lets you write the core "software" of your application without special code for different languages.
+            The considerations for each locale are encapsulated in your translated strings and our libraries.
+        </p>
 
 {{#code "js"}}
 var messages = {
@@ -84,82 +85,82 @@ var messages = {
 };
 {{/code}}
 
-    <p>
-        We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax which is also used in 
-        <a href="http://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">Java</a> and
-        <a href="http://php.net/manual/en/class.messageformatter.php">PHP</a>.
-    </p>
+        <p>
+            We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax which is also used in
+            <a href="http://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">Java</a> and
+            <a href="http://php.net/manual/en/class.messageformatter.php">PHP</a>.
+        </p>
 
 
-    <h3 id="bundling-translations">Bundling Translated Strings</h3>
-    <p>
-        It is very common to organize your translations primarily by locale.
-        This especially becomes important when using translations in the browser, where you only need the translations for one locale, the user's current locale.
-    </p>
+        <h3 id="bundling-translations">Bundling Translated Strings</h3>
+        <p>
+            It is very common to organize your translations primarily by locale.
+            This especially becomes important when using translations in the browser, where you only need the translations for one locale, the user's current locale.
+        </p>
 
-    <p>
-        Our <a href="{{pathTo 'integrations'}}">template and component library integrations</a> are designed to work with the translations for a single locale.
-    </p>
+        <p>
+            Our <a href="{{pathTo 'integrations'}}">template and component library integrations</a> are designed to work with the translations for a single locale.
+        </p>
 
-    <p>
-        (If your app is very complex you can further subdivide your translations, such as by page or section of the site.)
-    </p>
-
-
-    <h3 id="structure-code">Structure of Code</h3>
-    <p>
-        The actual formatting and presentation of data and translated strings typically takes these steps:
-    </p>
-
-    <ol>
-        <li>
-            Determine the user's locale, as described in <a href="#runtime-environments">Runtime Environments</a> below.
-        </li>
-        <li>
-            Setup one of {{brand}}'s <a href="{{pathTo 'integrations'}}">integrations</a> with the following data:
-            <ul>
-                <li>the user's current locale</li>
-                <li>translated strings for that locale</li>
-                <li>optionally, any <a href="#messageformat-custom-formats">custom formats</a></li>
-            </ul>
-        </li>
-        <li>
-            Call the template engine, passing the data that needs formatting.
-        </li>
-    </ol>
+        <p>
+            (If your app is very complex you can further subdivide your translations, such as by page or section of the site.)
+        </p>
 
 
-    <h2 id="patch-runtime">Patching the Runtime for Internationalization Support</h2>
-    <p>
-        The {{brand}} libraries rely on the following <a href="http://www.ecma-international.org/ecma-402/1.0/index.html">ECMA 402</a> internationalization APIs:
-    </p>
+        <h3 id="structure-code">Structure of Code</h3>
+        <p>
+            The actual formatting and presentation of data and translated strings typically takes these steps:
+        </p>
 
-    <ul>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">{{code "Intl.NumberFormat"}}</a></li>
-        <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">{{code "Intl.DateTimeFormat"}}</a></li>
-    </ul>
+        <ol>
+            <li>
+                Determine the user's locale, as described in <a href="#runtime-environments">Runtime Environments</a> below.
+            </li>
+            <li>
+                Setup one of {{brand}}'s <a href="{{pathTo 'integrations'}}">integrations</a> with the following data:
+                <ul>
+                    <li>the user's current locale</li>
+                    <li>translated strings for that locale</li>
+                    <li>optionally, any <a href="#messageformat-custom-formats">custom formats</a></li>
+                </ul>
+            </li>
+            <li>
+                Call the template engine, passing the data that needs formatting.
+            </li>
+        </ol>
 
-    <p>
-        The {{code "Intl"}} APIs are currently available on all modern browsers except Safari.
-        It is not available on mobile browsers, older browsers, or Node.js.
-        See the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Browser_Compatibility">Mozilla Developer Network documentation</a> for an up-to-date list of capable browsers.
-    </p>
 
-    <p>
-        If these APIs aren't present you'll need to patch (polyfill) the runtime to include them.
-    </p>
+        <h2 id="patch-runtime">Patching the Runtime for Internationalization Support</h2>
+        <p>
+            The {{brand}} libraries rely on the following <a href="http://www.ecma-international.org/ecma-402/1.0/index.html">ECMA 402</a> internationalization APIs:
+        </p>
+
+        <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">{{code "Intl.NumberFormat"}}</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">{{code "Intl.DateTimeFormat"}}</a></li>
+        </ul>
+
+        <p>
+            The {{code "Intl"}} APIs are currently available on all modern browsers except Safari.
+            It is not available on mobile browsers, older browsers, or Node.js.
+            See the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Browser_Compatibility">Mozilla Developer Network documentation</a> for an up-to-date list of capable browsers.
+        </p>
+
+        <p>
+            If these APIs aren't present you'll need to patch (polyfill) the runtime to include them.
+        </p>
 
 
-    <h3 id="how-to-patch">How to Patch</h3>
-    <p>
-        Since some runtimes already have {{code "Intl"}}, ideally you'll only load a patch when needed.
-        You can do this using a conditional loader.
-    </p>
+        <h3 id="how-to-patch">How to Patch</h3>
+        <p>
+            Since some runtimes already have {{code "Intl"}}, ideally you'll only load a patch when needed.
+            You can do this using a conditional loader.
+        </p>
 
-    <p>
-        One conditional loader is <a href="http://yepnopejs.com/">yepnopejs</a>.
-        Here's an overview of how to use it:
-    </p>
+        <p>
+            One conditional loader is <a href="http://yepnopejs.com/">yepnopejs</a>.
+            Here's an overview of how to use it:
+        </p>
 
 {{#code "js"}}
 yepnope({
@@ -171,16 +172,16 @@ yepnope({
 });
 {{/code}}
 
-    <p id="note">
-        <strong>Note</strong> that our <a href="{{pathTo 'integrations'}}">integrations</a> require that the {{code "window.Intl"}} exist before they are loaded.
-    </p>
+        <p id="note">
+            <strong>Note</strong> that our <a href="{{pathTo 'integrations'}}">integrations</a> require that the {{code "window.Intl"}} exist before they are loaded.
+        </p>
 
 
-    <h3 id="intljs">Intl.js Polyfill</h3>
-    <p>
-        The <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a> library, developed by Andy Earnshaw, provides a polyfill for the {{code "Intl"}} API.
-        It will need a locale data file loaded for the locale of the current page.
-    </p>
+        <h3 id="intljs">Intl.js Polyfill</h3>
+        <p>
+            The <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a> library, developed by Andy Earnshaw, provides a polyfill for the {{code "Intl"}} API.
+            It will need a locale data file loaded for the locale of the current page.
+        </p>
 
 {{#code "html"}}
 <script src="path/to/intl/Intl.js"></script>
@@ -188,9 +189,9 @@ yepnope({
 ...use the locale for the current user, instead of hard-coding to "en"
 {{/code}}
 
-    <p>
-        In Node.js, the Intl.js library contains data for all locales.
-    </p>
+        <p>
+            In Node.js, the Intl.js library contains data for all locales.
+        </p>
 
 {{#code "js"}}
 if (!global.Intl) {
@@ -198,44 +199,44 @@ if (!global.Intl) {
 }
 {{/code}}
 
-    <p class="note">
-        <strong>Note</strong> that the {{code "Intl.js"}} polyfill does not have the {{code "Intl.Collator"}} API.
-        The size of the locale data required to support the API is not practical to load in a client.
-    </p>
+        <p class="note">
+            <strong>Note</strong> that the {{code "Intl.js"}} polyfill does not have the {{code "Intl.Collator"}} API.
+            The size of the locale data required to support the API is not practical to load in a client.
+        </p>
 
 
-    <h2 id="runtime-environments">Runtime Environments</h2>
-    <p>
-        Here is information on how to setup {{brand}} in different environments.
-    </p>
+        <h2 id="runtime-environments">Runtime Environments</h2>
+        <p>
+            Here is information on how to setup {{brand}} in different environments.
+        </p>
 
 
-    <h3 id="server-side">Server</h3>
-    <p>
-        In Node.js our libraries are available as npm packages.
-        Each of our <a href="{{pathTo 'integrations'}}">integrations</a> has details on how they are installed.
-    </p>
+        <h3 id="server-side">Server</h3>
+        <p>
+            In Node.js our libraries are available as npm packages.
+            Each of our <a href="{{pathTo 'integrations'}}">integrations</a> has details on how they are installed.
+        </p>
 
-    <p>
-        Node (as of 0.10) doesn't provide the global {{code "Intl"}} object.
-        You'll need to <a href="#how-to-patch">provide a polyfill</a> as described above.
-        Node 0.12 will support the global {{code "Intl"}} API via a runtime flag.
-    </p>
+        <p>
+            Node (as of 0.10) doesn't provide the global {{code "Intl"}} object.
+            You'll need to <a href="#how-to-patch">provide a polyfill</a> as described above.
+            Node 0.12 will support the global {{code "Intl"}} API via a runtime flag.
+        </p>
 
 
-    <h4 id="user-locale-server">Determining the User's Locale</h4>
-    <p>
-        When a request comes in you'll need to determine the locale for the response.
-        Best practice is to provide the user an explicit way of choosing one of the locales your app supports
-        (and persisting that choice in a user profile database).
-    </p>
+        <h4 id="user-locale-server">Determining the User's Locale</h4>
+        <p>
+            When a request comes in you'll need to determine the locale for the response.
+            Best practice is to provide the user an explicit way of choosing one of the locales your app supports
+            (and persisting that choice in a user profile database).
+        </p>
 
-    <p>
-        If you wish to programmatically infer the user's locale you can inspect the <a href="http://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Accept-Language">{{code "Accept-Language"}}</a> HTTP request header.
-        (This is part of HTTP <a href="http://en.wikipedia.org/wiki/Content_negotiation">content negotiation</a>.)
-        There are <a href="https://www.npmjs.org/search?q=accept-language">NPM modules</a> that can help with this, {{npmLink "accepts"}} and {{npmLink "negotiator"}} being two good choices.
-        As well, express has some content negotiation <a href="http://expressjs.com/4x/api.html#req.acceptsLanguages">built in</a>.
-    </p>
+        <p>
+            If you wish to programmatically infer the user's locale you can inspect the <a href="http://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Accept-Language">{{code "Accept-Language"}}</a> HTTP request header.
+            (This is part of HTTP <a href="http://en.wikipedia.org/wiki/Content_negotiation">content negotiation</a>.)
+            There are <a href="https://www.npmjs.org/search?q=accept-language">NPM modules</a> that can help with this, {{npmLink "accepts"}} and {{npmLink "negotiator"}} being two good choices.
+            As well, express has some content negotiation <a href="http://expressjs.com/4x/api.html#req.acceptsLanguages">built in</a>.
+        </p>
 
 {{#code "js"}}
 var appLocales = ['de', 'en', 'fr'];
@@ -247,213 +248,213 @@ app.get('/', function(req, res) {
 {{/code}}
 
 
-    <h3 id="client-side">Client</h3>
-    <p>
-        Each of our <a href="{{pathTo 'integrations'}}">integrations</a> has details on how to load them into the browser.
-    </p>
+        <h3 id="client-side">Client</h3>
+        <p>
+            Each of our <a href="{{pathTo 'integrations'}}">integrations</a> has details on how to load them into the browser.
+        </p>
 
-    <p>
-        If the browser doesn't support the {{code "Intl"}} API you'll need to <a href="#how-to-patch">provide a polyfill</a> as described above.
-        The polyfill you choose might require you to load a separate file for each locale.
-        In this case you can dynamically load a single locale file for the user's locale.
-    </p>
+        <p>
+            If the browser doesn't support the {{code "Intl"}} API you'll need to <a href="#how-to-patch">provide a polyfill</a> as described above.
+            The polyfill you choose might require you to load a separate file for each locale.
+            In this case you can dynamically load a single locale file for the user's locale.
+        </p>
 
 
-    <h4 id="user-locale-client">Determining the User's Locale</h4>
-    <p>
-        <strong>When running internationalization code in the browser it is best if the locale used is the same as was used when the page was generated on the server.</strong>
-        You can do this by having the server embed the chosen locale into the generate page.
-        This ensures that the user gets a consistent experience and that the UI doesn't suddenly "switch languages" on them.
-    </p>
+        <h4 id="user-locale-client">Determining the User's Locale</h4>
+        <p>
+            <strong>When running internationalization code in the browser it is best if the locale used is the same as was used when the page was generated on the server.</strong>
+            You can do this by having the server embed the chosen locale into the generate page.
+            This ensures that the user gets a consistent experience and that the UI doesn't suddenly "switch languages" on them.
+        </p>
 
-    <p>
-        If this isn't possible or if you have an application which is served statically, the best practice is to provide the user an explicit way to choose one of the locales your app supports.
-        If you wish to programmatically infer the user's locale you can match the following against the locales your app supports.
-    </p>
+        <p>
+            If this isn't possible or if you have an application which is served statically, the best practice is to provide the user an explicit way to choose one of the locales your app supports.
+            If you wish to programmatically infer the user's locale you can match the following against the locales your app supports.
+        </p>
 
 {{#code "js"}}
 navigator.language || navigator.browserLanguage
 {{/code}}
 
 
-    <h2>Template and Component Library Integrations</h2>
-    <p>
-        We've integrated internationalization support into a few common template and component libraries.
-    </p>
+        <h2>Template and Component Library Integrations</h2>
+        <p>
+            We've integrated internationalization support into a few common template and component libraries.
+        </p>
 
-{{> integrations-list}}
-
-
-    <h2 id="messageformat-syntax">Message Syntax</h2>
-    <p>
-        If you are translating text you'll need a way for your translators to express the subtleties of spelling, grammar, and conjugation inherent in each language.
-        We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax which is also used in 
-        <a href="http://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">Java</a> and
-        <a href="http://php.net/manual/en/class.messageformatter.php">PHP</a>.
-    </p>
-
-    <p>
-        The {{npmLink "intl-messageformat"}} library takes the message and input data and creates an appropriately formatted string.
-        This feature is included with all of the <a>integrations</a> we provide.
-    </p>
+        {{> integrations-list}}
 
 
-    <h3 id="messageformat-basic-principles">Basic Principles</h3>
-    <p>
-        The simplest transform for the message is a literal string.
-    </p>
+        <h2 id="messageformat-syntax">Message Syntax</h2>
+        <p>
+            If you are translating text you'll need a way for your translators to express the subtleties of spelling, grammar, and conjugation inherent in each language.
+            We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax which is also used in
+            <a href="http://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">Java</a> and
+            <a href="http://php.net/manual/en/class.messageformatter.php">PHP</a>.
+        </p>
+
+        <p>
+            The {{npmLink "intl-messageformat"}} library takes the message and input data and creates an appropriately formatted string.
+            This feature is included with all of the <a>integrations</a> we provide.
+        </p>
+
+
+        <h3 id="messageformat-basic-principles">Basic Principles</h3>
+        <p>
+            The simplest transform for the message is a literal string.
+        </p>
 
 {{#code "generic"}}
 Hello everyone
 {{/code}}
 
-    <p>
-        All other transforms are done using replacements called "arguments".
-        They are enclosed in curly braces ({{code "{"}} and {{code "}"}}) and refer to a value in the input data.
-    </p>
+        <p>
+            All other transforms are done using replacements called "arguments".
+            They are enclosed in curly braces ({{code "{"}} and {{code "}"}}) and refer to a value in the input data.
+        </p>
 
 
-    <h3 id="messageformat-simple-argument">Simple Argument</h3>
-    <p>
-        You can use a <code>{<var>key</var>}</code> argument for placing a value into the message.
-        The <var>key</var> is looked up in the input data.
-    </p>
+        <h3 id="messageformat-simple-argument">Simple Argument</h3>
+        <p>
+            You can use a <code>{<var>key</var>}</code> argument for placing a value into the message.
+            The <var>key</var> is looked up in the input data.
+        </p>
 
 {{#code "generic"}}
 Hello {who}
 {{/code}}
 
 
-    <h3 id="messageformat-formatted-argument">Formatted Argument</h3>
-    <p>
-        Values can also be formatted based on their type.
-        You use a <code>{<var>key</var>, <var>type</var>, <var>format</var>}</code> argument to do that.
-    </p>
+        <h3 id="messageformat-formatted-argument">Formatted Argument</h3>
+        <p>
+            Values can also be formatted based on their type.
+            You use a <code>{<var>key</var>, <var>type</var>, <var>format</var>}</code> argument to do that.
+        </p>
 
-    <p>
-        The elements of the argument are:
-    </p>
+        <p>
+            The elements of the argument are:
+        </p>
 
-    <ul>
-        <li>
-            <code><var>key</var></code> is where in the input data to find the data
-        </li>
-        <li>
-            <code><var>type</var></code> is how to interpret the value (see below)
-        </li>
-        <li>
-            <code><var>format</var></code> is optional, and is a further refinement on how to display that type of data
-        </li>
-    </ul>
+        <ul>
+            <li>
+                <code><var>key</var></code> is where in the input data to find the data
+            </li>
+            <li>
+                <code><var>type</var></code> is how to interpret the value (see below)
+            </li>
+            <li>
+                <code><var>format</var></code> is optional, and is a further refinement on how to display that type of data
+            </li>
+        </ul>
 
 {{#code "generic"}}
 I have {numCats, number} cats.
 {{/code}}
 
 
-    <h4 id="messageformat-number-type">{{code "number"}} type</h4>
-    <p>
-        This type is used to format numbers in a way that is sensitive to the locale.
-        It understands the following values for the optional <code><var>format</var></code> element of the argument:
-    </p>
+        <h4 id="messageformat-number-type">{{code "number"}} type</h4>
+        <p>
+            This type is used to format numbers in a way that is sensitive to the locale.
+            It understands the following values for the optional <code><var>format</var></code> element of the argument:
+        </p>
 
-    <ul>
-        <li>
-            <code>percent</code> is used to format values which are percentages
-        </li>
-    </ul>
+        <ul>
+            <li>
+                <code>percent</code> is used to format values which are percentages
+            </li>
+        </ul>
 
 {{#code "generic"}}
 I have {numCats, number} cats.
 Almost {pctBlack, number, percent} of them are black.
 {{/code}}
 
-    <p>
-        Internally it uses the {{code "Intl.NumberFormat"}} API.
-        You can <a href="#messageformat-custom-formats">define custom values</a> for the <code><var>format</var></code> element, which are passed to the {{code "Intl.NumberFormat"}} constructor.
-    </p>
+        <p>
+            Internally it uses the {{code "Intl.NumberFormat"}} API.
+            You can <a href="#messageformat-custom-formats">define custom values</a> for the <code><var>format</var></code> element, which are passed to the {{code "Intl.NumberFormat"}} constructor.
+        </p>
 
 
-    <h4 id="messageformat-date-type">{{code "date"}} type</h4>
-    <p>
-        This type is used to format dates in a way that is sensitive to the locale.
-        It understands the following values for the optional <code><var>format</var></code> element of the argument:
-    </p>
+        <h4 id="messageformat-date-type">{{code "date"}} type</h4>
+        <p>
+            This type is used to format dates in a way that is sensitive to the locale.
+            It understands the following values for the optional <code><var>format</var></code> element of the argument:
+        </p>
 
-    <ul>
-        <li>
-            <code>short</code> is used to format dates in the shortest possible way
-        </li>
-        <li>
-            <code>medium</code> is used to format dates with short textual representation of the month
-        </li>
-        <li>
-            <code>long</code> is used to format dates with long textual representation of the month
-        </li>
-        <li>
-            <code>full</code> is used to format dates with the most detail
-        </li>
-    </ul>
+        <ul>
+            <li>
+                <code>short</code> is used to format dates in the shortest possible way
+            </li>
+            <li>
+                <code>medium</code> is used to format dates with short textual representation of the month
+            </li>
+            <li>
+                <code>long</code> is used to format dates with long textual representation of the month
+            </li>
+            <li>
+                <code>full</code> is used to format dates with the most detail
+            </li>
+        </ul>
 
 {{#code "generic"}}
 Sale begins {start, date, medium}
 {{/code}}
 
-    <p>
-        Internally it uses the {{code "Intl.DateTimeFormat"}} API.
-        You can <a href="#messageformat-custom-formats">define custom values</a> for the <code><var>format</var></code> element, which are passed to the {{code "Intl.DateTimeFormat"}} constructor.
-    </p>
+        <p>
+            Internally it uses the {{code "Intl.DateTimeFormat"}} API.
+            You can <a href="#messageformat-custom-formats">define custom values</a> for the <code><var>format</var></code> element, which are passed to the {{code "Intl.DateTimeFormat"}} constructor.
+        </p>
 
 
-    <h4 id="messageformat-time-type">{{code "time"}} type</h4>
-    <p>
-        This type is used to format times in a way that is sensitive to the locale.
-        It understands the following values for the optional <code><var>format</var></code> element of the argument:
-    </p>
+        <h4 id="messageformat-time-type">{{code "time"}} type</h4>
+        <p>
+            This type is used to format times in a way that is sensitive to the locale.
+            It understands the following values for the optional <code><var>format</var></code> element of the argument:
+        </p>
 
-    <ul>
-        <li>
-            <code>short</code> is used to format times with hours and minutes
-        </li>
-        <li>
-            <code>medium</code> is used to format times with hours, minutes, and seconds
-        </li>
-        <li>
-            <code>long</code> is used to format times with hours, minutes, seconds, and timezone
-        </li>
-        <li>
-            <code>full</code> is the same as <code>long</code>
-        </li>
-    </ul>
+        <ul>
+            <li>
+                <code>short</code> is used to format times with hours and minutes
+            </li>
+            <li>
+                <code>medium</code> is used to format times with hours, minutes, and seconds
+            </li>
+            <li>
+                <code>long</code> is used to format times with hours, minutes, seconds, and timezone
+            </li>
+            <li>
+                <code>full</code> is the same as <code>long</code>
+            </li>
+        </ul>
 
 {{#code "generic"}}
 Coupon expires at {expires, time, short}
 {{/code}}
 
-    <p>
-        Internally it uses the {{code "Intl.DateTimeFormat"}} API.
-        You can <a href="#messageformat-custom-formats">define custom values</a> for the <code><var>format</var></code> element, which are passed to the {{code "Intl.DateTimeFormat"}} constructor.
-    </p>
+        <p>
+            Internally it uses the {{code "Intl.DateTimeFormat"}} API.
+            You can <a href="#messageformat-custom-formats">define custom values</a> for the <code><var>format</var></code> element, which are passed to the {{code "Intl.DateTimeFormat"}} constructor.
+        </p>
 
 
-    <h4 id="messageformat-custom-formats">Defining Custom Formats</h4>
-    <p>
-        The 
-        <code>{<var>key</var>, number, <var>format</var>}</code>,
-        <code>{<var>key</var>, date, <var>format</var>}</code>, and
-        <code>{<var>key</var>, time, <var>format</var>}</code>
-        arguments come with predefined values for the <code><var>format</var></code> element, but you can define your own.
-        You do this by passing a simple javascript object to each of the <a href="{{pathTo 'integrations'}}">integrations</a>, in a way that is distinct for each integration.
-    </p>
+        <h4 id="messageformat-custom-formats">Defining Custom Formats</h4>
+        <p>
+            The
+            <code>{<var>key</var>, number, <var>format</var>}</code>,
+            <code>{<var>key</var>, date, <var>format</var>}</code>, and
+            <code>{<var>key</var>, time, <var>format</var>}</code>
+            arguments come with predefined values for the <code><var>format</var></code> element, but you can define your own.
+            You do this by passing a simple javascript object to each of the <a href="{{pathTo 'integrations'}}">integrations</a>, in a way that is distinct for each integration.
+        </p>
 
-    <p>
-        The key of the object is the <code><var>type</var></code>, and the value is a simple javascript object of formats for that type.
-        These format options are passed to the <code><var>options</var></code> argument of the associated constructor.
-    </p>
+        <p>
+            The key of the object is the <code><var>type</var></code>, and the value is a simple javascript object of formats for that type.
+            These format options are passed to the <code><var>options</var></code> argument of the associated constructor.
+        </p>
 
-    <p>
-        For example, if you want to define a new <code>usd</code> (US dollars) format for numbers, you could do the following:
-    </p>
+        <p>
+            For example, if you want to define a new <code>usd</code> (US dollars) format for numbers, you could do the following:
+        </p>
 
 {{#code "js"}}
 formats = {
@@ -468,30 +469,30 @@ Your total is {total, number, usd}
 {{/code}}
 
 
-    <h3 id="messageformat-select-format">{{code "{select}"}} Format</h3>
-    <p>
-        The <code>{<var>key</var>, select, <var>matches</var>}</code> is used to choose output by matching a value to one of many choices.
-        (It is similar to the <code>switch</code> statement available in some programming languages.)
-        The <code><var>key</var></code> is looked up in the input data.
-        The corresponding value is matched to one of <code><var>matches</var></code> and the corresponding output is returned.
-        The <code><var>matches</var></code> is a space-separated list of matches.
-    </p>
+        <h3 id="messageformat-select-format">{{code "{select}"}} Format</h3>
+        <p>
+            The <code>{<var>key</var>, select, <var>matches</var>}</code> is used to choose output by matching a value to one of many choices.
+            (It is similar to the <code>switch</code> statement available in some programming languages.)
+            The <code><var>key</var></code> is looked up in the input data.
+            The corresponding value is matched to one of <code><var>matches</var></code> and the corresponding output is returned.
+            The <code><var>matches</var></code> is a space-separated list of matches.
+        </p>
 
-    <p>
-        The format of a match is <code><var>match</var> {<var>output</var>}</code>.
-        (A match is similar to the <code>case</code> statement of the <code>switch</code> found in some programming languages.)
-        The <code><var>match</var></code> is a literal value.
-        If it is the same as the value for <code><var>key</var></code> then the corresponding <code><var>output</var></code> will be used.
-    </p>
+        <p>
+            The format of a match is <code><var>match</var> {<var>output</var>}</code>.
+            (A match is similar to the <code>case</code> statement of the <code>switch</code> found in some programming languages.)
+            The <code><var>match</var></code> is a literal value.
+            If it is the same as the value for <code><var>key</var></code> then the corresponding <code><var>output</var></code> will be used.
+        </p>
 
-    <p>
-        <code><var>output</var></code> is itself a message, so it can be a literal string or also have more arguments nested inside of it.
-    </p>
+        <p>
+            <code><var>output</var></code> is itself a message, so it can be a literal string or also have more arguments nested inside of it.
+        </p>
 
-    <p>
-        The <code>other</code> match is special and is used if nothing else matches.
-        (This is similar to the <code>default</code> case of the <code>switch</code> found in some programming languages.)
-    </p>
+        <p>
+            The <code>other</code> match is special and is used if nothing else matches.
+            (This is similar to the <code>default</code> case of the <code>switch</code> found in some programming languages.)
+        </p>
 
 {{#code "generic"}}
 {gender, select,
@@ -501,9 +502,9 @@ Your total is {total, number, usd}
 } will respond shortly.
 {{/code}}
 
-    <p>
-        Here's an example of nested arguments.
-    </p>
+        <p>
+            Here's an example of nested arguments.
+        </p>
 
 {{#code "generic"}}
 {taxableArea, select,
@@ -513,55 +514,55 @@ Your total is {total, number, usd}
 {{/code}}
 
 
-    <h3 id="messageformat-plural-format">{{code "{plural}"}} Format</h3>
-    <p>
-        The <code>{<var>key</var>, plural, <var>matches</var>}</code> is used to choose output based on the pluralization rules of the current locale.
-        It is very similar to the <a href="#messageformat-select-format">{{code "{select}"}} format above</a>
-        except that the value is expected to be a number and is mapped to a <a href="http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html">plural category</a>.
-    </p>
+        <h3 id="messageformat-plural-format">{{code "{plural}"}} Format</h3>
+        <p>
+            The <code>{<var>key</var>, plural, <var>matches</var>}</code> is used to choose output based on the pluralization rules of the current locale.
+            It is very similar to the <a href="#messageformat-select-format">{{code "{select}"}} format above</a>
+            except that the value is expected to be a number and is mapped to a <a href="http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html">plural category</a>.
+        </p>
 
-    <p>
-        The <code><var>match</var></code> is a literal value and is matched to one of these plural categories.
-        Not all languages use all plural categories.
-    </p>
+        <p>
+            The <code><var>match</var></code> is a literal value and is matched to one of these plural categories.
+            Not all languages use all plural categories.
+        </p>
 
-    <dl>
-        <dt><code>zero</code></dt>
-        <dd>
-            This category is used for languages that have grammar specialized specifically for zero number of items.
-            (Examples are Arabic and Latvian.)
-        </dd>
-        <dt><code>one</code></dt>
-        <dd>
-            This category is used for languages that have grammar specialized specifically for one item.
-            Many languages, but not all, use this plural category.
-            (Many popular asian languages, such as Chinese and Japanese, do not use this category.)
-        </dd>
-        <dt><code>two</code></dt>
-        <dd>
-            This category is used for languages that have grammar specialized specifically for two item.
-            (Examples are Arabic and Welsh.)
-        </dd>
-        <dt><code>few</code></dt>
-        <dd>
-            This category is used for languages that have grammar specialized specifically for a small number of items.
-            For some languages this is used for 2-4 items, for some 3-10 items, and other languages have even more complex rules.
-        </dd>
-        <dt><code>many</code></dt>
-        <dd>
-            This category is used for languages that have grammar specialized specifically for a larger number of items.
-            (Examples are Arabic, Polish, and Russian.)
-        </dd>
-        <dt><code>other</code></dt>
-        <dd>
-            This category is used if the value doesn't match one of the other plural categories.
-            <strong>Note</strong> that this is used for "plural" for languages (such as English) that have a simple "singular" versus "plural" dichotomy.
-        </dd>
-        <dt><code>=<var>value</var></code></dt>
-        <dd>
-            This is used to match a specific value regardless of the plural categories of the current locale.
-        </dd>
-    </dl>
+        <dl>
+            <dt><code>zero</code></dt>
+            <dd>
+                This category is used for languages that have grammar specialized specifically for zero number of items.
+                (Examples are Arabic and Latvian.)
+            </dd>
+            <dt><code>one</code></dt>
+            <dd>
+                This category is used for languages that have grammar specialized specifically for one item.
+                Many languages, but not all, use this plural category.
+                (Many popular asian languages, such as Chinese and Japanese, do not use this category.)
+            </dd>
+            <dt><code>two</code></dt>
+            <dd>
+                This category is used for languages that have grammar specialized specifically for two item.
+                (Examples are Arabic and Welsh.)
+            </dd>
+            <dt><code>few</code></dt>
+            <dd>
+                This category is used for languages that have grammar specialized specifically for a small number of items.
+                For some languages this is used for 2-4 items, for some 3-10 items, and other languages have even more complex rules.
+            </dd>
+            <dt><code>many</code></dt>
+            <dd>
+                This category is used for languages that have grammar specialized specifically for a larger number of items.
+                (Examples are Arabic, Polish, and Russian.)
+            </dd>
+            <dt><code>other</code></dt>
+            <dd>
+                This category is used if the value doesn't match one of the other plural categories.
+                <strong>Note</strong> that this is used for "plural" for languages (such as English) that have a simple "singular" versus "plural" dichotomy.
+            </dd>
+            <dt><code>=<var>value</var></code></dt>
+            <dd>
+                This is used to match a specific value regardless of the plural categories of the current locale.
+            </dd>
+        </dl>
 
 {{#code "generic"}}
 Cart: {itemCount} {itemCount, plural,
@@ -578,9 +579,9 @@ You have {itemCount, plural,
 }.
 {{/code}}
 
-    <p>
-        In the <code><var>output</var></code> of the match, the <code>#</code> special token can be used as a placeholder for the value.
-    </p>
+        <p>
+            In the <code><var>output</var></code> of the match, the <code>#</code> special token can be used as a placeholder for the value.
+        </p>
 
 {{#code "generic"}}
 You have {itemCount, plural,
@@ -589,6 +590,5 @@ You have {itemCount, plural,
     other {# items}
 }.
 {{/code}}
-
-
-</section>
+    </section>
+</main>

@@ -1,89 +1,91 @@
 {{setTitle "Handlebars"}}
 {{setDescription "Documentation and examples of Handlebars integration."}}
 
-<section class="head">
+<header class="head">
     {{> nav}}
-</section>
+</header>
 
-<section class="intro">
-    <div class="l-wrap">
-        <h1 class="intro-package">
-            <span class="intro-package-name">
-                Handlebars Intl
-            </span>
-            <img class="intro-package-mark" alt="Handlebars logo" src="/img/handlebars.png">
-        </h1>
+<main>
+    <section class="intro">
+        <div class="l-wrap">
+            <h1 class="intro-package">
+                <span class="intro-package-name">
+                    Handlebars Intl
+                </span>
+                <img class="intro-package-mark" alt="Handlebars logo" src="/img/handlebars.png">
+            </h1>
 
-        <h2 class="tagline">{{package.description}}</h2>
+            <h2 class="tagline">{{package.description}}</h2>
 
-        {{> integrations/package-meta}}
+            {{> integrations/package-meta}}
 
-    </div>
+        </div>
 
-    {{> integrations/package-install}}
-</section>
+        {{> integrations/package-install}}
+    </section>
 
-<section class="main docs l-wrap">
-    <ul>
-        <li><a href="#formatDate"><code>\{{formatDate}}</code></a> to format a date value</li>
-        <li><a href="#formatTime"><code>\{{formatTime}}</code></a> to format a date value with time formats</li>
-        <li><a href="#formatRelative"><code>\{{formatRelative}}</code></a> to format a date relative to now; e.g. "3 hours ago"</li>
-        <li><a href="#formatNumber"><code>\{{formatNumber}}</code></a> to format a numeric value</li>
-        <li><a href="#formatMessage"><code>\{{formatMessage}}</code></a> to format a complex message</li>
-    </ul>
+    <section class="docs l-wrap">
+        <ul>
+            <li><a href="#formatDate"><code>\{{formatDate}}</code></a> to format a date value</li>
+            <li><a href="#formatTime"><code>\{{formatTime}}</code></a> to format a date value with time formats</li>
+            <li><a href="#formatRelative"><code>\{{formatRelative}}</code></a> to format a date relative to now; e.g. "3 hours ago"</li>
+            <li><a href="#formatNumber"><code>\{{formatNumber}}</code></a> to format a numeric value</li>
+            <li><a href="#formatMessage"><code>\{{formatMessage}}</code></a> to format a complex message</li>
+        </ul>
 
-    <p>
-        There is one block helper called <a href="#intl"><code>\{{intl}}</code></a> that can be used to create a new intl data scope by updating the i18n data supplied to Handlebars within the block. This is useful when you need to render part of the page in a particular locale, or need to supply the i18n data to Handlebars via the template context — some Handlebars integrations might not support supplying options.data.intl when rendering.
-    </p>
+        <p>
+            There is one block helper called <a href="#intl"><code>\{{intl}}</code></a> that can be used to create a new intl data scope by updating the i18n data supplied to Handlebars within the block. This is useful when you need to render part of the page in a particular locale, or need to supply the i18n data to Handlebars via the template context — some Handlebars integrations might not support supplying options.data.intl when rendering.
+        </p>
 
-    <p>
-        There is one utility helper called <a href="#intlGet"><code>intlGet()</code></a> for accessing and returning the value the properties from the i18n data supplied to Handlebars via a string namespace. This provides descriptive error messages when accessing a property that is <code>undefined</code>, unlike Handlebars built-in data channel access syntax <code>@</code>.
-    </p>
+        <p>
+            There is one utility helper called <a href="#intlGet"><code>intlGet()</code></a> for accessing and returning the value the properties from the i18n data supplied to Handlebars via a string namespace. This provides descriptive error messages when accessing a property that is <code>undefined</code>, unlike Handlebars built-in data channel access syntax <code>@</code>.
+        </p>
 
-    <h2 id="installation">Installation</h2>
+        <h2 id="installation">Installation</h2>
 
 
-    <h3 id="install-browser">Browser</h3>
-    <ol>
-        <li>
-            Install with <a href="http://bower.io/">bower</a>:
+        <h3 id="install-browser">Browser</h3>
+        <ol>
+            <li>
+                Install with <a href="http://bower.io/">bower</a>:
 {{#code "js"}}
 bower install handlebars-intl
-{{/code}} or download directly from:
+{{/code}}
+                or download directly from:
 
-            <ul>
-                <li><a href="{{cdnUrl package.dist.main}}">handlebars-intl.min.js ({{size package.dist.main}} gz)</a></li>
-                <li><a href="{{cdnUrl package.dist.withLocales}}">handlebars-intl-with-locales.min.js ({{size package.dist.withLocales}} gz)</a></li>
-            </ul>
+                <ul>
+                    <li><a href="{{cdnUrl package.dist.main}}">handlebars-intl.min.js ({{size package.dist.main}} gz)</a></li>
+                    <li><a href="{{cdnUrl package.dist.withLocales}}">handlebars-intl-with-locales.min.js ({{size package.dist.withLocales}} gz)</a></li>
+                </ul>
 
-        </li>
-        <li>Load the scripts into your page.
+            </li>
+            <li>Load the scripts into your page.
 {{#code "html"}}
 <script src="handlebars/handlebars.min.js"></script>
 <script src="handlebars-intl/handlebars-intl.min.js"></script>
 {{/code}}
-        </li>
-        <li>Register the helpers:
+            </li>
+            <li>Register the helpers:
 {{#code "js"}}
 HandlebarsIntl.registerWith(Handlebars);
 {{/code}}
-        </li>
-    </ol>
-    <p class="note">
-    <strong>NOTE:</strong>
-    Older browsers and Safari do not provide the global {{code "Intl"}} object (ECMA-402).
-    Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch the browser</a> using a polyfill.
-    </p>
+            </li>
+        </ol>
+        <p class="note">
+        <strong>NOTE:</strong>
+        Older browsers and Safari do not provide the global {{code "Intl"}} object (ECMA-402).
+        Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch the browser</a> using a polyfill.
+        </p>
 
 
-    <h3 id="install-node">Node/CommonJS</h3>
-    <ol>
-        <li>You can install the helpers with npm:
+        <h3 id="install-node">Node/CommonJS</h3>
+        <ol>
+            <li>You can install the helpers with npm:
 {{#code "js"}}
 npm install intl handlebars-intl
 {{/code}}
-        </li>
-        <li>Load in the module and register it:
+            </li>
+            <li>Load in the module and register it:
 {{#code "js"}}
 if (global.Intl) {
     global.Intl = require('intl'); // use polyfill for ECMA-402
@@ -92,24 +94,25 @@ var Handlebars = require('handlebars');
 var HandlebarsIntl = require('handlebars-intl');
 HandlebarsIntl.registerWith(Handlebars);
 {{/code}}
-        </li>
-    </ol>
+            </li>
+        </ol>
 
-    <p class="note">
-    <strong>NOTE:</strong>
-    Node (as of 0.10) doesn't provide the global <code>Intl</code> object (ECMA-402).
-    Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch the browser</a> using a polyfill.
-    </p>
+        <p class="note">
+        <strong>NOTE:</strong>
+        Node (as of 0.10) doesn't provide the global <code>Intl</code> object (ECMA-402).
+        Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch the browser</a> using a polyfill.
+        </p>
 
-    <h2>\{{formatNumber}}</h2>
-    {{~> example examples.number}}
+        <h2>\{{formatNumber}}</h2>
+        {{~> example examples.number}}
 
-    <h2>\{{formatDate}}</h2>
-    {{~> example examples.date}}
+        <h2>\{{formatDate}}</h2>
+        {{~> example examples.date}}
 
-    <h2>\{{formatRelative}}</h2>
-    {{~> example examples.relative}}
+        <h2>\{{formatRelative}}</h2>
+        {{~> example examples.relative}}
 
-    <h2>\{{formatMessage}}</h2>
-    {{~> example examples.message}}
-</section>
+        <h2>\{{formatMessage}}</h2>
+        {{~> example examples.message}}
+    </section>
+</main>

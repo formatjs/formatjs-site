@@ -1,4 +1,4 @@
-<section class="splash">
+<header class="splash">
     {{> nav}}
 
     <div class="splash-content l-wrap">
@@ -14,178 +14,180 @@
             </a>
         </p>
     </div>
-</section>
+</header>
 
-<section class="about docs">
-    <div class="l-wrap-wide">
-        <h2>{{brand}} is a set of JavaScript libraries.</h2>
+<main>
+    <section class="about docs">
+        <div class="l-wrap-wide">
+            <h2>{{brand}} is a set of JavaScript libraries.</h2>
 
-        <div class="about-content">
-            <p class="about-desc">
-                {{brand}} is a modular collection of JavaScript libraries for internationalization that are focused on formatting numbers, dates, and strings for displaying to people. It includes a set of core libraries that build on the JavaScript {{code "Intl"}} built-ins and industry-wide i18n standards, <em>plus</em> a set of integrations for common template and component libraries.
-            </p>
+            <div class="about-content">
+                <p class="about-desc">
+                    {{brand}} is a modular collection of JavaScript libraries for internationalization that are focused on formatting numbers, dates, and strings for displaying to people. It includes a set of core libraries that build on the JavaScript {{code "Intl"}} built-ins and industry-wide i18n standards, <em>plus</em> a set of integrations for common template and component libraries.
+                </p>
 
-            <div class="layers">
-                <div class="layer-integrations layer">{{brand}} Integrations</div>
-                <div class="layer-core layer">{{brand}} Core Libs</div>
-                <div class="layer-standards layer">Standards</div>
+                <div class="layers">
+                    <div class="layer-integrations layer">{{brand}} Integrations</div>
+                    <div class="layer-core layer">{{brand}} Core Libs</div>
+                    <div class="layer-standards layer">Standards</div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="integrations docs">
-    <div class="l-wrap-wide">
-        <h2>Integrates with other libraries.</h2>
+    <section class="integrations docs">
+        <div class="l-wrap-wide">
+            <h2>Integrates with other libraries.</h2>
 
-        <div class="integrations-content">
-            {{> integrations-list}}
+            <div class="integrations-content">
+                {{> integrations-list}}
 
-            <div class="integrations-desc">
-                <p>
-                    For most web projects, internationalization happens in the template or view layer, so we've built integrations with common template and component libraries: <a href="{{pathTo 'handlebars'}}">Handlebars</a>, <a href="{{pathTo 'react'}}">React</a>, and <a href="{{pathTo 'dust'}}">Dust</a>.
-                </p>
+                <div class="integrations-desc">
+                    <p>
+                        For most web projects, internationalization happens in the template or view layer, so we've built integrations with common template and component libraries: <a href="{{pathTo 'handlebars'}}">Handlebars</a>, <a href="{{pathTo 'react'}}">React</a>, and <a href="{{pathTo 'dust'}}">Dust</a>.
+                    </p>
 
-                <p>
-                    <a class="more" href="{{pathTo 'integrations'}}">
-                        Learn more about Integrations
-                    </a>
-                </p>
+                    <p>
+                        <a class="more" href="{{pathTo 'integrations'}}">
+                            Learn more about Integrations
+                        </a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="features docs">
-    <div class="l-wrap-wide">
-        <h2>Formats numbers, dates, and string messages.</h2>
+    <section class="features docs">
+        <div class="l-wrap-wide">
+            <h2>Formats numbers, dates, and string messages.</h2>
 
-        <div class="features-list">
-            <div class="feature">
-                <h3 class="subheading">Display numbers with separators.</h3>
+            <div class="features-list">
+                <div class="feature">
+                    <h3 class="subheading">Display numbers with separators.</h3>
 
-                <p class="feature-ex">
-                    <code class="feature-ex-input">1000.95</code>
-                    <span class="feature-ex-transform"></span>
-                    <span class="feature-ex-output">
-                        <span>
-                          {{#intl locales="en-US"}}
-                            <b>{{formatNumber 1000.95}}</b>
-                            <i class="feature-ex-locale">English</i>
-                          {{/intl}}
+                    <p class="feature-ex">
+                        <code class="feature-ex-input">1000.95</code>
+                        <span class="feature-ex-transform"></span>
+                        <span class="feature-ex-output">
+                            <span>
+                              {{#intl locales="en-US"}}
+                                <b>{{formatNumber 1000.95}}</b>
+                                <i class="feature-ex-locale">English</i>
+                              {{/intl}}
+                            </span>
+                            <span>
+                              {{#intl locales="fr-FR"}}
+                                <b>{{formatNumber 1000.95}}</b>
+                                <i class="feature-ex-locale">French</i>
+                              {{/intl}}
+                            </span>
                         </span>
-                        <span>
-                          {{#intl locales="fr-FR"}}
-                            <b>{{formatNumber 1000.95}}</b>
-                            <i class="feature-ex-locale">French</i>
-                          {{/intl}}
-                        </span>
-                    </span>
-                </p>
-            </div>
+                    </p>
+                </div>
 
-            <div class="feature">
-                <h3 class="subheading">Display dates and times correctly.</h3>
+                <div class="feature">
+                    <h3 class="subheading">Display dates and times correctly.</h3>
 
-                <p class="feature-ex">
-                    <code class="feature-ex-input">new Date()</code>
-                    <span class="feature-ex-transform"></span>
-                    <span class="feature-ex-output">
-                        <span>
-                          {{#intl locales="en-US"}}
-                            <b>{{formatDate now}}</b>
-                            <i class="feature-ex-locale">English (US)</i>
-                          {{/intl}}
+                    <p class="feature-ex">
+                        <code class="feature-ex-input">new Date()</code>
+                        <span class="feature-ex-transform"></span>
+                        <span class="feature-ex-output">
+                            <span>
+                              {{#intl locales="en-US"}}
+                                <b>{{formatDate now}}</b>
+                                <i class="feature-ex-locale">English (US)</i>
+                              {{/intl}}
+                            </span>
+                            <span>
+                              {{#intl locales="fr-FR"}}
+                                <b>{{formatDate now}}</b>
+                                <i class="feature-ex-locale">French</i>
+                              {{/intl}}
+                            </span>
                         </span>
-                        <span>
-                          {{#intl locales="fr-FR"}}
-                            <b>{{formatDate now}}</b>
-                            <i class="feature-ex-locale">French</i>
-                          {{/intl}}
-                        </span>
-                    </span>
-                </p>
-            </div>
+                    </p>
+                </div>
 
-            <div class="feature">
-                <h3 class="subheading">Display dates relative to "now".</h3>
+                <div class="feature">
+                    <h3 class="subheading">Display dates relative to "now".</h3>
 
-                <p class="feature-ex">
-                  {{#intl locales="en-US"}}
-                    <code class="feature-ex-input">
-                        "{{lastMonth}}"
-                    </code>
-                    <span class="feature-ex-transform"></span>
-                    <span class="feature-ex-output">
-                        <span>
-                            <b>{{formatRelative lastMonth}}</b>
-                        </span>
-                        <span>
-                            <b>{{formatRelative lastMonth style="numeric"}}</b>
-                        </span>
-                        <span>
-                            <b>{{formatRelative lastMonth units="day"}}</b>
-                        </span>
-                    </span>
-                  {{/intl}}
-                </p>
-            </div>
-
-            <div class="feature">
-                <h3 class="subheading">Pluralize labels in strings.</h3>
-
-                <p class="feature-ex">
-                    <code class="feature-ex-input">numComments</code>
-                    <span class="feature-ex-transform"></span>
-                    <span class="feature-ex-output">
+                    <p class="feature-ex">
                       {{#intl locales="en-US"}}
-                        <b>{{formatMessage (intlGet "messages.en-US.comments") numComments=0}}</b>
-                        <b>{{formatMessage (intlGet "messages.en-US.comments") numComments=1}}</b>
-                        <b>{{formatMessage (intlGet "messages.en-US.comments") numComments=1000}}</b>
+                        <code class="feature-ex-input">
+                            "{{lastMonth}}"
+                        </code>
+                        <span class="feature-ex-transform"></span>
+                        <span class="feature-ex-output">
+                            <span>
+                                <b>{{formatRelative lastMonth}}</b>
+                            </span>
+                            <span>
+                                <b>{{formatRelative lastMonth style="numeric"}}</b>
+                            </span>
+                            <span>
+                                <b>{{formatRelative lastMonth units="day"}}</b>
+                            </span>
+                        </span>
                       {{/intl}}
-                    </span>
+                    </p>
+                </div>
+
+                <div class="feature">
+                    <h3 class="subheading">Pluralize labels in strings.</h3>
+
+                    <p class="feature-ex">
+                        <code class="feature-ex-input">numComments</code>
+                        <span class="feature-ex-transform"></span>
+                        <span class="feature-ex-output">
+                          {{#intl locales="en-US"}}
+                            <b>{{formatMessage (intlGet "messages.en-US.comments") numComments=0}}</b>
+                            <b>{{formatMessage (intlGet "messages.en-US.comments") numComments=1}}</b>
+                            <b>{{formatMessage (intlGet "messages.en-US.comments") numComments=1000}}</b>
+                          {{/intl}}
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            {{!--
+            <h2>Modular, and ready to use.</h2>
+            --}}
+
+            <h2>Runs in the browser and Node.js.</h2>
+
+            <div class="features-list">
+                <p class="feature">
+                    {{brand}} has been tested in all the major browsers on both desktop and mobile devices. Careful attention has been applied to make sure the libraries work in ES3 browsers all the way down to IE 6.
+                </p>
+
+                <p class="feature">
+                    For many web apps rendering happens on the server, so we made sure {{brand}} works perfectly in Node.js. This allows developers to use {{brand}} on both the server and client-side of their apps.
                 </p>
             </div>
         </div>
+    </section>
 
-        {{!--
-        <h2>Modular, and ready to use.</h2>
-        --}}
+    <section class="standards docs">
+        <div class="l-wrap-wide">
+            <h2>Built on standards.</h2>
 
-        <h2>Runs in the browser and Node.js.</h2>
+            <div class="standards-content">
+                <p class="standards-desc">
+                    {{brand}} is aligned with: <a href="http://www.ecma-international.org/ecma-402/1.0/">ECMAScript Internationalization API</a> (ECMA-402), <a href="http://cldr.unicode.org/">Unicode CLDR</a>, and <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message syntax</a>. By building on these industry standards, {{brand}} leverages APIs in modern browsers, and works with the message syntax used by professional translators.
+                </p>
 
-        <div class="features-list">
-            <p class="feature">
-                {{brand}} has been tested in all the major browsers on both desktop and mobile devices. Careful attention has been applied to make sure the libraries work in ES3 browsers all the way down to IE 6.
-            </p>
-
-            <p class="feature">
-                For many web apps rendering happens on the server, so we made sure {{brand}} works perfectly in Node.js. This allows developers to use {{brand}} on both the server and client-side of their apps.
-            </p>
+                <p class="standards-logo">
+                    <img alt="JavaScript logo" src="/img/js.svg">
+                </p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="standards docs">
-    <div class="l-wrap-wide">
-        <h2>Built on standards.</h2>
-
-        <div class="standards-content">
-            <p class="standards-desc">
-                {{brand}} is aligned with: <a href="http://www.ecma-international.org/ecma-402/1.0/">ECMAScript Internationalization API</a> (ECMA-402), <a href="http://cldr.unicode.org/">Unicode CLDR</a>, and <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message syntax</a>. By building on these industry standards, {{brand}} leverages APIs in modern browsers, and works with the message syntax used by professional translators.
-            </p>
-
-            <p class="standards-logo">
-                <img alt="JavaScript logo" src="/img/js.svg">
-            </p>
-        </div>
-    </div>
-</section>
-
-<section class="cta">
-    <p>
-        <a class="cta-button pure-button-primary pure-button" href="{{pathTo 'guide'}}">
-            Get Started
-        </a>
-    </p>
-</section>
+    <section class="cta">
+        <p>
+            <a class="cta-button pure-button-primary pure-button" href="{{pathTo 'guide'}}">
+                Get Started
+            </a>
+        </p>
+    </section>
+</main>

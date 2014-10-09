@@ -7,6 +7,7 @@
     --white        : rgb(255, 255, 255);
     --white-alpha  : rgba(255, 255, 255, 0.44);
     --pink         : rgb(173, 104, 216);
+    --pink-light   : rgb(178, 155, 194);
     --pink-alpha3  : rgba(208, 146, 247, 0.20);
     --pink-alpha2  : rgba(208, 146, 247, 0.15);
     --pink-alpha1  : rgba(208, 146, 247, 0.10);
@@ -272,7 +273,7 @@ p code {
 }
 .head .nav-menu-item:hover span,
 .splash .nav-menu-item:hover span {
-    border-bottom: 3px solid var(--white-alpha);
+    border-bottom: 3px solid var(--pink-light);
 }
 .head .nav-menu-item.is-active span,
 .splash .nav-menu-item.is-active span {
@@ -295,7 +296,7 @@ p code {
     border-bottom: 2px solid var(--gainsboro);
 }
 .foot .nav-menu-item.is-active span {
-    border-bottom: 2px solid var(--pink);
+    border-bottom: 2px solid var(--purple);
 }
 
 .splash {

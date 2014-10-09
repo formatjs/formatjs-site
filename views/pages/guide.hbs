@@ -6,7 +6,30 @@
 </section>
 
 <section class="main docs l-wrap">
-    <h1>Guide</h1>
+    <h1>Guide Internationalizing Web Apps with {{brand}}</h1>
+
+    <h2 id="start">Getting Started</h2>
+
+    <p>
+        Internationalizing web apps is an involved and complex task, we created {{brand}} to help document the process and provide JavaScript libraries that can be integrated with your web app.
+    </p>
+
+    <p>
+        This page serves as a guide to the internationalization process and is brken down into the following sections:
+    </p>
+
+    <ol>
+        <li><a href="#principles">Basic Internationalization Principles</a></li>
+        <li><a href="patch-runtime">Patching the Runtime for Internationalization Support</a></li>
+        <li><a href="runtime-environments">Runtime Environments</a></li>
+        <li><a href="messageformat-syntax">Message Syntax</a></li>
+    </ol>
+
+    <p>
+        We've also integrated internationalization support into a few common template and component libraries. The documentation pages for these integrations is also a good place to start:
+    </p>
+
+    {{> integrations-list}}
 
 
     <h2 id="principles">Basic Internationalization Principles</h2>
@@ -85,7 +108,7 @@ var messages = {
 {{/code}}
 
     <p>
-        We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax which is also used in 
+        We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax which is also used in
         <a href="http://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">Java</a> and
         <a href="http://php.net/manual/en/class.messageformatter.php">PHP</a>.
     </p>
@@ -276,18 +299,10 @@ navigator.language || navigator.browserLanguage
 {{/code}}
 
 
-    <h2>Template and Component Library Integrations</h2>
-    <p>
-        We've integrated internationalization support into a few common template and component libraries.
-    </p>
-
-{{> integrations-list}}
-
-
     <h2 id="messageformat-syntax">Message Syntax</h2>
     <p>
         If you are translating text you'll need a way for your translators to express the subtleties of spelling, grammar, and conjugation inherent in each language.
-        We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax which is also used in 
+        We use the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax which is also used in
         <a href="http://docs.oracle.com/javase/7/docs/api/java/text/MessageFormat.html">Java</a> and
         <a href="http://php.net/manual/en/class.messageformatter.php">PHP</a>.
     </p>
@@ -438,7 +453,7 @@ Coupon expires at {expires, time, short}
 
     <h4 id="messageformat-custom-formats">Defining Custom Formats</h4>
     <p>
-        The 
+        The
         <code>{<var>key</var>, number, <var>format</var>}</code>,
         <code>{<var>key</var>, date, <var>format</var>}</code>, and
         <code>{<var>key</var>, time, <var>format</var>}</code>

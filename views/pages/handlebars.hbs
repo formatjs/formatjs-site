@@ -25,7 +25,7 @@
 
 <section class="main docs l-wrap">
 
-    <h2>Helpers</h2>
+    <p>This library provides a series of helpers to internationalize your handlebars templates:</p>
 
     <ul>
         <li><a href="#formatDate"><code>\{{formatDate}}</code></a> to format a date value</li>
@@ -33,76 +33,10 @@
         <li><a href="#formatRelative"><code>\{{formatRelative}}</code></a> to format a date relative to now; e.g. "3 hours ago"</li>
         <li><a href="#formatNumber"><code>\{{formatNumber}}</code></a> to format a numeric value</li>
         <li><a href="#formatMessage"><code>\{{formatMessage}}</code></a> to format a complex message</li>
+        <li><a href="#intlGet"><code>(intlGet)</code></a> to resolve messages in a subexpression
+        </li>
+        <li><a href="#intl"><code>\{{#intl}}</code></a> to create intl data scope in a block</li>
     </ul>
-
-    <p>
-        There is one block helper called <a href="#intl"><code>\{{intl}}</code></a> that can be used to create a new intl data scope by updating the i18n data supplied to Handlebars within the block. This is useful when you need to render part of the page in a particular locale, or need to supply the i18n data to Handlebars via the template context — some Handlebars integrations might not support supplying options.data.intl when rendering.
-    </p>
-
-    <p>
-        There is one utility helper called <a href="#intlGet"><code>intlGet()</code></a> for accessing and returning the value the properties from the i18n data supplied to Handlebars via a string namespace. This provides descriptive error messages when accessing a property that is <code>undefined</code>, unlike Handlebars built-in data channel access syntax <code>@</code>.
-    </p>
-
-    <h2 id="installation">Installation</h2>
-
-
-    <h3 id="install-browser">Browser</h3>
-    <ol>
-        <li>
-            Install with <a href="http://bower.io/">bower</a>:
-{{#code "js"}}
-bower install handlebars-intl
-{{/code}} or download directly from:
-
-            <ul>
-                <li><a href="{{cdnUrl package.dist.main}}">handlebars-intl.min.js ({{size package.dist.main}} gz)</a></li>
-                <li><a href="{{cdnUrl package.dist.withLocales}}">handlebars-intl-with-locales.min.js ({{size package.dist.withLocales}} gz)</a></li>
-            </ul>
-
-        </li>
-        <li>Load the scripts into your page.
-{{#code "html"}}
-<script src="handlebars/handlebars.min.js"></script>
-<script src="handlebars-intl/handlebars-intl.min.js"></script>
-{{/code}}
-        </li>
-        <li>Register the helpers:
-{{#code "js"}}
-HandlebarsIntl.registerWith(Handlebars);
-{{/code}}
-        </li>
-    </ol>
-    <p class="note">
-    <strong>NOTE:</strong>
-    Older browsers and Safari do not provide the global {{code "Intl"}} object (ECMA-402).
-    Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch the browser</a> using a polyfill.
-    </p>
-
-
-    <h3 id="install-node">Node/CommonJS</h3>
-    <ol>
-        <li>You can install the helpers with npm:
-{{#code "js"}}
-npm install intl handlebars-intl
-{{/code}}
-        </li>
-        <li>Load in the module and register it:
-{{#code "js"}}
-if (global.Intl) {
-    global.Intl = require('intl'); // use polyfill for ECMA-402
-}
-var Handlebars = require('handlebars');
-var HandlebarsIntl = require('handlebars-intl');
-HandlebarsIntl.registerWith(Handlebars);
-{{/code}}
-        </li>
-    </ol>
-
-    <p class="note">
-    <strong>NOTE:</strong>
-    Node (as of 0.10) doesn't provide the global <code>Intl</code> object (ECMA-402).
-    Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch the browser</a> using a polyfill.
-    </p>
 
 
     <h2>How It Works</h2>
@@ -144,6 +78,55 @@ var html = template(context, {
         <li>Supports custom formatters for <strong>numbers</strong> and <strong>dates/times</strong>.</li>
     </ul>
 
+
+
+    <h2 id="usage">Usage</h2>
+
+    <h3 id="install-browser">Browser</h3>
+    <ol>
+        <li>Load the scripts into your page.
+{{#code "html"}}
+<script src="handlebars/handlebars.min.js"></script>
+<script src="handlebars-intl/handlebars-intl.min.js"></script>
+{{/code}}
+        </li>
+        <li>Register the helpers:
+{{#code "js"}}
+HandlebarsIntl.registerWith(Handlebars);
+{{/code}}
+        </li>
+    </ol>
+    <p class="note">
+    <strong>NOTE:</strong>
+    Older browsers and Safari do not provide the global {{code "Intl"}} object (ECMA-402).
+    Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch the browser</a> using a polyfill.
+    </p>
+
+
+    <h3 id="install-node">Node/CommonJS</h3>
+    <ol>
+        <li>Require the module:
+{{#code "js"}}
+if (!global.Intl) {
+    global.Intl = require('intl'); // install and use polyfill for ECMA-402
+}
+var Handlebars = require('handlebars');
+var HandlebarsIntl = require('handlebars-intl');
+HandlebarsIntl.registerWith(Handlebars);
+{{/code}}
+        </li>
+        <li>Register the helpers:
+{{#code "js"}}
+HandlebarsIntl.registerWith(Handlebars);
+{{/code}}
+        </li>
+    </ol>
+
+    <p class="note">
+    <strong>NOTE:</strong>
+    Node (as of 0.10) doesn't provide the global <code>Intl</code> object (ECMA-402).
+    Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch nodejs</a> using a polyfill.
+    </p>
 
 
     <h2 id="formatNumber">Format numbers with separators</h2>
@@ -251,5 +234,19 @@ var html = template(context, {
     {{~> example examples.message}}
 
     <p>Additionally, if the message string contains HTML code, you can use <code>\{{formatHTMLMessage}}</code>, which has the exact same API but will not escape the formatted message. Remember to sanitize every value you pass into the helper to prevent XSS injections.</p>
+
+    <h2 id="intlGet">Message resolution by key</h2>
+
+    <p><code>(intlGet)</code> is an utility helper for accessing and returning the value the properties from the i18n data supplied to Handlebars via a string namespace.</p>
+
+    <p>In the example above, we use <code>(intlGet "messages.photos")</code> as a subexpression to delegate the lookup process for <code>"message.photos"</code>. It is equivalent to the value from <code>@data.intl.messages.photos</code>, but it provides descriptive error messages when accessing a property that is <code>undefined</code>, unlike Handlebars built-in data channel access syntax <code>@</code>.</p>
+
+    <h2 id="intl">Pluralize labels in strings</h2>
+
+    <p><code>\{{#intl}}</code> is a block helper that can be used to create a new intl data scope by updating the i18n data supplied to Handlebars within the block. This is useful when you need to render part of the page in a particular locale, or need to supply the i18n data to Handlebars via the template context — some Handlebars integrations might not support supplying options.data.intl when rendering. You can also use it to have different sections of the page rendered with different locales.</p>
+
+    {{~> example examples.intl}}
+
+    <p>You can apply the same principle for <code>formats</code> and <code>messages</code>, which are normally passed thru <code>intlData</code> value when rendering the template.</p>
 
 </section>

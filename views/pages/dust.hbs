@@ -87,31 +87,18 @@ dust.renderSource(template, context, function(error, html) {
 
 
     <h3 id="install-browser">Browser</h3>
-    <ol>
-        <li>
-            Install with <a href="http://bower.io/">bower</a>:
-{{#code "js"}}
-bower install dust-intl
-{{/code}} or download directly from:
 
-            <ul>
-                <li><a href="{{cdnUrl 'dust-intl/dist/dust-intl.min.js'}}">dust-intl.min.js ({{size "dust-intl/dist/dust-intl.min.js"}} gz)</a></li>
-                <li><a href="{{cdnUrl 'dust-intl/dist/dust-intl-with-locales.min.js'}}">dust-intl-with-locales.min.js ({{size "dust-intl/dist/dust-intl-with-locales.min.js"}} gz)</a></li>
-            </ul>
-
-        </li>
-        <li>Load the scripts into your page.
+    <h4>1. Load the Scripts into Your Page</h4>
 {{#code "html"}}
 <script src="dustjs-linkedin/dust-full.min.js"></script>
 <script src="dust-intl/dust-intl.min.js"></script>
 {{/code}}
-        </li>
-        <li>Register the helpers:
+
+    <h4>2. Register the helpers</h4>
 {{#code "js"}}
 DustIntl.registerWith(dust);
 {{/code}}
-        </li>
-    </ol>
+
     <p class="note">
     <strong>NOTE:</strong>
     Older browsers and Safari do not provide the global {{code "Intl"}} object (ECMA-402).
@@ -120,13 +107,13 @@ DustIntl.registerWith(dust);
 
 
     <h3 id="install-node">Node/CommonJS</h3>
-    <ol>
-        <li>You can install the helpers with npm:
+
+    <h4>1. Install the Helpers with NPM</h4>
 {{#code "js"}}
 npm install intl dust-intl
 {{/code}}
-        </li>
-        <li>Load in the module and register it:
+
+    <h4>2. Load in the Module and Register It</h4>
 {{#code "js"}}
 if (!global.Intl) {
     global.Intl = require('intl'); // use polyfill for ECMA-402
@@ -135,8 +122,6 @@ var dust = require('dustjs-linkedin');
 var DustIntl = require('dust-intl');
 DustIntl.registerWith(dust);
 {{/code}}
-        </li>
-    </ol>
 
     <p class="note">
     <strong>NOTE:</strong>

@@ -209,7 +209,7 @@ HandlebarsIntl.registerWith(Handlebars);
 
     <p>When trying to internationalize a handlebars template, you will need a way to localize the UI strings and logic for all the languages you wish to show, to render the exact same template in various locales by providing the localized messages. This library provide two helpers that can work together to provide the infrastructure to do so.</p>
 
-    <p id="intlGet"><code>\{{intlGet}}</code> helper implements a look up process by path to resolve the localized methods from the data channel passed into the template. Essentially, you can use the path to a message in the template to resolve the right message. More details about this helper below.</p>
+    <p id="intlGet"><code>\{{intlGet}}</code> helper implements a look up process by path to resolve the localized messages from the data channel passed into the template. Essentially, you can use the path to a message in the template to resolve the right message. More details about this helper below.</p>
 
     <p>While <code>\{{formatMessage}}</code> is an utility helper for accessing and returning the value of a a translated message using <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax, which is familiar to professional translators.
     The message format not only support placeholders, but also supports choosing different strings based on pluralization, gender, or other considerations.

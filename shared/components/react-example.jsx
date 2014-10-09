@@ -10,14 +10,24 @@ export default React.createClass({
     displayName: 'ReactExample',
     mixins     : [ExampleMixin],
 
+    statics: {
+        renderCode: [
+            'React.renderComponent(',
+            '    <Component ' +
+                    'locales={intlData.locales} ' +
+                    'formats={intlData.formats} ' +
+                    'messages={intlData.messages} />',
+            '    document.getElementById("example")',
+            ');'
+        ].join('\n')
+    },
+
     genderateRenderCode: function () {
         return [
             '/** @jsx React.DOM */',
-            'React.renderComponent(',
-            '    <Component locales={[\'' + this.state.currentLocale + '\']} ' +
-                    'formats={…} messages={…} />',
-            '    document.getElementById(\'example\')',
-            ');'
+            this.generateIntlDataCode(),
+            '',
+            this.constructor.renderCode
         ].join('\n');
     },
 
@@ -67,7 +77,7 @@ export default React.createClass({
                     <div className="react-output">
                         <ExampleComponent
                             locales={currentLocale}
-                            formats={this.props.intl.formats}
+                            formats={example.meta.formats}
                             messages={messages} />
                     </div>
 

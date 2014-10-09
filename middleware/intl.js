@@ -29,7 +29,6 @@ module.exports = function (req, res, next) {
 
             locales : [locale],
             messages: messages
-            // TODO: Handle/merge and Expose the common formats.
         });
 
         res.expose(intlData, 'intl');

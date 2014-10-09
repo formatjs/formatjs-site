@@ -660,7 +660,6 @@ p code {
         padding-bottom: 2rem;
     }
     .intro-package-mark {
-        margin-top: 0.25rem;
         margin-bottom: 0.25rem;
         max-width: 80px;
         max-height: 80px;
@@ -921,7 +920,6 @@ p code {
     }
 
     .intro-package-mark {
-        margin-top: 0.5rem;
         margin-bottom: 0.5rem;
         max-width: 128px;
         max-height: 128px;

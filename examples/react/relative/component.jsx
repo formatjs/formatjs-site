@@ -8,11 +8,11 @@ var Component = React.createClass({
         var meetingDate = Date.now() + (1000 * 60 * 51);
 
         return (
-            <div>
-                <b>{this.formatRelative(postDate)}</b><br/>
-                <b>{this.formatRelative(commentDate)}</b><br/>
-                <b>{this.formatRelative(meetingDate)}</b>
-            </div>
+            <ul>
+                <li>{this.formatRelative(postDate)}</li>
+                <li>{this.formatRelative(commentDate)}</li>
+                <li>{this.formatRelative(meetingDate)}</li>
+            </ul>
         );
     }
 });

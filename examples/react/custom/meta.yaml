@@ -16,5 +16,6 @@ formats:
             currency: USD
 
     relative:
-        exact:
+        hours:
+            units: hour
             style: numeric

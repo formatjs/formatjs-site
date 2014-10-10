@@ -15,7 +15,7 @@ var Component = React.createClass({
                     })}</b> <i>(in minutes)</i>
                 </p>
                 <p>
-                    <b>{this.formatRelative(lastTrip)}</b> <i>(default)</i><br/>
+                    <b>{this.formatRelative(lastTrip)}</b> <i>(best fit)</i><br/>
                     <b>{this.formatRelative(lastTrip, {
                         units: 'day'
                     })}</b> <i>(in days)</i>

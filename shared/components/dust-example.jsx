@@ -13,7 +13,6 @@ export default React.createClass({
 
     statics: {
         renderCode: [
-            'context.intl = intlData;',
             'dust.render(template, context, function(err, html) {',
             '    // Put `html` into the DOM or use it otherwise...',
             '});'
@@ -21,8 +20,10 @@ export default React.createClass({
     },
 
     genderateRenderCode: function () {
+        var intlData = this.generateIntlDataCode();
+
         return [
-            this.generateIntlDataCode(),
+            'context.intl = ' + JSON.stringify(intlData, null, 4) + ';',
             '',
             this.constructor.renderCode
         ].join('\n');

@@ -48,24 +48,27 @@ export default {
         this.setState({currentLocale: newLocale});
     },
 
-    generateIntlDataCode: function () {
+    generateIntlData: function () {
         var currentLocale = this.state.currentLocale;
-        var formats       = this.props.example.meta.formats || {};
+        var formats       = this.props.example.meta.formats;
         var messages      = this.props.intl.messages[currentLocale];
         var messageId     = this.props.example.meta.messageId;
         var message       = messages[messageId];
 
-        messages = {};
         if (message) {
+            messages = {};
             messages[messageId] = message;
+        } else {
+            messages = null;
         }
 
         var intlData = {
-            locales : currentLocale,
-            formats : formats,
-            messages: messages
+            locales: currentLocale
         };
 
-        return 'var intlData = ' + JSON.stringify(intlData, null, 4) + ';';
+        if (messages) { intlData.messages = messages; }
+        if (formats)  { intlData.formats  = formats; }
+
+        return intlData;
     }
 };

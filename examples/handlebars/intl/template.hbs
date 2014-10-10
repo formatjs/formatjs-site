@@ -1,5 +1,11 @@
-<p>{{formatDate date day="numeric" month="long"}} (current locale)</p>
+<p>
+    <b>{{formatDate date day="numeric" month="long"}}</b>
+    <i>(current locale)</i>
+</p>
 
-{{#intl locales="fr"}}
-<p>{{formatDate date day="numeric" month="long"}} (force to use "fr" locale)</p>
+{{#intl locales="fr-FR"}}
+    <p>
+        <b>{{formatDate date day="numeric" month="long"}}</b>
+        <i>("fr-FR" locale)</i>
+    </p>
 {{/intl}}

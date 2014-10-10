@@ -1,4 +1,5 @@
 formats:
     relative:
-        exact:
+        hours:
+            units: hour
             style: numeric

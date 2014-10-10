@@ -1,0 +1,5 @@
+formats:
+    relative:
+        hours:
+            units: hour
+            style: numeric

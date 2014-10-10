@@ -1,0 +1,5 @@
+<ul>
+    <li>{@formatNumber val=num/}</li>
+    <li>{@formatNumber val=completed formatName="percentage"/}</li>
+    <li>{@formatNumber val=price formatName="USD"/}</li>
+</ul>

@@ -1,5 +1,5 @@
-<p>
-    <b>{@formatRelative val=postDate/}</b><br>
-    <b>{@formatRelative val=commentDate/}</b><br>
-    <b>{@formatRelative val=meetingDate/}</b>
-</p>
+<ul>
+    <li>{@formatRelative val=postDate/}</li>
+    <li>{@formatRelative val=commentDate/}</li>
+    <li>{@formatRelative val=meetingDate/}</li>
+</ul>

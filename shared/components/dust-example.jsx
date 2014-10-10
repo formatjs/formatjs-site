@@ -20,7 +20,7 @@ export default React.createClass({
     },
 
     genderateRenderCode: function () {
-        var intlData = this.generateIntlDataCode();
+        var intlData = this.generateIntlData();
 
         return [
             'context.intl = ' + JSON.stringify(intlData, null, 4) + ';',

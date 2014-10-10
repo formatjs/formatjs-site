@@ -1,0 +1,6 @@
+<ul>
+    <li>{@formatNumber   val=price     formatName="USD"/}</li>
+    <li>{@formatDate     val=timestamp formatName="short"/}</li>
+    <li>{@formatTime     val=now       formatName="hhmm"/}</li>
+    <li>{@formatRelative val=yesterday formatName="hours"/}</li>
+</ul>

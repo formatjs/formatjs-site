@@ -3,18 +3,15 @@ var Component = React.createClass({
     mixins: [ReactIntlMixin],
 
     render: function () {
-        var A = 1390518044403;
-        var B = new Date();
-        var C = 1400.34;
-        var D = Date.now() - (1000 * 60 * 60 * 24);
+        var yesterday = Date.now() - (1000 * 60 * 60 * 24);
 
         return (
-            <div>
-                <p>A: {this.formatDate(A,     'short')}</p>
-                <p>B: {this.formatTime(B,     'hhmm')}</p>
-                <p>C: {this.formatNumber(C,   'USD')}</p>
-                <p>D: {this.formatRelative(D, 'exact')}</p>
-            </div>
+            <ul>
+                <li>{this.formatNumber(1400.34,     'USD')}</li>
+                <li>{this.formatDate(1390518044403, 'short')}</li>
+                <li>{this.formatTime(new Date(),    'hhmm')}</li>
+                <li>{this.formatRelative(yesterday, 'hours')}</li>
+            </ul>
         );
     }
 });

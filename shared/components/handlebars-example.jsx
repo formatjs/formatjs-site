@@ -20,8 +20,10 @@ export default React.createClass({
     },
 
     genderateRenderCode: function () {
+        var intlData = this.generateIntlData();
+
         return [
-            this.generateIntlDataCode(),
+            'var intlData = ' + JSON.stringify(intlData, null, 4) + ';',
             '',
             this.constructor.renderCode
         ].join('\n');

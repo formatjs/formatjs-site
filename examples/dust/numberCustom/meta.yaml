@@ -1,0 +1,7 @@
+formats:
+    number:
+        USD:
+            style: currency
+            currency: USD
+        percentage:
+            style: percent

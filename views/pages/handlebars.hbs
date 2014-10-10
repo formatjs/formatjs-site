@@ -17,7 +17,6 @@
         <h2 class="tagline">{{package.description}}</h2>
 
         {{> integrations/package-meta}}
-
     </div>
 
     {{> integrations/package-install}}
@@ -25,41 +24,50 @@
 
 <section class="main docs l-wrap">
 
-    <p>This library provides a series of helpers to internationalize your <a href="http://handlebarsjs.com">handlebars templates</a>:</p>
+    <p>
+        This library provides a set of helpers to internationalize your <a href="http://handlebarsjs.com/">Handlebars</a> templates:
+    </p>
 
     <h2>Features</h2>
-
-    <ul>
-        <li>Formats <strong>numbers</strong> and <strong>dates/times</strong>, including those in complex messages.</li>
-        <li>Formats <strong>relative times</strong> (e.g., "3 hours ago").</li>
-        <li>Formats complex messages, including <strong>plural</strong> and <strong>select</strong> arguments using <a href="{{pathTo 'guide'}}#messageformat-syntax">ICU Message syntax</a>.</li>
-        <li>Supports custom formatters for <strong>numbers</strong> and <strong>dates/times</strong>.</li>
-    </ul>
+    {{> integrations/features}}
 
 
     <h2>Helpers</h2>
 
     <ul>
-        <li><a href="#formatDate"><code>\{{formatDate}}</code></a> to format a date value</li>
-        <li><a href="#formatTime"><code>\{{formatTime}}</code></a> to format a date value with time formats</li>
-        <li><a href="#formatRelative"><code>\{{formatRelative}}</code></a> to format a date relative to now; e.g. "3 hours ago"</li>
-        <li><a href="#formatNumber"><code>\{{formatNumber}}</code></a> to format a numeric value</li>
-        <li><a href="#formatMessage"><code>\{{formatMessage}}</code></a> to format a complex message</li>
-        <li><a href="#intlGet"><code>(intlGet)</code></a> to resolve messages in a subexpression
+        <li>
+            <a href="#formatDate"><code>\{{formatDate}}</code></a> formats a date value
         </li>
-        <li><a href="#intl"><code>\{{#intl}}</code></a> to create intl data scope in a block</li>
+        <li>
+            <a href="#formatTime"><code>\{{formatTime}}</code></a> formats a date value with time formats
+        </li>
+        <li>
+            <a href="#formatRelative"><code>\{{formatRelative}}</code></a> formats a date relative to now; e.g. "3 hours ago"
+        </li>
+        <li>
+            <a href="#formatNumber"><code>\{{formatNumber}}</code></a> formats a number value
+        </li>
+        <li>
+            <a href="#formatMessage"><code>\{{formatMessage}}</code></a> formats a translated string message
+        </li>
+        <li>
+            <a href="#intlGet"><code>(intlGet)</code></a> resolves messages by path in a subexpression
+        </li>
+        <li>
+            <a href="#intl"><code>\{{#intl}}</code></a> creates an <code>intl</code> data scope in a block
+        </li>
     </ul>
 
 
     <h2>How It Works</h2>
 
-    <p><strong>Template Source:</strong></p>
+    <h3>Create a Handlebars Template Using a Helper</h3>
 
 {{#code "hbs"}}
-<b>\{{formatNumber price style="currency" currency="USD"}}</b>
+<p>\{{formatNumber price style="currency" currency="USD"}}</p>
 {{/code}}
 
-    <p><strong>Render Template:</strong></p>
+    <h3>Render the Template</h3>
 
 {{#code "js"}}
 var intlData = {
@@ -75,49 +83,50 @@ var html = template(context, {
 });
 {{/code}}
 
-    <p><strong>Output:</strong></p>
-
-{{#code "html"}}
-<b>$1,000.00</b>
-{{/code}}
-
+    <div class="example">
+        <div class="example-output">
+            <h4 class="example-output-heading">Rendered</h4>
+            <div class="handlebars-output">
+                <p>$1,000.00</p>
+            </div>
+        </div>
+    </div>
 
 
     <h2 id="usage">Usage</h2>
 
     <h3 id="install-browser">Browser</h3>
 
-    <h4>1. Load the scripts into your page</h4>
+    <h4>1. Load the scripts onto your page</h4>
 
 {{#code "html"}}
-<script src="handlebars/handlebars.min.js"></script>
-<script src="handlebars-intl/handlebars-intl.min.js"></script>
+<script src="handlebars/dist/handlebars.min.js"></script>
+<script src="{{package.dist.main}}"></script>
 {{/code}}
+
+    {{> integrations/note-intl-browser}}
 
     <h4>2. Register the helpers</h4>
 
 {{#code "js"}}
 HandlebarsIntl.registerWith(Handlebars);
 {{/code}}
-
-    <p class="note">
-    <strong>NOTE:</strong>
-    Older browsers and Safari do not provide the global {{code "Intl"}} object (ECMA-402).
-    Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch the browser</a> using a polyfill.
-    </p>
-
 
     <h3 id="install-node">Node/CommonJS</h3>
 
     <h4>1. Require the module</h4>
 
 {{#code "js"}}
+// Load and use polyfill for ECMA-402.
 if (!global.Intl) {
-    global.Intl = require('intl'); // install and use polyfill for ECMA-402
+    global.Intl = require('intl');
 }
-var Handlebars = require('handlebars');
+
+var Handlebars     = require('handlebars');
 var HandlebarsIntl = require('handlebars-intl');
 {{/code}}
+
+    {{> integrations/note-intl-node}}
 
     <h4>2. Register the helpers</h4>
 
@@ -125,126 +134,161 @@ var HandlebarsIntl = require('handlebars-intl');
 HandlebarsIntl.registerWith(Handlebars);
 {{/code}}
 
-    <p class="note">
-    <strong>NOTE:</strong>
-    Node (as of 0.10) doesn't provide the global <code>Intl</code> object (ECMA-402).
-    Read more on <a href="{{pathTo 'guide'}}#how-to-patch">how to patch nodejs</a> using a polyfill.
-    </p>
-
 
     <h2 id="formatNumber">Format Numbers with Separators</h2>
 
     <p>
-    <code>\{{formatNumber}}</code> helper is used to present a number in a way appropriate for the current locale. It formats numbers using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">Intl.NumberFormat</a>, and returns the formatted string value.
+        The <code>\{{formatNumber}}</code> helper is used to represent a number in a way appropriate for the current locale. It formats numbers using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat"><code>Intl.NumberFormat</code></a>, and returns the formatted string value.
     </p>
 
     {{~> example examples.number}}
 
-    <p>Passing formatting options (e.g.: <code>style="currency" currency="USD"</code>) in every call to <code>\{{formatNumber}}</code> in your templates can become a problem in large code bases, or simply because you use different currency value per locale. Instead, you can setup <code>data.intl.formats.number</code> to define custom number formats to simplify that.</p>
+    <h3>Using Named Number Formats</h3>
+
+    <p>
+        Specifying formatting options (e.g.: <code>style="currency" currency="USD"</code>) in every call to <code>\{{formatNumber}}</code> in your templates can become a problem in large code bases, and isn't DRY. Instead, you can setup <code>data.intl.formats.number</code> to define named number formats.
+    </p>
 
     {{~> example examples.numberCustom}}
 
-    <p>In the example above, <code>"USD"</code> and <code>"percentage"</code> are the keys to  custom number formats passed in <code>intlData</code> when rendering the template. Check the <strong>RENDER</strong> tab to see the details.</p>
+    <p>
+        In the example above, <code>"USD"</code> and <code>"percentage"</code> are names of number formats defined in <code>intlData</code>, which is used when rendering the template. Check the <strong>RENDER</strong> tab to see the details.
+    </p>
 
-    <p>See <a href="#custom-formats">the custom formats section</a> for more information.</p>
+    {{> integrations/see-custom-formats}}
 
 
-
-    <h2 id="formatDate">Format Dates and times Correctly</h2>
+    <h2 id="formatDate">Format Dates and Times Correctly</h2>
 
     <p>
-    <code>\{{formatDate}}</code> helper is used to present a date in a way appropriate for the current locale. It formats dates using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">Intl.DateTimeFormat</a>, and returns the formatted string value.
+        The <code>\{{formatDate}}</code> helper is used to represent a date in a way appropriate for the current locale. It formats dates using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat"><code>Intl.DateTimeFormat</code></a>, and returns the formatted string value.
     </p>
 
     {{~> example examples.date}}
 
-    <p>Passing formatting options (e.g.: <code>day="numeric" month="long" year="numeric"</code>) in every call to <code>\{{formatDate}}</code> in your templates can become a problem in large code bases, or simply because you want to use different options for different locales. Instead, you can setup <code>data.intl.formats.date</code> to define application level date <code>formats</code> to simplify that.</p>
+    <h3>Using Named Date Formats</h3>
+
+    <p>
+        Specifying format options (e.g.: <code>day="numeric" month="long" year="numeric"</code>) in every call to <code>\{{formatDate}}</code> in your templates can become a problem in large code bases, and isn't DRY. Instead, you can setup <code>data.intl.formats.date</code> to define application-level named date formats.
+    </p>
 
     {{~> example examples.dateCustom}}
 
-    <p>In the example above, <code>"short"</code> is the key to a custom date format defined in <code>formats.date</code> in <code>intlData</code>. Check the <strong>RENDER</strong> tab to see the details.</p>
+    <p>
+        In the example above, <code>"short"</code> is the name of a date format defined in <code>formats.date</code> in <code>intlData</code>. Check the <strong>RENDER</strong> tab to see the details.
+    </p>
 
-    <p>See <a href="#custom-formats">the custom formats section</a> for more information.</p>
+    {{> integrations/see-custom-formats}}
 
+    <h3>Using Named Time Formats</h3>
 
-
-    <p id="formatTime"><code>\{{formatTime}}</code> is just like the <code>\{{formatDate}}</code> helper, except it will reference any string-named `format` from <code>data.intl.formats.time</code>.</p>
-
+    <p id="formatTime">
+        The <code>\{{formatTime}}</code> helper is just like the <code>\{{formatDate}}</code> helper, except it will reference any named formats from <code>data.intl.formats.time</code>.
+    </p>
 
 
     <h2 id="formatRelative">Format Dates Relative To "now"</h2>
 
     <p>
-    <code>\{{formatRelative}}</code> helper is used to present a relative time in a way appropriate for the current locale. It formats the relative time following the rules from <a href="http://cldr.unicode.org/">Unicode CLDR</a>, and returns the formatted string value.
+        The <code>\{{formatRelative}}</code> helper is used to represent a relative time in a way appropriate for the current locale. It formats the relative time following the rules from <a href="http://cldr.unicode.org/">Unicode CLDR</a>, and returns the formatted string value.
     </p>
 
     {{~> example examples.relative}}
 
-    <p>By default, the relative time is computed to the best fit unit, but you can explicitly choose <code>units</code> to be displayed in <code>"second"</code>, <code>"minute"</code>, <code>"hour"</code>, <code>"day"</code>, <code>"month"</code> or <code>"year"</code>.</p>
+    <h3>Using Specific Relative Units</h3>
+
+    <p>
+        By default, the relative time is formatted using the best fit unit of time. However, you can explicitly set the <code>units</code> option one of the following values:<br> <code>"second"</code>, <code>"minute"</code>, <code>"hour"</code>, <code>"day"</code>, <code>"month"</code> or <code>"year"</code>.
+    </p>
 
     {{~> example examples.relativeUnits}}
 
-    <p><code>style</code> provide another level of customization, the relative time is computed as <code>"best fit"</code>, which means that instead of "1 day ago", it will display "yesterday", or "in 1 year" will be "next year", etc. But you can choose to use <code>style="numeric"</code>.
+    <h3>Using Specific Relative Styles</h3>
+
+    <p>
+        The <code>style</code> option provides another level of customization. By default, the relative time is computed with a <code>"best fit"</code> style, which means, for example, that instead of "1 day ago", it will display "yesterday", or "in 1 year" will be "next year", etc. The other <code>style</code> is <code>"numeric"</code>, in which the output will <em>always</em> contain a number.
+    </p>
 
     {{~> example examples.relativeStyle}}
 
+    <h3>Using Named Relative Formats</h3>
 
-    <p>Passing formatting options (e.g.: <code>style="numeric"</code>) in every call to <code>\{{formatRelative}}</code> in your templates can become a problem in large code bases. Instead, you can setup <code>data.intl.formats.relative</code> to define application level relative formats to simplify that.</p>
+    <p>
+        Specifying format options (e.g.: <code>style="numeric"</code>) in every call to <code>\{{formatRelative}}</code> in your templates can become a problem in large code bases. Instead, you can setup <code>data.intl.formats.relative</code> to define application-level named relative formats.
+    </p>
 
     {{~> example examples.relativeCustom}}
 
-    <p>In the example above, <code>"exact"</code> is the key to a custom date format defined in <code>formats.relative</code> in <code>intlData</code>. Check the <strong>RENDER</strong> tab to see the details.</p>
+    <p>
+        In the example above, <code>"hours"</code> is the name of a relative format defined in the <code>formats.relative</code> component prop. Check the <strong>RENDER</strong> tab to see the details.
+    </p>
 
-    <p>See <a href="#custom-formats">the custom formats section</a> for more information.</p>
-
-
+    {{> integrations/see-custom-formats}}
 
 
     <h2 id="formatMessage">Pluralize Labels in Strings</h2>
 
-    <p>When trying to internationalize a handlebars template, you will need a way to localize the UI strings and logic for all the languages you wish to show, to render the exact same template in various locales by providing the localized messages. This library provide two helpers that can work together to provide the infrastructure to do so.</p>
+    <p>
+        When internationalizing Handlebars templates, you will need a way to localize your UI strings, including any logic pieces like pluralization rules for all the languages you wish to support. These strings should be externalized from your Handlebars templates so that the same template can be used for all languages. This library provides two methods that can work together to provide a way to lookup and format language-specific strings.
+    </p>
 
-    <p id="intlGet"><code>\{{intlGet}}</code> helper implements a look up process by path to resolve the localized messages from the data channel passed into the template. Essentially, you can use the path to a message in the template to resolve the right message. More details about this helper below.</p>
+    <p id="intlGet">
+        The <code>\{{intlGet}}</code> helper implements a lookup process by path to access data from the <code>intl</code> object passed into the Handlebars data channel when rendering the template. Usually this helper is used in a subexpression to lookup translated string messages; e.g., <code>(intlGet "messages.photos")</code>.
+    </p>
 
     <p>
-        The <code>\{{formatMessage}}</code> helper is used to display messages that have been translated for the user's locale.
-        In order to use it you'll need to translate your strings into all the languages you wish to show.
-        These translations are provided in the <a href="{{pathTo 'guide'}}#messageformat-syntax">ICU Message</a> syntax, which is familiar to professional translators.
-        The message format also supports choosing different strings based on pluralization, gender, or other considerations.
+        The <code>\{{formatMessage}}</code> helper formats a translated message written in the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax, which is used by professional translators. The message format supports placeholders, plus choosing different strings based on pluralization, gender, or other criteria.
     </p>
+
+    {{> integrations/see-guide}}
 
     {{~> example examples.message}}
 
-    <p>In the example above, we use <code>(intlGet "messages.photos")</code> as a subexpression to delegate the lookup process for <code>"message.photos"</code>. It is equivalent to the value from <code>@data.intl.messages.photos</code>, but it provides descriptive error messages when accessing a property that is <code>undefined</code>, unlike Handlebars built-in data channel access syntax <code>@</code>.</p>
+    <p>
+        In the example above, we use <code>(intlGet "messages.photos")</code> as a subexpression to delegate the lookup process for <code>"message.photos"</code>. It is equivalent to the accessing the value from <code>@data.intl.messages.photos</code>, but it will provide descriptive error messages when accessing a property that is <code>undefined</code>, unlike Handlebars built-in data channel access syntax <code>@</code>. Check the <strong>RENDER</strong> tab to see the details.
+    </p>
 
-    <p>You can provide <code>messages</code> property at the application level when rendering the top level template, and those <strong>messages</strong> &mdash; just like <strong>locales</strong> &mdash; will be propagated to any partial or block.</p>
+    <p class="note">
+        <b>Note:</b> You can provide the <code>messages</code> object when rendering the top-level template, and <code>messages</code> &mdash; just like <code>locales</code> &mdash; will be propagated to any partial or helper.
+    </p>
 
-    <p>Additionally, if you are using <code>{value, number}</code> or <code>{value, date}</code> or <code>{value, time}</code> within a message to format <strong>dates</strong>, <strong>times</strong> and <strong>numbers</strong>, you will not be able to specify formatting options. In that case, you can leverage <a href="#custom-formats">custom formatters</a> as described below, and specify which custom formatter to use in your messages in a form of strings, e.g: <code>{value, number, "USD"}</code> and <code>{value, date, "short"}</code> and <code>{value, time, "long"}</code>.</p>
+    <p>
+        Additionally, you can use <a href="#custom-formats">named formats</a> as described below, to specify a set of named format options to use in your messages, e.g: <code>{someNum, number, USD}</code> and <code>{someDate, date, short}</code> or <code>{someTime, time, long}</code>.
+    </p>
 
-    <p>Additionally, if the message string contains HTML code, you can use <code>\{{formatHTMLMessage}}</code>, which has the exact same API but will not escape the formatted message. Remember to sanitize every value you pass into the helper to prevent XSS injections.</p>
+    <h3>Format Messages That Contain HTML</h3>
 
+    <p>
+        If a message string contains HTML, you can use the <code>\{{formatHTMLMessage}}</code> helper, which has the exact same API as <code>\{{formatMessage}}</code> but it will not escape the HTML in the message's text. However, it will escape all the values the message if formatted with, but  remember to be cautious of untrusted user input to prevent XSS injections.
+    </p>
 
 
     <h2 id="intl">Create Intl Lambda</h2>
 
-    <p><code>\{{#intl}}</code> is a block helper that can be used to create a new intl data scope by updating the i18n data supplied to Handlebars within the block. This is useful when you need to render part of the page in a particular locale, or need to supply the i18n data to Handlebars via the template context — some Handlebars integrations might not support supplying options.data.intl when rendering. You can also use it to have different sections of the page rendered with different locales.</p>
+    <p>
+        The <code>\{{#intl}}</code> block helper can be used to create a new <code>intl</code> data scope by updating the <code>intl</code> data supplied to Handlebars within the block. This is useful when you need to render part of the page in a particular locale, or need to supply the <code>intl</code> data to Handlebars via the template's context &mdash; some Handlebars integrations might not support supplying <code>options.data.intl</code> when rendering.
+    </p>
 
     {{~> example examples.intl}}
 
-    <p>You can apply the same principle for <code>formats</code> and <code>messages</code>, which are normally passed thru <code>intlData</code> value when rendering the template. Check the <strong>RENDER</strong> tab to see the details.</p>
+    <p>
+        You can use this approach for <code>formats</code> and <code>messages</code>, which are normally passed via <code>intlData</code> object when rendering the template. Check the <strong>RENDER</strong> tab to see the details.
+    </p>
 
 
-
-    <h2 id="custom-formats">Writing your own custom formats</h2>
+    <h2 id="custom-formats">Define Your Own Custom Formats</h2>
 
     <p>
-    This library allows you to define named configuration options that you can reuse within the entire application or within a template and its partials, esentially creating your own custom formatting rules. These rules can be specified for <code>date</code>, <code>time</code>, <code>number</code> and <code>relative</code>. The following example illustrates how these custom formats work.
+        Handlebars Intl allows you to define named formats that you can be used throughout your entire application or within a template and its partials. These named formats can be specified for <code>date</code>, <code>time</code>, <code>number</code> and <code>relative</code> format types. The following example illustrates how these custom named formats work.
     </p>
 
     {{~> example examples.custom}}
 
-    <p>In the example above, <code>"short"</code>, <code>"exact"</code>, <code>"hhmm"</code> and <code>"USD"</code> are the keys to custom  formats defined in <code>formats</code> in <code>intlData</code>. Check the <strong>RENDER</strong> tab to see the details.</p>
+    <p>
+        In the example above, <code>"USD"</code>, <code>"short"</code>, <code>"hhmm"</code>, and <code>"hours"</code> are the named custom formats defined in <code>formats</code> in <code>intlData</code>. Check the <strong>RENDER</strong> tab to see the details.
+    </p>
 
-    <p>You can provide <code>formats</code> property at the application level when rendering the top level template, and <strong>formats</strong> &mdash; just like <strong>messages</strong> and <strong>locales</strong> &mdash; will be propagated to any partial and block.</p>
-
+    <p class="note">
+        <b>Note:</b> You can provide the <code>formats</code> object when rendering the top-level template, and <code>formats</code> &mdash; just like <code>messages</code> and <code>locales</code> &mdash; will be propagated to any partial or helper.
+    </p>
 </section>

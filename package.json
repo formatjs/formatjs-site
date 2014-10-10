@@ -30,14 +30,15 @@
     "ypromise": "^0.2.3"
   },
   "devDependencies": {
+    "Rainbow": "ccampbell/rainbow#c2f5b0a3fa",
     "autoprefixer-core": "^3.0.1",
     "broccoli": "^0.13.0",
     "broccoli-es6-module-transpiler": "^0.2.3",
-    "broccoli-file-mover": "^0.4.0",
-    "broccoli-filter": "^0.1.6",
-    "broccoli-merge-trees": "^0.1.4",
+    "broccoli-file-mover": "^0.4.1",
+    "broccoli-filter": "^0.1.7",
+    "broccoli-merge-trees": "^0.2.0",
     "broccoli-react": "^0.5.0",
-    "broccoli-sane-watcher": "0.0.6",
+    "broccoli-sane-watcher": "0.0.7",
     "broccoli-unwatched-tree": "^0.1.1",
     "grunt": "^0.4.5",
     "grunt-broccoli-build": "^0.4.0",
@@ -48,8 +49,7 @@
     "postcss": "^2.2.4",
     "postcss-custom-properties": "^0.4.0",
     "rimraf": "^2.2.8",
-    "xunit-file": "^0.0.5",
-    "Rainbow": "ccampbell/rainbow#c2f5b0a3fa"
+    "xunit-file": "^0.0.5"
   },
   "scripts": {
     "postinstall": "grunt",

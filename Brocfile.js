@@ -9,9 +9,9 @@ var autoprefixer     = require('autoprefixer-core'),
     postcss          = require('./broccoli/postcss'),
     unwatchedTree    = require('broccoli-unwatched-tree');
 
-var node_modules     = unwatchedTree('node_modules/'),
-    shared           = 'shared/',
-    pub              = 'public/';
+var node_modules = unwatchedTree('node_modules/'),
+    shared       = 'shared/',
+    pub          = 'public/';
 
 node_modules = moveFiles(node_modules, {
     files: {
@@ -31,9 +31,7 @@ node_modules = moveFiles(node_modules, {
         'handlebars-intl/dist': 'vendor/handlebars-intl',
         'react-intl/dist'     : 'vendor/react-intl',
 
-        'Rainbow/js/rainbow.js'    : 'vendor/rainbow/rainbow.js',
-        'Rainbow/js/rainbow.min.js': 'vendor/rainbow/rainbow.min.js',
-        'Rainbow/js/language'      : 'vendor/rainbow/language'
+        'Rainbow/js': 'vendor/rainbow'
     }
 });
 

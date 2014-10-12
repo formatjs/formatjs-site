@@ -33,7 +33,7 @@
     "Rainbow": "ccampbell/rainbow#c2f5b0a3fa",
     "autoprefixer-core": "^3.0.1",
     "broccoli": "^0.13.0",
-    "broccoli-es6-module-transpiler": "^0.2.3",
+    "broccoli-es6-module-transpiler": "^0.3.0",
     "broccoli-file-mover": "^0.4.1",
     "broccoli-filter": "^0.1.7",
     "broccoli-merge-trees": "^0.2.0",

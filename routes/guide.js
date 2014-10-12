@@ -6,6 +6,7 @@ module.exports = function (route) {
 
     route.get(function (req, res) {
         res.locals.activeMenuItem = route.name;
+        res.expose('guide', 'pageType');
         res.render('guide');
     });
 };

@@ -12,5 +12,7 @@ exports = module.exports = {
         views   : path.resolve('views/pages/'),
         layouts : path.resolve('views/layouts/'),
         partials: path.resolve('views/partials/')
-    }
+    },
+
+    ga: 'UA-55722103-1'
 };

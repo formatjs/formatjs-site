@@ -120,3 +120,7 @@ Object.assign(app.locals, {
         }
     }
 });
+
+if (app.get('env') === 'production') {
+    app.locals.analytics = config.ga;
+}

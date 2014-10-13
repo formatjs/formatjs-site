@@ -93,16 +93,21 @@ dust.renderSource(template, context, function(error, html) {
 
     <h3 id="install-browser">Browser</h3>
 
-    <h4>1. Load the scripts onto your page</h4>
+    <h4>1. Load the Scripts onto the Page</h4>
+
+    <p>
+        First, load Dust and Dust Intl onto the page:
+    </p>
 
 {{#code "html"}}
 <script src="dustjs-linkedin/dist/dust-full.min.js"></script>
 <script src="{{package.dist.main}}"></script>
 {{/code}}
 
+    {{> integrations/load-locale-data-browser}}
     {{> integrations/note-intl-browser}}
 
-    <h4>2. Register the helpers</h4>
+    <h4>2. Register the Helpers</h4>
 
 {{#code "js"}}
 DustIntl.registerWith(dust);
@@ -110,7 +115,7 @@ DustIntl.registerWith(dust);
 
     <h3 id="install-node">Node/CommonJS</h3>
 
-    <h4>1. Require the module</h4>
+    <h4>1. Require the Module</h4>
 
 {{#code "js"}}
 // Load and use polyfill for ECMA-402.
@@ -122,9 +127,10 @@ var dust     = require('dustjs-linkedin');
 var DustIntl = require('dust-intl');
 {{/code}}
 
+    {{> integrations/load-locale-data-node}}
     {{> integrations/note-intl-node}}
 
-    <h4>2. Register the helpers</h4>
+    <h4>2. Register the Helpers</h4>
 
 {{#code "js"}}
 DustIntl.registerWith(dust);

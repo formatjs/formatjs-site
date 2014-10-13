@@ -102,16 +102,21 @@ React.renderComponent(
 
     <h3 id="install-browser">Browser</h3>
 
-    <h4>1. Load the scripts onto your page</h4>
+    <h4>1. Load the Scripts onto the Page</h4>
+
+    <p>
+        First, load React and React Intl onto the page:
+    </p>
 
 {{#code "html"}}
 <script src="react/dist/react.min.js"></script>
 <script src="{{package.dist.main}}"></script>
 {{/code}}
 
+    {{> integrations/load-locale-data-browser}}
     {{> integrations/note-intl-browser}}
 
-    <h4>2. Use <code>ReactIntlMixin</code> in a React component</h4>
+    <h4>2. Use <code>ReactIntlMixin</code> in a React Component</h4>
 
 {{#code "js"}}
 var MyComponent = React.createClass({
@@ -122,7 +127,7 @@ var MyComponent = React.createClass({
 
     <h3 id="install-node">Node/CommonJS</h3>
 
-    <h4>1. Require the module</h4>
+    <h4>1. Require the Module</h4>
 
 {{#code "js"}}
 // Load and use polyfill for ECMA-402.
@@ -134,9 +139,10 @@ var React          = require('react');
 var ReactIntlMixin = require('react-intl');
 {{/code}}
 
+    {{> integrations/load-locale-data-node}}
     {{> integrations/note-intl-node}}
 
-    <h4>2. Use ReactIntlMixin in a React component</h4>
+    <h4>2. Use ReactIntlMixin in a React Component</h4>
 
 {{#code "js"}}
 var MyComponent = React.createClass({

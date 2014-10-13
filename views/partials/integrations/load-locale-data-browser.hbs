@@ -1,0 +1,11 @@
+<p>
+    By default, <code>{{package.name}}</code> ships with the locale data for English built-in to the library's runtime. When you need to format data in another locale, include its data; e.g., for French:
+</p>
+
+{{#code "html"}}
+<script src="{{package.dist.localeData}}/fr.js"></script>
+{{/code}}
+
+<p>
+    All 150+ languages supported by this library use their root BCP 47 langage tag; i.e., the part before the first hyphen (if any).
+</p>

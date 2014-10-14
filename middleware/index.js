@@ -7,6 +7,7 @@ exports = module.exports = utils.requireDir(__dirname);
 exports.compress     = require('compression');
 exports.errorHandler = require('errorhandler');
 exports.favicon      = require('serve-favicon');
+exports.fixBadSafari = require('jumanji');
 exports.logger       = require('morgan');
 exports.slash        = require('express-slash');
 exports.static       = require('serve-static');

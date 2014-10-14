@@ -23,7 +23,7 @@ export default React.createClass({
             anchor = <a href={'#' + header.id}>{header.textContent}</a>;
             section = header.parentNode;
             childHeaders = section.querySelectorAll(this.selectors[nextSelector]);
-            if (childHeaders.length > 0 && nextSelector <= maxDepth) {
+            if (childHeaders.length > 0 && nextSelector < maxDepth) {
                 data.push(
                     <li>
                         {anchor}

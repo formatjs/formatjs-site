@@ -67,7 +67,7 @@ if (app.get('env') === 'development') {
 
 app.use(middleware.compress());
 app.use(middleware.favicon(path.join('./public/favicon.ico')));
-app.use(middleware.static(path.join(config.dirs.build, 'client')));
+app.use(middleware.static(path.join(config.dirs.build, 'client'), {maxage: '1m'}));
 app.use(router);
 app.use(middleware.slash());
 

@@ -75,6 +75,7 @@ app.use(middleware.slash());
 
 var route = router.route.bind(router);
 
+router.use(middleware.fixBadSafari);
 router.use(middleware.intl);
 
 routes.home(route('/'));

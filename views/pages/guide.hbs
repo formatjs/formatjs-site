@@ -81,13 +81,11 @@
             <h3 id="translating-strings">Translating Strings</h3>
             <p>
                 You likely have some text in your application that is in a natural language such as English or Japanese.
-                In order to support other locales you'll need to translate these strings.
-                You'll need to translate all strings that will be displayed to the user for all locales you wish to support.
+                In order to support other locales, you will need to translate these strings.
             </p>
 
             <p>
-                {{brand}} provides a mechanism for using these translations.
-                This lets you write the core "software" of your application without special code for different languages.
+                {{brand}} provides a mechanism to let you write the core "software" of your application without special code for different translations.
                 The considerations for each locale are encapsulated in your translated strings and our libraries.
             </p>
 
@@ -113,18 +111,10 @@ var messages = {
         <section class="secs">
             <h3 id="bundling-translations">Bundling Translated Strings</h3>
             <p>
-                It is very common to organize your translations primarily by locale.
-                This especially becomes important when using translations in the browser, where you only need the translations for one locale, the user's current locale.
-            </p>
-
-            <p>
+                It is common to organize your translations primarily by locale, because you only need the translations for the user's current locale.
                 Our <a href="{{pathTo 'integrations'}}">template and component library integrations</a> are designed to work with the translations for a single locale.
+                If your app is complex, you can further subdivide your translations, such as by page or section of the site.
             </p>
-
-            <p>
-                (If your app is very complex you can further subdivide your translations, such as by page or section of the site.)
-            </p>
-
         </section>
 
         <section class="secs">

@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 /* global React */
 
 export {Tabs, Tab};

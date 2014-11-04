@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 /* global React, ReactIntlMixin */
 
 import LocaleSelect from './locale-select';

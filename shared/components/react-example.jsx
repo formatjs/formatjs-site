@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 /* global React */
 
 import ExampleMixin from '../mixins/example';
@@ -14,10 +13,9 @@ export default React.createClass({
         var intlData = this.generateIntlData();
 
         var renderCode = [
-            '/** @jsx React.DOM */',
             'var intlData = ' + JSON.stringify(intlData, null, 4) + ';',
             '',
-            'React.renderComponent(',
+            'React.render(',
             '    <Component',
             '        locales={intlData.locales}'
         ];

@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 /* global React */
 
 import ExampleMixin from '../mixins/example';

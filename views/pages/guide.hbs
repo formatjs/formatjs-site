@@ -162,13 +162,13 @@ var messages = {
         </p>
 
         <p>
-            If these APIs aren't present you'll need to patch (polyfill) the runtime to include them.
+            If these APIs aren't present, you'll need to patch (polyfill) the runtime to include them.
         </p>
 
         <section class="secs">
             <h3 id="how-to-patch">How to Patch</h3>
             <p>
-                Since some runtimes already have {{code "Intl"}}, ideally you'll only load a patch when needed.
+                Since some runtimes already have {{code "Intl"}}, you should only load a patch when needed.
                 You can do this using a conditional loader.
             </p>
 
@@ -188,7 +188,7 @@ yepnope({
 {{/code}}
 
             <p id="note">
-                <strong>Note</strong> that our <a href="{{pathTo 'integrations'}}">integrations</a> require that the {{code "window.Intl"}} exist before they are loaded.
+                <strong>Note</strong> that our <a href="{{pathTo 'integrations'}}">integrations</a> require that {{code "window.Intl"}} exists before they are loaded.
             </p>
 
         </section>
@@ -197,7 +197,7 @@ yepnope({
             <h3 id="intljs">Intl.js Polyfill</h3>
             <p>
                 The <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a> library, developed by Andy Earnshaw, provides a polyfill for the {{code "Intl"}} API.
-                It will need a locale data file loaded for the locale of the current page.
+                It needs a locale data file for the current page.
             </p>
 
 {{#code "html"}}

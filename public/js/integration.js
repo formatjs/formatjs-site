@@ -19,8 +19,8 @@ function hydrateExampleOutput(id, type, props) {
 
     var OutputComponent = getOutputComponent(type);
 
-    React.renderComponent(
-        new OutputComponent(props),
+    React.render(
+        React.createElement(OutputComponent, props),
         exampleNode.parentNode
     );
 }

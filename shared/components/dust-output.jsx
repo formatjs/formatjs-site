@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 /* global React, ReactIntlMixin, dust */
 
 export default React.createClass({

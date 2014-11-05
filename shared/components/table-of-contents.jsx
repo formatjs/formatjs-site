@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 export default React.createClass({
     displayName: 'TableOfContents',
 
@@ -25,7 +23,7 @@ export default React.createClass({
             childHeaders = section.querySelectorAll(this.selectors[nextSelector]);
             if (childHeaders.length > 0 && nextSelector < maxDepth) {
                 data.push(
-                    <li>
+                    <li key={header.id}>
                         {anchor}
                         <ol>
                             {this.getLists(section, nextSelector, maxDepth)}
@@ -34,7 +32,7 @@ export default React.createClass({
                 );
             } else {
                 data.push(
-                    <li>
+                    <li key={header.id}>
                         {anchor}
                     </li>
                 );

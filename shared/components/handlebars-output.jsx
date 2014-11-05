@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 /* global React, ReactIntlMixin, Handlebars */
 
 export default React.createClass({

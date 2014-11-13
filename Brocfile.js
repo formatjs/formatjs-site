@@ -1,17 +1,13 @@
 'use strict';
 
-var autoprefixer     = require('autoprefixer-core'),
-    compileJSX       = require('broccoli-react'),
-    compileModules   = require('broccoli-es6-module-transpiler'),
-    customProperties = require('postcss-custom-properties'),
-    mergeTrees       = require('broccoli-merge-trees'),
-    Funnel           = require('broccoli-funnel'),
-    postcss          = require('./broccoli/postcss'),
-    unwatchedTree    = require('broccoli-unwatched-tree');
-
-var node_modules = unwatchedTree('node_modules/'),
-    shared       = 'shared/',
-    pub          = 'public/';
+var autoprefixer     = require('autoprefixer-core');
+var compileJSX       = require('broccoli-react');
+var compileModules   = require('broccoli-es6-module-transpiler');
+var customProperties = require('postcss-custom-properties');
+var mergeTrees       = require('broccoli-merge-trees');
+var Funnel           = require('broccoli-funnel');
+var postcss          = require('./broccoli/postcss');
+var unwatchedTree    = require('broccoli-unwatched-tree');
 
 function linkOrCopy(tree, mappings) {
     var trees = Object.keys(mappings).map(function (srcDir) {
@@ -22,7 +18,7 @@ function linkOrCopy(tree, mappings) {
     return mergeTrees(trees);
 }
 
-var vendor = linkOrCopy(node_modules, {
+var vendor = linkOrCopy(unwatchedTree('node_modules/'), {
     'es6-shim'            : 'vendor/es6-shim',
     'intl'                : 'vendor/intl',
     'dustjs-linkedin/dist': 'vendor/dust',
@@ -34,8 +30,8 @@ var vendor = linkOrCopy(node_modules, {
     'Rainbow/js'          : 'vendor/rainbow'
 });
 
-shared = compileJSX(shared);
-pub    = compileJSX(pub);
+var shared = compileJSX('shared/');
+var pub    = compileJSX('public/');
 
 pub = postcss(pub, {
     processors: [

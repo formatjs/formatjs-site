@@ -13,26 +13,26 @@ var node_modules = unwatchedTree('node_modules/'),
     shared       = 'shared/',
     pub          = 'public/';
 
-var modules = [
-    new Funnel(node_modules, {
-        files: [
-            'es6-shim/es6-shim.js',
-            'es6-shim/es6-shim.min.js',
-            'es6-shim/es6-shim.map',
-            'intl/Intl.js',
-            'intl/Intl.min.js'
-        ],
-        destDir: 'vendor'
-    }),
-    new Funnel(node_modules, {srcDir: 'dustjs-linkedin/dist', destDir: 'vendor/dust'}),
-    new Funnel(node_modules, {srcDir: 'handlebars/dist',      destDir: 'vendor/handlebars'}),
-    new Funnel(node_modules, {srcDir: 'react/dist',           destDir: 'vendor/react'}),
-    new Funnel(node_modules, {srcDir: 'intl/locale-data',     destDir: 'vendor/intl/locale-data'}),
-    new Funnel(node_modules, {srcDir: 'dust-intl/dist',       destDir: 'vendor/dust-intl'}),
-    new Funnel(node_modules, {srcDir: 'handlebars-intl/dist', destDir: 'vendor/handlebars-intl'}),
-    new Funnel(node_modules, {srcDir: 'react-intl/dist',      destDir: 'vendor/react-intl'}),
-    new Funnel(node_modules, {srcDir: 'Rainbow/js',           destDir: 'vendor/rainbow'})
-];
+function linkOrCopy(tree, mappings) {
+    var trees = Object.keys(mappings).map(function (srcDir) {
+        var destDir = mappings[srcDir];
+        return new Funnel(tree, {srcDir: srcDir, destDir: destDir});
+    });
+
+    return mergeTrees(trees);
+}
+
+var vendor = linkOrCopy(node_modules, {
+    'es6-shim'            : 'vendor/es6-shim',
+    'intl'                : 'vendor/intl',
+    'dustjs-linkedin/dist': 'vendor/dust',
+    'handlebars/dist'     : 'vendor/handlebars',
+    'react/dist'          : 'vendor/react',
+    'dust-intl/dist'      : 'vendor/dust-intl',
+    'handlebars-intl/dist': 'vendor/handlebars-intl',
+    'react-intl/dist'     : 'vendor/react-intl',
+    'Rainbow/js'          : 'vendor/rainbow'
+});
 
 shared = compileJSX(shared);
 pub    = compileJSX(pub);
@@ -56,10 +56,8 @@ var client = compileModules(mergeTrees([shared, pub]), {
     output     : 'js/app.js'
 });
 
-modules.push(client);
-
-client = new Funnel(mergeTrees(modules), {
-    srcDir: '/',
+client = new Funnel(mergeTrees([vendor, client]), {
+    srcDir : '/',
     destDir: 'client'
 });
 

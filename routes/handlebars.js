@@ -8,16 +8,18 @@ module.exports = function (route) {
     route.name = 'handlebars';
 
     route.get(function (req, res, next) {
-        res.locals.activeMenuItem = route.name;
-        res.locals.package        = pkgMeta;
+        var isProduction = req.app.get('env') === 'production';
 
-        getExamples('handlebars', {
-            cache: req.app.get('view cache')
-        }).then(function (examples) {
-            res.locals.examples = renderExamples(examples, res.intl);
-            res.expose(examples, 'examples');
-            res.expose('integration', 'pageType');
-            res.render('handlebars');
-        }).catch(next);
+        getExamples('handlebars', {cache: isProduction})
+            .then(function (examples) {
+                res.expose(examples, 'examples');
+                res.expose('integration', 'pageType');
+
+                res.render('handlebars', {
+                    activeMenuItem: route.name,
+                    package       : pkgMeta,
+                    examples      : renderExamples(examples, res.intl)
+                });
+            }).catch(next);
     });
 };

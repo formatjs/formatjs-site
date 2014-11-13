@@ -37,9 +37,7 @@ module.exports = function (route) {
                 lastMonth.getFullYear(),
                 lastMonth.getMonth() + 1,
                 lastMonth.getDate()
-            ].join('-'),
-
-            data: {intl: res.intl}
+            ].join('-')
         });
     });
 };

@@ -5,8 +5,9 @@ module.exports = function (route) {
     route.label = 'Guide';
 
     route.get(function (req, res) {
-        res.locals.activeMenuItem = route.name;
         res.expose('guide', 'pageType');
-        res.render('guide');
+        res.render('guide', {
+            activeMenuItem: route.name
+        });
     });
 };

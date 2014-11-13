@@ -8,16 +8,17 @@ module.exports = function (route) {
     route.name = 'dust';
 
     route.get(function (req, res, next) {
-        res.locals.activeMenuItem = route.name;
-        res.locals.package        = pkgMeta;
+        var isProduction = req.app.get('env') === 'production';
 
-        getExamples('dust', {
-            cache: req.app.get('view cache')
-        }).then(function (examples) {
-            res.locals.examples = renderExamples(examples, res.intl);
+        getExamples('dust', {cache: isProduction}).then(function (examples) {
             res.expose(examples, 'examples');
             res.expose('integration', 'pageType');
-            res.render('dust');
+
+            res.render('dust', {
+                activeMenuItem: route.name,
+                package       : pkgMeta,
+                examples      : renderExamples(examples, res.intl)
+            });
         }).catch(next);
     });
 };

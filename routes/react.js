@@ -8,16 +8,17 @@ module.exports = function (route) {
     route.name = 'react';
 
     route.get(function (req, res, next) {
-        res.locals.activeMenuItem = route.name;
-        res.locals.package        = pkgMeta;
+        var isProduction = req.app.get('env') === 'production';
 
-        getExamples('react', {
-            cache: req.app.get('view cache')
-        }).then(function (examples) {
-            res.locals.examples = renderExamples(examples, res.intl);
+        getExamples('react', {cache: isProduction}).then(function (examples) {
             res.expose(examples, 'examples');
             res.expose('integration', 'pageType');
-            res.render('react');
+
+            res.render('react', {
+                activeMenuItem: route.name,
+                package       : pkgMeta,
+                examples      : renderExamples(examples, res.intl)
+            });
         }).catch(next);
     });
 };

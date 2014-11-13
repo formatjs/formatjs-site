@@ -5,7 +5,8 @@ module.exports = function (route) {
     route.label = 'About';
 
     route.get(function (req, res) {
-        res.locals.activeMenuItem = route.name;
-        res.render('about');
+        res.render('about', {
+            activeMenuItem: route.name
+        });
     });
 };

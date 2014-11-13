@@ -5,7 +5,7 @@ var autoprefixer     = require('autoprefixer-core'),
     compileModules   = require('broccoli-es6-module-transpiler'),
     customProperties = require('postcss-custom-properties'),
     mergeTrees       = require('broccoli-merge-trees'),
-    moveFiles        = require('broccoli-file-mover'),
+    Funnel           = require('broccoli-funnel'),
     postcss          = require('./broccoli/postcss'),
     unwatchedTree    = require('broccoli-unwatched-tree');
 
@@ -13,27 +13,26 @@ var node_modules = unwatchedTree('node_modules/'),
     shared       = 'shared/',
     pub          = 'public/';
 
-node_modules = moveFiles(node_modules, {
-    files: {
-        'es6-shim/es6-shim.js'    : 'vendor/es6-shim/es6-shim.js',
-        'es6-shim/es6-shim.min.js': 'vendor/es6-shim/es6-shim.min.js',
-        'es6-shim/es6-shim.map'   : 'vendor/es6-shim/es6-shim.map',
-
-        'dustjs-linkedin/dist': 'vendor/dust',
-        'handlebars/dist'     : 'vendor/handlebars',
-        'react/dist'          : 'vendor/react',
-
-        'intl/Intl.js'    : 'vendor/intl/Intl.js',
-        'intl/Intl.min.js': 'vendor/intl/Intl.min.js',
-        'intl/locale-data': 'vendor/intl/locale-data',
-
-        'dust-intl/dist'      : 'vendor/dust-intl',
-        'handlebars-intl/dist': 'vendor/handlebars-intl',
-        'react-intl/dist'     : 'vendor/react-intl',
-
-        'Rainbow/js': 'vendor/rainbow'
-    }
-});
+var modules = [
+    new Funnel(node_modules, {
+        files: [
+            'es6-shim/es6-shim.js',
+            'es6-shim/es6-shim.min.js',
+            'es6-shim/es6-shim.map',
+            'intl/Intl.js',
+            'intl/Intl.min.js'
+        ],
+        destDir: 'vendor'
+    }),
+    new Funnel(node_modules, {srcDir: 'dustjs-linkedin/dist', destDir: 'vendor/dust'}),
+    new Funnel(node_modules, {srcDir: 'handlebars/dist',      destDir: 'vendor/handlebars'}),
+    new Funnel(node_modules, {srcDir: 'react/dist',           destDir: 'vendor/react'}),
+    new Funnel(node_modules, {srcDir: 'intl/locale-data',     destDir: 'vendor/intl/locale-data'}),
+    new Funnel(node_modules, {srcDir: 'dust-intl/dist',       destDir: 'vendor/dust-intl'}),
+    new Funnel(node_modules, {srcDir: 'handlebars-intl/dist', destDir: 'vendor/handlebars-intl'}),
+    new Funnel(node_modules, {srcDir: 'react-intl/dist',      destDir: 'vendor/react-intl'}),
+    new Funnel(node_modules, {srcDir: 'Rainbow/js',           destDir: 'vendor/rainbow'})
+];
 
 shared = compileJSX(shared);
 pub    = compileJSX(pub);
@@ -57,8 +56,11 @@ var client = compileModules(mergeTrees([shared, pub]), {
     output     : 'js/app.js'
 });
 
-client = moveFiles(mergeTrees([node_modules, client]), {
-    files: {'/': 'client'}
+modules.push(client);
+
+client = new Funnel(mergeTrees(modules), {
+    srcDir: '/',
+    destDir: 'client'
 });
 
 module.exports = mergeTrees([server, client]);

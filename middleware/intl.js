@@ -3,15 +3,12 @@
 var getMessages = require('../lib/messages');
 
 module.exports = function (req, res, next) {
-    var app           = req.app;
-    var isProduction  = app.get('env') === 'production';
-    var defaultLocale = app.get('default locale');
+    var app              = req.app;
+    var availableLocales = app.get('available locales');
+    var defaultLocale    = app.get('default locale');
+    var isProduction     = app.get('env') === 'production';
 
     getMessages({cache: isProduction}).then(function (messages) {
-        // Messages is a collection keyed by language tag, so the collection's
-        // keys can be used to create the set of locales the app supports.
-        var availableLocales = Object.keys(messages);
-
         // Use content negotiation to find the best locale.
         var locale = req.acceptsLanguages(availableLocales) || defaultLocale;
 

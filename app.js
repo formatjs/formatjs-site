@@ -39,6 +39,7 @@ expstate.extend(app);
 
 app.set('name', 'FormatJS');
 app.set('port', config.port);
+app.set('available locales', config.availableLocales);
 app.set('default locale', 'en-US');
 app.set('state namespace', 'APP');
 

@@ -51,6 +51,12 @@ var vendor = copy(node_modules, {
     'Rainbow/js'          : 'vendor/rainbow'
 });
 
+var pubRoot = new Funnel('public/', {
+    srcDir : '/',
+    destDir: '/',
+    include: [/^[^/.]+\..+$/]
+});
+
 var css = new Funnel('public/css/', {
     srcDir : '/',
     destDir: '/css'
@@ -106,7 +112,7 @@ js = compileModules(mergeTrees([shared, js]), {
     output     : '/js/app.js'
 });
 
-var client = new Funnel(mergeTrees([vendor, css, img, intl, js]), {
+var client = new Funnel(mergeTrees([vendor, pubRoot, css, img, intl, js]), {
     srcDir : '/',
     destDir: 'client'
 });

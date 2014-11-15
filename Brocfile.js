@@ -74,7 +74,12 @@ var img = new Funnel('public/img/', {
     destDir: '/img'
 });
 
-var intlIntegrations = compileModules('public/intl/', {
+var intl = new Funnel('public/intl/', {
+    srcDir : '/',
+    destDir: '/intl'
+});
+
+intl = compileModules(intl, {
     description: 'VendorModules',
     formatter  : 'bundle',
     output     : '/intl/integrations.js',
@@ -99,7 +104,7 @@ localeData = concatTrees(localeData, {
     outputFile: '/intl/locale-data.js'
 });
 
-var intl = mergeTrees([intlIntegrations, localeData]);
+intl = mergeTrees([intl, localeData]);
 
 var js = new Funnel('public/js/', {
     srcDir : '/',

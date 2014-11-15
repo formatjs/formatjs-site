@@ -34,7 +34,6 @@
     "ypromise": "^0.2.3"
   },
   "devDependencies": {
-    "Rainbow": "ccampbell/rainbow#c2f5b0a3fa",
     "autoprefixer-core": "^4.0.0",
     "broccoli": "^0.13.0",
     "broccoli-concat": "0.0.12",

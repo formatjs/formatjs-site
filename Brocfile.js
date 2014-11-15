@@ -42,14 +42,50 @@ var server = compileModules(shared, {
 
 var node_modules = unwatchedTree('node_modules/');
 
-var vendor = copy(node_modules, {
-    'es6-shim'            : 'vendor/es6-shim',
-    'intl'                : 'vendor/intl',
-    'dustjs-linkedin/dist': 'vendor/dust',
-    'handlebars/dist'     : 'vendor/handlebars',
-    'react/dist'          : 'vendor/react',
-    'Rainbow/js'          : 'vendor/rainbow'
+var vendor = new Funnel('public/vendor/', {
+    srcDir : '/',
+    destDir: '/vendor'
 });
+
+var formatjsIntegrations = compileModules('public/vendor/formatjs/', {
+    description: 'FormatJSModules',
+    formatter  : 'bundle',
+    output     : '/vendor/formatjs/integrations.js',
+
+    resolvers: [
+        FileResolver,
+        NPMFileResolver
+    ]
+});
+
+var formatjsLocaleData = new Funnel(node_modules, {
+    srcDir : 'react-intl/dist/locale-data',
+    destDir: '/',
+
+    files: config.availableLocales.map(function (locale) {
+        return locale.split('-')[0] + '.js';
+    })
+});
+
+formatjsLocaleData = concatTrees(formatjsLocaleData, {
+    inputFiles: ['*.js'],
+    outputFile: '/vendor/formatjs/locale-data.js'
+});
+
+var formatjs = mergeTrees([formatjsIntegrations, formatjsLocaleData]);
+
+vendor = mergeTrees([
+    copy(node_modules, {
+        'es6-shim'            : '/vendor/es6-shim',
+        'intl'                : '/vendor/intl',
+        'dustjs-linkedin/dist': '/vendor/dust',
+        'handlebars/dist'     : '/vendor/handlebars',
+        'react/dist'          : '/vendor/react'
+    }),
+
+    vendor,
+    formatjs
+], {overwrite: true});
 
 var pubRoot = new Funnel('public/', {
     srcDir : '/',
@@ -74,33 +110,6 @@ var img = new Funnel('public/img/', {
     destDir: '/img'
 });
 
-var intlIntegrations = compileModules('public/intl/', {
-    description: 'VendorModules',
-    formatter  : 'bundle',
-    output     : '/intl/integrations.js',
-
-    resolvers: [
-        FileResolver,
-        NPMFileResolver
-    ]
-});
-
-var localeData = new Funnel(node_modules, {
-    srcDir : 'react-intl/dist/locale-data',
-    destDir: '/',
-
-    files: config.availableLocales.map(function (locale) {
-        return locale.split('-')[0] + '.js';
-    })
-});
-
-localeData = concatTrees(localeData, {
-    inputFiles: ['*.js'],
-    outputFile: '/intl/locale-data.js'
-});
-
-var intl = mergeTrees([intlIntegrations, localeData]);
-
 var js = new Funnel('public/js/', {
     srcDir : '/',
     destDir: '/js'
@@ -112,7 +121,7 @@ js = compileModules(mergeTrees([shared, js]), {
     output     : '/js/app.js'
 });
 
-var client = new Funnel(mergeTrees([vendor, pubRoot, css, img, intl, js]), {
+var client = new Funnel(mergeTrees([vendor, pubRoot, css, img, js]), {
     srcDir : '/',
     destDir: 'client'
 });

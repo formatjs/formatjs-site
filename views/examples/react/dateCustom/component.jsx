@@ -1,10 +1,12 @@
 var Component = React.createClass({
-    mixins: [ReactIntlMixin],
+    mixins: [ReactIntl.Mixin],
 
     render: function () {
+        var IntlDate = ReactIntl.Date;
+
         return (
             <p>
-                {this.formatDate(new Date(), 'short')}
+                <IntlDate format="short">{new Date()}</IntlDate>
             </p>
         );
     }

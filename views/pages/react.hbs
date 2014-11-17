@@ -58,19 +58,20 @@
 
     <h2>How It Works</h2>
 
-    <h3>Create a React Component with <code>ReactIntlMixin</code></h3>
+    <h3>Create a React Component with <code>ReactIntl.Mixin</code></h3>
 
 {{#code "js"}}
 var Component = React.createClass({
-    mixins: [ReactIntlMixin],
+    mixins: [ReactIntl.Mixin],
 
     render: function () {
+        var IntlNumber = ReactIntl.Number;
+
         return (
             <p>
-                {this.formatNumber(1000, {
-                    style   : 'currency',
-                    currency: 'USD'
-                })}
+                <IntlNumber style="currency" curreny="USD">
+                    {1000}
+                </IntlNumber>
             </p>
         );
     }
@@ -114,11 +115,11 @@ React.render(
     {{> integrations/load-locale-data-browser}}
     {{> integrations/note-intl-browser}}
 
-    <h4>2. Use <code>ReactIntlMixin</code> in a React Component</h4>
+    <h4>2. Use <code>ReactIntl.Mixin</code> in a React Component</h4>
 
 {{#code "js"}}
 var MyComponent = React.createClass({
-    mixins: [ReactIntlMixin],
+    mixins: [ReactIntl.Mixin],
     render: function () {...}
 });
 {{/code}}
@@ -133,18 +134,18 @@ if (!global.Intl) {
     global.Intl = require('intl');
 }
 
-var React          = require('react');
-var ReactIntlMixin = require('react-intl');
+var React     = require('react');
+var ReactIntl = require('react-intl');
 {{/code}}
 
     {{> integrations/load-locale-data-node}}
     {{> integrations/note-intl-node}}
 
-    <h4>2. Use ReactIntlMixin in a React Component</h4>
+    <h4>2. Use ReactIntl.Mixin in a React Component</h4>
 
 {{#code "js"}}
 var MyComponent = React.createClass({
-    mixins: [ReactIntlMixin],
+    mixins: [ReactIntl.Mixin],
     render: function () {...}
 });
 {{/code}}
@@ -264,7 +265,7 @@ var MyComponent = React.createClass({
     </p>
 
     <p class="note">
-        <b>Note:</b> You can provide the <code>messages</code> property value to the root React component when rendering a the top-level component in the React hierarchy, and <code>messages</code> &mdash; just like <code>locales</code> &mdash; will be propagated to any child components using <code>ReactIntlMixin</code>.
+        <b>Note:</b> You can provide the <code>messages</code> property value to the root React component when rendering a the top-level component in the React hierarchy, and <code>messages</code> &mdash; just like <code>locales</code> &mdash; will be propagated to any child components using <code>ReactIntl.Mixin</code>.
     </p>
 
     <p>
@@ -285,6 +286,6 @@ var MyComponent = React.createClass({
     </p>
 
     <p class="note">
-        <b>Note:</b> You can provide the <code>formats</code> property value at the root React component when rendering the top-level component in the React hierarchy, and <code>formats</code> &mdash; just like <code>messages</code> and <code>locales</code> &mdash; will be propagated to any component child components using <code>ReactIntlMixin</code>.
+        <b>Note:</b> You can provide the <code>formats</code> property value at the root React component when rendering the top-level component in the React hierarchy, and <code>formats</code> &mdash; just like <code>messages</code> and <code>locales</code> &mdash; will be propagated to any component child components using <code>ReactIntl.Mixin</code>.
     </p>
 </section>

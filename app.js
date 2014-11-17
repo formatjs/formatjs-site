@@ -11,7 +11,7 @@ hasNativeIntl    || (global.Intl = require('intl'));
 hasNativePromise || (global.Promise = require('ypromise'));
 
 global.React          = require('react/addons');
-global.ReactIntlMixin = require('react-intl');
+global.ReactIntl      = require('react-intl');
 global.Handlebars     = require('handlebars');
 global.HandlebarsIntl = require('handlebars-intl');
 global.dust           = require('dustjs-linkedin');

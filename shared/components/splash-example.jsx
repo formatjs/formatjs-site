@@ -1,4 +1,4 @@
-/* global React, ReactIntlMixin */
+/* global React, ReactIntl */
 
 import LocaleSelect from './locale-select';
 
@@ -6,20 +6,28 @@ var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 export default React.createClass({
     displayName: 'SplashExample',
-    mixins     : [ReactIntlMixin],
+    mixins     : [ReactIntl.Mixin],
+
+    getInitialState: function () {
+        var locales = this.props.locales;
+
+        return {
+            currentLocale   : Array.isArray(locales) ? locales[0] : locales,
+            currentNumPhotos: this.props.numPhotos
+        };
+    },
 
     updateLocale: function (newLocale) {
-        this.setProps({locales: newLocale});
+        this.setState({currentLocale: newLocale});
     },
 
     handleNumPhotosChange: function (e) {
-        this.setProps({numPhotos: parseInt(e.target.value, 10)});
+        this.setState({currentNumPhotos: parseInt(e.target.value, 10)});
     },
 
     render: function () {
-        var locales       = this.props.locales,
-            currentLocale = Array.isArray(locales) ? locales[0] : locales,
-            photosMessage = this.getIntlMessage(currentLocale + '.photos');
+        var currentLocale = this.state.currentLocale;
+        var photosMessage = this.getIntlMessage(currentLocale + '.photos');
 
         var numPhotosOptions = [0, 1, 3, 1000].map(function (num) {
             return <option key={num} value={num}>{num}</option>;
@@ -34,9 +42,14 @@ export default React.createClass({
                         transitionName="example-output"
                         transitionLeave={false}>
 
-                        <span key={Date.now()}>
-                            {this.formatMessage(photosMessage, this.props)}
-                        </span>
+                        <ReactIntl.Message
+                            key={Date.now()}
+                            name={this.props.name}
+                            numPhotos={this.state.currentNumPhotos}
+                            takenDate={this.props.takenDate}>
+
+                            {photosMessage}
+                        </ReactIntl.Message>
                     </ReactCSSTransitionGroup>
                 </div>
 
@@ -47,7 +60,7 @@ export default React.createClass({
                         </span>
 
                         <select
-                            value={this.props.numPhotos}
+                            value={this.state.currentNumPhotos}
                             onChange={this.handleNumPhotosChange}>
 
                             {numPhotosOptions}

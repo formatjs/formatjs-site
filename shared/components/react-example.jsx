@@ -9,31 +9,23 @@ export default React.createClass({
     displayName: 'ReactExample',
     mixins     : [ExampleMixin],
 
+    statics: {
+        renderCode: [
+            'React.render(',
+            '    <Component {...intlData} />,',
+            '    document.getElementById("example")',
+            ');'
+        ].join('\n')
+    },
+
     genderateRenderCode: function () {
         var intlData = this.generateIntlData();
 
-        var renderCode = [
+        return [
             'var intlData = ' + JSON.stringify(intlData, null, 4) + ';',
             '',
-            'React.render(',
-            '    <Component',
-            '        locales={intlData.locales}'
-        ];
-
-        if (intlData.messages) {
-            renderCode.push('        messages={intlData.messages}');
-        }
-        if (intlData.formats) {
-            renderCode.push('        formats={intlData.formats}');
-        }
-
-        var lastPropLine = renderCode.length - 1;
-        renderCode[lastPropLine] = renderCode[lastPropLine] + ' />,';
-
-        renderCode.push('    document.getElementById("example")');
-        renderCode.push(');');
-
-        return renderCode.join('\n');
+            this.constructor.renderCode
+        ].join('\n');
     },
 
     render: function () {

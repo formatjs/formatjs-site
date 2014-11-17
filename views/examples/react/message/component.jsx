@@ -1,16 +1,18 @@
 var Component = React.createClass({
-    mixins: [ReactIntlMixin],
+    mixins: [ReactIntl.Mixin],
 
     render: function () {
-        var message = this.getIntlMessage('photos');
+        var IntlMessage = ReactIntl.Message;
 
         return (
             <p>
-                {this.formatMessage(message, {
-                    name     : 'Annie',
-                    numPhotos: 1000,
-                    takenDate: Date.now()
-                })}
+                <IntlMessage
+                        name="Annie"
+                        numPhotos={1000}
+                        takenDate={Date.now()}>
+                        
+                    {this.getIntlMessage('photos')}
+                </IntlMessage>
             </p>
         );
     }

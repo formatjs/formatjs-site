@@ -1,8 +1,8 @@
-/* global React, ReactIntlMixin, dust */
+/* global React, ReactIntl, dust */
 
 export default React.createClass({
     displayName: 'DustOutput',
-    mixins     : [ReactIntlMixin],
+    mixins     : [ReactIntl.Mixin],
 
     propTypes: {
         source : React.PropTypes.string.isRequired,

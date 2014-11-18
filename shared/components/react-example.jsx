@@ -45,7 +45,7 @@ export default React.createClass({
 
         var tabs = [
             <Tab label="Component" key="component">
-                <CodeBlock lang="js">
+                <CodeBlock lang="javascript">
                     {example.source.component}
                 </CodeBlock>
             </Tab>,
@@ -61,7 +61,7 @@ export default React.createClass({
         if (example.meta.messageId) {
             tabs.splice(1, 0,
                 <Tab label="Message" key="message">
-                    <CodeBlock>
+                    <CodeBlock highlight={false}>
                         {messages[example.meta.messageId]}
                     </CodeBlock>
                 </Tab>

@@ -111,7 +111,8 @@ a:link code,
 a:visited code {
     color: var(--purple);
 }
-p code {
+p code,
+li code {
     font-size: 90%;
 }
 .code {

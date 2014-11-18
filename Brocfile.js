@@ -51,6 +51,7 @@ var formatjsIntegrations = compileModules('public/vendor/formatjs/', {
     description: 'FormatJSModules',
     formatter  : 'bundle',
     output     : '/vendor/formatjs/integrations.js',
+    sourceRoot : '/public/vendor/formatjs/',
 
     resolvers: [
         FileResolver,
@@ -118,7 +119,8 @@ var js = new Funnel('public/js/', {
 js = compileModules(mergeTrees([shared, js]), {
     description: 'ClientModules',
     formatter  : 'bundle',
-    output     : '/js/app.js'
+    output     : '/js/app.js',
+    sourceRoot : '/public/'
 });
 
 var client = new Funnel(mergeTrees([vendor, pubRoot, css, img, js]), {

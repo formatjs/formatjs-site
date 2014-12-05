@@ -322,7 +322,7 @@ li code {
     order: 2;
 }
 .splash .brand-mark {
-    background: url("/img/logo.svg") no-repeat;
+    background: url("/img/logo-splash.svg") no-repeat;
     background-size: contain;
     background-position: center;
 }
@@ -609,7 +609,7 @@ li code {
     }
 
     .tagline {
-        margin: 1rem 0 2rem;
+        margin: -1rem 0 2rem;
     }
 
     .head .nav,
@@ -621,12 +621,12 @@ li code {
         padding-bottom: 2rem;
     }
     .splash .brand {
-        margin: 2rem 0 0;
+        margin: 1.8rem 0 0;
     }
     .splash .brand-mark {
         margin: 0 auto;
         width: 12.3436rem;
-        height: 2rem;
+        height: 3rem;
     }
     .splash-example-controls {
         justify-content: space-between;
@@ -887,10 +887,12 @@ li code {
     .splash .brand {
         margin-top: 4rem;
     }
+
     .splash .brand-mark {
-        width: 18.5154rem;
-        height: 3rem;
+        width: 24.5154rem;
+        height: 4.2rem;
     }
+
     .splash .nav-menu {
         margin-top: 1.1875rem;
     }

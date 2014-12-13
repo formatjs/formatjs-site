@@ -78,7 +78,6 @@ var formatjs = mergeTrees([formatjsIntegrations, formatjsLocaleData]);
 vendor = mergeTrees([
     copy(node_modules, {
         'es6-shim'            : '/vendor/es6-shim',
-        'intl'                : '/vendor/intl',
         'dustjs-linkedin/dist': '/vendor/dust',
         'handlebars/dist'     : '/vendor/handlebars',
         'react/dist'          : '/vendor/react'

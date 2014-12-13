@@ -3,6 +3,7 @@
 import LocaleSelect from './locale-select';
 
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var IntlMessage             = ReactIntl.Message;
 
 export default React.createClass({
     displayName: 'SplashExample',
@@ -42,14 +43,15 @@ export default React.createClass({
                         transitionName="example-output"
                         transitionLeave={false}>
 
-                        <ReactIntl.Message
+                        <IntlMessage
                             key={Date.now()}
+                            locales={currentLocale}
                             name={this.props.name}
                             numPhotos={this.state.currentNumPhotos}
                             takenDate={this.props.takenDate}>
 
                             {photosMessage}
-                        </ReactIntl.Message>
+                        </IntlMessage>
                     </ReactCSSTransitionGroup>
                 </div>
 

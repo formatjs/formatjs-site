@@ -8,6 +8,8 @@ module.exports = function (route) {
 
     route.get(function (req, res) {
         var splashExample = {
+            availableNumPhotos: [0, 1, 3, 1000],
+
             name     : 'Annie',
             numPhotos: 1000,
             takenDate: Date.now()

@@ -30,7 +30,7 @@ export default React.createClass({
         var currentLocale = this.state.currentLocale;
         var photosMessage = this.getIntlMessage(currentLocale + '.photos');
 
-        var numPhotosOptions = [0, 1, 3, 1000].map(function (num) {
+        var numPhotosOptions = this.props.availableNumPhotos.map(function (num) {
             return <option key={num} value={num}>{num}</option>;
         });
 

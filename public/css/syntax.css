@@ -7,59 +7,81 @@
     --white        : rgb(255, 255, 255);
     --white-alpha  : rgba(255, 255, 255, 0.44);
     --pink         : rgb(173, 104, 216);
+    --pink-light   : rgb(178, 155, 194);
     --pink-alpha3  : rgba(208, 146, 247, 0.20);
     --pink-alpha2  : rgba(208, 146, 247, 0.15);
     --pink-alpha1  : rgba(208, 146, 247, 0.10);
-    --purple       : rgb(171, 87, 243);
+    --purple       : rgb(131, 57, 194);
     --purple-medium: rgb(94, 67, 112);
     --purple-dark  : rgb(103, 58, 131);
+    --yellow-js    : rgb(247, 223, 30);
     --yellow-dark  : rgb(197, 166, 0);
 }
 
-pre .comment {
-    color: var(--gray);
+.hljs {
+    color: var(--black);
 }
 
-pre .tag,
-pre .tag-name,
-pre .support.tag-name {
-    color: var(--gray);
+.hljs-comment,
+.hljs-template_comment {
+    color: var(--gray-medium);
+    font-style: italic;
 }
 
-pre .keyword,
-pre .css-property,
-pre .vendor-prefix,
-pre .sass,
-pre .class,
-pre .id,
-pre .css-value,
-pre .entity.function,
-pre .storage.function {
+.hljs-keyword,
+.css .rule .hljs-keyword,
+.javascript .hljs-title,
+.hljs-subst,
+.hljs-request,
+.hljs-status {
     font-weight: bold;
 }
 
-pre .css-property,
-pre .css-value,
-pre .vendor-prefix,
-pre .support.namespace {
-    color: var(--gray);
+.hljs-number,
+.hljs-hexcolor {
+    color: var(--yellow-dark)
 }
 
-pre .constant.numeric,
-pre .keyword.unit,
-pre .hex-color {
-    font-weight: normal;
+.hljs-string,
+.hljs-tag .hljs-value {
+    color: var(--purple-dark);
+}
+
+.hljs-title,
+.hljs-id {
+    color: var(--purple);
+    font-weight: bold;
+}
+
+.javascript .hljs-title,
+.hljs-list .hljs-keyword,
+.hljs-subst {
+    font-weight: bold;
+}
+
+.hljs-class .hljs-title,
+.hljs-type {
+    font-weight: bold;
+}
+
+.hljs-attribute,
+.hljs-variable {
+    color: var(--pink);
+}
+
+.hljs-regexp {
+    color: var(--yellow-dark);
+}
+
+.hljs-built_in {
     color: var(--purple);
 }
 
-pre .attribute,
-pre .variable,
-pre .support {
-    color: var(--purple-medium);
-}
-
-pre .string,
-pre .support.value  {
-    font-weight: normal;
-    color: var(--pink);
+.hljs-preprocessor,
+.hljs-pragma,
+.hljs-pi,
+.hljs-doctype,
+.hljs-shebang,
+.hljs-cdata {
+    font-weight: bold;
 }

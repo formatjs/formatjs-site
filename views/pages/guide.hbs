@@ -181,8 +181,8 @@ var messages = {
 yepnope({
     test : window.Intl,
     nope : ['path/to/intl/polyfill'],
-    complete: function() {
-        ...the Intl API can be used here...
+    complete: function () {
+        // ...the Intl API can be used here...
     }
 });
 {{/code}}
@@ -262,9 +262,9 @@ if (!global.Intl) {
 {{#code "js"}}
 var appLocales = ['de', 'en', 'fr'];
 var app = require('express')();
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
     var locale = req.acceptsLanguages(appLocales) || 'en';
-    ...customize the response to locale
+    // ...customize the response to locale
 });
 {{/code}}
 
@@ -327,7 +327,7 @@ navigator.language || navigator.browserLanguage
                 The simplest transform for the message is a literal string.
             </p>
 
-{{#code "generic"}}
+{{#code highlight=false}}
 Hello everyone
 {{/code}}
 
@@ -345,7 +345,7 @@ Hello everyone
                 The <var>key</var> is looked up in the input data.
             </p>
 
-{{#code "generic"}}
+{{#code highlight=false}}
 Hello {who}
 {{/code}}
 
@@ -374,7 +374,7 @@ Hello {who}
                 </li>
             </ul>
 
-{{#code "generic"}}
+{{#code highlight=false}}
 I have {numCats, number} cats.
 {{/code}}
 
@@ -391,7 +391,7 @@ I have {numCats, number} cats.
                     </li>
                 </ul>
 
-{{#code "generic"}}
+{{#code highlight=false}}
 I have {numCats, number} cats.
 Almost {pctBlack, number, percent} of them are black.
 {{/code}}
@@ -425,7 +425,7 @@ Almost {pctBlack, number, percent} of them are black.
                     </li>
                 </ul>
 
-{{#code "generic"}}
+{{#code highlight=false}}
 Sale begins {start, date, medium}
 {{/code}}
 
@@ -458,7 +458,7 @@ Sale begins {start, date, medium}
                     </li>
                 </ul>
 
-{{#code "generic"}}
+{{#code highlight=false}}
 Coupon expires at {expires, time, short}
 {{/code}}
 
@@ -497,7 +497,7 @@ formats = {
 };
 {{/code}}
 
-{{#code "generic"}}
+{{#code highlight=false}}
 Your total is {total, number, usd}
 {{/code}}
 
@@ -531,7 +531,7 @@ Your total is {total, number, usd}
                 (This is similar to the <code>default</code> case of the <code>switch</code> found in some programming languages.)
             </p>
 
-{{#code "generic"}}
+{{#code highlight=false}}
 {gender, select,
     male {He}
     female {She}
@@ -543,7 +543,7 @@ Your total is {total, number, usd}
                 Here's an example of nested arguments.
             </p>
 
-{{#code "generic"}}
+{{#code highlight=false}}
 {taxableArea, select,
     yes{An additional {taxRate, number, percent} tax will be collected.}
     other{No taxes apply.}
@@ -603,14 +603,14 @@ Your total is {total, number, usd}
                 </dd>
             </dl>
 
-{{#code "generic"}}
+{{#code highlight=false}}
 Cart: {itemCount} {itemCount, plural,
     one {item}
     other {items}
 }
 {{/code}}
 
-{{#code "generic"}}
+{{#code highlight=false}}
 You have {itemCount, plural,
     =0 {no items}
     one {1 item}
@@ -622,7 +622,7 @@ You have {itemCount, plural,
                 In the <code><var>output</var></code> of the match, the <code>#</code> special token can be used as a placeholder for the value.
             </p>
 
-{{#code "generic"}}
+{{#code highlight=false}}
 You have {itemCount, plural,
     =0 {no items}
     one {1 item}

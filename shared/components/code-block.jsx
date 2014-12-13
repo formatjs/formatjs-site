@@ -1,11 +1,16 @@
-/* global Rainbow, React */
+/* global hljs, React */
 
 export default React.createClass({
     displayName: 'CodeBlock',
 
     propTypes: {
-        lang: React.PropTypes.string,
-        wrap: React.PropTypes.bool
+        highlight: React.PropTypes.bool,
+        lang     : React.PropTypes.string,
+        wrap     : React.PropTypes.bool
+    },
+
+    getDefaultProps: function () {
+        return {highlight: true};
     },
 
     shouldComponentUpdate: function (nextProps) {
@@ -14,18 +19,21 @@ export default React.createClass({
     },
 
     componentDidUpdate: function () {
-        this.refs.code.getDOMNode().classList.remove('rainbow');
-        Rainbow.color(this.getDOMNode());
+        if (this.props.highlight) {
+            hljs.highlightBlock(this.refs.code.getDOMNode());
+        }
     },
 
     render: function () {
-        var classNames = this.props.wrap ? 'code code-wrap': 'code',
-            lang       = this.props.lang;
+        var classNames = this.props.wrap ? 'code code-wrap': 'code';
+        var lang       = this.props.highlight ? this.props.lang : 'nohighlight';
 
         return (
-            <pre className={classNames}><code ref="code" data-language={lang}>
-                {this.props.children}
-            </code></pre>
+            <pre className={classNames}>
+                <code ref="code" className={lang}>
+                    {this.props.children}
+                </code>
+            </pre>
         );
     }
 });

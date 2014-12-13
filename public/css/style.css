@@ -356,8 +356,12 @@ li code {
 }
 .splash-example-controls {
     display: flex;
+    justify-content: flex-end;
     align-items: baseline;
     margin-top: 0.25rem;
+}
+.splash-example-control:first-child {
+    margin-right: 0.25rem;
 }
 .splash-example-controls,
 .splash-example-controls a:link,
@@ -628,9 +632,6 @@ li code {
         width: 12.3436rem;
         height: 3rem;
     }
-    .splash-example-controls {
-        justify-content: space-between;
-    }
     .splash-example-output {
         font-size: 1.25rem;
     }
@@ -731,13 +732,6 @@ li code {
     .nav-menu-item {
         margin-left: 0.25rem;
         margin-right: 0.25rem;
-    }
-
-    .splash-example-controls {
-        justify-content: flex-end;
-    }
-    .splash-example-control:first-child {
-        margin-right: 1rem;
     }
 
     .legal {

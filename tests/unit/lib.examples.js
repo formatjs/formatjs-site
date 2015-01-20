@@ -15,8 +15,24 @@ describe('Examples', function () {
                 return examples.get();
             }).to.throw();
         });
+        it('gets all the Dust examples', function () {
+            return expect(examples.get('dust'))
+                .to.eventually.be.an('array');
+        });
+        it('gets all the Handlebars examples', function () {
+            return expect(examples.get('handlebars'))
+                .to.eventually.be.an('array');
+        });
+        it('throws for unknown example types', function () {
+            expect(examples.get('unknown template engine'))
+                .to.eventually.be.rejected;
+        });
         it('gets all the React examples', function () {
-            return expect(examples.get('react'))
+            return expect(examples.get('react', { cache: true }))
+                .to.eventually.be.an('array');
+        });
+        it('gets all the cached React examplex', function () {
+            return expect(examples.get('react', { cache: true }))
                 .to.eventually.be.an('array');
         });
     });
@@ -29,6 +45,9 @@ describe('Examples', function () {
         it('throws when no intl object is provided', function () {
             expect(function () {
                 examples.render([]);
+            }).to.throw();
+            expect(function () {
+                examples.render([], 'hello');
             }).to.throw();
         });
     });

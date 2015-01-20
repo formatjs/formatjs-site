@@ -24,7 +24,7 @@ describe('Examples', function () {
                 .to.eventually.be.an('array');
         });
         it('throws for unknown example types', function () {
-            expect(examples.get('unknown template engine'))
+            return expect(examples.get('unknown template engine'))
                 .to.eventually.be.rejected;
         });
         it('gets all the React examples', function () {

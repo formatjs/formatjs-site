@@ -17,7 +17,9 @@ describe('Utils', function () {
     });
     describe('requireDir', function () {
         it('returns an object with a key for each module', function () {
-            var files = fs.readdirSync('./lib')
+            var dirPath = path.resolve('./tests/fixtures/modules/');
+
+            var files = fs.readdirSync(dirPath)
                 .filter(function (file) {
                     return file !== 'index.js' && path.extname(file) === '.js';
                 })
@@ -25,7 +27,7 @@ describe('Utils', function () {
                     return path.basename(file, '.js');
                 });
 
-            expect(utils.requireDir('./lib'))
+            expect(utils.requireDir(dirPath))
                 .to.be.an('object')
                 .with.keys(files);
         });

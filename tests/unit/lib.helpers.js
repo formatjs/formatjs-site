@@ -87,16 +87,22 @@ describe('Helpers', function () {
 
         it('should use the values in sizes.json', function () {
             var sizes = require('../../config/sizes.json');
+            sizes['fake-foo-bar'] = {
+                "bytes": 999,
+                "kbs": 0.98
+            };
             Object.keys(sizes).forEach(function (module) {
                 var size = helpers.size(module);
 
-                if (sizes[module] < 1024) {
+                if (sizes[module].bytes < 1024) {
                     expect(size).to.equal(sizes[module].bytes + ' bytes');
                 } else {
                     expect(size).to.equal(sizes[module].kbs + ' KB');
                 }
             });
         });
+
+
     });
 
     describe('cdnUrl', function () {

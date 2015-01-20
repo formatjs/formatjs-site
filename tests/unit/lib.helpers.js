@@ -1,9 +1,9 @@
-/*global describe, it*/
-var helpers = require('../../lib/helpers');
-var chai = require('chai');
-var chaiAsPromised = require("chai-as-promised");
+/*global describe, it, before, after*/
+var helpers    = require('../../lib/helpers');
+var chai       = require('chai');
+var Handlebars = require('handlebars');
 
-chai.use(chaiAsPromised);
+chai.use(require("chai-as-promised"));
 
 var expect = chai.expect;
 
@@ -58,8 +58,26 @@ describe('Helpers', function () {
     });
 
     describe('code', function () {
-        it('wraps inline clode blocks', function () {
+        before(function () {
+            Handlebars.registerHelper('code', helpers.code);
+        });
+        after(function () {
+            Handlebars.unregisterHelper('code');
+        });
+
+        it('throws when a string is not passed', function () {
+            expect(function () {
+                return helpers.code();
+            }).to.throw();
+        });
+        it('wraps inline clode', function () {
             expect(helpers.code('asdf', {}) + '').to.equal('<code>asdf</code>');
+        });
+        it('trims and wraps code blocks', function () {
+            var template = Handlebars.compile('{{#code "js"}}\n\thello();\n{{/code}}');
+            var result = template({});
+
+            expect(result.string).to.equal('<pre class="code"><code class="js">hello();</code></pre>');
         });
     });
 

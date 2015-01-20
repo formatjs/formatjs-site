@@ -3,7 +3,7 @@ if (!global.Promise) {
     global.Promise = require('ypromise');
 }
 
-var messages       = require('../lib/messages');
+var messages       = require('../../lib/messages');
 var chai           = require('chai');
 var chaiAsPromised = require("chai-as-promised");
 var fs             = require('fs');

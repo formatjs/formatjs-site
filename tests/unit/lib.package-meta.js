@@ -1,5 +1,5 @@
 /*global describe, it*/
-var pkgMeta = require('../lib/package-meta');
+var pkgMeta = require('../../lib/package-meta');
 var expect = require('chai').expect;
 
 describe('Package Meta', function () {

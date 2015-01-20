@@ -3,7 +3,7 @@ if (!global.Promise) {
     global.Promise = require('ypromise');
 }
 
-var examples       = require('../lib/examples');
+var examples       = require('../../lib/examples');
 var chai           = require('chai');
 var chaiAsPromised = require("chai-as-promised");
 var expect         = chai.use(chaiAsPromised).expect;
@@ -30,9 +30,6 @@ describe('Examples', function () {
             expect(function () {
                 examples.render([]);
             }).to.throw();
-        });
-        it('renders stuff', function () {
-            return expect(Promise.resolve(true)).to.eventually.equal(false);
         });
     });
 });

@@ -1,5 +1,5 @@
 /*global describe, it*/
-var helpers = require('../lib/helpers');
+var helpers = require('../../lib/helpers');
 var chai = require('chai');
 var chaiAsPromised = require("chai-as-promised");
 
@@ -86,7 +86,7 @@ describe('Helpers', function () {
         });
 
         it('should use the values in sizes.json', function () {
-            var sizes = require('../config/sizes.json');
+            var sizes = require('../../config/sizes.json');
             Object.keys(sizes).forEach(function (module) {
                 var size = helpers.size(module);
 

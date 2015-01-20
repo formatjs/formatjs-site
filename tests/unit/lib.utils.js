@@ -1,7 +1,7 @@
 /*global describe, it*/
 var fs             = require('fs');
 var path           = require('path');
-var utils          = require('../lib/utils');
+var utils          = require('../../lib/utils');
 var chai           = require('chai');
 var chaiAsPromised = require("chai-as-promised");
 var expect         = chai.use(chaiAsPromised).expect;

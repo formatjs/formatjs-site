@@ -26,7 +26,7 @@
     "morgan": "^1.2.3",
     "nodeify": "^1.0.0",
     "react": "^0.12.0",
-    "react-intl": "^1.1.0-rc-1",
+    "react-intl": "^1.1.0-rc-3",
     "react-tools": "^0.12.0",
     "reverend": "^0.3.0",
     "serve-favicon": "^2.1.1",

@@ -2,12 +2,13 @@
 
 import LocaleSelect from './locale-select';
 
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
-var IntlMessage             = ReactIntl.Message;
+var CSSTransitionGroup = React.addons.CSSTransitionGroup;
+var IntlMixin          = ReactIntl.IntlMixin;
+var FormattedMessage   = ReactIntl.FormattedMessage;
 
 export default React.createClass({
     displayName: 'SplashExample',
-    mixins     : [ReactIntl.Mixin],
+    mixins     : [ReactIntl.IntlMixin],
 
     getInitialState: function () {
         var locales = this.props.locales;
@@ -39,20 +40,18 @@ export default React.createClass({
                 <h2 className="splash-example-heading">Example</h2>
 
                 <div className="splash-example-output">
-                    <ReactCSSTransitionGroup
+                    <CSSTransitionGroup
                         transitionName="example-output"
                         transitionLeave={false}>
 
-                        <IntlMessage
+                        <FormattedMessage
+                            message={photosMessage}
                             key={Date.now()}
                             locales={currentLocale}
                             name={this.props.name}
                             numPhotos={this.state.currentNumPhotos}
-                            takenDate={this.props.takenDate}>
-
-                            {photosMessage}
-                        </IntlMessage>
-                    </ReactCSSTransitionGroup>
+                            takenDate={this.props.takenDate} />
+                    </CSSTransitionGroup>
                 </div>
 
                 <form className="splash-example-controls">

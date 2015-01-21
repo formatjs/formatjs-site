@@ -1,8 +1,7 @@
-/* global React, ReactIntl, dust */
+/* global React, dust */
 
 export default React.createClass({
     displayName: 'DustOutput',
-    mixins     : [ReactIntl.Mixin],
 
     propTypes: {
         source : React.PropTypes.string.isRequired,
@@ -51,6 +50,7 @@ export default React.createClass({
                 html = out;
             }
         });
+
         if (html) {
             return (
                 <div className="dust-output"

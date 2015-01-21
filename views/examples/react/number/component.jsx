@@ -1,17 +1,19 @@
+var IntlMixin       = ReactIntl.IntlMixin;
+var FormattedNumber = ReactIntl.FormattedNumber;
+
 var Component = React.createClass({
-    mixins: [ReactIntl.Mixin],
+    mixins: [IntlMixin],
 
     render: function () {
-        var IntlNumber = ReactIntl.Number;
-
         return (
             <ul>
-                <li><IntlNumber>{42000}</IntlNumber></li>
-                <li><IntlNumber style="percent">{0.9}</IntlNumber></li>
+                <li><FormattedNumber value={4200} /></li>
+                <li><FormattedNumber value={0.9} style="percent" /></li>
                 <li>
-                    <IntlNumber style="currency" currency="USD">
-                        {100.95}
-                    </IntlNumber>
+                    <FormattedNumber
+                        value={99.95}
+                        style="currency"
+                        currency="USD" />
                 </li>
             </ul>
         );

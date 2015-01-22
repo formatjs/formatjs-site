@@ -85,6 +85,7 @@
     "node": true,
     "browser": true,
     "esnext": true,
+    "predef": [ "DustIntl", "dust" ],
     "excludes": [
       "examples/",
       "build/",

@@ -4,7 +4,7 @@
         "kbs": 9.8
     },
     "intl-messageformat/dist/intl-messageformat-with-locales.min.js": {
-        "bytes": 6424,
+        "bytes": 6470,
         "kbs": 6.3
     },
     "intl-messageformat/dist/intl-messageformat.min.js": {
@@ -12,12 +12,12 @@
         "kbs": 4.7
     },
     "react-intl/dist/react-intl-with-locales.min.js": {
-        "bytes": 36275,
-        "kbs": 35.4
+        "bytes": 37207,
+        "kbs": 36.3
     },
     "react-intl/dist/react-intl.min.js": {
-        "bytes": 6967,
-        "kbs": 6.8
+        "bytes": 7875,
+        "kbs": 7.7
     },
     "dust-intl/dist/dust-intl-with-locales.min.js": {
         "bytes": 36546,

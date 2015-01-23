@@ -3,5 +3,7 @@ formats:
         USD:
             style: currency
             currency: USD
+            minimumFractionDigits: 2
+
         percentage:
             style: percent

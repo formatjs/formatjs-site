@@ -1,27 +1,37 @@
-/* global React, ReactIntlMixin */
+/* global React, ReactIntl */
 
 import LocaleSelect from './locale-select';
 
-var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+var CSSTransitionGroup = React.addons.CSSTransitionGroup;
+var IntlMixin          = ReactIntl.IntlMixin;
+var FormattedMessage   = ReactIntl.FormattedMessage;
 
 export default React.createClass({
     displayName: 'SplashExample',
-    mixins     : [ReactIntlMixin],
+    mixins     : [ReactIntl.IntlMixin],
+
+    getInitialState: function () {
+        var locales = this.props.locales;
+
+        return {
+            currentLocale   : Array.isArray(locales) ? locales[0] : locales,
+            currentNumPhotos: this.props.numPhotos
+        };
+    },
 
     updateLocale: function (newLocale) {
-        this.setProps({locales: newLocale});
+        this.setState({currentLocale: newLocale});
     },
 
     handleNumPhotosChange: function (e) {
-        this.setProps({numPhotos: parseInt(e.target.value, 10)});
+        this.setState({currentNumPhotos: parseInt(e.target.value, 10)});
     },
 
     render: function () {
-        var locales       = this.props.locales,
-            currentLocale = Array.isArray(locales) ? locales[0] : locales,
-            photosMessage = this.getIntlMessage(currentLocale + '.photos');
+        var currentLocale = this.state.currentLocale;
+        var photosMessage = this.getIntlMessage(currentLocale + '.photos');
 
-        var numPhotosOptions = [0, 1, 3, 1000].map(function (num) {
+        var numPhotosOptions = this.props.availableNumPhotos.map(function (num) {
             return <option key={num} value={num}>{num}</option>;
         });
 
@@ -30,14 +40,18 @@ export default React.createClass({
                 <h2 className="splash-example-heading">Example</h2>
 
                 <div className="splash-example-output">
-                    <ReactCSSTransitionGroup
+                    <CSSTransitionGroup
                         transitionName="example-output"
                         transitionLeave={false}>
 
-                        <span key={Date.now()}>
-                            {this.formatMessage(photosMessage, this.props)}
-                        </span>
-                    </ReactCSSTransitionGroup>
+                        <FormattedMessage
+                            message={photosMessage}
+                            key={Date.now()}
+                            locales={currentLocale}
+                            name={this.props.name}
+                            numPhotos={this.state.currentNumPhotos}
+                            takenDate={this.props.takenDate} />
+                    </CSSTransitionGroup>
                 </div>
 
                 <form className="splash-example-controls">
@@ -47,7 +61,7 @@ export default React.createClass({
                         </span>
 
                         <select
-                            value={this.props.numPhotos}
+                            value={this.state.currentNumPhotos}
                             onChange={this.handleNumPhotosChange}>
 
                             {numPhotosOptions}

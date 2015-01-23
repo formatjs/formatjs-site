@@ -9,37 +9,31 @@ export default React.createClass({
     displayName: 'ReactExample',
     mixins     : [ExampleMixin],
 
+    statics: {
+        renderCode: [
+            'React.render(',
+            '    <Component {...intlData} />,',
+            '    document.getElementById("example")',
+            ');'
+        ].join('\n')
+    },
+
     genderateRenderCode: function () {
         var intlData = this.generateIntlData();
 
-        var renderCode = [
+        return [
             'var intlData = ' + JSON.stringify(intlData, null, 4) + ';',
             '',
-            'React.render(',
-            '    <Component',
-            '        locales={intlData.locales}'
-        ];
-
-        if (intlData.messages) {
-            renderCode.push('        messages={intlData.messages}');
-        }
-        if (intlData.formats) {
-            renderCode.push('        formats={intlData.formats}');
-        }
-
-        var lastPropLine = renderCode.length - 1;
-        renderCode[lastPropLine] = renderCode[lastPropLine] + ' />,';
-
-        renderCode.push('    document.getElementById("example")');
-        renderCode.push(');');
-
-        return renderCode.join('\n');
+            this.constructor.renderCode
+        ].join('\n');
     },
 
     render: function () {
-        var example       = this.props.example,
-            currentLocale = this.state.currentLocale,
-            messages      = this.props.intl.messages[currentLocale];
+        var example          = this.props.example;
+        var currentLocale    = this.state.currentLocale;
+        var availableLocales = this.state.availableLocales;
+        var messages         = this.props.intl.messages[currentLocale];
+        var message          = messages[example.meta.messageId];
 
         var ExampleComponent = example.getComponent();
 
@@ -58,11 +52,11 @@ export default React.createClass({
         ];
 
         // Insert a "Message" tab if the example uses an i18n message.
-        if (example.meta.messageId) {
+        if (message) {
             tabs.splice(1, 0,
                 <Tab label="Message" key="message">
                     <CodeBlock highlight={false}>
-                        {messages[example.meta.messageId]}
+                        {message}
                     </CodeBlock>
                 </Tab>
             );
@@ -90,7 +84,7 @@ export default React.createClass({
                         <label>
                             <span className="example-label">Locale:</span>
                             <LocaleSelect
-                                availableLocales={this.props.intl.availableLocales}
+                                availableLocales={availableLocales}
                                 value={currentLocale}
                                 onChange={this.updateLocale} />
                         </label>

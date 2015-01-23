@@ -27,8 +27,33 @@ export default {
     },
 
     getInitialState: function () {
+        var intl             = this.props.intl;
+        var preferredLocale  = intl.locales[0];
+        var availableLocales = this.props.intl.availableLocales;
+        var messageId        = this.props.example.meta.messageId;
+
+        // For examples that use messages, limit `availableLocales` to those for
+        // which there are translations.
+        if (messageId) {
+            availableLocales =
+                availableLocales.reduce(function (locales, locale) {
+                    if (intl.messages[locale].hasOwnProperty(messageId)) {
+                        locales.push(locale);
+                    }
+
+                    return locales;
+                }, []);
+        }
+
+        // Make sure the user's preferredLocale in available, otherwise default
+        // to "en-US".
+        var currentLocale = availableLocales.find(function (locale) {
+            return locale === preferredLocale;
+        }) || 'en-US';
+
         return {
-            currentLocale: this.props.intl.locales[0]
+            currentLocale   : currentLocale,
+            availableLocales: availableLocales
         };
     },
 

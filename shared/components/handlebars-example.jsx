@@ -29,10 +29,11 @@ export default React.createClass({
     },
 
     render: function () {
-        var example       = this.props.example;
-        var intl          = this.props.intl;
-        var currentLocale = this.state.currentLocale;
-        var messages      = intl.messages[currentLocale];
+        var example          = this.props.example;
+        var currentLocale    = this.state.currentLocale;
+        var availableLocales = this.state.availableLocales;
+        var messages         = this.props.intl.messages[currentLocale];
+        var message          = messages[example.meta.messageId];
 
         var tabs = [
             <Tab label="Template" key="template">
@@ -55,11 +56,11 @@ export default React.createClass({
         ];
 
         // Insert a "Message" tab if the example uses an i18n message.
-        if (example.meta.messageId) {
+        if (message) {
             tabs.splice(1, 0,
                 <Tab label="Message" key="message">
                     <CodeBlock highlight={false}>
-                        {messages[example.meta.messageId]}
+                        {message}
                     </CodeBlock>
                 </Tab>
             );
@@ -87,7 +88,7 @@ export default React.createClass({
                         <label>
                             <span className="example-label">Locale:</span>
                             <LocaleSelect
-                                availableLocales={intl.availableLocales}
+                                availableLocales={availableLocales}
                                 value={currentLocale}
                                 onChange={this.updateLocale} />
                         </label>

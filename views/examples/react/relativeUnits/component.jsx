@@ -1,5 +1,8 @@
+var IntlMixin         = ReactIntl.IntlMixin;
+var FormattedRelative = ReactIntl.FormattedRelative;
+
 var Component = React.createClass({
-    mixins: [ReactIntlMixin],
+    mixins: [IntlMixin],
 
     render: function () {
         var postDate = Date.now() - (1000 * 60 * 60 * 22);
@@ -8,16 +11,18 @@ var Component = React.createClass({
         return (
             <div>
                 <p>
-                    <b>{this.formatRelative(postDate)}</b> <i>(best fit)</i><br/>
-                    <b>{this.formatRelative(postDate, {
-                        units: 'minute'
-                    })}</b> <i>(in minutes)</i>
+                    <b><FormattedRelative value={postDate} /></b>
+                    <i>(best fit)</i><br/>
+
+                    <b><FormattedRelative value={postDate} units="minute" /></b>
+                    <i>(in minutes)</i>
                 </p>
                 <p>
-                    <b>{this.formatRelative(lastTrip)}</b> <i>(best fit)</i><br/>
-                    <b>{this.formatRelative(lastTrip, {
-                        units: 'day'
-                    })}</b> <i>(in days)</i>
+                    <b><FormattedRelative value={lastTrip} /></b>
+                    <i>(best fit)</i><br/>
+
+                    <b><FormattedRelative value={lastTrip} units="day" /></b>
+                    <i>(in days)</i>
                 </p>
             </div>
         );

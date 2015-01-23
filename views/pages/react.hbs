@@ -24,53 +24,88 @@
 
 <section class="main docs l-wrap">
     <p>
-        This library provides a mixin to internationalize your <a href="http://facebook.github.io/react/">React</a> components.
+        This library provides React Components and a Mixin to format data and strings, and internationalize your <a href="http://facebook.github.io/react/">React</a> app.
     </p>
 
 
     <h2>Features</h2>
     {{> integrations/features}}
 
+    <h2>Components</h2>
 
-    <h2>Mixin Methods</h2>
+    <p>
+        The React Intl Components provide a way to declaratively format data and message strings. Using the Components is the recommended way to use React Intl.
+    </p>
 
     <ul>
         <li>
-            <a href="#formatDate"><code>formatDate()</code></a> formats a date value
+            <a href="#formatted-date">{{code "<FormattedDate>"}}</a> formats a date value
         </li>
         <li>
-            <a href="#formatTime"><code>formatTime()</code></a> formats a date value with time formats
+            <a href="#formatted-time">{{code "<FormattedTime>"}}</a> formats a date value with time formats
         </li>
         <li>
-            <a href="#formatRelative"><code>formatRelative()</code></a> formats a date relative to now; e.g. "3 hours ago"
+            <a href="#formatted-relative">{{code "<FormattedRelative>"}}</a> formats a date relative to now; e.g. "3 hours ago"
         </li>
         <li>
-            <a href="#formatNumber"><code>formatNumber()</code></a> formats a number value
+            <a href="#formatted-number">{{code "<FormattedNumber>"}}</a> formats a number value
         </li>
         <li>
-            <a href="#formatMessage"><code>formatMessage()</code></a> formats a translated string message
+            <a href="#formatted-message">{{code "<FormattedMessage>"}}</a> formats a translated string message
         </li>
+        <li>
+            <a href="#formatted-html-message">{{code "<FormattedHTMLMessage>"}}</a> formats a translated string message
+        </li>
+    </ul>
+
+
+    <h2>Intl Mixin</h2>
+
+    <p>
+        React Intl also provides a React Component Mixin to aid with managing the i18n data within your app's hierarchy of React Components. All of the React Intl Components use this Mixin, and it's recommended that you add this Mixin to your app's root Component.
+    </p>
+
+    <p>
+        The Intl Mixin will <b>automatically propagate the following props</b> throughout your app's Component hierarchy:
+    </p>
+
+    <ul>
+        <li><code>locales</code></li>
+        <li><code>formats</code></li>
+        <li><code>messages</code></li>
+    </ul>
+
+    <p>
+        The Intl Mixin also has the follow convenience methods:
+    </p>
+
+    <ul>
         <li>
             <a href="#getIntlMessage"><code>getIntlMessage()</code></a> looks up a translated string message by path
+        </li>
+        <li>
+            <code>formatDate()</code>, <code>formatTime()</code>, <code>formatRelative()</code>, <code>formatNumber()</code>, and <code>formatMessage()</code> methods provide an imperative API to formatting data and strings, but <b>these methods will likely be deprecated in v2.0</b>, so use the Components.
         </li>
     </ul>
 
 
     <h2>How It Works</h2>
 
-    <h3>Create a React Component with <code>ReactIntlMixin</code></h3>
+    <h3>
+        Create a React Component using <code>IntlMixin</code> and {{code "<FormattedNumber>"}}
+    </h3>
 
 {{#code "js"}}
-var Component = React.createClass({
-    mixins: [ReactIntlMixin],
+var IntlMixin       = ReactIntl.IntlMixin;
+var FormattedNumber = ReactIntl.FormattedNumber;
+
+var App = React.createClass({
+    mixins: [IntlMixin],
 
     render: function () {
         return (
             <p>
-                {this.formatNumber(1000, {
-                    style   : 'currency',
-                    currency: 'USD'
-                })}
+                <FormattedNumber value={1000} style="currency" currency="USD" />
             </p>
         );
     }
@@ -79,9 +114,13 @@ var Component = React.createClass({
 
     <h3>Render the Component</h3>
 
+    <p>
+        When the {{code "<App>"}} component is rendered a value for <code>locales</code> is passed. The <code>IntlMixin</code> will make sure to propagate this value to the nested {{code "<FormattedNumber>"}} component so it renders the number in the correct locale.
+    </p>
+
 {{#code "js"}}
 React.render(
-    <Component locales={['en-US']} />,
+    <App locales={['en-US']} />,
     document.getElementById('example')
 );
 {{/code}}
@@ -100,11 +139,7 @@ React.render(
 
     <h3 id="install-browser">Browser</h3>
 
-    <h4>1. Load the Scripts onto the Page</h4>
-
-    <p>
-        First, load React and React Intl onto the page:
-    </p>
+    <h4>Load the Scripts onto the Page</h4>
 
 {{#code "html"}}
 <script src="react/dist/react.min.js"></script>
@@ -114,18 +149,9 @@ React.render(
     {{> integrations/load-locale-data-browser}}
     {{> integrations/note-intl-browser}}
 
-    <h4>2. Use <code>ReactIntlMixin</code> in a React Component</h4>
-
-{{#code "js"}}
-var MyComponent = React.createClass({
-    mixins: [ReactIntlMixin],
-    render: function () {...}
-});
-{{/code}}
-
     <h3 id="install-node">Node/CommonJS</h3>
 
-    <h4>1. Require the Module</h4>
+    <h4>Require the Module</h4>
 
 {{#code "js"}}
 // Load and use polyfill for ECMA-402.
@@ -133,27 +159,18 @@ if (!global.Intl) {
     global.Intl = require('intl');
 }
 
-var React          = require('react');
-var ReactIntlMixin = require('react-intl');
+var React     = require('react');
+var ReactIntl = require('react-intl');
 {{/code}}
 
     {{> integrations/load-locale-data-node}}
     {{> integrations/note-intl-node}}
 
-    <h4>2. Use ReactIntlMixin in a React Component</h4>
 
-{{#code "js"}}
-var MyComponent = React.createClass({
-    mixins: [ReactIntlMixin],
-    render: function () {...}
-});
-{{/code}}
-
-
-    <h2 id="formatNumber">Format Numbers with Separators</h2>
+    <h2 id="formatted-number">Format Numbers with Separators</h2>
 
     <p>
-        The <code>this.formatNumber()</code> method is used to represent a number in a way appropriate for the current locale. It formats numbers using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat"><code>Intl.NumberFormat</code></a>, and returns the formatted string value.
+        The {{code "<FormattedNumber>"}} Component is used to represent a number in a way appropriate for the current locale. It formats numbers using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat"><code>Intl.NumberFormat</code></a>. <b>The number to format is passed via the <code>value</code> prop.</b>
     </p>
 
     {{~> example examples.number}}
@@ -161,7 +178,7 @@ var MyComponent = React.createClass({
     <h3>Using Named Number Formats</h3>
 
     <p>
-        Specifying format options (e.g.: <code>{style: "currency", currency: "USD"}</code>) in every call to <code>this.formatNumber()</code> in your components can become a problem in large code bases, and isn't DRY. Instead, you can provide named number formats on the <code>formats</code> component prop.
+        Specifying format options (e.g.: <code>style="currency" currency="USD"</code>) in every use of {{code "<FormattedNumber>"}} can become a problem in large code bases, and isn't DRY. Instead, you can provide named number formats on the <code>formats</code> component prop. The <code>IntlMixin</code> automatically propagates the <code>formats</code> prop value through the component hierarchy.
     </p>
 
     {{~> example examples.numberCustom}}
@@ -173,10 +190,10 @@ var MyComponent = React.createClass({
     {{> integrations/see-custom-formats}}
 
 
-    <h2 id="formatDate">Format Dates and Times Correctly</h2>
+    <h2 id="formatted-date">Format Dates and Times Correctly</h2>
 
     <p>
-        The <code>this.formatDate()</code> method is used to represent a date in a way appropriate for the current locale. It formats dates using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat"><code>Intl.DateTimeFormat</code></a>, and returns the formatted string value.
+        The {{code "<FormattedDate>"}} Component is used to represent a date in a way appropriate for the current locale. It formats dates using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat"><code>Intl.DateTimeFormat</code></a>. <b>The date to format is passed via the <code>value</code> prop.</b>
     </p>
 
     {{~> example examples.date}}
@@ -184,7 +201,7 @@ var MyComponent = React.createClass({
     <h3>Using Named Date Formats</h3>
 
     <p>
-        Specifying format options (e.g.: <code>{day: "numeric", month: "long", year: "numeric"}</code>) in every call to <code>this.formatDate()</code> in your components can become a problem in large code bases, and isn't DRY. Instead, you can provide named date formats on the <code>formats</code> component prop.
+        Specifying format options (e.g.: <code>day="numeric" month="long" year="numeric"</code>) in every use of {{code "<FormattedDate>"}} can become a problem in large code bases, and isn't DRY. Instead, you can provide named date formats on the <code>formats</code> component prop. The <code>IntlMixin</code> automatically propagates the <code>formats</code> prop value through the component hierarchy.
     </p>
 
     {{~> example examples.dateCustom}}
@@ -195,17 +212,17 @@ var MyComponent = React.createClass({
 
     {{> integrations/see-custom-formats}}
 
-    <h3>Using Named Time Formats</h3>
+    <h3 id="formatted-time">Using Named Time Formats</h3>
 
-    <p id="formatTime">
-        The <code>this.formatTime()</code> method is just like the <code>this.formatDate()</code> method, except it will reference any named formats from the <code>formats.time</code> component prop.
+    <p>
+        The {{code "<FormattedTime>"}} Component is just like the {{code "<FormattedDate>"}} component, except it will reference any named formats from the <code>formats.time</code> component prop.
     </p>
 
 
-    <h2 id="formatRelative">Format Dates Relative To "now"</h2>
+    <h2 id="formatted-relative">Format Dates Relative To "now"</h2>
 
     <p>
-        The <code>this.formatRelative()</code> method is used to represent a relative time in a way appropriate for the current locale. It formats the relative time following the rules from <a href="http://cldr.unicode.org/">Unicode CLDR</a>, and returns the formatted string value.
+        The {{code "<FormattedRelative>"}} Component is used to represent a relative time in a way appropriate for the current locale. It formats the relative time following the rules from <a href="http://cldr.unicode.org/">Unicode CLDR</a>. <b>The date to format is passed via the <code>value</code> prop.</b>
     </p>
 
     {{~> example examples.relative}}
@@ -213,7 +230,7 @@ var MyComponent = React.createClass({
     <h3>Using Specific Relative Units</h3>
 
     <p>
-        By default, the relative time is formatted using the best fit unit of time. However, you can explicitly set the <code>units</code> option one of the following values:<br> <code>"second"</code>, <code>"minute"</code>, <code>"hour"</code>, <code>"day"</code>, <code>"month"</code> or <code>"year"</code>.
+        By default, the relative time is formatted using the best fit unit of time. However, you can explicitly set the <code>units</code> prop to one of the following values:<br> <code>"second"</code>, <code>"minute"</code>, <code>"hour"</code>, <code>"day"</code>, <code>"month"</code> or <code>"year"</code>.
     </p>
 
     {{~> example examples.relativeUnits}}
@@ -221,7 +238,7 @@ var MyComponent = React.createClass({
     <h3>Using Specific Relative Styles</h3>
 
     <p>
-        The <code>style</code> option provides another level of customization. By default, the relative time is computed with a <code>"best fit"</code> style, which means, for example, that instead of "1 day ago", it will display "yesterday", or "in 1 year" will be "next year", etc. The other <code>style</code> is <code>"numeric"</code>, in which the output will <em>always</em> contain a number.
+        The <code>style</code> prop provides another level of customization. By default, the relative time is computed with a <code>"best fit"</code> style, which means, for example, that instead of "1 day ago", it will display "yesterday", or "in 1 year" will be "next year", etc. The other <code>style</code> is <code>"numeric"</code>, in which the output will <em>always</em> contain a number.
     </p>
 
     {{~> example examples.relativeStyle}}
@@ -229,7 +246,7 @@ var MyComponent = React.createClass({
     <h3>Using Named Relative Formats</h3>
 
     <p>
-        Specifying format options (e.g.: <code>{style: 'numeric'}</code>) in every call to <code>this.formatRelative()</code> in your components can become a problem in large code bases.  Instead, you can provide named relative formats on the <code>formats</code> component prop.
+        Specifying format options (e.g.: <code>style="numeric"</code>) in every use of {{code "<FormattedRelative>"}} can become a problem in large code bases.  Instead, you can provide named relative formats on the <code>formats</code> component prop. The <code>IntlMixin</code> automatically propagates the <code>formats</code> prop value through the component hierarchy.
     </p>
 
     {{~> example examples.relativeCustom}}
@@ -241,41 +258,79 @@ var MyComponent = React.createClass({
     {{> integrations/see-custom-formats}}
 
 
-    <h2 id="formatMessage">Pluralize Labels in Strings</h2>
+    <h2 id="formatted-message">Pluralize Labels in Strings</h2>
 
     <p>
-        When internationalizing React components, you will need a way to localize your UI strings, including any logic pieces like pluralization rules for all the languages you wish to support. These strings should be externalized from your React components so that the same React component can be used for all languages. This library provides two methods that can work together to provide a way to lookup and format language-specific strings.
+        When internationalizing a React app, you will need a way to localize your UI strings, including any logic pieces like pluralization rules for all the languages you wish to support. These strings should be externalized from your React components so that the same React component can be used for all languages. Using the <code>IntlMixin</code> and {{code "<FormattedMessage>"}} Component together provides a way to lookup and format language-specific strings.
     </p>
 
     <p id="getIntlMessage">
-        The <code>this.getIntlMessage()</code> method implements a lookup process to resolve the localized strings from the component's <code>messages</code> prop. This method takes a string path/namespace to a localized string within the <code>messsages</code> object; e.g., <code>"photos.likeButtonLabel"</code>.
+        The <code>this.getIntlMessage()</code> method provided by the <code>IntlMixin</code> implements a lookup process to resolve the localized strings from the component's <code>messages</code> prop. This method takes a string path/namespace to a localized string within the <code>messsages</code> object; e.g., <code>"photos.likeButtonLabel"</code>.
     </p>
 
     <p>
-        The <code>this.formatMessage()</code> method formats a translated message written in the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax, which is used by professional translators. The message format supports placeholders, plus choosing different strings based on pluralization, gender, or other criteria.
+        The {{code "<FormattedMessage>"}} component formats a translated message written in the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax (which is used by professional translators). The message format supports placeholders, plus choosing different strings based on pluralization, gender, or other criteria.
     </p>
 
     {{> integrations/see-guide}}
 
+    <p>
+        The following example is the same one used on the home page of this website. It uses a moderately complex message to show basic substitution, number and date formatting, and pluralization. Be sure to look at the <b>MESSAGE</b> tab.
+    </p>
+
     {{~> example examples.message}}
 
     <p>
-        In the example above, <code>var message = this.getIntlMessage('photos');</code> will return the <code>"photos"</code> message provided at <code>this.props.messages.photos</code>. Beyond the basic nested object value lookup process, it provides descriptive error messages when accessing a property that is <code>undefined</code>. Check the <strong>RENDER</strong> tab to see the details.
+        In the example above, <code>this.getIntlMessage('photos');</code> will return the <code>"photos"</code> message provided at <code>this.props.messages.photos</code>. Beyond the basic nested object value lookup process, it provides descriptive error messages when accessing a property that is <code>undefined</code>. Check the <strong>RENDER</strong> tab to see the details.
     </p>
 
     <p class="note">
-        <b>Note:</b> You can provide the <code>messages</code> property value to the root React component when rendering a the top-level component in the React hierarchy, and <code>messages</code> &mdash; just like <code>locales</code> &mdash; will be propagated to any child components using <code>ReactIntlMixin</code>.
+        <b>Note:</b> You can provide the <code>messages</code> property value to the root React component when rendering a the top-level component in the React hierarchy, and <code>messages</code> &mdash; just like <code>locales</code> &mdash; will be propagated to any child components using <code>IntlMixin</code>.
     </p>
 
     <p>
         Additionally, you can leverage <a href="#custom-formats">custom formats</a> as described below, to specify a set of named format options to use in your messages, e.g: <code>{someNum, number, USD}</code> and <code>{someDate, date, short}</code> or <code>{someTime, time, long}</code>.
     </p>
 
+    <h2 id="formatted-html-message">Formatting Rich-Text Strings</h2>
+
+    <p>
+        If you inspect the DOM for the rendered example above, you'll notice the formatted message is a string of text inside of a {{code "<span>"}}. This will work for many strings, but sometimes string messages benefit from being rendered as rich-text. React Intl supports formatting rich-text strings in the following ways:
+    </p>
+
+    <h3>React Elements as <code>props</code> Values</h3>
+
+    <p>
+        The recommended way to format strings as rich-text is to use the {{code "<FormattedMessage>"}} Component, and pass other React Elements as <code>props</code> values to be used to fill-in placeholders in the static <code>message</code> string.
+    </p>
+
+    <p>
+        The following example has a static ICU Message string with two generic placeholders <code>{name}</code>, and <code>{timeAgo}</code>. These placeholders will will be replaced with rich-text values to make the <code>name</code> bold, and <code>timeAgo</code> represented as a relative time inside an HTML {{code "<time>"}} element:
+    </p>
+
+    {{~> example examples.messageNested}}
+
+    <h3>HTML in Static ICU Message Strings</h3>
+
+    <p>
+        In some cases you might want to put HTML directly into the static ICU Message String, while we recommend you use the nested React Elements approach mentioned about React Intl provides a {{code "<FormattedHTMLMessage>"}} Component.
+    </p>
+
+    <p>
+        The following example formats <code>numComments</code> with a pluralized label and bolds the number of comments if it's more than one:
+    </p>
+
+    {{~> example examples.messageHTML}}
+
+    <p class="note">
+        {{code "<FormattedHTMLMessage>"}} <i>only</i> supports HTML in the static ICU Message string, it does not support JSX. Also, using this component is less performant than using {{code "<FormattedMessage>"}} because it has to opt-out of React's virtual DOM diffing.
+    </p>
+
 
     <h2 id="custom-formats">Define Your Own Custom Formats</h2>
 
     <p>
-        The React Intl Mixin allows you to define named formats that can be used throughout the entire application or within a component subtree. These named format can be specified for <code>date</code>, <code>time</code>, <code>number</code> and <code>relative</code> format types. The following example illustrates how these custom named formats work.
+        The <code>IntlMixin</code> allows you to define named formats that can be used throughout the entire application or within a component hierarchy. These named format can be specified for <code>date</code>, <code>time</code>, <code>number</code> and <code>relative</code> format types. The following example illustrates how these custom named formats work.
     </p>
 
     {{~> example examples.custom}}
@@ -285,6 +340,6 @@ var MyComponent = React.createClass({
     </p>
 
     <p class="note">
-        <b>Note:</b> You can provide the <code>formats</code> property value at the root React component when rendering the top-level component in the React hierarchy, and <code>formats</code> &mdash; just like <code>messages</code> and <code>locales</code> &mdash; will be propagated to any component child components using <code>ReactIntlMixin</code>.
+        <b>Note:</b> You can provide the <code>formats</code> property value at the root React component when rendering the top-level component in the React hierarchy, and <code>formats</code> &mdash; just like <code>messages</code> and <code>locales</code> &mdash; will be propagated to any component child components using <code>IntlMixin</code>.
     </p>
 </section>

@@ -1,8 +1,7 @@
-/* global React, ReactIntlMixin, Handlebars */
+/* global React, Handlebars */
 
 export default React.createClass({
     displayName: 'HandlebarsOutput',
-    mixins     : [ReactIntlMixin],
 
     propTypes: {
         source : React.PropTypes.string.isRequired,

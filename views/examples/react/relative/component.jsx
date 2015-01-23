@@ -1,5 +1,8 @@
+var IntlMixin         = ReactIntl.IntlMixin;
+var FormattedRelative = ReactIntl.FormattedRelative;
+
 var Component = React.createClass({
-    mixins: [ReactIntlMixin],
+    mixins: [IntlMixin],
 
     render: function () {
         var postDate    = Date.now() - (1000 * 60 * 60 * 24);
@@ -8,9 +11,9 @@ var Component = React.createClass({
 
         return (
             <ul>
-                <li>{this.formatRelative(postDate)}</li>
-                <li>{this.formatRelative(commentDate)}</li>
-                <li>{this.formatRelative(meetingDate)}</li>
+                <li><FormattedRelative value={postDate} /></li>
+                <li><FormattedRelative value={commentDate} /></li>
+                <li><FormattedRelative value={meetingDate} /></li>
             </ul>
         );
     }

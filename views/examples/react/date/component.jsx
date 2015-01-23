@@ -1,14 +1,17 @@
+var IntlMixin     = ReactIntl.IntlMixin;
+var FormattedDate = ReactIntl.FormattedDate;
+
 var Component = React.createClass({
-    mixins: [ReactIntlMixin],
+    mixins: [IntlMixin],
 
     render: function () {
         return (
             <p>
-                {this.formatDate(new Date(), {
-                    day  : 'numeric',
-                    month: 'long',
-                    year : 'numeric'
-                })}
+                <FormattedDate
+                    value={new Date()}
+                    day="numeric"
+                    month="long"
+                    year="numeric" />
             </p>
         );
     }

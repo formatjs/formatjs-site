@@ -9,7 +9,7 @@
     "dust-intl": "^1.0.0",
     "dustjs-linkedin": "^2.4.0",
     "errorhandler": "^1.1.1",
-    "es6-shim": "^0.21.1",
+    "es6-shim": "^0.22.2",
     "express": "^4.9.5",
     "express-handlebars": "^1.1.0",
     "express-slash": "^2.0.1",
@@ -44,7 +44,7 @@
     "broccoli-react": "^0.7.0",
     "broccoli-sane-watcher": "^0.1.0",
     "broccoli-unwatched-tree": "^0.1.1",
-    "chai": "~1.9.2",
+    "chai": "^1.10.0",
     "chai-as-promised": "~4.1.1",
     "es6-module-transpiler": "^0.9.3",
     "es6-module-transpiler-npm-resolver": "^0.2.1",
@@ -59,7 +59,7 @@
     "postcss-custom-properties": "^2.0.0",
     "rimraf": "^2.2.8",
     "supertest": "~0.15.0",
-    "xunit-file": "^0.0.5"
+    "xunit-file": "0.0.6"
   },
   "scripts": {
     "postinstall": "grunt",
@@ -85,7 +85,10 @@
     "node": true,
     "browser": true,
     "esnext": true,
-    "predef": [ "DustIntl", "dust" ],
+    "predef": [
+      "DustIntl",
+      "dust"
+    ],
     "excludes": [
       "examples/",
       "build/",

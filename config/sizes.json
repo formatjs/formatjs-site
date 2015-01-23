@@ -12,11 +12,11 @@
         "kbs": 4.7
     },
     "react-intl/dist/react-intl-with-locales.min.js": {
-        "bytes": 37207,
+        "bytes": 37220,
         "kbs": 36.3
     },
     "react-intl/dist/react-intl.min.js": {
-        "bytes": 7875,
+        "bytes": 7887,
         "kbs": 7.7
     },
     "dust-intl/dist/dust-intl-with-locales.min.js": {

@@ -15,6 +15,13 @@ photosNested: |
 comments: |
   {numComments, plural,
     =0 {no comments}
+    =1 {1 comment}
+    other {# comments}
+  }
+
+commentsHTML: |
+  {numComments, plural,
+    =0 {no comments}
     =1 {<b>1</b> comment}
     other {<b>#</b> comments}
   }

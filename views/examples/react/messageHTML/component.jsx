@@ -8,7 +8,7 @@ var Component = React.createClass({
         return (
             <p>
                 <FormattedHTMLMessage
-                    message={this.getIntlMessage('comments')}
+                    message={this.getIntlMessage('commentsHTML')}
                     numComments={42} />
             </p>
         );

@@ -52,6 +52,9 @@
     "grunt-broccoli-build": "^0.4.0",
     "grunt-cli": "^0.1.13",
     "grunt-contrib-clean": "^0.6.0",
+    "grunt-mocha-istanbul": "~2.3.0",
+    "grunt-run": "~0.3.0",
+    "grunt-simple-mocha": "~0.4.0",
     "istanbul": "^0.3.2",
     "mocha": "^2.0.1",
     "object.assign": "^1.0.1",
@@ -63,7 +66,7 @@
   },
   "scripts": {
     "postinstall": "grunt",
-    "test": "istanbul cover -- node_modules/mocha/bin/_mocha tests/unit/ --reporter spec",
+    "test": "grunt test",
     "start": "node server.js"
   },
   "repository": {

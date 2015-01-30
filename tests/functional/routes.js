@@ -7,9 +7,12 @@ var utils   = require('../../lib/utils');
 var app     = require('../../app');
 var routes  = utils.requireDir(path.join(__dirname, '../../routes/'));
 
-var host = process.env.manhattan_context__instance_hostname || 'http://localhost';
+var host = process.env.manhattan_context__instance_hostname ||
+    'http://localhost:' + app.get('port');
 
-request = request(host + ':' + app.get('port'));
+console.log('Testing host: ' + host);
+
+request = request(host);
 
 function isRouter(stackEntry) {
     return stackEntry.name === 'router';

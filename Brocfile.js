@@ -59,17 +59,34 @@ var formatjsIntegrations = compileModules('public/vendor/formatjs/', {
     ]
 });
 
-var formatjsLocaleData = new Funnel(node_modules, {
-    srcDir : 'react-intl/dist/locale-data',
-    destDir: '/',
-
-    files: config.availableLocales.map(function (locale) {
-        return locale.split('-')[0] + '.js';
-    })
+var localeDataFiles = config.availableLocales.map(function (locale) {
+    return locale.split('-')[0] + '.js';
 });
 
-formatjsLocaleData = concatTrees(formatjsLocaleData, {
-    inputFiles: ['*.js'],
+var dustIntlLocaleData = new Funnel(node_modules, {
+    srcDir : 'dust-intl/dist/locale-data',
+    destDir: 'dust-intl/',
+    files  : localeDataFiles
+});
+
+var handlebarsIntlLocaleData = new Funnel(node_modules, {
+    srcDir : 'handlebars-intl/dist/locale-data',
+    destDir: 'handlebars-intl/',
+    files  : localeDataFiles
+});
+
+var reactIntlLocaleData = new Funnel(node_modules, {
+    srcDir : 'react-intl/dist/locale-data',
+    destDir: 'react-intl/',
+    files  : localeDataFiles
+});
+
+var formatjsLocaleData = concatTrees(mergeTrees([
+    dustIntlLocaleData,
+    handlebarsIntlLocaleData,
+    reactIntlLocaleData
+]), {
+    inputFiles: ['*/*.js'],
     outputFile: '/vendor/formatjs/locale-data.js'
 });
 

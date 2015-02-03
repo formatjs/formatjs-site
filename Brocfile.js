@@ -25,7 +25,9 @@ function copy(tree, mappings) {
 
 // -- Shared -------------------------------------------------------------------
 
-var shared = compileJSX('shared/');
+var shared = compileJSX('shared/', {
+    transform: {harmony: true}
+});
 
 // -- Server -------------------------------------------------------------------
 

@@ -16,9 +16,10 @@ module.exports = function (route) {
                 res.expose('integration', 'pageType');
 
                 res.render('handlebars', {
-                    activeMenuItem: route.name,
-                    package       : pkgMeta,
-                    examples      : renderExamples(examples, res.intl)
+                    activeMenuItem    : route.name,
+                    usesHandlebarsIntl: true,
+                    package           : pkgMeta,
+                    examples          : renderExamples(examples, res.intl)
                 });
             }).catch(next);
     });

@@ -1,11 +1,8 @@
-/* global dust, DustIntl, Handlebars, HandlebarsIntl, APP */
+/* global APP */
 
 import homePage from './home';
 import integrationPage from './integration';
 import tableOfContents from './toc';
-
-DustIntl.registerWith(dust);
-HandlebarsIntl.registerWith(Handlebars);
 
 switch (APP.pageType) {
     case 'home':

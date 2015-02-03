@@ -17,5 +17,5 @@ module.exports = function (config) {
 
         res.locals.polyfillUrl = polyfillUrl;
         next();
-    }
+    };
 };

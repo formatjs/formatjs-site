@@ -1,4 +1,4 @@
-/* global React */
+/* global React, Ember */
 
 export default React.createClass({
     displayName: 'EmberOutput',
@@ -9,7 +9,7 @@ export default React.createClass({
     },
 
     injectMessages: function (locale, messages) {
-        var container  = this.container;
+        var container  = this.app.__container__;
         var lookupName = locale.toLowerCase();
 
         if (container.has('locale:' + lookupName)) {
@@ -29,7 +29,7 @@ export default React.createClass({
             this.setState({});
         }
 
-        var locale = Ember.get(nextProps, 'locales');
+        var locale = nextProps.locales;
 
         if (typeof locale === 'string') {
             this.injectMessages(locale, nextProps.messages);
@@ -66,18 +66,15 @@ export default React.createClass({
             after: 'ember-intl-standalone',
 
             initialize: function (container, app) {
-                var controller = this.controller = container.lookupFactory('controller:basic').create(this.props.context);
-                this.container = container;
+                this.controller = container.lookupFactory('controller:basic').create(this.props.context);
 
-                this.injectMessages(this.props.locales.toLowerCase(), this.props.messages);
+                this.injectMessages(this.props.locales, this.props.messages);
 
-                this.view = Ember.View.create({
+                Ember.View.create({
                     template  : Ember.Handlebars.compile(this.props.source),
-                    context   : controller,
+                    context   : this.controller,
                     container : container
-                });
-
-                this.view.appendTo(domElement);
+                }).appendTo(domElement)
             }.bind(this)
         });
     },

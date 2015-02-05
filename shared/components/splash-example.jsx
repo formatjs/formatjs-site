@@ -3,12 +3,9 @@
 import LocaleSelect from './locale-select';
 
 var CSSTransitionGroup = React.addons.CSSTransitionGroup;
-var IntlMixin          = ReactIntl.IntlMixin;
-var FormattedMessage   = ReactIntl.FormattedMessage;
 
 export default React.createClass({
     displayName: 'SplashExample',
-    mixins     : [ReactIntl.IntlMixin],
 
     getInitialState: function () {
         var locales = this.props.locales;
@@ -28,8 +25,10 @@ export default React.createClass({
     },
 
     render: function () {
+        var {FormattedMessage} = ReactIntl;
+
         var currentLocale = this.state.currentLocale;
-        var photosMessage = this.getIntlMessage(currentLocale + '.photos');
+        var photosMessage = this.props.messages[currentLocale].photos;
 
         var numPhotosOptions = this.props.availableNumPhotos.map(function (num) {
             return <option key={num} value={num}>{num}</option>;

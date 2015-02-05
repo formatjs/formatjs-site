@@ -3,15 +3,12 @@
 var autoprefixer     = require('autoprefixer-core');
 var compileJSX       = require('broccoli-react');
 var compileModules   = require('broccoli-es6-module-transpiler');
-var concatTrees      = require('broccoli-concat');
+var concatTree       = require('broccoli-concat');
 var customProperties = require('postcss-custom-properties');
 var mergeTrees       = require('broccoli-merge-trees');
 var postcss          = require('./broccoli/postcss');
 var unwatchedTree    = require('broccoli-unwatched-tree');
 var Funnel           = require('broccoli-funnel');
-
-var FileResolver    = require('es6-module-transpiler').FileResolver;
-var NPMFileResolver = require('es6-module-transpiler-npm-resolver');
 
 var config = require('./config');
 
@@ -28,7 +25,9 @@ function copy(tree, mappings) {
 
 // -- Shared -------------------------------------------------------------------
 
-var shared = compileJSX('shared/');
+var shared = compileJSX('shared/', {
+    transform: {harmony: true}
+});
 
 // -- Server -------------------------------------------------------------------
 
@@ -47,54 +46,43 @@ var vendor = new Funnel('public/vendor/', {
     destDir: '/vendor'
 });
 
-var formatjsIntegrations = compileModules('public/vendor/formatjs/', {
-    description: 'FormatJSModules',
-    formatter  : 'bundle',
-    output     : '/vendor/formatjs/integrations.js',
-    sourceRoot : '/public/vendor/formatjs/',
-
-    resolvers: [
-        FileResolver,
-        NPMFileResolver
-    ]
-});
-
 // Create list of locale data filenames for all of the locales the app supports,
 // which is a small subset of all the locales Format.js libs support.
 var localeDataFiles = config.availableLocales.map(function (locale) {
     return locale.split('-')[0] + '.js';
 });
 
+// Create a roll-up file of locale data for the locales the app supports for
+// each integration lib.
 var formatjsLocaleData = mergeTrees([
     'dust-intl',
     'handlebars-intl',
     'react-intl'
 ].map(function (integration) {
-    return new Funnel(node_modules, {
+    return concatTree(new Funnel(node_modules, {
         srcDir : integration + '/dist/locale-data',
-        destDir: integration,
+        destDir: '/',
         files  : localeDataFiles
+    }), {
+        inputFiles: ['*.js'],
+        outputFile: '/vendor/formatjs/' + integration + '-locale-data.js'
     });
 }));
-
-formatjsLocaleData = concatTrees(formatjsLocaleData, {
-    inputFiles: ['*/*.js'],
-    outputFile: '/vendor/formatjs/locale-data.js'
-});
-
-var formatjs = mergeTrees([formatjsIntegrations, formatjsLocaleData]);
 
 vendor = mergeTrees([
     copy(node_modules, {
         'es6-shim'            : '/vendor/es6-shim',
-        'intl'                : '/vendor/intl',
         'dustjs-linkedin/dist': '/vendor/dust',
         'handlebars/dist'     : '/vendor/handlebars',
-        'react/dist'          : '/vendor/react'
+        'react/dist'          : '/vendor/react',
+
+        'dust-intl/dist'      : '/vendor/dust-intl',
+        'handlebars-intl/dist': '/vendor/handlebars-intl',
+        'react-intl/dist'     : '/vendor/react-intl'
     }),
 
     vendor,
-    formatjs
+    formatjsLocaleData
 ], {overwrite: true});
 
 var pubRoot = new Funnel('public/', {

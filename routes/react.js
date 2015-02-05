@@ -16,6 +16,7 @@ module.exports = function (route) {
 
             res.render('react', {
                 activeMenuItem: route.name,
+                usesReactIntl : true,
                 package       : pkgMeta,
                 examples      : renderExamples(examples, res.intl)
             });

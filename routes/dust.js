@@ -16,6 +16,7 @@ module.exports = function (route) {
 
             res.render('dust', {
                 activeMenuItem: route.name,
+                usesDustIntl  : true,
                 package       : pkgMeta,
                 examples      : renderExamples(examples, res.intl)
             });

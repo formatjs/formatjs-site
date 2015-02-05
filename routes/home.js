@@ -23,6 +23,7 @@ module.exports = function (route) {
 
         res.render('home', {
             activeMenuItem: route.name,
+            usesReactIntl : true,
 
             examples: {
                 splash: renderComponent('splash-example',

@@ -6,31 +6,31 @@ import DustExample from '../components/dust-example';
 
 export default function init(state) {
     state.examples.forEach(function (example) {
-        hydrateExampleOutput(example.id, example.type, {
+        hydrateExample(example.id, example.type, {
             example: example,
             intl   : state.intl
         });
     });
 }
 
-function hydrateExampleOutput(id, type, props) {
+function hydrateExample(id, type, props) {
     var exampleNode = document.getElementById(id);
     if (!exampleNode) { return; }
 
-    var OutputComponent = getOutputComponent(type);
+    var ExampleComponent = getExampleComponent(type);
 
     React.render(
-        React.createElement(OutputComponent, props),
+        React.createElement(ExampleComponent, props),
         exampleNode.parentNode
     );
 }
 
-function getOutputComponent(type) {
+function getExampleComponent(type) {
     switch (type) {
         case 'handlebars': return HandlebarsExample;
         case 'react':      return ReactExample;
         case 'dust':       return DustExample;
-        
+
         default:
             throw new Error('No output component for type: ' + type);
     }

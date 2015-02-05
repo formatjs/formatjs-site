@@ -8,7 +8,7 @@
 <script src="/vendor/dust-intl/dust-intl{{min}}.js"></script>
 <script src="/vendor/formatjs/dust-intl-locale-data.js"></script>
 <script>
-    DustIntl.registerWith(dust);
+		DustIntl.registerWith(dust);
 </script>
 {{/if}}
 
@@ -17,6 +17,14 @@
 <script src="/vendor/handlebars-intl/handlebars-intl{{min}}.js"></script>
 <script src="/vendor/formatjs/handlebars-intl-locale-data.js"></script>
 <script>
-    HandlebarsIntl.registerWith(Handlebars);
+		HandlebarsIntl.registerWith(Handlebars);
 </script>
+{{/if}}
+
+{{#if usesEmberIntl}}
+<script src="/vendor/handlebars/handlebars{{min}}.js"></script>
+<script src="/vendor/jquery/jquery{{min}}.js"></script>
+<script src="/vendor/ember/ember{{min}}.js"></script>
+<script src="/vendor/ember-intl/ember-intl.js"></script>
+<script src="/vendor/formatjs/ember-intl-locale-data.js"></script>
 {{/if}}

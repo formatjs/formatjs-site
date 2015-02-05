@@ -3,20 +3,12 @@
 import ExampleMixin from '../mixins/example';
 import CodeBlock from './code-block';
 import LocaleSelect from './locale-select';
+import EmberOutput from './ember-output';
 import {Tabs, Tab} from './tabs';
 
 export default React.createClass({
-    displayName: 'ReactExample',
+    displayName: 'EmberExample',
     mixins     : [ExampleMixin],
-
-    statics: {
-        renderCode: [
-            'React.render(',
-            '    <Component {...intlData} />,',
-            '    document.getElementById("example")',
-            ');'
-        ].join('\n')
-    },
 
     generateRenderCode: function () {
         var intlData = this.generateIntlData();
@@ -35,12 +27,16 @@ export default React.createClass({
         var messages         = this.props.intl.messages[currentLocale];
         var message          = messages[example.meta.messageId];
 
-        var ExampleComponent = example.getComponent();
-
         var tabs = [
-            <Tab label="Component" key="component">
+            <Tab label="Template" key="template">
+                <CodeBlock lang="handlebars">
+                    {example.source.template}
+                </CodeBlock>
+            </Tab>,
+
+            <Tab label="Context" key="context">
                 <CodeBlock lang="javascript">
-                    {example.source.component}
+                    {example.source.context}
                 </CodeBlock>
             </Tab>,
 
@@ -73,12 +69,13 @@ export default React.createClass({
                 <div className="example-output">
                     <h4 className="example-output-heading">Rendered</h4>
 
-                    <div className="react-output">
-                        <ExampleComponent
-                            locales={currentLocale}
-                            formats={example.meta.formats}
-                            messages={messages} />
-                    </div>
+                    <EmberOutput
+                        exampleId={example.id}
+                        locales={currentLocale}
+                        formats={example.meta.formats}
+                        messages={messages}
+                        source={example.source.template}
+                        context={this.evalContext(example.source.context)} />
 
                     <div className="example-output-controls">
                         <label>

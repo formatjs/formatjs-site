@@ -34,5 +34,9 @@
     "handlebars-intl/dist/handlebars-intl.min.js": {
         "bytes": 7267,
         "kbs": 7.1
+    },
+    "ember-intl/dist/ember-intl.min.js": {
+        "bytes": 21362,
+        "kbs": 25
     }
 }

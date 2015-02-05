@@ -8,6 +8,8 @@
     "compression": "^1.0.11",
     "dust-intl": "^1.0.0",
     "dustjs-linkedin": "^2.4.0",
+    "ember": "components/ember#1.9.1",
+    "ember-intl": "1.0.0-rc7",
     "errorhandler": "^1.1.1",
     "es6-shim": "^0.22.2",
     "express": "^4.9.5",
@@ -18,6 +20,7 @@
     "handlebars": "^2.0.0",
     "handlebars-intl": "^1.0.0",
     "intl": "^0.1.4",
+    "jquery": "^1.11.2",
     "js-yaml": "^3.2.1",
     "jumanji": "^0.1.1",
     "morgan": "^1.2.3",
@@ -69,7 +72,8 @@
   "contributors": [
     "Tilo Mitra <tilomitra@gmail.com>",
     "Juan Dopazo <jdopazo@yahoo-inc.com>",
-    "Clarence Leung <clarle@yahoo-inc.com>"
+    "Clarence Leung <clarle@yahoo-inc.com>",
+    "Jason Mitchell <jasonmit@yahoo-inc.com>"
   ],
   "license": "BSD",
   "bugs": {

@@ -98,6 +98,7 @@ routes.github(route('/github/'));
 routes.handlebars(route('/handlebars/'));
 routes.react(route('/react/'));
 routes.dust(route('/dust/'));
+routes.ember(route('/ember/'));
 
 app.getRoute = function (routeName) {
     var layer = router.stack.find(function (layer) {

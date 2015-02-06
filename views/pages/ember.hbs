@@ -87,24 +87,24 @@ export default {
 {{#code "javascript"}}
 // app/formats.js
 export default {
-date: {
-    'time-style': {
-        hour:   'numeric',
-        minute: 'numeric',
-        second: 'numeric'
+    date: {
+        'time-style': {
+            hour:   'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+        }
+    },
+    number: {
+        EUR: { style: 'currency', currency: 'EUR' },
+        USD: { style: 'currency', currency: 'USD' }
+    },
+    time: {
+        hhmmss: {
+            hour:   'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+        }
     }
-},
-number: {
-    EUR: { style: 'currency', currency: 'EUR' },
-    USD: { style: 'currency', currency: 'USD' }
-},
-time: {
-    hhmmss: {
-        hour:   'numeric',
-        minute: 'numeric',
-        second: 'numeric'
-    }
-}
 };
 
 {{/code}}
@@ -120,7 +120,7 @@ var App = Ember.Application.extend({
             locales:        ['en-US'],
 
             // the locale to fallback to
-            defaultLocales: ['en-US']
+            defaultLocale:  'en-US'
         });
     }
 });

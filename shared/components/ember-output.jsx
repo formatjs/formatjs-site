@@ -56,11 +56,14 @@ export default React.createClass({
             ready: function () {
                 this.intl.setProperties({
                     locales:        locales,
-                    defaultLocales: ['en-US']
+                    defaultLocale:  'en-US'
                 });
             }
         });
-
+        
+        // this initializer is specific to the formatjs.io.  This is not something
+        // any consumer of ember-intl will need to do.  It's providing some of the glue
+        // between (Ember + ember-intl) and React
         this.app.initializer({
             name : this.props.exampleId,
             after: 'ember-intl-standalone',

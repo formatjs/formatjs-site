@@ -11,7 +11,8 @@ module.exports = function (grunt) {
                         'intl-messageformat/dist/*.min.js',
                         'react-intl/dist/*.min.js',
                         'dust-intl/dist/*.min.js',
-                        'handlebars-intl/dist/*.min.js'
+                        'handlebars-intl/dist/*.min.js',
+                        'ember-intl/packaging/dist/*.min.js'
                     ],
                     dest: 'config/sizes.json'
                 }]

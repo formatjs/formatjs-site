@@ -9,7 +9,7 @@
     "dust-intl": "^1.0.0",
     "dustjs-linkedin": "^2.4.0",
     "ember": "components/ember#1.9.1",
-    "ember-intl": "1.0.0-rc7",
+    "ember-intl": "1.0.0-rc8",
     "errorhandler": "^1.1.1",
     "es6-shim": "^0.22.2",
     "express": "^4.9.5",

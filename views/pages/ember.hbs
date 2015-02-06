@@ -25,7 +25,7 @@
 <section class="main docs l-wrap">
 
     <p>
-        This library provides a set of helpers to internationalize <a href="http://emberjs.com/">Ember</a> applications:
+        This ember-cli addon provides a set of helpers to internationalize <a href="http://emberjs.com/">Ember</a> applications:
     </p>
 
     <h2>Features</h2>
@@ -58,9 +58,40 @@
 
     <h2>How It Works</h2>
 
-    <h3>Create a Handlebars Template Using a Helper</h3>
 
-    <p>Generate a module for each of the locales your application supports.  It's preferred you use the locale blueprint to create these modules.</p>
+    <h3>Install the Addon</h3>
+
+    <p>Getting up and running with ember-intl is quick and easy. If you have ember-cli installed, just run the following command in your shell to install the addon:</p>
+
+{{#code "shell"}}
+ember install:addon ember-intl
+{{/code}}
+
+    <p>In addition to installing the npm module, this will automatically create a locale config at <code>app/locales/en.js</code>, and a formatting config at <code>app/formats.js</code>. Alternatively you can use <code>npm install --save-dev ember-intl</code> to install the addon, but you will have to create your locale and formatting configs manually.</p>
+
+    <h3>Initialize <code>intl</code> Object</h3>
+
+    <p>Next, you need to configure your application to use your default locale, by initializing the <code>intl</code> object. A good place to set this up is in the <code>ready</code> function of your ember app. For example:</p>
+
+{{#code "javascript"}}
+// Extend your application, usually in app/app.js
+var App = Ember.Application.extend({
+    ready: function () {
+        this.intl.setProperties({
+            // the current application locale
+            locales:        ['en-US'],
+
+            // the locale to fallback to
+            defaultLocale:  'en-US'
+        });
+    }
+});
+
+export default App;
+{{/code}}
+
+    <h3>Locale and Format Data</h3>
+    <p>Ember-intl automatically discovers and includes the locales that your application supports by examining the locale files within the <code>app/locales</code> directory. You can generate the locale configs you wish to support by using the built in ember-cli <code>locale</code> blueprint, which stubs out the initial configs for you.  For example:</p>
 
 {{#code "shell"}}
 ember g locale en-US
@@ -68,7 +99,7 @@ ember g locale es
 ember g locale fr-FR
 {{/code}}
 
-    <p>The result will be generated ES6 modules within your app folder <code>app/locales/en-us.js</code>, <code>app/locales/es.js</code>, <code>app/locales/fr-fr.js</code>.  If you have locale-specific messages this is where you define those.</p>
+    <p>The commands above will allow your app to support english, spanish, and french by generating  configuration files at <code>app/locales/en-us.js</code>, <code>app/locales/es.js</code>, and <code>app/locales/fr-fr.js</code>.  If you have locale-specific messages, you can define them inside the <code>messages</code> property:</p>
 
 {{#code "javascript"}}
 // app/locales/en-us.js
@@ -82,7 +113,13 @@ export default {
 }
 {{/code}}
 
-<p>Typically an application with have a predefined set of formats.  Those are not locale specific and should be configured within <code>app/formats.js</code>.   Running the <code>ember g ember-intl</code> blueprint will generate the follow example module in <code>app/formats.js</code></p>
+    <p>Along with locale specific data, you also have the ability to configure formatting options for your app.  This configuration file can also be generated using the <code>formats</code> blueprint:
+
+{{#code "shell"}}
+ember g formats
+{{/code}}
+
+    <p>Running this blueprint will generate the following module into <code>app/formats.js</code>:</p>
 
 {{#code "javascript"}}
 // app/formats.js
@@ -109,6 +146,9 @@ export default {
 
 {{/code}}
 
+<<<<<<< HEAD
+    <h2 id="usage">Usage</h2>
+=======
 <p>Configuring your application to use an application-wide locale involves setting up a <code>ready</code> function, if you do not already have one, within your application type:</p>
 
 {{#code "javascript"}}
@@ -127,8 +167,9 @@ var App = Ember.Application.extend({
 
 export default App;
 {{/code}}
+>>>>>>> FETCH_HEAD
 
-<p class="note"><strong>Note:</strong> <code>this.intl.set('locales', ['fr-FR']);</code> from within your application will update the locale during runtime.</p>
+For a basic example, start by setting up your controller with some data:
 
 {{#code "javascript"}}
 var IndexController = Ember.Controller.extend({
@@ -138,23 +179,23 @@ var IndexController = Ember.Controller.extend({
 export default IndexController;
 {{/code}}
 
+Now use <code>format-number</code> helper to render the price as currency:
+
 {{#code "hbs"}}
 <p>\{{format-number price style="currency" currency="USD"}}</p>
 {{/code}}
 
-    <div class="example">
-        <div class="example-output">
-            <h4 class="example-output-heading">Rendered</h4>
-            <div class="handlebars-output">
-                <p>$1,000.00</p>
+        <div class="example">
+            <div class="example-output">
+                <h4 class="example-output-heading">Rendered</h4>
+                <div class="handlebars-output">
+                    <p>$1,000.00</p>
+                </div>
             </div>
         </div>
-    </div>
-
-
-    <h2 id="usage">Usage</h2>
 
     {{> integrations/load-locale-data-browser}}
+    <p class="note"><strong>Note:</strong> <code>this.intl.set('locales', ['fr-FR']);</code> from within your application will update the locale during runtime.</p>
     {{> integrations/note-intl-browser}}
 
 

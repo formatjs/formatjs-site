@@ -67,7 +67,7 @@
 ember install:addon ember-intl
 {{/code}}
 
-    <p>In addition to installing the npm module, this will automatically create a locale config at <code>app/locales/en.js</code>, and a formatting config at <code>app/formats.js</code>. Alternatively you can use <code>npm install --save-dev ember-intl</code> to install the addon, but you will have to create your locale and formatting configs manually.</p>
+    <p>In addition to installing the npm module, this will automatically create a locale config at <code>app/locales/en.js</code>, and a formatting config at <code>app/formats.js</code>. Alternatively you can use <code>npm install --save-dev ember-intl</code> to install the addon, but you will have to generate your locale and formatting configs by running the default blueprint <code>ember g ember-intl</code>.</p>
 
     <h3>Initialize <code>intl</code> Object</h3>
 
@@ -113,13 +113,7 @@ export default {
 }
 {{/code}}
 
-    <p>Along with locale specific data, you also have the ability to configure formatting options for your app.  This configuration file can also be generated using the <code>formats</code> blueprint:
-
-{{#code "shell"}}
-ember g formats
-{{/code}}
-
-    <p>Running this blueprint will generate the following module into <code>app/formats.js</code>:</p>
+    <p>Along with locale specific data, you also have the ability to configure formatting options for your app.  This configuration file can also be generated to <code>app/formats.js</code> with the default blueprint <code>ember-intl</code>:
 
 {{#code "javascript"}}
 // app/formats.js
@@ -146,28 +140,7 @@ export default {
 
 {{/code}}
 
-<<<<<<< HEAD
     <h2 id="usage">Usage</h2>
-=======
-<p>Configuring your application to use an application-wide locale involves setting up a <code>ready</code> function, if you do not already have one, within your application type:</p>
-
-{{#code "javascript"}}
-// Extend your application, usually in app/app.js
-var App = Ember.Application.extend({
-    ready: function () {
-        this.intl.setProperties({
-            // the current application locale
-            locales:        ['en-US'],
-
-            // the locale to fallback to
-            defaultLocale:  'en-US'
-        });
-    }
-});
-
-export default App;
-{{/code}}
->>>>>>> FETCH_HEAD
 
 For a basic example, start by setting up your controller with some data:
 
@@ -179,7 +152,7 @@ var IndexController = Ember.Controller.extend({
 export default IndexController;
 {{/code}}
 
-Now use <code>format-number</code> helper to render the price as currency:
+    <p>Now use <code>format-number</code> helper to render the price as currency:</p>
 
 {{#code "hbs"}}
 <p>\{{format-number price style="currency" currency="USD"}}</p>

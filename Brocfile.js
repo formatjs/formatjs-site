@@ -46,38 +46,43 @@ var vendor = new Funnel('public/vendor/', {
     destDir: '/vendor'
 });
 
-// Create list of locale data filenames for all of the locales the app supports,
-// which is a small subset of all the locales Format.js libs support.
-var localeDataFiles = config.availableLocales.map(function (locale) {
-    return locale.split('-')[0] + '.js';
-});
+function localeDataTree(srcDir, outputFile) {
+    // Create list of locale data filenames for all of the locales the app
+    // supports, which is a small subset of all the locales Format.js libs
+    // support.
+    var localeDataFiles = config.availableLocales.map(function (locale) {
+        return locale.split('-')[0] + '.js';
+    });
 
-function localeTree (srcDir, outputFile) {
-    return concatTree(new Funnel(node_modules, {
+    return new Funnel(node_modules, {
         srcDir : srcDir,
         destDir: '/',
         files  : localeDataFiles
-    }), {
-        inputFiles: ['*.js'],
-        outputFile: outputFile
     });
 }
 
-// Create list of locale data filenames for all of the locales the app supports,
-// which is a small subset of all the locales Format.js libs support.
-var localeDataFiles = config.availableLocales.map(function (locale) {
-    return locale.split('-')[0] + '.js';
-});
-
 var formatjsLocaleData = mergeTrees([
     'dust-intl',
+    'ember-intl',
     'handlebars-intl',
     'react-intl'
 ].map(function (integration) {
-    return localeTree(integration + '/dist/locale-data', '/vendor/formatjs/' + integration + '-locale-data.js');
-}));
+    var srcDir;
 
-var emberIntlLocaleData = localeTree('ember-intl/packaging/dist/locale-data/locales', '/vendor/formatjs/ember-intl-locale-data.js');
+    switch(integration) {
+        case 'ember-intl':
+            srcDir = integration + '/packaging/dist/locale-data/locales';
+            break;
+        default:
+            srcDir = integration + '/dist/locale-data';
+            break;
+    }
+
+    return concatTree(localeDataTree(srcDir), {
+        inputFiles: ['*.js'],
+        outputFile: '/vendor/formatjs/' + integration + '-locale-data.js'
+    });
+}));
 
 vendor = mergeTrees([
     copy(node_modules, {
@@ -97,8 +102,7 @@ vendor = mergeTrees([
     }),
 
     vendor,
-    formatjsLocaleData,
-    emberIntlLocaleData
+    formatjsLocaleData
 ], {overwrite: true});
 
 var pubRoot = new Funnel('public/', {

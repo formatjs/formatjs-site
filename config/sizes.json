@@ -3,14 +3,6 @@
         "bytes": 10005,
         "kbs": 9.8
     },
-    "intl-messageformat/dist/intl-messageformat-with-locales.min.js": {
-        "bytes": 6470,
-        "kbs": 6.3
-    },
-    "intl-messageformat/dist/intl-messageformat.min.js": {
-        "bytes": 4774,
-        "kbs": 4.7
-    },
     "react-intl/dist/react-intl-with-locales.min.js": {
         "bytes": 37220,
         "kbs": 36.3
@@ -34,5 +26,9 @@
     "handlebars-intl/dist/handlebars-intl.min.js": {
         "bytes": 7267,
         "kbs": 7.1
+    },
+    "ember-intl/packaging/dist/ember-intl.min.js": {
+        "bytes": 17139,
+        "kbs": 16.7
     }
 }

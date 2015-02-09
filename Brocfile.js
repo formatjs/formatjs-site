@@ -52,38 +52,53 @@ var localeDataFiles = config.availableLocales.map(function (locale) {
     return locale.split('-')[0] + '.js';
 });
 
-// Create a roll-up file of locale data for the locales the app supports for
-// each integration lib.
+function localeTree (srcDir, outputFile) {
+    return concatTree(new Funnel(node_modules, {
+        srcDir : srcDir,
+        destDir: '/',
+        files  : localeDataFiles
+    }), {
+        inputFiles: ['*.js'],
+        outputFile: outputFile
+    });
+}
+
+// Create list of locale data filenames for all of the locales the app supports,
+// which is a small subset of all the locales Format.js libs support.
+var localeDataFiles = config.availableLocales.map(function (locale) {
+    return locale.split('-')[0] + '.js';
+});
+
 var formatjsLocaleData = mergeTrees([
     'dust-intl',
     'handlebars-intl',
     'react-intl'
 ].map(function (integration) {
-    return concatTree(new Funnel(node_modules, {
-        srcDir : integration + '/dist/locale-data',
-        destDir: '/',
-        files  : localeDataFiles
-    }), {
-        inputFiles: ['*.js'],
-        outputFile: '/vendor/formatjs/' + integration + '-locale-data.js'
-    });
+    return localeTree(integration + '/dist/locale-data', '/vendor/formatjs/' + integration + '-locale-data.js');
 }));
+
+var emberIntlLocaleData = localeTree('ember-intl/packaging/dist/locale-data/locales', '/vendor/formatjs/ember-intl-locale-data.js');
 
 vendor = mergeTrees([
     copy(node_modules, {
-        'es6-shim'            : '/vendor/es6-shim',
-        'intl'                : '/vendor/intl',
+        'es6-shim': '/vendor/es6-shim',
+        'intl'    : '/vendor/intl',
+
         'dustjs-linkedin/dist': '/vendor/dust',
+        'components-ember'    : '/vendor/ember',
         'handlebars/dist'     : '/vendor/handlebars',
+        'jquery/dist'         : '/vendor/jquery',
         'react/dist'          : '/vendor/react',
 
-        'dust-intl/dist'      : '/vendor/dust-intl',
-        'handlebars-intl/dist': '/vendor/handlebars-intl',
-        'react-intl/dist'     : '/vendor/react-intl'
+        'dust-intl/dist'           : '/vendor/dust-intl',
+        'ember-intl/packaging/dist': '/vendor/ember-intl',
+        'handlebars-intl/dist'     : '/vendor/handlebars-intl',
+        'react-intl/dist'          : '/vendor/react-intl'
     }),
 
     vendor,
-    formatjsLocaleData
+    formatjsLocaleData,
+    emberIntlLocaleData
 ], {overwrite: true});
 
 var pubRoot = new Funnel('public/', {

@@ -1,0 +1,290 @@
+{{setTitle "Ember"}}
+{{setDescription "Documentation and examples of Ember integration."}}
+
+<section class="head">
+    {{> nav}}
+</section>
+
+<section class="intro">
+    <div class="l-wrap">
+        <h1 class="intro-package">
+            <span class="intro-package-name">
+                Ember Intl
+            </span>
+            <img class="intro-package-mark" alt="Ember logo" src="/img/ember.svg">
+        </h1>
+
+        <h2 class="tagline">{{package.description}}</h2>
+
+        {{> integrations/package-meta}}
+    </div>
+
+    {{> integrations/package-install}}
+</section>
+
+<section class="main docs l-wrap">
+
+    <p>
+        This ember-cli addon provides a set of helpers to internationalize <a href="http://emberjs.com/">Ember</a> applications:
+    </p>
+
+    <h2>Features</h2>
+    {{> integrations/features}}
+
+
+    <h2>Helpers</h2>
+
+    <ul>
+        <li>
+            <a href="#formatDate"><code>\{{format-date}}</code></a> formats a date value
+        </li>
+        <li>
+            <a href="#formatTime"><code>\{{format-time}}</code></a> formats a date value with time formats
+        </li>
+        <li>
+            <a href="#formatRelative"><code>\{{format-relative}}</code></a> formats a date relative to now; e.g. "3 hours ago"
+        </li>
+        <li>
+            <a href="#formatNumber"><code>\{{format-number}}</code></a> formats a number value
+        </li>
+        <li>
+            <a href="#formatMessage"><code>\{{format-message}}</code></a> formats a translated string message
+        </li>
+        <li>
+            <a href="#intl-get"><code>(intl-get)</code></a> resolves messages by path in a subexpression
+        </li>
+    </ul>
+
+
+    <h2>How It Works</h2>
+
+
+    <h3>Install the Addon</h3>
+
+    <p>Getting up and running with ember-intl is quick and easy. If you have ember-cli installed, just run the following command in your shell to install the addon:</p>
+
+{{#code "shell"}}
+ember install:addon ember-intl
+{{/code}}
+
+    <p>In addition to installing the npm module, this will automatically create a locale config at <code>app/locales/en.js</code>, and a formatting config at <code>app/formats.js</code>. Alternatively you can use <code>npm install --save-dev ember-intl</code> to install the addon, but you will have to generate your locale and formatting configs by running the default blueprint <code>ember g ember-intl</code>.</p>
+
+    <h3>Initialize <code>intl</code> Object</h3>
+
+    <p>Next, you need to configure your application to use your default locale, by initializing the <code>intl</code> object. A good place to set this up is in the <code>ready</code> function of your ember app. For example:</p>
+
+{{#code "javascript"}}
+// Extend your application, usually in app/app.js
+var App = Ember.Application.extend({
+    ready: function () {
+        this.intl.setProperties({
+            // the current application locale
+            locales:        ['en-US'],
+
+            // the locale to fallback to
+            defaultLocale:  'en-US'
+        });
+    }
+});
+
+export default App;
+{{/code}}
+
+    <h3>Locale and Format Data</h3>
+    <p>Ember-intl automatically discovers and includes the locales that your application supports by examining the locale files within the <code>app/locales</code> directory. You can generate the locale configs you wish to support by using the built in ember-cli <code>locale</code> blueprint, which stubs out the initial configs for you.  For example:</p>
+
+{{#code "shell"}}
+ember g locale en-US
+ember g locale es
+ember g locale fr-FR
+{{/code}}
+
+    <p>The commands above will allow your app to support english, spanish, and french by generating  configuration files at <code>app/locales/en-us.js</code>, <code>app/locales/es.js</code>, and <code>app/locales/fr-fr.js</code>.  If you have locale-specific messages, you can define them inside the <code>messages</code> property:</p>
+
+{{#code "javascript"}}
+// app/locales/en-us.js
+import Locale from 'ember-intl/models/locale';
+
+export default Locale.extend({
+    messages: {
+        product: {
+            info: '{product} will cost {price, number, USD} if ordered by {deadline, date, time}'
+        }
+    }
+});
+{{/code}}
+
+    <p>Along with locale specific data, you also have the ability to configure formatting options for your app.  This configuration file can also be generated to <code>app/formats.js</code> with the default blueprint <code>ember-intl</code>:
+
+{{#code "javascript"}}
+// app/formats.js
+export default {
+    date: {
+        'time-style': {
+            hour:   'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+        }
+    },
+    number: {
+        EUR: { style: 'currency', currency: 'EUR' },
+        USD: { style: 'currency', currency: 'USD' }
+    },
+    time: {
+        hhmmss: {
+            hour:   'numeric',
+            minute: 'numeric',
+            second: 'numeric'
+        }
+    }
+};
+
+{{/code}}
+
+    <h2 id="usage">Usage</h2>
+
+For a basic example, start by setting up your controller with some data:
+
+{{#code "javascript"}}
+var IndexController = Ember.Controller.extend({
+    price: 1000
+});
+
+export default IndexController;
+{{/code}}
+
+    <p>Now use <code>format-number</code> helper to render the price as currency:</p>
+
+{{#code "hbs"}}
+<p>\{{format-number price style="currency" currency="USD"}}</p>
+{{/code}}
+
+        <div class="example">
+            <div class="example-output">
+                <h4 class="example-output-heading">Rendered</h4>
+                <div class="handlebars-output">
+                    <p>$1,000.00</p>
+                </div>
+            </div>
+        </div>
+
+    <p class="note"><strong>Note:</strong> <code>this.intl.set('locales', ['fr-FR']);</code> from within your application will update the locale during runtime.</p>
+    {{> integrations/note-intl-browser}}
+
+
+    <h2 id="formatNumber">Format Numbers with Separators</h2>
+
+    <p>
+        The <code>\{{format-number}}</code> helper is used to represent a number in a way appropriate for the current locale. It formats numbers using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat"><code>Intl.NumberFormat</code></a>, and returns the formatted string value.
+    </p>
+
+    {{~> example examples.number}}
+
+    <h3>Using Named Number Formats</h3>
+
+    <p>
+        Specifying formatting options (e.g.: <code>style="currency" currency="USD"</code>) in every call to <code>\{{format-number}}</code> in your templates can become a problem in large code bases, and isn't DRY. Instead, you can setup <code>app/format.js</code> with a <code>number</code> property to define named number formats.
+    </p>
+
+
+    {{> integrations/see-custom-formats}}
+
+
+    <h2 id="formatDate">Format Dates and Times Correctly</h2>
+
+    <p>
+        The <code>\{{format-date}}</code> helper is used to represent a date in a way appropriate for the current locale. It formats dates using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat"><code>Intl.DateTimeFormat</code></a>, and returns the formatted string value.
+    </p>
+
+    {{~> example examples.date}}
+
+    <h3>Using Named Date Formats</h3>
+
+    <p>
+        Specifying format options (e.g.: <code>day="numeric" month="long" year="numeric"</code>) in every call to <code>\{{format-date}}</code> in your templates can become a problem in large code bases, and isn't DRY. Instead, you can setup <code>app/format.js</code> with a <code>date</code> property to define application-level named date formats.
+    </p>
+
+    {{> integrations/see-custom-formats}}
+
+    <h3>Using Named Time Formats</h3>
+
+    <p id="formatTime">
+        The <code>\{{format-time}}</code> helper is just like the <code>\{{format-date}}</code> helper, except it will reference any named formats from <code>app/format.js</code> <code>time</code> property.
+    </p>
+
+
+    <h2 id="formatRelative">Format Dates Relative To "now"</h2>
+
+    <p>
+        The <code>\{{format-relative}}</code> helper is used to represent a relative time in a way appropriate for the current locale. It formats the relative time following the rules from <a href="http://cldr.unicode.org/">Unicode CLDR</a>, and returns the formatted string value.
+    </p>
+
+    {{~> example examples.relative}}
+
+    <h3>Using Specific Relative Units</h3>
+
+    <p>
+        By default, the relative time is formatted using the best fit unit of time. However, you can explicitly set the <code>units</code> option one of the following values:<br> <code>"second"</code>, <code>"minute"</code>, <code>"hour"</code>, <code>"day"</code>, <code>"month"</code> or <code>"year"</code>.
+    </p>
+
+    {{~> example examples.relativeUnits}}
+
+    <h3>Using Specific Relative Styles</h3>
+
+    <p>
+        The <code>style</code> option provides another level of customization. By default, the relative time is computed with a <code>"best fit"</code> style, which means, for example, that instead of "1 day ago", it will display "yesterday", or "in 1 year" will be "next year", etc. The other <code>style</code> is <code>"numeric"</code>, in which the output will <em>always</em> contain a number.
+    </p>
+
+    {{~> example examples.relativeStyle}}
+
+    <h3>Using Named Relative Formats</h3>
+
+    <p>
+        Specifying format options (e.g.: <code>style="numeric"</code>) in every call to <code>\{{format-relative}}</code> in your templates can become a problem in large code bases. Instead, you can setup a <code>relative</code> object within your format module <code>app\formats.js</code> to define application-level named relative formats.
+    </p>
+
+
+    {{> integrations/see-custom-formats}}
+
+    <h2 id="formatMessage">Pluralize Labels in Strings</h2>
+
+    <p>
+        When internationalizing Handlebars templates, you will need a way to localize your UI strings, including any logic pieces like pluralization rules for all the languages you wish to support. These strings should be externalized from your Handlebars templates so that the same template can be used for all languages. This library provides two methods that can work together to provide a way to lookup and format language-specific strings.
+    </p>
+
+    <p id="intl-get">
+        The <code>\{{intl-get}}</code> helper implements a lookup process by path to access data from the <code>intl</code> object passed into the Handlebars data channel when rendering the template. Usually this helper is used in a subexpression to lookup translated string messages; e.g., <code>(intl-get "photos")</code>.
+    </p>
+
+    <p>
+        The <code>\{{format-message}}</code> helper formats a translated message written in the <a href="http://userguide.icu-project.org/formatparse/messages">ICU Message</a> syntax, which is used by professional translators. The message format supports placeholders, plus choosing different strings based on pluralization, gender, or other criteria.
+    </p>
+
+    {{> integrations/see-guide}}
+
+    {{~> example examples.message}}
+
+    <p>
+        In the example above, we use <code>(intl-get "messages.photos")</code> as a subexpression to delegate the lookup process for <code>"message.photos"</code>. It is equivalent to the accessing the value from <code>this.intl.messages.photos</code>, but it will provide descriptive error messages when accessing a property that is <code>undefined</code>. Check the <strong>RENDER</strong> tab to see the details.
+    </p>
+
+    <p class="note">
+        <b>Note:</b> You can provide the <code>messages</code> object when rendering the top-level template, and <code>messages</code> &mdash; just like <code>locales</code> &mdash; will be propagated to any partial or helper.
+    </p>
+
+    <p>
+        Additionally, you can use <a href="#custom-formats">named formats</a> as described below, to specify a set of named format options to use in your messages, e.g: <code>{someNum, number, USD}</code> and <code>{someDate, date, short}</code> or <code>{someTime, time, long}</code>.
+    </p>
+
+    <h3>Format Messages That Contain HTML</h3>
+
+    <p>
+        If a message string contains HTML, you can use the <code>\{{format-html-message}}</code> helper, which has the exact same API as <code>\{{format-message}}</code> but it will not escape the HTML in the message's text. However, it will escape all the values the message if formatted with, but  remember to be cautious of untrusted user input to prevent XSS injections.
+    </p>
+
+    <h2 id="custom-formats">Define Your Own Custom Formats</h2>
+
+    <p>
+        Handlebars Intl allows you to define named formats that you can be used throughout your entire application or within a template and its partials. These named formats can be specified for <code>date</code>, <code>time</code>, <code>number</code> and <code>relative</code> format types. The following example illustrates how these custom named formats work.
+    </p>
+</section>

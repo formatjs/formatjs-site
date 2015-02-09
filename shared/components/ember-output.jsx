@@ -11,17 +11,16 @@ export default React.createClass({
     injectMessages: function (locale, messages) {
         var container  = this.app.__container__;
         var lookupName = locale.toLowerCase();
+        var Locale = container.lookupFactory('ember-intl@model:locale');
 
         if (container.has('locale:' + lookupName)) {
             container.unregister('locale:' + lookupName);
         }
 
-        container.register('locale:' + lookupName, {
+        container.register('locale:' + lookupName, Locale.extend({
             locale:   locale,
             messages: messages
-        }, {
-            instantiate: false
-        });
+        }));
     },
 
     componentWillReceiveProps: function (nextProps) {

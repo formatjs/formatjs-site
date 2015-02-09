@@ -103,14 +103,15 @@ ember g locale fr-FR
 
 {{#code "javascript"}}
 // app/locales/en-us.js
-export default {
-    locale: "en-US",
+import Locale from 'ember-intl/models/locale';
+
+export default Locale.extend({
     messages: {
         product: {
             info: '{product} will cost {price, number, USD} if ordered by {deadline, date, time}'
         }
     }
-}
+});
 {{/code}}
 
     <p>Along with locale specific data, you also have the ability to configure formatting options for your app.  This configuration file can also be generated to <code>app/formats.js</code> with the default blueprint <code>ember-intl</code>:

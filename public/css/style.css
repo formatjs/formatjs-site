@@ -424,13 +424,11 @@ li code {
     flex-wrap: wrap;
 }
 .integrations-list {
-    margin: 1rem 0;
     padding: 0;
     list-style: none;
     justify-content: space-between;
 }
 .integration {
-    width: 25%;
     justify-content: space-around;
 }
 .integration-content {
@@ -649,8 +647,13 @@ li code {
     .integrations .integrations-list {
         width: 100%;
     }
+    .integrations-list {
+        margin: 0;
+        flex-wrap: wrap;
+    }
     .integration {
-        margin: 0 0.625rem;
+        width: 50%;
+        margin: 1rem 0;
     }
     .integration-mark {
         max-width: 80px;
@@ -740,7 +743,24 @@ li code {
         margin-right: 0.25rem;
     }
 
-
+    .integrations-list {
+        margin: 1rem 0;
+        flex-wrap: nowrap;
+    }
+    .integration {
+        margin: 0 1rem;
+        width: auto;
+    }
+    .integration:first-child {
+        margin-left: 0;
+    }
+    .integration:last-child {
+        margin-right: 0;
+    }
+    .integration-mark {
+        max-width: 128px;
+        max-height: 128px;
+    }
 
     .legal {
         flex-wrap: nowrap;
@@ -781,11 +801,6 @@ li code {
         max-height: 128px;
     }
 
-    .integration-mark {
-        max-width: 128px;
-        max-height: 128px;
-    }
-
     .features-list {
         margin-left: -0.625rem;
         margin-right: -0.625rem;
@@ -818,21 +833,6 @@ li code {
     .head .nav,
     .splash .nav {
         font-size: 1rem;
-    }
-}
-
-@media screen and (min-width: 44em) {
-    .integrations .integrations-desc {
-        width: 38%;
-        order: 1;
-    }
-    .integrations .integrations-list {
-        width: 62%;
-        padding-left: 1rem;
-        order: 2;
-    }
-    .integrations .integration:last-child {
-        margin-right: 0;
     }
 }
 
@@ -908,10 +908,6 @@ li code {
         padding-right: 2rem;
     }
 
-    .integration {
-        margin: 0 1rem;
-    }
-
     .features-list {
         margin-left: -1rem;
         margin-right: -1rem;
@@ -957,5 +953,17 @@ li code {
     }
     .package-meta-download {
         font-size: 1rem;
+    }
+}
+
+@media screen and (min-width: 48.0625em) {
+    .integrations .integrations-desc {
+        width: 38%;
+        order: 1;
+    }
+    .integrations .integrations-list {
+        width: 62%;
+        padding-left: 1rem;
+        order: 2;
     }
 }

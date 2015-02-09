@@ -1,10 +1,14 @@
 'use strict';
 
-var path           = require('path');
+var path = require('path');
 
 var getExamples    = require('../lib/examples').get;
 var renderExamples = require('../lib/examples').render;
-var pkgMeta        = require('../lib/package-meta')('ember-intl', path.join('ember-intl', 'packaging', 'dist'));
+
+var pkgMeta = require('../lib/package-meta')(
+    'ember-intl',
+    path.join('ember-intl', 'packaging', 'dist')
+);
 
 module.exports = function (route) {
     route.name = 'ember';

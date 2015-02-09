@@ -4,8 +4,8 @@ export default React.createClass({
     displayName: 'EmberOutput',
 
     propTypes: {
-        source  : React.PropTypes.string.isRequired,
-        context : React.PropTypes.object.isRequired
+        source: React.PropTypes.string.isRequired,
+        context: React.PropTypes.object.isRequired
     },
 
     injectMessages: function (locale, messages) {
@@ -59,7 +59,7 @@ export default React.createClass({
                 });
             }
         });
-        
+
         // this initializer is specific to the formatjs.io.  This is not something
         // any consumer of ember-intl will need to do.  It's providing some of the glue
         // between (Ember + ember-intl) and React

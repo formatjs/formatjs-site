@@ -8,7 +8,6 @@ module.exports = function (grunt) {
                     cwd: 'node_modules/',
                     src: [
                         'intl/*.min.js',
-                        'intl-messageformat/dist/*.min.js',
                         'react-intl/dist/*.min.js',
                         'dust-intl/dist/*.min.js',
                         'handlebars-intl/dist/*.min.js',

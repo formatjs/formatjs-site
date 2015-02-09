@@ -2,8 +2,8 @@
 
 // -- Configure JavaScript Runtime ---------------------------------------------
 
-var hasNativeIntl    = !!global.Intl;
-var hasNativePromise = !!global.Promise;
+var hasNativeIntl    = !!global.Intl,
+    hasNativePromise = !!global.Promise;
 
 require('es6-shim');
 
@@ -19,15 +19,15 @@ global.DustIntl       = require('dust-intl');
 
 // -----------------------------------------------------------------------------
 
-var path     = require('path');
-var express  = require('express');
-var expstate = require('express-state');
-var reverend = require('reverend');
+var path     = require('path'),
+    express  = require('express'),
+    expstate = require('express-state'),
+    reverend = require('reverend');
 
-var config     = require('./config');
-var hbs        = require('./lib/hbs');
-var middleware = require('./middleware');
-var routes     = require('./routes');
+var config     = require('./config'),
+    hbs        = require('./lib/hbs'),
+    middleware = require('./middleware'),
+    routes     = require('./routes');
 
 DustIntl.registerWith(dust);
 
@@ -78,16 +78,6 @@ var route = router.route.bind(router);
 
 router.use(middleware.fixBadSafari);
 router.use(middleware.intl);
-router.use(middleware.polyfills({
-    host    : 'polyfills.yahooapis.com',
-    pathname: 'polyfill' + (app.get('env') === 'production' ? '.min.js' : '.js'),
-
-    polyfills: [
-        'intl@0.1.4'
-    ].concat(app.get('available locales').map(function (locale) {
-        return 'locale-data@' + locale + '-0.1.4';
-    }))
-}));
 
 routes.home(route('/'));
 routes.about(route('/about/'));

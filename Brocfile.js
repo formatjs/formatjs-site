@@ -46,24 +46,39 @@ var vendor = new Funnel('public/vendor/', {
     destDir: '/vendor'
 });
 
-// Create list of locale data filenames for all of the locales the app supports,
-// which is a small subset of all the locales Format.js libs support.
-var localeDataFiles = config.availableLocales.map(function (locale) {
-    return locale.split('-')[0] + '.js';
-});
+function localeDataTree(srcDir, outputFile) {
+    // Create list of locale data filenames for all of the locales the app
+    // supports, which is a small subset of all the locales Format.js libs
+    // support.
+    var localeDataFiles = config.availableLocales.map(function (locale) {
+        return locale.split('-')[0] + '.js';
+    });
 
-// Create a roll-up file of locale data for the locales the app supports for
-// each integration lib.
+    return new Funnel(node_modules, {
+        srcDir : srcDir,
+        destDir: '/',
+        files  : localeDataFiles
+    });
+}
+
 var formatjsLocaleData = mergeTrees([
     'dust-intl',
+    'ember-intl',
     'handlebars-intl',
     'react-intl'
 ].map(function (integration) {
-    return concatTree(new Funnel(node_modules, {
-        srcDir : integration + '/dist/locale-data',
-        destDir: '/',
-        files  : localeDataFiles
-    }), {
+    var srcDir;
+
+    switch(integration) {
+        case 'ember-intl':
+            srcDir = integration + '/packaging/dist/locale-data/locales';
+            break;
+        default:
+            srcDir = integration + '/dist/locale-data';
+            break;
+    }
+
+    return concatTree(localeDataTree(srcDir), {
         inputFiles: ['*.js'],
         outputFile: '/vendor/formatjs/' + integration + '-locale-data.js'
     });
@@ -71,15 +86,19 @@ var formatjsLocaleData = mergeTrees([
 
 vendor = mergeTrees([
     copy(node_modules, {
-        'es6-shim'            : '/vendor/es6-shim',
-        'intl'                : '/vendor/intl',
+        'es6-shim': '/vendor/es6-shim',
+        'intl'    : '/vendor/intl',
+
         'dustjs-linkedin/dist': '/vendor/dust',
+        'components-ember'    : '/vendor/ember',
         'handlebars/dist'     : '/vendor/handlebars',
+        'jquery/dist'         : '/vendor/jquery',
         'react/dist'          : '/vendor/react',
 
-        'dust-intl/dist'      : '/vendor/dust-intl',
-        'handlebars-intl/dist': '/vendor/handlebars-intl',
-        'react-intl/dist'     : '/vendor/react-intl'
+        'dust-intl/dist'           : '/vendor/dust-intl',
+        'ember-intl/packaging/dist': '/vendor/ember-intl',
+        'handlebars-intl/dist'     : '/vendor/handlebars-intl',
+        'react-intl/dist'          : '/vendor/react-intl'
     }),
 
     vendor,

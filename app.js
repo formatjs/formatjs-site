@@ -85,8 +85,9 @@ routes.guide(route('/guide/'));
 routes.integrations(route('/integrations/'));
 routes.github(route('/github/'));
 
-routes.handlebars(route('/handlebars/'));
 routes.react(route('/react/'));
+routes.ember(route('/ember/'));
+routes.handlebars(route('/handlebars/'));
 routes.dust(route('/dust/'));
 
 app.getRoute = function (routeName) {

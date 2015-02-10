@@ -18,7 +18,7 @@ export default React.createClass({
         ].join('\n')
     },
 
-    genderateRenderCode: function () {
+    generateRenderCode: function () {
         var intlData = this.generateIntlData();
 
         return [
@@ -50,7 +50,7 @@ export default React.createClass({
 
             <Tab label="Render" key="render">
                 <CodeBlock lang="javascript">
-                    {this.genderateRenderCode()}
+                    {this.generateRenderCode()}
                 </CodeBlock>
             </Tab>
         ];

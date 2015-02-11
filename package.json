@@ -1,6 +1,6 @@
 {
   "name": "js-intl-docs-site",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Documentation for client/server internationalization in JavaScript.",
   "private": true,
   "main": "server.js",

@@ -11,7 +11,7 @@
     "dustjs-linkedin": "^2.4.0",
     "ember-intl": "^1.0.0",
     "errorhandler": "^1.1.1",
-    "es6-shim": "^0.22.2",
+    "es6-shim": "^0.24.0",
     "express": "^4.9.5",
     "express-handlebars": "^1.1.0",
     "express-slash": "^2.0.1",

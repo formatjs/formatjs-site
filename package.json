@@ -9,7 +9,7 @@
     "compression": "^1.0.11",
     "dust-intl": "^1.0.0",
     "dustjs-linkedin": "^2.4.0",
-    "ember-intl": "latest",
+    "ember-intl": "^1.0.0",
     "errorhandler": "^1.1.1",
     "es6-shim": "^0.22.2",
     "express": "^4.9.5",

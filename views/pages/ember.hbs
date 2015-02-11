@@ -77,13 +77,7 @@ ember install:addon ember-intl
 // Extend your application, usually in app/app.js
 var App = Ember.Application.extend({
     ready: function () {
-        this.intl.setProperties({
-            // the current application locale
-            locales:        ['en-US'],
-
-            // the locale to fallback to
-            defaultLocale:  'en-US'
-        });
+        this.intl.set('locales', ['en-US']);
     }
 });
 

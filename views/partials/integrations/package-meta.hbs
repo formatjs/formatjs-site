@@ -1,9 +1,11 @@
 <ul class="package-meta docs">
+    {{#if package.hasDownload}}
     <li class="package-meta-download">
         <a class="pure-button" href="{{releaseDownloadUrl package.name package.version}}">
             Download
         </a>
     </li>
+    {{/if}}
     <li class="package-meta-version">
         v<b>{{package.version}}</b>
     </li>

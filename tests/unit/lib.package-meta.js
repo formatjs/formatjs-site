@@ -9,7 +9,8 @@ describe('Package Meta', function () {
                 'name',
                 'version',
                 'description',
-                'dist'
+                'dist',
+                'hasDownload'
             ])
             .and.to.have.property('dist')
                 .that.is.an('object')

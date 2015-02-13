@@ -59,7 +59,7 @@ export default React.createClass({
                             # Photos:
                         </span>
 
-                        <select
+                        <select className="num-photos-select"
                             value={this.state.currentNumPhotos}
                             onChange={this.handleNumPhotosChange}>
 

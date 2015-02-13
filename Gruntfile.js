@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     grunt.initConfig({
         filesize: {
             intl: {
@@ -20,20 +20,32 @@ module.exports = function (grunt) {
 
         clean: {
             build: 'build/',
-            tmp  : 'tmp/'
+            tmp: 'tmp/'
         },
 
         broccoli_build: {
             assets: {
                 dest: 'build/'
             }
+        },
+
+        casperjs: {
+            options: {
+                casperjsOptions: [
+                    '--host=localhost:5000',
+                    '--includes=tests/functional/utils/casper-setup.js'
+                ]
+            },
+            files: ['tests/functional/*.js']
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-broccoli-build');
+    grunt.loadNpmTasks('grunt-casperjs');
     grunt.loadTasks('tasks/');
 
     grunt.registerTask('build', ['clean', 'broccoli_build']);
+    grunt.registerTask('functional.tests', ['casperjs']);
     grunt.registerTask('default', ['build']);
 };

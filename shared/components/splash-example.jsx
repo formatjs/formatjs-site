@@ -2,7 +2,10 @@
 
 import LocaleSelect from './locale-select';
 
-var CSSTransitionGroup = React.addons.CSSTransitionGroup;
+var {
+    FormattedMessage,
+    FormattedRelative
+} = ReactIntl;
 
 export default React.createClass({
     displayName: 'SplashExample',
@@ -16,6 +19,10 @@ export default React.createClass({
         };
     },
 
+    componentDidMount: function () {
+        setInterval(this.forceUpdate.bind(this), 1000);
+    },
+
     updateLocale: function (newLocale) {
         this.setState({currentLocale: newLocale});
     },
@@ -25,10 +32,8 @@ export default React.createClass({
     },
 
     render: function () {
-        var {FormattedMessage} = ReactIntl;
-
         var currentLocale = this.state.currentLocale;
-        var photosMessage = this.props.messages[currentLocale].photos;
+        var photosMessage = this.props.messages[currentLocale].photosNested;
 
         var numPhotosOptions = this.props.availableNumPhotos.map(function (num) {
             return <option key={num} value={num}>{num}</option>;
@@ -39,18 +44,15 @@ export default React.createClass({
                 <h2 className="splash-example-heading">Example</h2>
 
                 <div className="splash-example-output">
-                    <CSSTransitionGroup
-                        transitionName="example-output"
-                        transitionLeave={false}>
-
-                        <FormattedMessage
-                            message={photosMessage}
-                            key={Date.now()}
-                            locales={currentLocale}
-                            name={this.props.name}
-                            numPhotos={this.state.currentNumPhotos}
-                            takenDate={this.props.takenDate} />
-                    </CSSTransitionGroup>
+                    <FormattedMessage
+                        message={photosMessage}
+                        key={Date.now()}
+                        locales={currentLocale}
+                        name={this.props.name}
+                        numPhotos={this.state.currentNumPhotos}
+                        takenAgo={
+                            <FormattedRelative value={this.props.takenDate} />
+                        } />
                 </div>
 
                 <form className="splash-example-controls">

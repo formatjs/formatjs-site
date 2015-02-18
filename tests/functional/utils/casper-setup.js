@@ -7,6 +7,7 @@ casper.userAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:35.0) Gecko/2
 casper.on('page.initialized', function () {
     casper.page.injectJs('tests/functional/includes/fn.bind.polyfill.js');
     casper.page.injectJs('tests/functional/includes/html.event.polyfill.js');
+    casper.page.injectJs('tests/functional/includes/date.mock.js');
 });
 
 casper.on('page.error', function (msg, trace) {

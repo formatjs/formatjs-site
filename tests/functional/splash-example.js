@@ -4,10 +4,6 @@
 
 var BASE_URL = 'http://' + casper.cli.options.host + '/';
 
-casper.on('page.initialized', function () {
-    casper.page.injectJs('tests/functional/includes/date.mock.js');
-});
-
 casper.test.begin('Test FormatJS home page splash example', function (test) {
 
     test.comment('Load home page');
@@ -23,6 +19,9 @@ casper.test.begin('Test FormatJS home page splash example', function (test) {
         test.assertExists('.splash-example-output', 'Found splash example output');
 
         var output = casper.evaluate(function (numPhotos, locale) {
+            window.APP.examples.splash.takenDate = Date.now();
+            updateSplashExample(window.APP);
+
             var numPhotosSelect = document.querySelector('.num-photos-select');
             numPhotosSelect.value = numPhotos;
 
@@ -39,10 +38,10 @@ casper.test.begin('Test FormatJS home page splash example', function (test) {
             return outputElement.textContent.trim();
         }, 3, 'fr-FR');
 
-        test.assertEquals(output,
-            'Le 13 février 2015, Annie a pris 3 photographies.',
-            'Check that splash output is in French');
+        test.assertEquals(output, 'Le 13 février 2015, Annie a pris 3 photographies.');
     });
 
-    casper.run();
+    casper.run(function () {
+        test.done();
+    });
 });

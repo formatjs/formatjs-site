@@ -37,15 +37,15 @@ var testData = {
         selector_output: '#ex-handlebars-number .handlebars-output li:nth-child(3)',
         locale: 'fr-FR',
         expected_output: '100,95\xA0$US'
-    }/*,
+    },
     'Test Dust integration example': {
-        comment: 'Test Dust integration - Number formatting example using cs-CZ',
+        comment: 'Test Dust integration - Time custom formatting example using cs-CZ',
         route: '/dust/',
         selector_locale_select: '#ex-dust-custom .locale-select',
-        selector_output: '#ex-dust-custom .dust-output li:nth-child(2)',
+        selector_output: '#ex-dust-custom .dust-output li:nth-child(3)',
         locale: 'cs-CZ',
-        expected_output: '13. února. 2015'
-    }*/
+        expected_output: '10:37'
+    }
 };
 
 Object.keys(testData).forEach(function (name) {

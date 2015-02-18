@@ -20,7 +20,13 @@ export default React.createClass({
     },
 
     componentDidMount: function () {
-        setInterval(this.forceUpdate.bind(this), 1000);
+        this.renderIntervalId = setInterval(this.forceUpdate.bind(this), 1000);
+    },
+
+    componentWillUnmount: function () {
+        if (this.this.renderIntervalId) {
+            clearInterval(this.renderIntervalId);
+        }
     },
 
     updateLocale: function (newLocale) {

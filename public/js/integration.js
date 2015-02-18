@@ -20,7 +20,8 @@ function hydrateExample(id, type, props) {
 
     var ExampleComponent = getExampleComponent(type);
 
-    React.render(
+    // Expose React component on its DOM node for testing.
+    exampleNode.component = React.render(
         React.createElement(ExampleComponent, props),
         exampleNode.parentNode
     );

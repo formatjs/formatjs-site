@@ -16,8 +16,6 @@
 
 'use strict';
 
-var BASE_URL = 'http://' + casper.cli.options.host;
-
 var testData = {
     'Test React integration example': {
         comment: 'Test React integration - Relative time formatting example using ja-JP',
@@ -58,7 +56,7 @@ Object.keys(testData).forEach(function (name) {
     casper.test.begin(name, function (test) {
 
         test.comment('Loading page...');
-        casper.start(BASE_URL + '/' + data.type + '/', function () {
+        casper.start(casper.host + '/' + data.type + '/', function () {
             test.pass('Page was loaded successfully!');
         });
 

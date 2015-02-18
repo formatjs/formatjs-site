@@ -2,12 +2,10 @@
 
 'use strict';
 
-var BASE_URL = 'http://' + casper.cli.options.host + '/';
-
 casper.test.begin('Test FormatJS home page splash example', function (test) {
 
     test.comment('Load home page');
-    casper.start(BASE_URL, function () {
+    casper.start(casper.host + '/', function () {
         test.pass('Page was loaded');
     });
 

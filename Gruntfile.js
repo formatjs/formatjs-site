@@ -29,23 +29,27 @@ module.exports = function(grunt) {
             }
         },
 
-        casperjs: {
-            options: {
-                casperjsOptions: [
-                    '--host=localhost:5000',
-                    '--includes=tests/functional/utils/casper-setup.js'
-                ]
-            },
-            files: ['tests/functional/*.js']
+        casper: {
+            functional: {
+                files: {
+                    'artifacts/test/functional/casper-results.xml': ['tests/functional/*.js']
+                },
+                options: {
+                    test: true,
+                    includes: 'tests/functional/utils/casper-setup.js',
+                    host: grunt.option('host') || 'localhost:5000'
+                }
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-broccoli-build');
-    grunt.loadNpmTasks('grunt-casperjs');
+    grunt.loadNpmTasks('grunt-casper');
     grunt.loadTasks('tasks/');
 
     grunt.registerTask('build', ['clean', 'broccoli_build']);
-    grunt.registerTask('functional.tests', ['casperjs']);
+
+    grunt.registerTask('functional.tests', ['casper:functional']);
     grunt.registerTask('default', ['build']);
 };

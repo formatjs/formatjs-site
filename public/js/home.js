@@ -12,8 +12,3 @@ export default function init(state) {
         node
     );
 }
-
-// Added this hook to facilitate writing functional tests for the home page splash example.
-// A cleaner, more generic approach would be to expose references to top-level components:
-//   http://facebook.github.io/react/tips/references-to-components.html
-window.updateSplashExample = init;

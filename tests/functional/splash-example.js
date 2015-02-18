@@ -14,26 +14,33 @@ casper.test.begin('Test FormatJS home page splash example', function (test) {
     casper.then(function() {
         test.comment('Test splash example');
 
+        test.assertExists('.splash-example-container', 'Found splash example container');
         test.assertExists('.num-photos-select', 'Found number select');
         test.assertExists('.locale-select', 'Found locale select');
         test.assertExists('.splash-example-output', 'Found splash example output');
 
         var output = casper.evaluate(function (numPhotos, locale) {
-            window.APP.examples.splash.takenDate = Date.now();
-            updateSplashExample(window.APP);
+            // Start by setting the takenDate prop to a known value so that we
+            // can compare the example's output to a static value.
+            var container = document.querySelector('.splash-example-container');
+            var component = container.component;
+            component.setProps({ takenDate: Date.now() });
 
+            // Change the value of the # photos combo box...
             var numPhotosSelect = document.querySelector('.num-photos-select');
             numPhotosSelect.value = numPhotos;
 
             var chgEvt1 = new Event('change', { bubbles: true });
             numPhotosSelect.dispatchEvent(chgEvt1);
 
+            // Change the value of the locale selection combo box...
             var localeSelect = document.querySelector('.locale-select');
             localeSelect.value = locale;
 
             var chgEvt2 = new Event('change', { bubbles: true });
             localeSelect.dispatchEvent(chgEvt2);
 
+            // Finally, retrieve the example's output and return it.
             var outputElement = document.querySelector('.splash-example-output');
             return outputElement.textContent.trim();
         }, 3, 'fr-FR');

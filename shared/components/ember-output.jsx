@@ -83,7 +83,7 @@ export default React.createClass({
 
     render: function () {
         return (
-            <div ref="placeholder" className="handlebars-output" />
+            <div ref="placeholder" className="ember-output" />
         );
     }
 });

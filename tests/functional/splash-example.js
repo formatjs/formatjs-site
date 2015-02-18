@@ -11,7 +11,7 @@ casper.test.begin('Test FormatJS home page splash example', function (test) {
         test.pass('Page was loaded');
     });
 
-    casper.then(function() {
+    casper.then(function () {
         test.comment('Test splash example');
 
         test.assertExists('.splash-example-container', 'Found splash example container');
@@ -40,7 +40,7 @@ casper.test.begin('Test FormatJS home page splash example', function (test) {
             var chgEvt2 = new Event('change', { bubbles: true });
             localeSelect.dispatchEvent(chgEvt2);
 
-            // Finally, retrieve the example's output and return it.
+            // Retrieve the example's output...
             var outputElement = document.querySelector('.splash-example-output');
             return outputElement.textContent.trim();
         }, 3, 'fr-FR');

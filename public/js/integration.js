@@ -20,11 +20,17 @@ function hydrateExample(id, type, props) {
 
     var ExampleComponent = getExampleComponent(type);
 
-    // Expose React component on its DOM node for testing.
-    exampleNode.component = React.render(
+    var component = React.render(
         React.createElement(ExampleComponent, props),
         exampleNode.parentNode
     );
+
+    // exampleNode was re-created in the call to React.render() above,
+    // so we have to look it up again using its id.
+    exampleNode = document.getElementById(id);
+
+    // Expose React component on its DOM node for testing.
+    exampleNode.component = component;
 }
 
 function getExampleComponent(type) {

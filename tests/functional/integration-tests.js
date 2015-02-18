@@ -1,49 +1,53 @@
 /*globals casper */
 
+// Test the various integration pages.
+//
+// We limit ourselves to one test per integration page. This may seem low,
+// but keep in mind that functional tests are not supposed to be as exhaustive
+// as unit tests. Instead, their role is to look at the system as a whole.
+// Nevertheless, we test a variety of features of FormatJS and multiple locales
+// to try and get the highest possible coverage and confidence that the site is
+// working properly.
+//
+// All the tests basically do the same thing. Load a page, modify the value
+// of the locale selection combo box, and check the output of the corresponding
+// example with a static value. Because these tests are all the same, they are
+// parameterized below.
+
 'use strict';
 
 var BASE_URL = 'http://' + casper.cli.options.host;
 
-/*
- * Format:
- *
- *   - route: What page should we load?
- *   - selector_locale_select: CSS selector for desired locale selection combo box
- *   - selector_output: CSS selector for desired output element
- *   - locale: Which locale to use?
- *   - expected_output: Self-explanatory...
- */
 var testData = {
     'Test React integration example': {
         comment: 'Test React integration - Relative time formatting example using ja-JP',
-        route: '/react/',
-        selector_locale_select: '#ex-react-relative .locale-select',
-        selector_output: '#ex-react-relative .react-output li:nth-child(2)',
+        type: 'react',
         locale: 'ja-JP',
+        id: 'ex-react-relative',
+        output_selector: 'li:nth-child(2)',
         expected_output: '2 時間前'
     },
     'Test Ember integration example': {
         comment: 'Test Ember integration - Date formatting example using pt-BR',
-        route: '/ember/',
-        selector_locale_select: '#ex-ember-date .locale-select',
-        selector_output: '#ex-ember-date .ember-view',
+        type: 'ember',
         locale: 'pt-BR',
+        id: 'ex-ember-date',
         expected_output: '13 de fevereiro de 2015'
     },
     'Test Handlebars integration example': {
         comment: 'Test Handlebars integration - Number formatting example using es-AR',
-        route: '/handlebars/',
-        selector_locale_select: '#ex-handlebars-number .locale-select',
-        selector_output: '#ex-handlebars-number .handlebars-output li:nth-child(3)',
+        type: 'handlebars',
         locale: 'fr-FR',
+        id: 'ex-handlebars-number',
+        output_selector: 'li:nth-child(3)',
         expected_output: '100,95\xA0$US'
     },
     'Test Dust integration example': {
         comment: 'Test Dust integration - Time custom formatting example using cs-CZ',
-        route: '/dust/',
-        selector_locale_select: '#ex-dust-custom .locale-select',
-        selector_output: '#ex-dust-custom .dust-output li:nth-child(3)',
+        type: 'dust',
         locale: 'cs-CZ',
+        id: 'ex-dust-custom',
+        output_selector: 'li:nth-child(3)',
         expected_output: '10:37'
     }
 };
@@ -54,30 +58,29 @@ Object.keys(testData).forEach(function (name) {
     casper.test.begin(name, function (test) {
 
         test.comment('Loading page...');
-        casper.start(BASE_URL + data.route, function () {
+        casper.start(BASE_URL + '/' + data.type + '/', function () {
             test.pass('Page was loaded successfully!');
         });
 
-        casper.then(function() {
+        casper.then(function () {
             casper.test.comment(data.comment);
 
-            test.assertExists(data.selector_locale_select, 'Found locale select element');
-            test.assertExists(data.selector_output, 'Found output element');
-
-            casper.evaluate(function (selector_locale_select, locale) {
-                var localeSelect = document.querySelector(selector_locale_select);
-                localeSelect.value = locale;
+            casper.evaluate(function (id, locale) {
+                // Change the value of the locale selection combo box...
+                var el = document.querySelector('#' + id + ' .locale-select');
+                el.value = locale;
 
                 var evt = new Event('change', { bubbles: true });
-                localeSelect.dispatchEvent(evt);
-            }, data.selector_locale_select, data.locale);
+                el.dispatchEvent(evt);
+            }, data.id, data.locale);
 
             // Some tests (example: Ember) run asynchronously...
             casper.wait(100, function () {
+                // Retrieve the example's output...
                 var output = casper.evaluate(function (selector_output) {
                     var outputElement = document.querySelector(selector_output);
                     return outputElement.textContent.trim();
-                }, data.selector_output);
+                }, '#' + data.id + ' .' + data.type + '-output ' + (data.output_selector || ''));
 
                 test.assertEquals(output, data.expected_output);
             });

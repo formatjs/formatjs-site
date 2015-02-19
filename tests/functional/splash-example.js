@@ -22,7 +22,7 @@ casper.test.begin('Test FormatJS home page splash example', function (test) {
             // can compare the example's output to a static value.
             var container = document.querySelector('.splash-example-container');
             var component = container.component;
-            component.setProps({ takenDate: Date.now() });
+            component.setProps({ takenDate: 1423852666565 });
 
             // Change the value of the # photos combo box...
             var numPhotosSelect = document.querySelector('.num-photos-select');

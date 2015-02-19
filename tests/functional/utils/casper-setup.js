@@ -2,8 +2,6 @@
 
 'use strict';
 
-casper.userAgent('Mozilla/5.0 (Macintosh; Intel Mac OS X 10.10; rv:35.0) Gecko/20100101 Firefox/35.0');
-
 casper.host = 'http://' + casper.cli.options.host;
 
 casper.on('page.initialized', function () {

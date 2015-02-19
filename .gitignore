@@ -6,3 +6,4 @@ deploy.json
 grasshopper.json
 tmp/
 coverage/
+artifacts/

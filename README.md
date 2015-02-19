@@ -16,6 +16,19 @@ $ npm install
 $ npm start
 ```
 
+To run the functional tests:
+
+```
+$ grunt functional.tests
+```
+
+By default, it will run the tests using the local instance (running on port 5000)
+But you can also specify a remote host:
+
+```
+$ grunt functional.tests --host=foo
+```
+
 License
 -------
 

@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     grunt.initConfig({
         filesize: {
             intl: {
@@ -20,7 +20,7 @@ module.exports = function(grunt) {
 
         clean: {
             build: 'build/',
-            tmp: 'tmp/'
+            tmp  : 'tmp/'
         },
 
         broccoli_build: {

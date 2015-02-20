@@ -45,7 +45,9 @@ module.exports = function (grunt) {
 
         shell: {
             health_check: {
-                command: 'mkdir -p artifacts/test/health-check && ./node_modules/.bin/mocha --reporter tap tests/health-check.js | tee artifacts/test/health-check/results.tap'
+                command: 'mkdir -p artifacts/test/health-check &&' +
+                    ' ./node_modules/.bin/mocha --reporter tap tests/health-check.js --host=' + (grunt.option('host') || 'localhost:5000') +
+                        ' | tee artifacts/test/health-check/results.tap'
             }
         }
     });

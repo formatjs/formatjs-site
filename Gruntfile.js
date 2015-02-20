@@ -20,7 +20,8 @@ module.exports = function (grunt) {
 
         clean: {
             build: 'build/',
-            tmp  : 'tmp/'
+            tmp: 'tmp/',
+            artifacts: 'artifacts/'
         },
 
         broccoli_build: {

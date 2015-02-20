@@ -32,7 +32,7 @@ module.exports = function (grunt) {
         casper: {
             functional: {
                 files: {
-                    'artifacts/test/functional/casper-results.xml': ['tests/functional/*.js']
+                    'artifacts/test/functional/results.xml': ['tests/functional/*.js']
                 },
                 options: {
                     test: true,
@@ -40,16 +40,25 @@ module.exports = function (grunt) {
                     host: grunt.option('host') || 'localhost:5000'
                 }
             }
+        },
+
+        shell: {
+            health_check: {
+                command: 'mkdir -p artifacts/test/health-check && ./node_modules/.bin/mocha --reporter tap tests/health-check.js | tee artifacts/test/health-check/results.tap'
+            }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-broccoli-build');
     grunt.loadNpmTasks('grunt-casper');
+    grunt.loadNpmTasks('grunt-shell-spawn');
     grunt.loadTasks('tasks/');
 
     grunt.registerTask('build', ['clean', 'broccoli_build']);
 
     grunt.registerTask('functional.tests', ['casper:functional']);
+    grunt.registerTask('health.check', ['shell:health_check']);
+
     grunt.registerTask('default', ['build']);
 };

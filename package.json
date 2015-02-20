@@ -51,6 +51,7 @@
     "grunt-cli": "^0.1.13",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-casper": "^0.4.2",
+    "grunt-shell-spawn": "^0.3.1",
     "istanbul": "^0.3.2",
     "mocha": "^2.0.1",
     "object.assign": "^1.0.1",
@@ -74,7 +75,8 @@
     "Tilo Mitra <tilomitra@gmail.com>",
     "Juan Dopazo <jdopazo@yahoo-inc.com>",
     "Clarence Leung <clarle@yahoo-inc.com>",
-    "Jason Mitchell <jasonmit@yahoo-inc.com>"
+    "Jason Mitchell <jasonmit@yahoo-inc.com>",
+    "Julien Lecomte <julien.lecomte@gmail.com>"
   ],
   "license": "BSD",
   "bugs": {

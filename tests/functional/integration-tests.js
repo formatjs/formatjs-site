@@ -30,7 +30,7 @@ var testData = {
         type: 'ember',
         locale: 'pt-BR',
         id: 'ex-ember-date',
-        expected_output: '13 de fevereiro de 2015'
+        expected_output: '8 de dezembro de 2014'
     },
     'Test Handlebars integration example': {
         comment: 'Test Handlebars integration - Number formatting example using es-AR',
@@ -46,7 +46,7 @@ var testData = {
         locale: 'cs-CZ',
         id: 'ex-dust-custom',
         output_selector: 'li:nth-child(3)',
-        expected_output: '10:37'
+        expected_output: '12:34'
     }
 };
 

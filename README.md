@@ -29,7 +29,19 @@ But you can also specify a remote host:
 $ grunt health.check --host=foo
 ```
 
-To run the functional tests:
+To run the functional tests, you must first install `grunt-casper` manually:
+
+```
+$ npm install grunt-casper@"^0.4.2"
+```
+
+The `grunt-casper` package was removed from the list of dev dependencies because
+it adds 150MB to the install, which slows down the pace of development,
+especially if you don't need to run the functional tests. Because of this,
+grunt will complain every time you invoke it, but you can disregard the warning
+message it outputs.
+
+To run, the functional tests, simply execute the `functional.tests` grunt task:
 
 ```
 $ grunt functional.tests

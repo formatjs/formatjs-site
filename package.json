@@ -93,7 +93,8 @@
     "excludes": [
       "examples/",
       "build/",
-      "tmp/"
+      "tmp/",
+      "tests/functional/includes/"
     ]
   },
   "yahoo": {

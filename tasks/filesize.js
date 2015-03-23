@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint -W079 */
-var Promise = global.Promise || require('ypromise');
+var Promise = global.Promise || require('promise');
 /* jshint +W079 */
 
 var path  = require('path'),

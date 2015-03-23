@@ -1,6 +1,6 @@
 /*global describe, it*/
 if (!global.Promise) {
-    global.Promise = require('ypromise');
+    global.Promise = require('promise');
 }
 
 var examples       = require('../../lib/examples');

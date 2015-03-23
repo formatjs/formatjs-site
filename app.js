@@ -2,13 +2,13 @@
 
 // -- Configure JavaScript Runtime ---------------------------------------------
 
-var hasNativeIntl    = !!global.Intl,
-    hasNativePromise = !!global.Promise;
+var hasNativeIntl    = !!global.Intl;
+var hasNativePromise = !!global.Promise;
 
 require('es6-shim');
 
 hasNativeIntl    || (global.Intl = require('intl'));
-hasNativePromise || (global.Promise = require('ypromise'));
+hasNativePromise || (global.Promise = require('promise'));
 
 global.React          = require('react/addons');
 global.ReactIntl      = require('react-intl');

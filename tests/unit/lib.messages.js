@@ -1,6 +1,6 @@
 /*global describe, it*/
 if (!global.Promise) {
-    global.Promise = require('ypromise');
+    global.Promise = require('promise');
 }
 
 var messages       = require('../../lib/messages');

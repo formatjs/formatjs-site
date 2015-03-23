@@ -2,64 +2,60 @@
 
 export {Tabs, Tab};
 
-var tabId = 0;
-
 var Tabs = React.createClass({
     displayName: 'Tabs',
 
     getInitialState: function () {
-        var tabIds   = [];
-        var panelIds = [];
         var selectedIndex;
 
-        React.Children.forEach(this.props.children, function (tab, index) {
-            var id = tabId += 1;
-            tabIds.push('tab-' + id);
-            panelIds.push('tabpanel-' + id);
-
+        React.Children.forEach(this.props.children, (tab, index) => {
             if (tab.props.selected) {
                 selectedIndex = index;
             }
         });
 
         return {
-            tabIds       : tabIds,
-            panelIds     : panelIds,
             selectedIndex: selectedIndex || 0
         };
     },
 
     getTabPanels: function (tabs) {
-        return React.Children.map(tabs, function (tab, index) {
-            return React.addons.cloneWithProps(tab, {
-                id      : this.state.panelIds[index],
-                tabId   : this.state.tabIds[index],
+        return React.Children.map(tabs, (tab, index) => {
+            return React.cloneElement(tab, {
                 selected: index === this.state.selectedIndex
             });
-        }, this);
+        });
     },
 
     getTabListItems: function (tabs) {
-        return React.Children.map(tabs, function (tab, index) {
+        return React.Children.map(tabs, (tab, index) => {
             var isSelected = index === this.state.selectedIndex;
             var className  = 'tabs-tab' + (isSelected ? ' is-selected' : '');
 
             return (
                 <li role="tab"
                     className={className}
-                    id={this.state.tabIds[index]}
-                    aria-controls={this.state.panelIds[index]}
+                    id={tab.props.id + "-tab"}
+                    aria-controls={tab.props.id}
                     aria-selected={isSelected}>
 
                     {tab.props.label}
                 </li>
             );
-        }, this);
+        });
     },
 
     handleTabClick: function (e) {
+        var controlsId;
+        var index;
+
         if (e.target.getAttribute('role') === 'tab') {
-            var index = this.state.tabIds.indexOf(e.target.id);
+            controlsId = e.target.getAttribute('aria-controls');
+
+            index = this.props.children.findIndex((tab) => {
+                return tab.props.id === controlsId;
+            });
+
             if (index !== this.state.selectedIndex) {
                 this.setState({
                     selectedIndex: index
@@ -89,7 +85,6 @@ var Tab = React.createClass({
 
     propTypes: {
         id      : React.PropTypes.string.isRequired,
-        tabId   : React.PropTypes.string.isRequired,
         label   : React.PropTypes.string.isRequired,
         selected: React.PropTypes.bool.isRequired
     },
@@ -105,7 +100,7 @@ var Tab = React.createClass({
             <div role="tabpanel"
                 className="tabs-tabpanel"
                 id={this.props.id}
-                aria-labeledby={this.props.tabId}
+                aria-labeledby={this.props.id + "-tab"}
                 hidden={!this.props.selected}>
 
                 {this.props.children}

@@ -32,7 +32,7 @@ $ grunt health.check --host=foo
 To run the functional tests, you must first install `grunt-casper` manually:
 
 ```
-$ npm install grunt-casper@"^0.4.2"
+$ npm install grunt-casper@0.4.2
 ```
 
 The `grunt-casper` package was removed from the list of dev dependencies because

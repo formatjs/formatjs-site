@@ -45,7 +45,7 @@ export default React.createClass({
 
                         <FormattedMessage
                             message={photosMessage}
-                            key={Date.now()}
+                            key={JSON.stringify(this.state)}
                             locales={currentLocale}
                             name={this.props.name}
                             numPhotos={this.state.currentNumPhotos}

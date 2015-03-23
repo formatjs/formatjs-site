@@ -1,4 +1,7 @@
+/* global Intl, IntlPolyfill */
 'use strict';
+
+var config = require('./config');
 
 // -- Configure JavaScript Runtime ---------------------------------------------
 
@@ -7,8 +10,27 @@ var hasNativePromise = !!global.Promise;
 
 require('es6-shim');
 
-hasNativeIntl    || (global.Intl = require('intl'));
+// es6-shim provides a Promise implementation, but it's not very good.
 hasNativePromise || (global.Promise = require('promise'));
+
+// Determine if the native `Intl` has the locale data we need.
+var hasNativeLocaleData = hasNativeIntl &&
+    config.availableLocales.every(function (locale) {
+        return Intl.NumberFormat.supportedLocalesOf(locale)[0] === locale;
+    });
+
+if (!hasNativeIntl) {
+    // No `Intl`, so use and load the polyfill.
+    global.Intl = require('intl');
+} else if (!hasNativeLocaleData) {
+    // `Intl` exists, but it doesn't have the data we need, so load the polyfill
+    // and replace the constructors with need with the polyfill's.
+    require('intl');
+    Intl.NumberFormat   = IntlPolyfill.NumberFormat;
+    Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat;
+}
+
+// -- FormatJS Libs ------------------------------------------------------------
 
 global.React          = require('react/addons');
 global.ReactIntl      = require('react-intl');
@@ -17,19 +39,18 @@ global.HandlebarsIntl = require('handlebars-intl');
 global.dust           = require('dustjs-linkedin');
 global.DustIntl       = require('dust-intl');
 
+global.DustIntl.registerWith(global.dust);
+
 // -----------------------------------------------------------------------------
 
-var path     = require('path'),
-    express  = require('express'),
-    expstate = require('express-state'),
-    reverend = require('reverend');
+var path     = require('path');
+var express  = require('express');
+var expstate = require('express-state');
+var reverend = require('reverend');
 
-var config     = require('./config'),
-    hbs        = require('./lib/hbs'),
-    middleware = require('./middleware'),
-    routes     = require('./routes');
-
-DustIntl.registerWith(dust);
+var hbs        = require('./lib/hbs');
+var middleware = require('./middleware');
+var routes     = require('./routes');
 
 // -- Configure Express App ----------------------------------------------------
 

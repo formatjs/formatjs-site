@@ -4,31 +4,31 @@
         "kbs": 9.8
     },
     "react-intl/dist/react-intl-with-locales.min.js": {
-        "bytes": 37220,
-        "kbs": 36.3
+        "bytes": 48859,
+        "kbs": 47.7
     },
     "react-intl/dist/react-intl.min.js": {
-        "bytes": 7887,
-        "kbs": 7.7
+        "bytes": 8181,
+        "kbs": 8
     },
     "dust-intl/dist/dust-intl-with-locales.min.js": {
-        "bytes": 36546,
-        "kbs": 35.7
+        "bytes": 48305,
+        "kbs": 47.2
     },
     "dust-intl/dist/dust-intl.min.js": {
-        "bytes": 7302,
-        "kbs": 7.1
+        "bytes": 7638,
+        "kbs": 7.5
     },
     "handlebars-intl/dist/handlebars-intl-with-locales.min.js": {
-        "bytes": 36533,
-        "kbs": 35.7
+        "bytes": 48287,
+        "kbs": 47.2
     },
     "handlebars-intl/dist/handlebars-intl.min.js": {
-        "bytes": 7267,
-        "kbs": 7.1
+        "bytes": 7523,
+        "kbs": 7.3
     },
     "ember-intl/packaging/dist/ember-intl.min.js": {
-        "bytes": 17176,
-        "kbs": 16.8
+        "bytes": 18165,
+        "kbs": 17.7
     }
 }

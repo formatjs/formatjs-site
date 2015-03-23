@@ -26,7 +26,10 @@ function copy(tree, mappings) {
 // -- Shared -------------------------------------------------------------------
 
 var shared = compileJSX('shared/', {
-    transform: {harmony: true}
+    transform: {
+        es6module: true,
+        harmony  : true
+    }
 });
 
 // -- Server -------------------------------------------------------------------

@@ -36,19 +36,19 @@ export default React.createClass({
         var message          = messages[example.meta.messageId];
 
         var tabs = [
-            <Tab label="Template" key="template">
+            <Tab label="Template" key="template" id={example.id + "-template"}>
                 <CodeBlock lang="dust">
                     {example.source.template}
                 </CodeBlock>
             </Tab>,
 
-            <Tab label="Context" key="context">
+            <Tab label="Context" key="context" id={example.id + "-context"}>
                 <CodeBlock lang="javascript">
                     {example.source.context}
                 </CodeBlock>
             </Tab>,
 
-            <Tab label="Render" key="render">
+            <Tab label="Render" key="render" id={example.id + "-render"}>
                 <CodeBlock lang="javascript">
                     {this.generateRenderCode()}
                 </CodeBlock>
@@ -58,7 +58,7 @@ export default React.createClass({
         // Insert a "Message" tab if the example uses an i18n message.
         if (message) {
             tabs.splice(1, 0,
-                <Tab label="Message" key="message">
+                <Tab label="Message" key="message" id={example.id + "-message"}>
                     <CodeBlock highlight={false}>
                         {message}
                     </CodeBlock>

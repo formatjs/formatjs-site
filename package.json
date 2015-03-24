@@ -62,7 +62,7 @@
   },
   "scripts": {
     "postinstall": "grunt",
-    "test": "istanbul cover -- node_modules/mocha/bin/_mocha tests/unit/ --reporter spec",
+    "test": "istanbul cover --post-require-hook ./tests/istanbul-hook -- _mocha tests/unit/ -r es6-shim --reporter spec",
     "start": "node server.js"
   },
   "repository": {

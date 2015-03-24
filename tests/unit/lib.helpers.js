@@ -131,8 +131,6 @@ describe('Helpers', function () {
                 }
             });
         });
-
-
     });
 
     describe('cdnUrl', function () {

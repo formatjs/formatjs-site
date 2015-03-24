@@ -104,7 +104,7 @@ router.use(middleware.polyfills);
 
 routes.home(route('/'));
 routes.about(route('/about/'));
-routes.guide(route('/guide/'));
+routes.guides(route('/guides/:guide?/'));
 routes.integrations(route('/integrations/'));
 routes.github(route('/github/'));
 
@@ -112,6 +112,8 @@ routes.react(route('/react/'));
 routes.ember(route('/ember/'));
 routes.handlebars(route('/handlebars/'));
 routes.dust(route('/dust/'));
+
+route('/guide/').get(routes.redirect('/guides/'));
 
 app.getRoute = function (routeName) {
     var layer = router.stack.find(function (layer) {
@@ -137,8 +139,8 @@ Object.assign(app.locals, {
 
     min: app.get('env') === 'production' ? '.min' : '',
 
-    menuItems    : ['guide', 'integrations', 'github'].map(app.getRoute),
-    footMenuItems: ['home', 'about', 'guide', 'integrations', 'github'].map(app.getRoute),
+    menuItems    : ['guides', 'integrations', 'github'].map(app.getRoute),
+    footMenuItems: ['home', 'about', 'guides', 'integrations', 'github'].map(app.getRoute),
 
     helpers: {
         pathTo: function (name, options) {

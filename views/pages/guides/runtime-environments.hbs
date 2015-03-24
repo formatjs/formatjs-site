@@ -1,0 +1,94 @@
+{{setTitle "Runtime Environments"}}
+{{setDescription "General information on getting started internationalization web apps client and server in JavaScript."}}
+
+<section class="head">
+    {{> nav}}
+</section>
+
+<section class="main docs l-wrap">
+    <h1>Runtime Environments</h1>
+
+    <p>
+        Here is information on how to setup {{brand}} in different environments.
+    </p>
+
+    <section id="toc"></section>
+
+    <section class="secs">
+        <h2 id="server">
+            Server
+        </h2>
+
+        <p>
+            In Node.js our libraries are available as npm packages. Each of our <a href="{{pathTo 'integrations'}}">integrations</a> has details on how they are installed.
+        </p>
+
+        <p>
+            Node (as of 0.10) doesn't provide the global {{code "Intl"}} object. You'll need to <a href="#how-to-patch">provide a polyfill</a> as described above. Node 0.12 will support the global {{code "Intl"}} API via a runtime flag.
+        </p>
+
+        <section class="secs">
+            <h3 id="user-locale-server">
+                Determining the User's Locale
+            </h3>
+
+            <p>
+                When a request comes in you'll need to determine the locale for the response. Best practice is to provide the user an explicit way of choosing one of the locales your app supports (and persisting that choice in a user profile database).
+            </p>
+
+            <p>
+                If you wish to programmatically infer the user's locale you can inspect the <a href="http://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Accept-Language">{{code "Accept-Language"}}</a> HTTP request header. (This is part of HTTP <a href="http://en.wikipedia.org/wiki/Content_negotiation">content negotiation</a>.) There are <a href="https://www.npmjs.org/search?q=accept-language">npm modules</a> that can help with this, {{npmLink "accepts"}} and {{npmLink "negotiator"}} being two good choices. As well, express has some content negotiation <a href="http://expressjs.com/4x/api.html#req.acceptsLanguages">built in</a>.
+            </p>
+
+{{#code "js"}}
+var app        = require('express')();
+var appLocales = ['de', 'en', 'fr'];
+
+app.get('/', function (req, res) {
+    var locale = req.acceptsLanguages(appLocales) || 'en';
+    // ...customize the response to locale
+});
+{{/code}}
+
+        </section>
+    </section>
+
+    <section class="secs">
+        <h2 id="client">
+            Client
+        </h2>
+
+        <p>
+            Each of our <a href="{{pathTo 'integrations'}}">integrations</a> has details on how to load them into the browser.
+        </p>
+
+        <p>
+            If the browser doesn't support the {{code "Intl"}} API you'll need to <a href="#how-to-patch">provide a polyfill</a> as described above. The polyfill you choose might require you to load a separate file for each locale. In this case you can dynamically load a single locale file for the user's locale.
+        </p>
+
+        <section class="secs">
+            <h3 id="user-locale-client">
+                Determining the User's Locale
+            </h3>
+
+            <p>
+                <strong>When running internationalization code in the browser it is best if the locale used is the same as was used when the page was generated on the server.</strong> You can do this by having the server embed the chosen locale into the generate page. This ensures that the user gets a consistent experience and that the UI doesn't suddenly "switch languages" on them.
+            </p>
+
+            <p>
+                If this isn't possible or if you have an application which is served statically, the best practice is to provide the user an explicit way to choose one of the locales your app supports. If you wish to programmatically infer the user's locale you can match the following against the locales your app supports.
+            </p>
+
+{{#code "js"}}
+navigator.language || navigator.browserLanguage
+{{/code}}
+
+        </section>
+    </section>
+
+    <section>
+        <h2>{{brand}} Guides</h2>
+
+        {{> guides-list}}
+    </section>
+</section>

@@ -60,6 +60,7 @@ expstate.extend(app);
 
 app.set('name', 'FormatJS');
 app.set('port', config.port);
+app.set('polyfill service', config.polyfillService);
 app.set('available locales', config.availableLocales);
 app.set('default locale', 'en-US');
 app.set('state namespace', 'APP');
@@ -72,7 +73,7 @@ app.set('view engine', hbs.extname);
 app.set('views', config.dirs.views);
 
 if (app.get('env') === 'development') {
-    // This will watch files during development and automattically re-build.
+    // This will watch files during development and automatically re-build.
     app.watcher = require('./lib/watcher');
 }
 
@@ -99,6 +100,7 @@ var route = router.route.bind(router);
 
 router.use(middleware.fixBadSafari);
 router.use(middleware.intl);
+router.use(middleware.polyfills);
 
 routes.home(route('/'));
 routes.about(route('/about/'));

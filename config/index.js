@@ -21,3 +21,8 @@ exports.availableLocales = glob.sync('*.yaml', {
 });
 
 exports.ga = 'UA-55722103-1';
+
+exports.polyfillService = {
+    hostname: 'polyfills.yahooapis.com',
+    version : require('./polyfill-service.json').version
+};

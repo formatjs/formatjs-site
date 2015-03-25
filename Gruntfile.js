@@ -18,6 +18,13 @@ module.exports = function (grunt) {
             }
         },
 
+        curl: {
+            polyfill_service: {
+                src: 'https://polyfills.yahooapis.com/meta.json',
+                dest: 'config/polyfill-service.json'
+            }
+        },
+
         clean: {
             build: 'build/',
             tmp: 'tmp/'
@@ -54,6 +61,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-broccoli-build');
     grunt.loadNpmTasks('grunt-casper');
+    grunt.loadNpmTasks('grunt-curl');
     grunt.loadNpmTasks('grunt-shell-spawn');
     grunt.loadTasks('tasks/');
 
@@ -61,6 +69,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('functional.tests', ['casper:functional']);
     grunt.registerTask('health.check', ['shell:health_check']);
+
+    grunt.registerTask('update_polyfill_service', ['curl:polyfill_service']);
 
     grunt.registerTask('default', ['build']);
 };

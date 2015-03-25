@@ -9,23 +9,106 @@
     <h1>Runtime Environments</h1>
 
     <p>
-        Here is information on how to setup {{brand}} in different environments.
+        Here is information on how to setup {{brand}} in different environments, including how to polyfill the runtimes that don't have built-in internationalization support.
     </p>
 
     <section id="toc"></section>
 
     <section class="secs">
-        <h2 id="server">
-            Server
+        <h2 id="intl-built-ins">
+            {{code "Intl"}} Built-in APIs
         </h2>
 
         <p>
-            In Node.js our libraries are available as npm packages. Each of our <a href="{{pathTo 'integrations'}}">integrations</a> has details on how they are installed.
+            The {{brand}} libraries rely on the following <a href="http://www.ecma-international.org/ecma-402/1.0/index.html">ECMA 402</a> Internationalization APIs introduced in ECMAScript 5.1:
+        </p>
+
+        <ul>
+            <li>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NumberFormat">{{code "Intl.NumberFormat"}}</a>
+            </li>
+            <li>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat">{{code "Intl.DateTimeFormat"}}</a>
+            </li>
+        </ul>
+
+        <p>
+            If these APIs aren't present in a runtime your app is targeting, then you'll need to polyfill the runtime to include them.
+        </p>
+
+        <section class="secs">
+            <h3 id="intl-runtimes">
+                Runtimes with {{code "Intl"}} APIs
+            </h3>
+
+            <p>
+                The {{code "Intl"}} APIs are currently available on Node.js 0.12 and all modern browsers <em>except</em> Safari. See the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Browser_Compatibility">Mozilla Developer Network documentation</a> for an up-to-date list of capable browsers.
+            </p>
+        </section>
+
+        <section class="secs">
+            <h3 id="intl-polyfill">
+                Intl.js Polyfill
+            </h3>
+
+            <p>
+                The <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a> library, developed by Andy Earnshaw, provides a polyfill for the {{code "Intl.NumberFormat"}} and {{code "Intl.DateTimeFormat"}} APIs &mdash; both of which are needed by the {{brand}} libraries. The polyfill also includes separate locale data files for each of the 700+ locales it supports.
+            </p>
+
+            <p class="note">
+                <strong>Note</strong> that the {{code "Intl.js"}} polyfill does not have the {{code "Intl.Collator"}} API. The size of the locale data required to support the API is not practical to load in a client.
+            </p>
+        </section>
+    </section>
+
+    <section class="secs">
+        <h2 id="server">
+            Server (Node.js)
+        </h2>
+
+        <p>
+            Node.js 0.12 has the {{code "Intl"}} APIs built-in, <b>but only includes the English locale data by default</b>. If your app needs to support more locales than English, you'll need to <a href="https://github.com/joyent/node/wiki/Intl">built Node with the extra locale data</a>, or polyfill the runtime.
         </p>
 
         <p>
-            Node (as of 0.10) doesn't provide the global {{code "Intl"}} object. You'll need to <a href="#how-to-patch">provide a polyfill</a> as described above. Node 0.12 will support the global {{code "Intl"}} API via a runtime flag.
+            Node.js versions prior to 0.12 don't provide the {{code "Intl"}} APIs, so they require that the runtime is polyfilled.
         </p>
+
+        <section class="secs">
+            <h3 id="polyfill-node">
+                How to Polyfill Node.js
+            </h3>
+
+            <p>
+                The following code snippet will help you polyfill the Node.js runtime when the {{code "Intl"}} APIs are missing, or if the built-in {{code "Intl"}} is missing locale data that's needed for your app:
+            </p>
+
+{{#code "js"}}
+var localesMyAppSupports = [
+    /* list locales here */
+];
+
+if (global.Intl) {
+    // Determine if the built-in `Intl` has the locale data we need.
+    var hasBuiltInLocaleData = localesMyAppSupports.every(function (locale) {
+        return Intl.NumberFormat.supportedLocalesOf(locale)[0] === locale &&
+                Intl.DateTimeFormat.supportedLocalesOf(locale)[0] === locale;
+    });
+
+    if (!hasBuiltInLocaleData) {
+        // `Intl` exists, but it doesn't have the data we need, so load the
+        // polyfill and replace the constructors with need with the polyfill's.
+        require('intl');
+        Intl.NumberFormat   = IntlPolyfill.NumberFormat;
+        Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat;
+    }
+} else {
+    // No `Intl`, so use and load the polyfill.
+    global.Intl = require('intl');
+}
+{{/code}}
+
+        </section>
 
         <section class="secs">
             <h3 id="user-locale-server">
@@ -55,16 +138,54 @@ app.get('/', function (req, res) {
 
     <section class="secs">
         <h2 id="client">
-            Client
+            Client (Browsers)
         </h2>
 
         <p>
-            Each of our <a href="{{pathTo 'integrations'}}">integrations</a> has details on how to load them into the browser.
+            The {{code "Intl"}} APIs are currently available on all modern browsers <em>except</em> Safari. See the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#Browser_Compatibility">Mozilla Developer Network documentation</a> for an up-to-date list of capable browsers.
         </p>
 
         <p>
-            If the browser doesn't support the {{code "Intl"}} API you'll need to <a href="#how-to-patch">provide a polyfill</a> as described above. The polyfill you choose might require you to load a separate file for each locale. In this case you can dynamically load a single locale file for the user's locale.
+            It is recommended that you separate the {{code "Intl"}} polyfill from your app's JavaScript code bundle so the polyfill is only loaded in the browsers which need it. Also, if you're using the Intl.js polyfill, you will need to load a separate file for each locale. In this case you can dynamically load a single locale file for the user's locale.
         </p>
+
+        <section class="secs">
+            <h3 id="polyfill-browsers">
+                How to Polyfill Browsers
+            </h3>
+
+            <p>
+                The <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a> library, developed by Andy Earnshaw, provides a polyfill for the {{code "Intl"}} API. It needs a locale data file for the current page.
+            </p>
+
+{{#code "html"}}
+<script src="path/to/intl/Intl.js"></script>
+<script src="path/to/intl/locale-data/jsonp/en.js"></script>
+...use the locale for the current user, instead of hard-coding to "en"
+{{/code}}
+
+            <p>
+                Since some runtimes already have the {{code "Intl"}} APIs, ideally you should only load the polyfill when needed. You can do this using a conditional loader.
+            </p>
+
+            <p>
+                One conditional loader is <a href="http://yepnopejs.com/">yepnopejs</a>. Here's an overview of how to use it and it provides the general idea for other loading mechanisms:
+            </p>
+
+{{#code "js"}}
+yepnope({
+    test    : window.Intl,
+    nope    : ['path/to/intl/polyfill'],
+    complete: function () {
+    // ...the Intl API can be used here...
+    }
+});
+{{/code}}
+
+            <p class="note">
+                <strong>Note</strong> that our <a href="{{pathTo 'integrations'}}">integrations</a> require that {{code "window.Intl"}} exists before they are loaded.
+            </p>
+        </section>
 
         <section class="secs">
             <h3 id="user-locale-client">

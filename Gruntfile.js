@@ -13,7 +13,7 @@ module.exports = function (grunt) {
                         'handlebars-intl/dist/*.min.js',
                         'ember-intl/packaging/dist/*.min.js'
                     ],
-                    dest: 'config/sizes.json'
+                    dest: 'config/lib-sizes.json'
                 }]
             }
         },

@@ -115,8 +115,8 @@ describe('Helpers', function () {
             }).to.throw();
         });
 
-        it('should use the values in sizes.json', function () {
-            var sizes = require('../../config/sizes.json');
+        it('should use the values config.libSizes', function () {
+            var sizes = require('../../config').libSizes;
             sizes['fake-foo-bar'] = {
                 "bytes": 999,
                 "kbs": 0.98

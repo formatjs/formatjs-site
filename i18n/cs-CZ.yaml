@@ -1,10 +1,10 @@
 photos: |
-  {name} {numPhotos, plural,
+  {takenDate, date, long} {name} {numPhotos, plural,
     =0 {nevyfotila}
     other {vyfotila}
   } {numPhotos, plural,
     =0 {žádnou fotku}
-    =1 {jednu fotku}
+    one {jednu fotku}
     few {# fotky}
     other {# fotek}
-  } {takenDate, date, long}.
+  }.

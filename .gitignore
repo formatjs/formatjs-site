@@ -1,9 +1,8 @@
-.DS_Store
-node_modules/
+artifacts/
 build
+node_modules/
+tmp/
+.DS_Store
 npm-debug.log
 deploy.json
 grasshopper.json
-tmp/
-coverage/
-artifacts/

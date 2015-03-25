@@ -130,9 +130,11 @@ var img = new Funnel('public/img/', {
     destDir: '/img'
 });
 
-var js = new Funnel('public/js/', {
-    srcDir : '/',
-    destDir: '/js'
+var js = compileJSX('public/js/', {
+    transform: {
+        es6module: true,
+        harmony  : true
+    }
 });
 
 js = compileModules(mergeTrees([shared, js]), {

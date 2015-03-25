@@ -1,6 +1,6 @@
 /* global React */
 
-import SplashExample from '../components/splash-example';
+import SplashExample from './components/splash-example';
 
 export default function init(state) {
     var splashProps = Object.assign({}, state.intl, state.examples.splash);
@@ -8,7 +8,7 @@ export default function init(state) {
 
     // Expose React component on its DOM node for testing.
     node.component = React.render(
-        React.createElement(SplashExample, splashProps),
+        <SplashExample {...splashProps} />,
         node
     );
 }

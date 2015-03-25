@@ -17,7 +17,7 @@ casper.test.begin('Test FormatJS home page splash example', function (test) {
         test.assertExists('.locale-select', 'Found locale select');
         test.assertExists('.splash-example-output', 'Found splash example output');
 
-        var output = casper.evaluate(function (numPhotos, locale) {
+        casper.evaluate(function (numPhotos, locale) {
             // Start by setting the takenDate prop to a known value so that we
             // can compare the example's output to a static value.
             var container = document.querySelector('.splash-example-container');
@@ -37,13 +37,17 @@ casper.test.begin('Test FormatJS home page splash example', function (test) {
 
             var chgEvt2 = new Event('change', { bubbles: true });
             localeSelect.dispatchEvent(chgEvt2);
-
-            // Retrieve the example's output...
-            var outputElement = document.querySelector('.splash-example-output');
-            return outputElement.textContent.trim();
         }, 3, 'fr-FR');
 
-        test.assertEquals(output, 'Le 13 février 2015, Annie a pris 3 photographies.');
+        this.wait(1000, function () {
+            var output = this.evaluate(function () {
+                // Retrieve the example's output...
+                var outputElement = document.querySelector('.splash-example-output');
+                return outputElement.textContent.trim();
+            });
+
+            test.assertEquals(output, 'Le 13 février 2015, Annie a pris 3 photographies.');
+        });
     });
 
     casper.run(function () {

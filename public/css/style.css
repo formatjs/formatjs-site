@@ -603,7 +603,7 @@ li code {
     }
 
     .brand-mark {
-        margin: 0.5rem;
+        margin: 0.5rem 0rem 0.5rem 0.5rem;
         width: 2.1484rem;
         height: 2.5rem;
         background-image: url("/img/logo-element.svg");
@@ -735,6 +735,7 @@ li code {
     }
 
     .brand-mark {
+        margin: 0.5rem;
         width: 9.2578rem;
         height: 2.5rem;
         background-image: url("/img/logo.svg");

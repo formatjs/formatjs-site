@@ -16,6 +16,10 @@
         The {{npmLink "intl-messageformat"}} library takes the message and input data and creates an appropriately formatted string. This feature is included with all of the <a>integrations</a> we provide.
     </p>
 
+    <p>
+        The following sections describe the ICU Message syntax and show how to use this features provided the {{brand}} libraries:
+    </p>
+
     <section id="toc"></section>
 
     <section class="secs">
@@ -42,7 +46,7 @@ Hello everyone
         </h2>
 
         <p>
-            You can use a <code>{<var>key</var>}</code> argument for placing a value into the message. The <var>key</var> is looked up in the input data.
+            You can use a <code>{<var>key</var>}</code> argument for placing a value into the message. The <var>key</var> is looked up in the input data, and the string is interpolated with its value.
         </p>
 
 {{#code highlight=false}}
@@ -181,11 +185,11 @@ Coupon expires at {expires, time, short}
                 <code>{<var>key</var>, number, <var>format</var>}</code>,
                 <code>{<var>key</var>, date, <var>format</var>}</code>, and
                 <code>{<var>key</var>, time, <var>format</var>}</code>
-                arguments come with predefined values for the <code><var>format</var></code> element, but you can define your own. You do this by passing a simple javascript object to each of the <a href="{{pathTo 'integrations'}}">integrations</a>, in a way that is distinct for each integration.
+                arguments come with predefined values for the <code><var>format</var></code> element, but you can define your own. You do this by passing a simple JavaScript object to each of the <a href="{{pathTo 'integrations'}}">integrations</a>, in a way that is distinct for each integration.
             </p>
 
             <p>
-                The key of the object is the <code><var>type</var></code>, and the value is a simple javascript object of formats for that type. These format options are passed to the <code><var>options</var></code> argument of the associated constructor.
+                The key of the object is the <code><var>type</var></code>, and the value is a simple JavaScript object of formats for that type. These format options are passed to the <code><var>options</var></code> argument of the associated constructor.
             </p>
 
             <p>
@@ -273,7 +277,7 @@ Your total is {total, number, usd}
             </dd>
             <dt><code>two</code></dt>
             <dd>
-                This category is used for languages that have grammar specialized specifically for two item. (Examples are Arabic and Welsh.)
+                This category is used for languages that have grammar specialized specifically for two items. (Examples are Arabic and Welsh.)
             </dd>
             <dt><code>few</code></dt>
             <dd>
@@ -309,15 +313,74 @@ You have {itemCount, plural,
 {{/code}}
 
         <p>
-            In the <code><var>output</var></code> of the match, the <code>#</code> special token can be used as a placeholder for the value.
+            In the <code><var>output</var></code> of the match, the <code>#</code> special token can be used as a placeholder for the numeric value and will be formatted as if it were <code>{<var>key</var>, number}</code>.
         </p>
 
 {{#code highlight=false}}
 You have {itemCount, plural,
     =0 {no items}
-    one {1 item}
+    one {# item}
     other {# items}
 }.
+{{/code}}
+
+    </section>
+
+    <section class="secs">
+        <h2 id="selectordinal-format">
+            {{code "{selectordinal}"}} Format
+        </h2>
+
+        <p>
+            The <code>{<var>key</var>, selectordinal, <var>matches</var>}</code> is used to choose output based on the ordinal pluralization rules (1st, 2nd, 3rd, etc.) of the current locale. It is very similar to the <a href="#plural-format">{{code "{plural}"}} format above</a>, but the ordinal pluralization rules can differ from the cardinal one.
+        </p>
+
+        <p>
+            The <code><var>match</var></code> is a literal value and is matched to one of these plural categories. Not all languages use all plural categories.
+        </p>
+
+        <dl>
+            <dt><code>zero</code></dt>
+            <dd>
+                This category is used for languages that have grammar specialized specifically for zero number of items. (Examples are Arabic and Latvian.)
+            </dd>
+            <dt><code>one</code></dt>
+            <dd>
+                This category is used for languages that have grammar specialized specifically for one item. Many languages, but not all, use this plural category. (Many popular Asian languages, such as Chinese and Japanese, do not use this category.)
+            </dd>
+            <dt><code>two</code></dt>
+            <dd>
+                This category is used for languages that have grammar specialized specifically for two items. (Examples are Arabic and Welsh.)
+            </dd>
+            <dt><code>few</code></dt>
+            <dd>
+                This category is used for languages that have grammar specialized specifically for a small number of items. For some languages this is used for 2-4 items, for some 3-10 items, and other languages have even more complex rules.
+            </dd>
+            <dt><code>many</code></dt>
+            <dd>
+                This category is used for languages that have grammar specialized specifically for a larger number of items. (Examples are Arabic, Polish, and Russian.)
+            </dd>
+            <dt><code>other</code></dt>
+            <dd>
+                This category is used if the value doesn't match one of the other plural categories. <strong>Note</strong> that this is used for "plural" for languages (such as English) that have a simple "singular" versus "plural" dichotomy.
+            </dd>
+            <dt><code>=<var>value</var></code></dt>
+            <dd>
+                This is used to match a specific value regardless of the plural categories of the current locale.
+            </dd>
+        </dl>
+
+        <p>
+            In the <code><var>output</var></code> of the match, the <code>#</code> special token can be used as a placeholder for the numeric value and will be formatted as if it were <code>{<var>key</var>, number}</code>.
+        </p>
+
+{{#code highlight=false}}
+It's my cat's {year, selectordinal,
+    one {#st}
+    two {#nd}
+    few {#rd}
+    other{#th}
+} birthday!
 {{/code}}
 
     </section>

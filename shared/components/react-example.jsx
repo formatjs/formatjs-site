@@ -1,96 +1,79 @@
 /* global React */
 
-import ExampleMixin from '../mixins/example';
+import Example from './example';
 import CodeBlock from './code-block';
-import LocaleSelect from './locale-select';
 import {Tabs, Tab} from './tabs';
 
 export default React.createClass({
     displayName: 'ReactExample',
-    mixins     : [ExampleMixin],
 
-    statics: {
-        renderCode: [
-            'React.render(',
-            '    <Component {...intlData} />,',
-            '    document.getElementById("example")',
-            ');'
-        ].join('\n')
-    },
+    propTypes: {
+        id       : React.PropTypes.string.isRequired,
+        component: React.PropTypes.func.isRequired,
 
-    generateRenderCode: function () {
-        var intlData = this.generateIntlData();
+        source: React.PropTypes.shape({
+            component: React.PropTypes.string.isRequired,
+            intlData : React.PropTypes.string.isRequired
+        }).isRequired,
 
-        return [
-            'var intlData = ' + JSON.stringify(intlData, null, 4) + ';',
-            '',
-            this.constructor.renderCode
-        ].join('\n');
+        message : React.PropTypes.string,
+        formats : React.PropTypes.object,
+        messages: React.PropTypes.object,
+
+        currentLocale   : React.PropTypes.string.isRequired,
+        availableLocales: React.PropTypes.array.isRequired,
+        onLocaleChange  : React.PropTypes.func.isRequired,
     },
 
     render: function () {
-        var example          = this.props.example;
-        var currentLocale    = this.state.currentLocale;
-        var availableLocales = this.state.availableLocales;
-        var messages         = this.props.intl.messages[currentLocale];
-        var message          = messages[example.meta.messageId];
-
-        var ExampleComponent = example.getComponent();
+        var props            = this.props;
+        var ExampleComponent = props.component;
 
         var tabs = [
-            <Tab label="Component" key="component" id={example.id + "-component"}>
+            <Tab label="Component" key="component" id={`${props.id}-component`}>
                 <CodeBlock lang="javascript">
-                    {example.source.component}
+                    {props.source.component}
                 </CodeBlock>
             </Tab>,
 
-            <Tab label="Render" key="render" id={example.id + "-render"}>
+            <Tab label="Render" key="render" id={`${props.id}-render`}>
                 <CodeBlock lang="javascript">
-                    {this.generateRenderCode()}
+{`var intlData = ${props.source.intlData};
+
+React.render(
+    <Component {...intlData} />,
+    document.getElementById('example')
+);`}
                 </CodeBlock>
             </Tab>
         ];
 
         // Insert a "Message" tab if the example uses an i18n message.
-        if (message) {
+        if (props.message) {
             tabs.splice(1, 0,
-                <Tab label="Message" key="message" id={example.id + "-message"}>
+                <Tab label="Message" key="message" id={`${props.id}-message`}>
                     <CodeBlock highlight={false}>
-                        {message}
+                        {props.message}
                     </CodeBlock>
                 </Tab>
             );
         }
 
         return (
-            <div id={example.id} className="example">
-                <div className="example-source">
-                    <Tabs>
-                        {tabs}
-                    </Tabs>
-                </div>
-
-                <div className="example-output">
-                    <h4 className="example-output-heading">Rendered</h4>
-
+            <Example
+                id={props.id}
+                currentLocale={props.currentLocale}
+                availableLocales={props.availableLocales}
+                onLocaleChange={props.onLocaleChange}
+                source={<Tabs>{tabs}</Tabs>}
+                output={
                     <div className="react-output">
                         <ExampleComponent
-                            locales={currentLocale}
-                            formats={example.meta.formats}
-                            messages={messages} />
+                            locales={props.currentLocale}
+                            formats={props.formats}
+                            messages={props.messages} />
                     </div>
-
-                    <div className="example-output-controls">
-                        <label>
-                            <span className="example-label">Locale:</span>
-                            <LocaleSelect
-                                availableLocales={availableLocales}
-                                value={currentLocale}
-                                onChange={this.updateLocale} />
-                        </label>
-                    </div>
-                </div>
-            </div>
+                } />
         );
     }
 });

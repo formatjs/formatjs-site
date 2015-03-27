@@ -4,12 +4,21 @@ export default React.createClass({
     displayName: 'DustOutput',
 
     propTypes: {
+        id: React.PropTypes.string.isRequired,
         source : React.PropTypes.string.isRequired,
-        context: React.PropTypes.object.isRequired
+        context: React.PropTypes.object.isRequired,
+
+        locales : React.PropTypes.oneOfType([
+            React.PropTypes.string,
+            React.PropTypes.array,
+        ]).isRequired,
+
+        formats : React.PropTypes.object,
+        messages: React.PropTypes.object
     },
 
     getInitialState: function () {
-        var tmpl = dust.compile(this.props.source, this.props.exampleId);
+        var tmpl = dust.compile(this.props.source, this.props.id);
         dust.loadSource(tmpl);
         // The state that we have is the compiled template, but alas this is
         // passed through in a side channel (registered inside of dust).
@@ -19,7 +28,7 @@ export default React.createClass({
     componentWillReceiveProps: function (nextProps) {
         var tmpl;
         if (nextProps.source !== this.props.source) {
-            tmpl = dust.compile(nextProps.source, this.props.exampleId);
+            tmpl = dust.compile(nextProps.source, this.props.id);
             dust.loadSource(tmpl);
             // The state that we have is the compiled template, but alas this is
             // passed through in a side channel (registered inside of dust).
@@ -44,7 +53,7 @@ export default React.createClass({
         // are simple (don't reference external resources such as partials).
         nextTick = dust.nextTick;
         dust.nextTick = function(cb) { cb(); };
-        dust.render(this.props.exampleId, context, function(err, out) {
+        dust.render(this.props.id, context, function(err, out) {
             dust.nextTick = nextTick;
             if (!err && out) {
                 html = out;

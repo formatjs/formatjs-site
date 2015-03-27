@@ -4,8 +4,16 @@ export default React.createClass({
     displayName: 'HandlebarsOutput',
 
     propTypes: {
-        source : React.PropTypes.string.isRequired,
-        context: React.PropTypes.object.isRequired
+        source  : React.PropTypes.string.isRequired,
+        context : React.PropTypes.object.isRequired,
+
+        locales : React.PropTypes.oneOfType([
+            React.PropTypes.string,
+            React.PropTypes.array,
+        ]).isRequired,
+
+        formats : React.PropTypes.object,
+        messages: React.PropTypes.object
     },
 
     getInitialState: function () {

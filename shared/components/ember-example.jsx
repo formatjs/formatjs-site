@@ -1,93 +1,75 @@
 /* global React */
 
-import ExampleMixin from '../mixins/example';
+import Example from './example';
 import CodeBlock from './code-block';
-import LocaleSelect from './locale-select';
 import EmberOutput from './ember-output';
 import {Tabs, Tab} from './tabs';
 
 export default React.createClass({
     displayName: 'EmberExample',
-    mixins     : [ExampleMixin],
 
-    generateRenderCode: function () {
-        var intlData = this.generateIntlData();
+    propTypes: {
+        id: React.PropTypes.string.isRequired,
 
-        return [
-            'var intlData = ' + JSON.stringify(intlData, null, 4) + ';',
-            '',
-            this.constructor.renderCode
-        ].join('\n');
+        source: React.PropTypes.shape({
+            template: React.PropTypes.string.isRequired,
+            context : React.PropTypes.string.isRequired
+        }).isRequired,
+
+        context : React.PropTypes.object.isRequired,
+        message : React.PropTypes.string,
+        formats : React.PropTypes.object,
+        messages: React.PropTypes.object,
+
+        currentLocale   : React.PropTypes.string.isRequired,
+        availableLocales: React.PropTypes.array.isRequired,
+        onLocaleChange  : React.PropTypes.func.isRequired,
     },
 
     render: function () {
-        var example          = this.props.example;
-        var currentLocale    = this.state.currentLocale;
-        var availableLocales = this.state.availableLocales;
-        var messages         = this.props.intl.messages[currentLocale];
-        var message          = messages[example.meta.messageId];
+        var props = this.props;
 
         var tabs = [
-            <Tab label="Template" key="template" id={example.id + "-template"}>
+            <Tab label="Template" key="template" id={`${props.id}-template`}>
                 <CodeBlock lang="handlebars">
-                    {example.source.template}
+                    {props.source.template}
                 </CodeBlock>
             </Tab>,
 
-            <Tab label="Context" key="context" id={example.id + "-context"}>
+            <Tab label="Context" key="context" id={`${props.id}-context`}>
                 <CodeBlock lang="javascript">
-                    {example.source.context}
-                </CodeBlock>
-            </Tab>,
-
-            <Tab label="Render" key="render" id={example.id + "-render"}>
-                <CodeBlock lang="javascript">
-                    {this.generateRenderCode()}
+                    {props.source.context}
                 </CodeBlock>
             </Tab>
         ];
 
         // Insert a "Message" tab if the example uses an i18n message.
-        if (message) {
+        if (props.message) {
             tabs.splice(1, 0,
-                <Tab label="Message" key="message" id={example.id + "-message"}>
+                <Tab label="Message" key="message" id={`${props.id}-message`}>
                     <CodeBlock highlight={false}>
-                        {message}
+                        {props.message}
                     </CodeBlock>
                 </Tab>
             );
         }
 
         return (
-            <div id={example.id} className="example">
-                <div className="example-source">
-                    <Tabs>
-                        {tabs}
-                    </Tabs>
-                </div>
-
-                <div className="example-output">
-                    <h4 className="example-output-heading">Rendered</h4>
-
+            <Example
+                id={props.id}
+                currentLocale={props.currentLocale}
+                availableLocales={props.availableLocales}
+                onLocaleChange={props.onLocaleChange}
+                source={<Tabs>{tabs}</Tabs>}
+                output={
                     <EmberOutput
-                        exampleId={example.id}
-                        locales={currentLocale}
-                        formats={example.meta.formats}
-                        messages={messages}
-                        source={example.source.template}
-                        context={this.evalContext(example.source.context)} />
-
-                    <div className="example-output-controls">
-                        <label>
-                            <span className="example-label">Locale:</span>
-                            <LocaleSelect
-                                availableLocales={availableLocales}
-                                value={currentLocale}
-                                onChange={this.updateLocale} />
-                        </label>
-                    </div>
-                </div>
-            </div>
+                        exampleId={props.id}
+                        locales={props.currentLocale}
+                        formats={props.formats}
+                        messages={props.messages}
+                        source={props.source.template}
+                        context={props.context} />
+                } />
         );
     }
 });

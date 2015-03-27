@@ -1,6 +1,8 @@
 /* global React */
 
-export default {
+export default React.createClass({
+    displayName: 'ExampleContainer',
+
     propTypes: {
         example: React.PropTypes.shape({
             id  : React.PropTypes.string.isRequired,
@@ -35,24 +37,19 @@ export default {
         // For examples that use messages, limit `availableLocales` to those for
         // which there are translations.
         if (messageId) {
-            availableLocales =
-                availableLocales.reduce(function (locales, locale) {
-                    if (intl.messages[locale].hasOwnProperty(messageId)) {
-                        locales.push(locale);
-                    }
-
-                    return locales;
-                }, []);
+            availableLocales = availableLocales.filter(function (locale) {
+                return intl.messages[locale].hasOwnProperty(messageId);
+            });
         }
 
         // Make sure the user's preferredLocale in available, otherwise default
         // to "en-US".
         var currentLocale = availableLocales.find(function (locale) {
             return locale === preferredLocale;
-        }) || 'en-US';
+        });
 
         return {
-            currentLocale   : currentLocale,
+            currentLocale   : currentLocale || 'en-US',
             availableLocales: availableLocales
         };
     },
@@ -67,10 +64,6 @@ export default {
         }
 
         return {};
-    },
-
-    updateLocale: function (newLocale) {
-        this.setState({currentLocale: newLocale});
     },
 
     generateIntlData: function () {
@@ -95,5 +88,37 @@ export default {
         if (formats)  { intlData.formats  = formats; }
 
         return intlData;
+    },
+
+    updateLocale: function (newLocale) {
+        this.setState({currentLocale: newLocale});
+    },
+
+    render: function () {
+        var props = this.props;
+        var state = this.state;
+
+        var Component = props.component;
+        var example   = props.example;
+
+        var source = Object.assign({}, example.source, {
+            intlData: JSON.stringify(this.generateIntlData(), null, 4)
+        });
+
+        var messages = props.intl.messages[state.currentLocale];
+
+        return (
+            <Component
+                id={example.id}
+                component={example.source.component && example.getComponent()}
+                source={source}
+                context={this.evalContext(source.context)}
+                message={messages[example.meta.messageId]}
+                formats={example.meta.formats}
+                messages={messages}
+                currentLocale={state.currentLocale}
+                availableLocales={state.availableLocales}
+                onLocaleChange={this.updateLocale} />
+        );
     }
-};
+});

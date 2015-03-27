@@ -4,8 +4,17 @@ export default React.createClass({
     displayName: 'EmberOutput',
 
     propTypes: {
-        source: React.PropTypes.string.isRequired,
-        context: React.PropTypes.object.isRequired
+        id     : React.PropTypes.string.isRequired,
+        source : React.PropTypes.string.isRequired,
+        context: React.PropTypes.object.isRequired,
+
+        locales : React.PropTypes.oneOfType([
+            React.PropTypes.string,
+            React.PropTypes.array,
+        ]).isRequired,
+
+        formats : React.PropTypes.object,
+        messages: React.PropTypes.object
     },
 
     injectMessages: function (locale, messages) {
@@ -60,15 +69,16 @@ export default React.createClass({
             }
         });
 
-        // this initializer is specific to the formatjs.io.  This is not something
-        // any consumer of ember-intl will need to do.  It's providing some of the glue
-        // between (Ember + ember-intl) and React
+        // This initializer is specific to the formatjs.io. This is not
+        // something any consumer of ember-intl will need to do. It's providing
+        // some of the glue between (Ember + ember-intl) and React.
         this.app.initializer({
-            name : this.props.exampleId,
+            name : this.props.id,
             after: 'ember-intl-standalone',
 
             initialize: function (container, app) {
-                this.controller = container.lookupFactory('controller:basic').create(this.props.context);
+                this.controller = container.lookupFactory('controller:basic')
+                        .create(this.props.context);
 
                 this.injectMessages(this.props.locales, this.props.messages);
 
@@ -76,7 +86,7 @@ export default React.createClass({
                     template  : Ember.Handlebars.compile(this.props.source),
                     context   : this.controller,
                     container : container
-                }).appendTo(domElement)
+                }).appendTo(domElement);
             }.bind(this)
         });
     },

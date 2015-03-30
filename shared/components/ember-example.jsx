@@ -63,7 +63,7 @@ export default React.createClass({
                 source={<Tabs>{tabs}</Tabs>}
                 output={
                     <EmberOutput
-                        exampleId={props.id}
+                        id={props.id}
                         locales={props.currentLocale}
                         formats={props.formats}
                         messages={props.messages}

@@ -7,7 +7,7 @@ export default function init(state) {
     var containerNode = document.querySelector('.splash-example-container');
 
     // Expose React component on its DOM node for testing.
-    node.component = React.render(
+    containerNode.component = React.render(
         <SplashExample {...splashProps} />,
         containerNode
     );

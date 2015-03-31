@@ -7,6 +7,22 @@ var CSSTransitionGroup = React.addons.CSSTransitionGroup;
 export default React.createClass({
     displayName: 'SplashExample',
 
+    propTypes: {
+        name     : React.PropTypes.string.isRequired,
+        numPhotos: React.PropTypes.number.isRequired,
+        takenDate: React.PropTypes.number.isRequired,
+
+        locales : React.PropTypes.oneOfType([
+            React.PropTypes.string,
+            React.PropTypes.array,
+        ]).isRequired,
+
+        messages: React.PropTypes.object.isRequired,
+
+        availableLocales  : React.PropTypes.array.isRequired,
+        availableNumPhotos: React.PropTypes.array.isRequired
+    },
+
     getInitialState: function () {
         var locales = this.props.locales;
 
@@ -25,6 +41,7 @@ export default React.createClass({
     },
 
     render: function () {
+        // This this ref to be lazy.
         var {FormattedMessage} = ReactIntl;
 
         var currentLocale = this.state.currentLocale;

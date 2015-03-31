@@ -1,11 +1,12 @@
 /* global React */
 
+import ExampleContainer from './components/example-container';
 import HandlebarsExample from './components/handlebars-example';
 import ReactExample from './components/react-example';
 import DustExample from './components/dust-example';
 import EmberExample from './components/ember-example';
 
-var COMPONENTS = {
+var INTEGRATION_COMPONENTS = {
     handlebars: HandlebarsExample,
     react     : ReactExample,
     dust      : DustExample,
@@ -25,13 +26,11 @@ function hydrateExample(id, type, props) {
     var exampleNode = document.getElementById(id);
     if (!exampleNode) { return; }
 
-    var ExampleComponent = COMPONENTS[type];
-    if (!ExampleComponent) {
-        throw new Error('No output component for type: ' + type);
-    }
+    var ExampleComponent = INTEGRATION_COMPONENTS[type];
+    var containerNode    = exampleNode.parentNode;
 
-    exampleNode.parentNode.component = React.render(
-        <ExampleComponent {...props} />,
-        exampleNode.parentNode
+    containerNode.component = React.render(
+        <ExampleContainer {...props} component={ExampleComponent} />,
+        containerNode
     );
 }

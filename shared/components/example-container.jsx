@@ -1,5 +1,17 @@
 /* global React */
 
+import HandlebarsExample from './handlebars-example';
+import ReactExample from './react-example';
+import DustExample from './dust-example';
+import EmberExample from './ember-example';
+
+var INTEGRATION_COMPONENTS = {
+    handlebars: HandlebarsExample,
+    react     : ReactExample,
+    dust      : DustExample,
+    ember     : EmberExample
+};
+
 export default React.createClass({
     displayName: 'ExampleContainer',
 
@@ -7,8 +19,11 @@ export default React.createClass({
         example: React.PropTypes.shape({
             id  : React.PropTypes.string.isRequired,
             name: React.PropTypes.string.isRequired,
-            type: React.PropTypes.string.isRequired,
             meta: React.PropTypes.object.isRequired,
+
+            type: React.PropTypes.oneOf(
+                Object.keys(INTEGRATION_COMPONENTS)
+            ).isRequired,
 
             source: React.PropTypes.shape({
                 template : React.PropTypes.string,
@@ -98,8 +113,8 @@ export default React.createClass({
         var props = this.props;
         var state = this.state;
 
-        var Component = props.component;
-        var example   = props.example;
+        var example          = props.example;
+        var ExampleComponent = INTEGRATION_COMPONENTS[example.type];
 
         var source = Object.assign({}, example.source, {
             intlData: JSON.stringify(this.generateIntlData(), null, 4)
@@ -108,7 +123,7 @@ export default React.createClass({
         var messages = props.intl.messages[state.currentLocale];
 
         return (
-            <Component
+            <ExampleComponent
                 id={example.id}
                 component={example.source.component && example.getComponent()}
                 source={source}

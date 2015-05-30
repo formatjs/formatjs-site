@@ -5,29 +5,29 @@ var config = require('./config');
 
 // -- Configure JavaScript Runtime ---------------------------------------------
 
-var hasNativeIntl    = !!global.Intl;
 var hasNativePromise = !!global.Promise;
 
 require('es6-shim');
 
 // es6-shim provides a Promise implementation, but it's not very good.
-hasNativePromise || (global.Promise = require('promise'));
+if (!hasNativePromise) {
+    global.Promise = require('promise')
+}
 
-// Determine if the native `Intl` has the locale data we need.
-var hasNativeLocaleData = hasNativeIntl &&
-    config.availableLocales.every(function (locale) {
-        return Intl.NumberFormat.supportedLocalesOf(locale)[0] === locale;
-    });
+var areIntlLocalesSupported = require('intl-locales-supported');
 
-if (!hasNativeIntl) {
+if (global.Intl) {
+    // Determine if the built-in `Intl` has the locale data we need.
+    if (!areIntlLocalesSupported(config.availableLocales)) {
+        // `Intl` exists, but it doesn't have the data we need, so load the
+        // polyfill and replace the constructors with need with the polyfill's.
+        require('intl');
+        Intl.NumberFormat   = IntlPolyfill.NumberFormat;
+        Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat;
+    }
+} else {
     // No `Intl`, so use and load the polyfill.
     global.Intl = require('intl');
-} else if (!hasNativeLocaleData) {
-    // `Intl` exists, but it doesn't have the data we need, so load the polyfill
-    // and replace the constructors with need with the polyfill's.
-    require('intl');
-    Intl.NumberFormat   = IntlPolyfill.NumberFormat;
-    Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat;
 }
 
 // -- FormatJS Libs ------------------------------------------------------------

@@ -154,11 +154,6 @@ React.render(
     <h4>Require the Module</h4>
 
 {{#code "js"}}
-// Load and use polyfill for ECMA-402.
-if (!global.Intl) {
-    global.Intl = require('intl');
-}
-
 var React     = require('react');
 var ReactIntl = require('react-intl');
 {{/code}}

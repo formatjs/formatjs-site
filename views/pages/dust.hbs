@@ -118,11 +118,6 @@ DustIntl.registerWith(dust);
     <h4>1. Require the Module</h4>
 
 {{#code "js"}}
-// Load and use polyfill for ECMA-402.
-if (!global.Intl) {
-    global.Intl = require('intl');
-}
-
 var dust     = require('dustjs-linkedin');
 var DustIntl = require('dust-intl');
 {{/code}}

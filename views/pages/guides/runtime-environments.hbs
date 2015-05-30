@@ -52,7 +52,7 @@
             </h3>
 
             <p>
-                The <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a> library, developed by Andy Earnshaw, provides a polyfill for the {{code "Intl.NumberFormat"}} and {{code "Intl.DateTimeFormat"}} APIs &mdash; both of which are needed by the {{brand}} libraries. The polyfill also includes separate locale data files for each of the 700+ locales it supports.
+                The <a href="https://github.com/andyearnshaw/Intl.js">Intl.js polyfill</a>, developed by Andy Earnshaw, provides a polyfill for the {{code "Intl.NumberFormat"}} and {{code "Intl.DateTimeFormat"}} APIs &mdash; both of which are needed by the {{brand}} libraries. The polyfill also includes separate locale data files for each of the 700+ locales it supports.
             </p>
 
             <p class="note">
@@ -80,22 +80,23 @@
             </h3>
 
             <p>
-                The following code snippet will help you polyfill the Node.js runtime when the {{code "Intl"}} APIs are missing, or if the built-in {{code "Intl"}} is missing locale data that's needed for your app:
+                Node.js <= 0.10 doesn't have the built-in <code>Intl</code> APIs (ECMA-402). Node.js 0.12 does, but the default build/distribution only supports English.
+            </p>
+
+            <p>
+                The following code snippet uses the <a href="https://github.com/andyearnshaw/Intl.js">{{code "intl"}}</a> and <a href="https://github.com/yahoo/intl-locales-supported">{{code "intl-locales-supported"}}</a> npm packages which will help you polyfill the Node.js runtime when the {{code "Intl"}} APIs are missing, or if the built-in {{code "Intl"}} is missing locale data that's needed for your app:
             </p>
 
 {{#code "js"}}
+var areIntlLocalesSupported = require('intl-locales-supported');
+
 var localesMyAppSupports = [
     /* list locales here */
 ];
 
 if (global.Intl) {
     // Determine if the built-in `Intl` has the locale data we need.
-    var hasBuiltInLocaleData = localesMyAppSupports.every(function (locale) {
-        return Intl.NumberFormat.supportedLocalesOf(locale)[0] === locale &&
-                Intl.DateTimeFormat.supportedLocalesOf(locale)[0] === locale;
-    });
-
-    if (!hasBuiltInLocaleData) {
+    if (!areIntlLocalesSupported(localesMyAppSupports)) {
         // `Intl` exists, but it doesn't have the data we need, so load the
         // polyfill and replace the constructors with need with the polyfill's.
         require('intl');
@@ -155,7 +156,7 @@ app.get('/', function (req, res) {
             </h3>
 
             <p>
-                The <a href="https://github.com/andyearnshaw/Intl.js">Intl.js</a> library, developed by Andy Earnshaw, provides a polyfill for the {{code "Intl"}} API. It needs a locale data file for the current page.
+                The <a href="https://github.com/andyearnshaw/Intl.js">Intl.js polyfill</a>, developed by Andy Earnshaw, provides a polyfill for the {{code "Intl"}} API. It needs a locale data file for the current page.
             </p>
 
 {{#code "html"}}

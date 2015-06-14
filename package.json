@@ -26,11 +26,11 @@
     "jumanji": "^0.1.1",
     "morgan": "^1.2.3",
     "nodeify": "^1.0.0",
+    "path-to-regexp": "^1.2.0",
     "promise": "^6.1.0",
     "react": "^0.13.1",
     "react-intl": "^1.2.0",
     "react-tools": "^0.13.1",
-    "reverend": "^0.3.0",
     "serve-favicon": "^2.1.1",
     "serve-static": "^1.8.0"
   },

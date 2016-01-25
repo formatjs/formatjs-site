@@ -218,8 +218,7 @@ li code {
 
 .example .handlebars-output,
 .example .react-output,
-.example .dust-output,
-.example .ember-output
+.example .dust-output
  {
     padding: 0 1em;
     border: 0.125rem solid var(--gainsboro);

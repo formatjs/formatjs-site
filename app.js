@@ -109,7 +109,6 @@ routes.integrations(route('/integrations/'));
 routes.github(route('/github/'));
 
 routes.react(route('/react/'));
-routes.ember(route('/ember/'));
 routes.handlebars(route('/handlebars/'));
 routes.dust(route('/dust/'));
 

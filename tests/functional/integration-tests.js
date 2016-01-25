@@ -25,13 +25,6 @@ var testData = {
         output_selector: 'li:nth-child(2)',
         expected_output: '2 時間前'
     },
-    'Test Ember integration example': {
-        comment: 'Test Ember integration - Date formatting example using pt-BR',
-        type: 'ember',
-        locale: 'pt-BR',
-        id: 'ex-ember-date',
-        expected_output: '8 de dezembro de 2014'
-    },
     'Test Handlebars integration example': {
         comment: 'Test Handlebars integration - Number formatting example using es-AR',
         type: 'handlebars',

@@ -66,22 +66,10 @@ function localeDataTree(srcDir, outputFile) {
 
 var formatjsLocaleData = mergeTrees([
     'dust-intl',
-    'ember-intl',
     'handlebars-intl',
     'react-intl'
 ].map(function (integration) {
-    var srcDir;
-
-    switch(integration) {
-        case 'ember-intl':
-            srcDir = integration + '/packaging/dist/locale-data/locales';
-            break;
-        default:
-            srcDir = integration + '/dist/locale-data';
-            break;
-    }
-
-    return concatTree(localeDataTree(srcDir), {
+    return concatTree(localeDataTree(integration + '/dist/locale-data'), {
         inputFiles: ['*.js'],
         outputFile: '/vendor/formatjs/' + integration + '-locale-data.js'
     });
@@ -92,13 +80,11 @@ vendor = mergeTrees([
         'es6-shim': '/vendor/es6-shim',
 
         'dustjs-linkedin/dist': '/vendor/dust',
-        'components-ember'    : '/vendor/ember',
         'handlebars/dist'     : '/vendor/handlebars',
         'jquery/dist'         : '/vendor/jquery',
         'react/dist'          : '/vendor/react',
 
         'dust-intl/dist'           : '/vendor/dust-intl',
-        'ember-intl/packaging/dist': '/vendor/ember-intl',
         'handlebars-intl/dist'     : '/vendor/handlebars-intl',
         'react-intl/dist'          : '/vendor/react-intl'
     }),

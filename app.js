@@ -43,10 +43,10 @@ global.DustIntl.registerWith(global.dust);
 
 // -----------------------------------------------------------------------------
 
-var path     = require('path');
-var express  = require('express');
-var expstate = require('express-state');
-var reverend = require('reverend');
+var path         = require('path');
+var express      = require('express');
+var expstate     = require('express-state');
+var pathToRegexp = require('path-to-regexp');
 
 var hbs        = require('./lib/hbs');
 var middleware = require('./middleware');
@@ -128,7 +128,8 @@ app.getRoute = function (routeName) {
 };
 
 app.getPathTo = function (routeName, context) {
-    return reverend(app.getRoute(routeName).path, context);
+    var toPath = pathToRegexp.compile(app.getRoute(routeName).path);
+    return toPath(context);
 };
 
 // -- Locals -------------------------------------------------------------------

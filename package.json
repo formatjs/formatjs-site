@@ -5,11 +5,9 @@
   "private": true,
   "main": "server.js",
   "dependencies": {
-    "components-ember": "git://github.com/components/ember#1.10.0",
     "compression": "^1.0.11",
     "dust-intl": "^1.1.0",
     "dustjs-linkedin": "^2.4.0",
-    "ember-intl": "^1.2.0",
     "errorhandler": "^1.1.1",
     "es6-shim": "^0.27.1",
     "express": "^4.9.5",

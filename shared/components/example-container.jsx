@@ -3,13 +3,11 @@
 import HandlebarsExample from './handlebars-example';
 import ReactExample from './react-example';
 import DustExample from './dust-example';
-import EmberExample from './ember-example';
 
 var INTEGRATION_COMPONENTS = {
     handlebars: HandlebarsExample,
     react     : ReactExample,
-    dust      : DustExample,
-    ember     : EmberExample
+    dust      : DustExample
 };
 
 export default React.createClass({

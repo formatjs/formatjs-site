@@ -10,8 +10,7 @@ module.exports = function (grunt) {
                         'intl/*.min.js',
                         'react-intl/dist/*.min.js',
                         'dust-intl/dist/*.min.js',
-                        'handlebars-intl/dist/*.min.js',
-                        'ember-intl/packaging/dist/*.min.js'
+                        'handlebars-intl/dist/*.min.js'
                     ],
                     dest: 'config/lib-sizes.json'
                 }]

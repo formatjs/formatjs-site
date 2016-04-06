@@ -102,6 +102,9 @@ router.use(middleware.fixBadSafari);
 router.use(middleware.intl);
 router.use(middleware.polyfills);
 
+route('/guide/').get(routes.redirect('/guides/'));
+route('/ember/').get(routes.redirect('https://github.com/yahoo/ember-intl'));
+
 routes.home(route('/'));
 routes.about(route('/about/'));
 routes.guides(route('/guides/:guide?/'));
@@ -109,11 +112,8 @@ routes.integrations(route('/integrations/'));
 routes.github(route('/github/'));
 
 routes.react(route('/react/'));
-routes.ember(route('/ember/'));
 routes.handlebars(route('/handlebars/'));
 routes.dust(route('/dust/'));
-
-route('/guide/').get(routes.redirect('/guides/'));
 
 app.getRoute = function (routeName) {
     var layer = router.stack.find(function (layer) {

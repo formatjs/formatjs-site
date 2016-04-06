@@ -20,6 +20,7 @@ var testData = {
     'Test React integration example': {
         comment: 'Test React integration - Relative time formatting example using ja-JP',
         type: 'react',
+        path: '/react/v1/',
         locale: 'ja-JP',
         id: 'ex-react-relative',
         output_selector: 'li:nth-child(2)',
@@ -28,6 +29,7 @@ var testData = {
     'Test Handlebars integration example': {
         comment: 'Test Handlebars integration - Number formatting example using es-AR',
         type: 'handlebars',
+        path: '/handlebars/',
         locale: 'fr-FR',
         id: 'ex-handlebars-number',
         output_selector: 'li:nth-child(3)',
@@ -36,6 +38,7 @@ var testData = {
     'Test Dust integration example': {
         comment: 'Test Dust integration - Time custom formatting example using cs-CZ',
         type: 'dust',
+        path: '/dust/',
         locale: 'cs-CZ',
         id: 'ex-dust-custom',
         output_selector: 'li:nth-child(3)',
@@ -49,7 +52,7 @@ Object.keys(testData).forEach(function (name) {
     casper.test.begin(name, function (test) {
 
         test.comment('Loading page...');
-        casper.start(casper.host + '/' + data.type + '/', function () {
+        casper.start(casper.host + data.path, function () {
             test.pass('Page was loaded successfully!');
         });
 

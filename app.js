@@ -103,6 +103,7 @@ router.use(middleware.intl);
 router.use(middleware.polyfills);
 
 route('/guide/').get(routes.redirect('/guides/'));
+route('/react/').get(routes.redirect('https://github.com/yahoo/react-intl'));
 route('/ember/').get(routes.redirect('https://github.com/yahoo/ember-intl'));
 
 routes.home(route('/'));
@@ -111,7 +112,7 @@ routes.guides(route('/guides/:guide?/'));
 routes.integrations(route('/integrations/'));
 routes.github(route('/github/'));
 
-routes.react(route('/react/'));
+routes.react(route('/react/v1/'));
 routes.handlebars(route('/handlebars/'));
 routes.dust(route('/dust/'));
 

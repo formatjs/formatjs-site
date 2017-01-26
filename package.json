@@ -1,5 +1,5 @@
 {
-  "name": "js-intl-docs-site",
+  "name": "formatjs-site",
   "version": "1.2.0",
   "description": "Documentation for client/server internationalization in JavaScript.",
   "private": true,
@@ -62,9 +62,10 @@
     "xunit-file": "0.0.6"
   },
   "scripts": {
-    "postinstall": "grunt",
+    "build": "grunt",
     "test": "istanbul cover --dir ./artifacts/test/coverage --post-require-hook ./tests/istanbul-hook -- _mocha tests/unit/ --require es6-shim --reporter spec",
-    "start": "node server.js"
+    "start": "node server.js",
+    "now-start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",
@@ -82,7 +83,7 @@
   "bugs": {
     "url": "https://github.com/yahoo/formatjs-site/issues"
   },
-  "homepage": "http://formatjs.io/",
+  "homepage": "https://formatjs.io/",
   "jshintConfig": {
     "node": true,
     "browser": true,
@@ -105,7 +106,7 @@
     },
     "custodian": {
       "email": "jlecomte@yahoo-inc.com",
-      "url": "http://formatjs.io"
+      "url": "https://formatjs.io"
     }
   }
 }

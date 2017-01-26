@@ -15,7 +15,7 @@ module.exports = function (req, res, next) {
     }));
 
     var polyfillUrl = url.format({
-        protocol: req.protocol,
+        protocol: 'https:',
         host    : polyfillService.hostname,
         pathname: 'polyfill' + (isProduction ? '.min.js' : '.js'),
 

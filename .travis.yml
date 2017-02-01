@@ -1,3 +1,11 @@
 language: node_js
 node_js:
-    - "6"
+  - '6'
+deploy:
+  provider: script
+  script: NOW_ALIAS=formatjs.io node_modules/.bin/now-travis
+  on:
+    branch: master
+env:
+  global:
+    secure: iwLZFsYM6NYa6jD2awa7m2nMC/jqfCyy7dofloV55OGxg18NkzH2WDxift0qYECb+BNuMN7fHbixfxXTxAyC3JOcKXHal4X2KrwmYoVpSHURtbo83/0ul4MRPr31S1q8uwYYIDAtLxPGcQXZnhtaSgG/d3PJQeGwOI9e6fxOJJA=

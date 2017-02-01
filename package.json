@@ -4,6 +4,16 @@
   "description": "Documentation for client/server internationalization in JavaScript.",
   "private": true,
   "main": "server.js",
+  "engines": {
+    "node": "6.x.x"
+  },
+  "scripts": {
+    "postinstall": "grunt",
+    "test": "istanbul cover --dir ./artifacts/test/coverage --post-require-hook ./tests/istanbul-hook -- _mocha tests/unit/ --require es6-shim --reporter spec",
+    "start": "node server.js",
+    "now-build": "grunt",
+    "now-start": "NODE_ENV=production node server.js"
+  },
   "dependencies": {
     "compression": "^1.0.11",
     "dust-intl": "^1.1.0",
@@ -54,19 +64,13 @@
     "istanbul": "^0.3.11",
     "minimatch": "^2.0.4",
     "mocha": "^2.0.1",
+    "now-travis": "^1.0.0",
     "object.assign": "^1.0.1",
     "postcss": "^4.0.6",
     "postcss-custom-properties": "^3.0.1",
     "rimraf": "^2.2.8",
     "supertest": "^0.15.0",
     "xunit-file": "0.0.6"
-  },
-  "scripts": {
-    "postinstall": "grunt",
-    "test": "istanbul cover --dir ./artifacts/test/coverage --post-require-hook ./tests/istanbul-hook -- _mocha tests/unit/ --require es6-shim --reporter spec",
-    "start": "node server.js",
-    "now-build": "grunt",
-    "now-start": "NODE_ENV=production node server.js"
   },
   "repository": {
     "type": "git",

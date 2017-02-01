@@ -3,7 +3,7 @@ node_js:
   - '6'
 deploy:
   provider: script
-  script: NOW_ALIAS=formatjs.io node_modules/.bin/now-travis
+  script: NOW_ALIAS=formatjs.io ./node_modules/.bin/now-travis
   on:
     branch: master
 env:

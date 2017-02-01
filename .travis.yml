@@ -4,6 +4,7 @@ node_js:
 deploy:
   provider: script
   script: NOW_ALIAS=formatjs.io ./node_modules/.bin/now-travis
+  skip_cleanup: true
   on:
     branch: master
 env:

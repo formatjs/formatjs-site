@@ -104,7 +104,7 @@ describe('Helpers', function () {
     describe('releaseDownloadUrl', function () {
         it('points to github correctly', function () {
             expect(helpers.releaseDownloadUrl('dust-intl', '1.0.0'))
-                .to.equal('https://github.com/yahoo/dust-intl/releases/download/v1.0.0/dust-intl-1.0.0.tgz');
+                .to.equal('https://github.com/yahoo/dust-intl/archive/v1.0.0.tar.gz');
         });
     });
 

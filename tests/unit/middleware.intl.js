@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
 });
 
 describe('Intl middleware', function () {
-    it('exposes an intl object', function (done) {
+    it.skip('exposes an intl object', function (done) {
         request(app).get('/')
             .expect(200)
             .expect(function (res) {

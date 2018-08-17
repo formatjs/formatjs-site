@@ -77,19 +77,19 @@ describe('Helpers', function () {
             var template = Handlebars.compile('{{#code "js"}}\n\thello();\n{{/code}}');
             var result = template({});
 
-            expect(result.string).to.equal('<pre class="code"><code class="js">hello();</code></pre>');
+            expect(result).to.equal('<pre class="code"><code class="js">hello();</code></pre>');
         });
         it('optionally disables highlight', function () {
             var template = Handlebars.compile('{{#code highlight=false}}\n\thello();\n{{/code}}');
             var result = template({});
 
-            expect(result.string).to.equal('<pre class="code"><code class="nohighlight">hello();</code></pre>');
+            expect(result).to.equal('<pre class="code"><code class="nohighlight">hello();</code></pre>');
         });
         it('optionally adds a wrap class', function () {
             var template = Handlebars.compile('{{#code "js" wrap=true}}\n\thello();\n{{/code}}');
             var result = template({});
 
-            expect(result.string).to.equal('<pre class="code code-wrap"><code class="js">hello();</code></pre>');
+            expect(result).to.equal('<pre class="code code-wrap"><code class="js">hello();</code></pre>');
         });
     });
 

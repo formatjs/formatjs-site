@@ -25,7 +25,7 @@
     "express-slash": "^2.0.1",
     "express-state": "^1.2.0",
     "glob": "^5.0.3",
-    "handlebars": "^4.0.11",
+    "handlebars": "^4.3.0",
     "handlebars-intl": "^1.1.1",
     "intl": "^0.1.4",
     "intl-locales-supported": "^1.0.0",

@@ -29,7 +29,7 @@
     "handlebars-intl": "^1.1.1",
     "intl": "^0.1.4",
     "intl-locales-supported": "^1.0.0",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "js-yaml": "^3.2.1",
     "jumanji": "^0.1.1",
     "morgan": "^1.2.3",
